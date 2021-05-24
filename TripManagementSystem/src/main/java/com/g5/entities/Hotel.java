@@ -13,6 +13,8 @@ public class Hotel {
 	public Hotel() {
 		super();
 		// TODO Auto-generated constructor stub
+		
+		
 	}
 	public Hotel(int hotelId, String hotelName, String hotelType, String hotelDescription, String address, double rent,
 			String status) {
