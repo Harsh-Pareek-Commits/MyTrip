@@ -1,12 +1,23 @@
 package com.g5.entities;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
+@DiscriminatorValue(value = "3")
 public class Customer extends User {
 
+
+	@Column
 	private String customerName;
+	@Column
 	private String address;
+	@Column
 	private String mobileNo;
+	@Column
 	private String email;
+	
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub

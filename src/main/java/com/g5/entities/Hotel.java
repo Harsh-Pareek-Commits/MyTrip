@@ -1,14 +1,28 @@
 package com.g5.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Hotel {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int hotelId;
+	@Column
 	private String hotelName;
+	@Column
 	private String hotelType;
+	@Column
 	private String hotelDescription;
+	@Column
 	private String address;
+	@Column
 	private double rent;
+	@Column
 	private String status;
 	public Hotel() {
 		super();

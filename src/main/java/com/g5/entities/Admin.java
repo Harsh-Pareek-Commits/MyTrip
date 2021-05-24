@@ -1,10 +1,18 @@
 package com.g5.entities;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue(value = "2")
 public class Admin extends User {
 	
-	
+	@Column
 	private String adminName;
+	@Column
 	private String email;
+	@Column
 	private  String mobile;
 	public Admin() {
 		super();
