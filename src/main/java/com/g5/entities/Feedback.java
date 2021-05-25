@@ -20,7 +20,7 @@ public class Feedback {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String feedbackId;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "User_info", referencedColumnName = "feedbackId")
+	@JoinColumn(name = "User_info", referencedColumnName = "userId")
 	private Customer customer;
 	@Column
 	private String feedback;

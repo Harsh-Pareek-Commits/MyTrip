@@ -20,10 +20,10 @@ public class Package {
 	@Column
 	private double packageCost;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Route_info", referencedColumnName = "packageId")
+	@JoinColumn(name = "Route_info", referencedColumnName = "paymentId")
 	private Route route;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Hotel_info", referencedColumnName = "packageId")
+	@JoinColumn(name = "Hotel_info", referencedColumnName = "hotelId")
 	private Hotel hotel;
 
 	public Package() {
