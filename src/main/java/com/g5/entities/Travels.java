@@ -1,12 +1,26 @@
 package com.g5.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Travels {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int travelsId;
+	@Column
 	private String travelsName;
+	@Column
 	private String  agentName;
+	@Column
 	private String  address;
+	@Column
 	private String  contact;
+	
 	public Travels() {
 		super();
 		// TODO Auto-generated constructor stub

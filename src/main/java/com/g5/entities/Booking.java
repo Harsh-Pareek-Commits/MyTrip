@@ -3,17 +3,37 @@ package com.g5.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class Booking {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int bookingId;
+	@Column
 	private String bookingType;
+	@Column
 	private String description;
+	@Column
 	private String bookingTitle;
+	@Temporal(TemporalType.DATE)
 	private  LocalDate bookingDate;
+	@OneToOne
 	private Package pack;
+	@Column
 	private  int userId;
+	@OneToOne
 	private  PaymentDetails  payment;
+	@OneToOne
 	private TicketDetails ticket;
+	
 	public Booking() {
 		super();
 		// TODO Auto-generated constructor stub

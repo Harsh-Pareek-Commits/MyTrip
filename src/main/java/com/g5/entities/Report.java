@@ -2,12 +2,25 @@ package com.g5.entities;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Report {
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int reportId;
+	@Column
 	private String reportName;
+	@Column
 	private String reportType; 
+	@OneToMany
 	private Set<Booking> allBookings;
+	
 	public Report() {
 		super();
 		// TODO Auto-generated constructor stub

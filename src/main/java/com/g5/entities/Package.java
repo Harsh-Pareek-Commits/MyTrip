@@ -1,14 +1,25 @@
 package com.g5.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
+@Entity
 public class Package {
-	
+	@Id
 	private int packageId;
+	@Column
 	private String packageName;
+	@Column
 	private String packageDescription;
+	@Column
 	private String packageType;
+	@Column
 	private double packageCost;
+	@OneToOne
 	private Route route;
+	@OneToOne
 	private Hotel hotel;
 	
 	public Package() {

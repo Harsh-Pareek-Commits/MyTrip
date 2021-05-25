@@ -4,18 +4,39 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class Route {
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String routeId;
+	@Column
 	private String  routeFrom;
+	@Column
 	private String  routeTo;
+	@OneToMany
 	private  List<Bus> buses;
+	@Temporal(TemporalType.DATE)
 	private  LocalDateTime  departureTime;
+	@Temporal(TemporalType.DATE)
 	private  LocalDateTime   arrivalTime;
+	@Temporal(TemporalType.DATE)
 	private  LocalDate   doj;
+	@Column
 	private String pickupPoint;
+	@Column
 	private  double fare;
+	
+	
 	public Route() {
 		super();
 		// TODO Auto-generated constructor stub

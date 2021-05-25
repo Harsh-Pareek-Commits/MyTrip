@@ -1,12 +1,23 @@
 package com.g5.entities;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
+@DiscriminatorValue(value = "3")
 public class Customer extends User {
 
+
+	@Column
 	private String customerName;
+	@Column
 	private String address;
+	@Column
 	private String mobileNo;
+	@Column
 	private String email;
+	
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -67,47 +78,7 @@ public class Customer extends User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((customerName == null) ? 0 : customerName.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((mobileNo == null) ? 0 : mobileNo.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Customer other = (Customer) obj;
-		if (address == null) {
-			if (other.address != null)
-				return false;
-		} else if (!address.equals(other.address))
-			return false;
-		if (customerName == null) {
-			if (other.customerName != null)
-				return false;
-		} else if (!customerName.equals(other.customerName))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (mobileNo == null) {
-			if (other.mobileNo != null)
-				return false;
-		} else if (!mobileNo.equals(other.mobileNo))
-			return false;
-		return true;
-	}
+	
 	@Override
 	public String toString() {
 		return "Customer [customerName=" + customerName + ", address=" + address + ", mobileNo=" + mobileNo + ", email="

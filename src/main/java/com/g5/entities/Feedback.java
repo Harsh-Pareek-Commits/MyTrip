@@ -3,14 +3,30 @@ package com.g5.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class Feedback {
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String feedbackId;
+	@OneToOne
 	private Customer customer;
+	@Column
 	private String feedback;
+	@Column
 	private  int rating;
+	@Temporal(TemporalType.DATE)
 	private LocalDate submitDate;
+	
 	public Feedback() {
 		super();
 		// TODO Auto-generated constructor stub
