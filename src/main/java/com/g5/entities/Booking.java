@@ -32,10 +32,10 @@ public class Booking {
 	@Column
 	private int userId;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Payment_info", referencedColumnName = "bookingId")
+	@JoinColumn(name = "Payment_info", referencedColumnName = "paymentId")
 	private PaymentDetails payment;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Ticket_info", referencedColumnName = "bookingId")
+	@JoinColumn(name = "Ticket_info", referencedColumnName = "ticketId")
 	private TicketDetails ticket;
 
 	public Booking() {
