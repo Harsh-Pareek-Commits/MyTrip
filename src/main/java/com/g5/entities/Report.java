@@ -2,13 +2,15 @@ package com.g5.entities;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
-
+import javax.persistence.JoinColumn;
 @Entity
 public class Report {
 	@Id
@@ -18,8 +20,9 @@ public class Report {
 	private String reportName;
 	@Column
 	private String reportType; 
-	@OneToMany
-	
+	@OneToMany(cascade = CascadeType.ALL)
+	  @JoinTable(name = "Report_booking", joinColumns = @JoinColumn(name = "reportId"),
+	  inverseJoinColumns = @JoinColumn(name = "bookingId"))
 	private Set<Booking> allBookings;
 	
 	public Report() {
