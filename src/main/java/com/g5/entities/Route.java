@@ -21,7 +21,7 @@ public class Route {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String routeId;
+	private int routeId;
 	@Column
 	private String  routeFrom;
 	@Column
@@ -46,7 +46,7 @@ public class Route {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Route(String routeId, String routeFrom, String routeTo, List<Bus> buses, LocalDateTime departureTime,
+	public Route(int routeId, String routeFrom, String routeTo, List<Bus> buses, LocalDateTime departureTime,
 			LocalDateTime arrivalTime, LocalDate doj, String pickupPoint, double fare) {
 		super();
 		this.routeId = routeId;
@@ -60,11 +60,120 @@ public class Route {
 		this.fare = fare;
 	}
 	
+	/**
+	 * @return the routeId
+	 */
+	public int getRouteId() {
+		return routeId;
+	}
+	/**
+	 * @param routeId the routeId to set
+	 */
+	public void setRouteId(int routeId) {
+		this.routeId = routeId;
+	}
+	/**
+	 * @return the routeFrom
+	 */
+	public String getRouteFrom() {
+		return routeFrom;
+	}
+	/**
+	 * @param routeFrom the routeFrom to set
+	 */
+	public void setRouteFrom(String routeFrom) {
+		this.routeFrom = routeFrom;
+	}
+	/**
+	 * @return the routeTo
+	 */
+	public String getRouteTo() {
+		return routeTo;
+	}
+	/**
+	 * @param routeTo the routeTo to set
+	 */
+	public void setRouteTo(String routeTo) {
+		this.routeTo = routeTo;
+	}
+	/**
+	 * @return the buses
+	 */
+	public List<Bus> getBuses() {
+		return buses;
+	}
+	/**
+	 * @param buses the buses to set
+	 */
+	public void setBuses(List<Bus> buses) {
+		this.buses = buses;
+	}
+	/**
+	 * @return the departureTime
+	 */
+	public LocalDateTime getDepartureTime() {
+		return departureTime;
+	}
+	/**
+	 * @param departureTime the departureTime to set
+	 */
+	public void setDepartureTime(LocalDateTime departureTime) {
+		this.departureTime = departureTime;
+	}
+	/**
+	 * @return the arrivalTime
+	 */
+	public LocalDateTime getArrivalTime() {
+		return arrivalTime;
+	}
+	/**
+	 * @param arrivalTime the arrivalTime to set
+	 */
+	public void setArrivalTime(LocalDateTime arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+	/**
+	 * @return the doj
+	 */
+	public LocalDate getDoj() {
+		return doj;
+	}
+	/**
+	 * @param doj the doj to set
+	 */
+	public void setDoj(LocalDate doj) {
+		this.doj = doj;
+	}
+	/**
+	 * @return the pickupPoint
+	 */
+	public String getPickupPoint() {
+		return pickupPoint;
+	}
+	/**
+	 * @param pickupPoint the pickupPoint to set
+	 */
+	public void setPickupPoint(String pickupPoint) {
+		this.pickupPoint = pickupPoint;
+	}
+	/**
+	 * @return the fare
+	 */
+	public double getFare() {
+		return fare;
+	}
+	/**
+	 * @param fare the fare to set
+	 */
+	public void setFare(double fare) {
+		this.fare = fare;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((routeId == null) ? 0 : routeId.hashCode());
+		result = prime * result + routeId;
 		return result;
 	}
 	@Override
@@ -76,10 +185,7 @@ public class Route {
 		if (getClass() != obj.getClass())
 			return false;
 		Route other = (Route) obj;
-		if (routeId == null) {
-			if (other.routeId != null)
-				return false;
-		} else if (!routeId.equals(other.routeId))
+		if (routeId != other.routeId)
 			return false;
 		return true;
 	}
