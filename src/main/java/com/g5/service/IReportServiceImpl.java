@@ -13,14 +13,14 @@ import com.g5.repository.IReportRepository;
 public class IReportServiceImpl implements IReportService {
 	
 	@Autowired
-	IReportRepository repository;
+	IReportRepository report_repository;
 
 	@Override
 	@Transactional
 	public Report addReport(Report report) {
 		// TODO Auto-generated method stub
 		try {
-			repository.save(report);
+			report_repository.save(report);
 		}
 		catch(Exception e)
 		{
@@ -32,10 +32,9 @@ public class IReportServiceImpl implements IReportService {
 	@Override
 	public Report deleteReport(int reportId) throws ReportNotFoundException {
 		// TODO Auto-generated method stub
-	    Report report = new Report();
-	    report.setReportId(reportId);
+	    Report report = report_repository.findById(reportId).get();
 	    try {
-	    	repository.deleteById(reportId);
+	    	report_repository.deleteById(reportId);
 	    }
 	    catch (Exception e)
 	    {
@@ -49,7 +48,7 @@ public class IReportServiceImpl implements IReportService {
 	public Report viewReport(int reportId) throws ReportNotFoundException {
 		// TODO Auto-generated method stub
 		try {
-			return repository.findById(reportId).get();
+			return report_repository.findById(reportId).get();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -63,7 +62,7 @@ public class IReportServiceImpl implements IReportService {
 		// TODO Auto-generated method stub
 		List<Report> reportList = null;
 		try {
-			reportList = repository.findAll();
+			reportList = report_repository.findAll();
 		}
 		catch(Exception e) {
 			e.printStackTrace();

@@ -14,7 +14,7 @@ import com.g5.repository.IRouteRepository;
 public class IRouteServiceImpl implements IRouteService {
 	
 	@Autowired
-	IRouteRepository repository;
+	IRouteRepository route_repository;
 
 	@Override
 	@Transactional
@@ -22,7 +22,7 @@ public class IRouteServiceImpl implements IRouteService {
 		// TODO Auto-generated method stub
 		try 
 		{
-			repository.save(route);
+			route_repository.save(route);
 		}
 		catch(Exception e)
 		{
@@ -35,7 +35,7 @@ public class IRouteServiceImpl implements IRouteService {
 	public Route updateRoute(Route route) throws RouteNotFoundException {
 		// TODO Auto-generated method stub
 		try {
-			repository.save(route);
+			route_repository.save(route);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
@@ -48,10 +48,9 @@ public class IRouteServiceImpl implements IRouteService {
 	@Override
 	public Route removeRoute(int routeId) throws RouteNotFoundException {
 		// TODO Auto-generated method stub
-		Route route = new Route();
-		route.setUserId(routeId);
+		Route route = route_repository.findById(routeId).get();
 		try {
-			repository.deleteById(routeId);
+			route_repository.deleteById(routeId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RouteNotFoundException("Route not found!");
@@ -64,7 +63,7 @@ public class IRouteServiceImpl implements IRouteService {
 		// TODO Auto-generated method stub
 		
 		try {
-			return route.findById(routeId).get();
+			return route_repository.findById(routeId).get();
 		}
 		catch(Exception e)
 		{
@@ -78,7 +77,7 @@ public class IRouteServiceImpl implements IRouteService {
 		// TODO Auto-generated method stub
 		List<Route> routeList = null;
 		try {
-			routeList = repository.findAll();
+			routeList = route_repository.findAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO: handle exception
