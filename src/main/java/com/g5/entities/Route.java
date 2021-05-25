@@ -4,11 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,7 +26,9 @@ public class Route {
 	private String  routeFrom;
 	@Column
 	private String  routeTo;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
+	  @JoinTable(name = "Route_Bus", joinColumns = @JoinColumn(name = "routeId"),
+	  inverseJoinColumns = @JoinColumn(name = "busId"))
 	private  List<Bus> buses;
 	@Temporal(TemporalType.DATE)
 	private  LocalDateTime  departureTime;
