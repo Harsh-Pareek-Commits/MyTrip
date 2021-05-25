@@ -51,10 +51,10 @@ public class Feedback {
 	}
 
 	/**
-	 * @param feedbackId the feedbackId to set
+	 * @param feedbackId2 the feedbackId to set
 	 */
-	public void setFeedbackId(int feedbackId) {
-		this.feedbackId = feedbackId;
+	public void setFeedbackId(int feedbackId2) {
+		this.feedbackId = feedbackId2;
 	}
 
 	/**

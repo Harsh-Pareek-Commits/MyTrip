@@ -14,7 +14,7 @@ public class TicketDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String ticketId;
+	private int ticketId;
 	@Column
 	private String status;
 
@@ -23,7 +23,7 @@ public class TicketDetails {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TicketDetails(String ticketId, String status) {
+	public TicketDetails(int ticketId, String status) {
 		super();
 		this.ticketId = ticketId;
 		this.status = status;
@@ -32,14 +32,14 @@ public class TicketDetails {
 	/**
 	 * @return the ticketId
 	 */
-	public String getTicketId() {
+	public int getTicketId() {
 		return ticketId;
 	}
 
 	/**
 	 * @param ticketId the ticketId to set
 	 */
-	public void setTicketId(String ticketId) {
+	public void setTicketId(int ticketId) {
 		this.ticketId = ticketId;
 	}
 
@@ -57,12 +57,11 @@ public class TicketDetails {
 		this.status = status;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((ticketId == null) ? 0 : ticketId.hashCode());
+		result = prime * result + ticketId;
 		return result;
 	}
 
@@ -75,10 +74,7 @@ public class TicketDetails {
 		if (getClass() != obj.getClass())
 			return false;
 		TicketDetails other = (TicketDetails) obj;
-		if (ticketId == null) {
-			if (other.ticketId != null)
-				return false;
-		} else if (!ticketId.equals(other.ticketId))
+		if (ticketId != other.ticketId)
 			return false;
 		return true;
 	}
