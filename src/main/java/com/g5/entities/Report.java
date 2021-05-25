@@ -19,6 +19,7 @@ public class Report {
 	@Column
 	private String reportType; 
 	@OneToMany
+	
 	private Set<Booking> allBookings;
 	
 	public Report() {

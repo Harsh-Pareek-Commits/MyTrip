@@ -1,10 +1,12 @@
 package com.g5.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,7 +21,8 @@ public class Bus {
 	private  String busNumber;
 	@Column
 	private int capacity;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "Travel_info", referencedColumnName = "busId")
 	private Travels travel;
 	
 	public Bus() {

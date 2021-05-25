@@ -1,8 +1,10 @@
 package com.g5.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,16 +19,18 @@ public class Package {
 	private String packageType;
 	@Column
 	private double packageCost;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "Route_info", referencedColumnName = "packageId")
 	private Route route;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "Hotel_info", referencedColumnName = "packageId")
 	private Hotel hotel;
-	
+
 	public Package() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Package(int packageId, String packageName, String packageDescription, String packageType, double packageCost,
 			Route route, Hotel hotel) {
 		super();
@@ -137,7 +141,6 @@ public class Package {
 		this.hotel = hotel;
 	}
 
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -166,7 +169,5 @@ public class Package {
 				+ packageDescription + ", packageType=" + packageType + ", packageCost=" + packageCost + ", route="
 				+ route + ", hotel=" + hotel + "]";
 	}
-	
-	
 
 }
