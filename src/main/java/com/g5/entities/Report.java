@@ -128,7 +128,7 @@ public class Report {
 		return "Report [reportId=" + reportId + ", reportName=" + reportName + ", reportType=" + reportType
 				+ ", allBookings=" + allBookings + "]";
 	}
-	
+		
 	
 
 }

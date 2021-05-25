@@ -18,7 +18,7 @@ public class Feedback {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String feedbackId;
+	private int feedbackId;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "User_info", referencedColumnName = "userId")
 	private Customer customer;
@@ -34,7 +34,7 @@ public class Feedback {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Feedback(String feedbackId, Customer customer, String feedback, int rating, LocalDate submitDate) {
+	public Feedback(int feedbackId, Customer customer, String feedback, int rating, LocalDate submitDate) {
 		super();
 		this.feedbackId = feedbackId;
 		this.customer = customer;
@@ -46,14 +46,14 @@ public class Feedback {
 	/**
 	 * @return the feedbackId
 	 */
-	public String getFeedbackId() {
+	public int getFeedbackId() {
 		return feedbackId;
 	}
 
 	/**
 	 * @param feedbackId the feedbackId to set
 	 */
-	public void setFeedbackId(String feedbackId) {
+	public void setFeedbackId(int feedbackId) {
 		this.feedbackId = feedbackId;
 	}
 
@@ -113,11 +113,12 @@ public class Feedback {
 		this.submitDate = submitDate;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((feedbackId == null) ? 0 : feedbackId.hashCode());
+		result = prime * result + feedbackId;
 		return result;
 	}
 
@@ -130,10 +131,7 @@ public class Feedback {
 		if (getClass() != obj.getClass())
 			return false;
 		Feedback other = (Feedback) obj;
-		if (feedbackId == null) {
-			if (other.feedbackId != null)
-				return false;
-		} else if (!feedbackId.equals(other.feedbackId))
+		if (feedbackId != other.feedbackId)
 			return false;
 		return true;
 	}
