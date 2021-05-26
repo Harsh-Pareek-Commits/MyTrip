@@ -14,7 +14,7 @@ import com.g5.repository.IFeedbackRepository;
 public class FeedbackServiceImpl implements IFeedbackService  {
 	
 	@Autowired
-	IFeedbackRepository feed;
+	IFeedbackRepository feed_repo;
 
 	@Override
 	@Transactional
@@ -22,7 +22,7 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 		
 		try 
 		{
-			feed.save(feedback);
+			feed_repo.save(feedback);
 		}
 		catch(Exception e)
 		{
@@ -35,7 +35,7 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 	public Feedback findByFeedbackId(int feedbackId) throws FeedbackNotFoundException {
 	
 		try {
-			return feed.findById(feedbackId).get();
+			return feed_repo.findById(feedbackId).get();
 		}
 		catch(Exception e)
 		{
@@ -48,7 +48,7 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 	public Feedback findByCustomerId(int customerId) throws CustomerNotFoundException {
 		Feedback feedback=null;
 		try {
-			feedback= feed.findbyCustId(customerId);
+			feedback= feed_repo.findbyCustId(customerId);
 		}
 		catch (Exception e) {
 		
@@ -62,7 +62,7 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 		List<Feedback> feedbackList = null;
 		try {
 			
-			feedbackList = feed.findAll();
+			feedbackList = feed_repo.findAll();
 			
 		} catch (Exception e) {
 		
