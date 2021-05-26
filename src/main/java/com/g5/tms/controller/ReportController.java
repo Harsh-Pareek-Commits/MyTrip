@@ -1,5 +1,7 @@
 package com.g5.tms.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.g5.tms.entities.Customer;
 import com.g5.tms.entities.Report;
-import com.g5.tms.exceptions.CustomerNotFoundException;
 import com.g5.tms.exceptions.ReportNotFoundException;
 import com.g5.tms.service.IReportService;
 
@@ -20,7 +20,6 @@ import com.g5.tms.service.IReportService;
 public class ReportController {
 	@Autowired
     IReportService report_service;
-	
 	@PostMapping("/add")
 	public Report addReport(@RequestBody Report repo) {
 		this.report_service.addReport(repo);
@@ -40,5 +39,8 @@ public class ReportController {
 		return repo;
 	}
 	
-	
+	@GetMapping("/all")
+    public List<Report> viewReport(){
+	    return report_service.viewAllReports();
+	}
 }
