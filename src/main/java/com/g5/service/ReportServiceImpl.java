@@ -1,6 +1,7 @@
 package com.g5.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -32,9 +33,10 @@ public class ReportServiceImpl implements IReportService {
 
 	@Override
 	public Report deleteReport(int reportId) throws ReportNotFoundException {
-		// TODO Auto-generated method stub
-	    Report report = report_repository.findById(reportId).get();
-	    try {
+		Optional<Report>opt=null;
+		try {
+	    	opt = report_repository.findById(reportId);
+		    
 	    	report_repository.deleteById(reportId);
 	    }
 	    catch (Exception e)
@@ -42,7 +44,7 @@ public class ReportServiceImpl implements IReportService {
 	    	e.printStackTrace();
 	    	throw new ReportNotFoundException("Report not found!");
 	    }
-		return report;
+		return opt.get();
 	}
 
 	@Override

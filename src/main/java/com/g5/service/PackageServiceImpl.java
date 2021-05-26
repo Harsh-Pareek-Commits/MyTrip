@@ -3,6 +3,7 @@ package com.g5.service;
 import com.g5.entities.Package;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -31,10 +32,11 @@ public class PackageServiceImpl implements IPackageService {
 
 	@Override
 	public Package deletePackage(int packageId) throws PackageNotFoundException {
+		Optional<Package> opt=null;
 		try {
-			Package p = package_repo.findById(packageId).get();
+			opt = package_repo.findById(packageId);
 			package_repo.deleteById(packageId);
-			return p;
+			return opt.get();
 
 		} catch (Exception e) {
 			e.getStackTrace();
@@ -52,7 +54,7 @@ public class PackageServiceImpl implements IPackageService {
 
 		} catch (Exception e) {
 			e.getStackTrace();
-			throw new PackageNotFoundException("Package NOt Found");
+			throw new PackageNotFoundException("Package Not Found");
 			// TODO: handle exception
 		}
 

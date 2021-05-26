@@ -29,19 +29,10 @@ IUserRepository user_repo;
 
 	@Override
 	public User signIn(User user) throws InvalidCredentialException {
-		
+		User user1=null;
 		
 		try {
-			User u=user_repo.findById(user.getUserId()).get();
-			if((u.getUserId()==user.getUserId())&&(u.getPassword().equals(user.getPassword())))
-			{
-				System.out.println("Welcome");
-			}
-			else
-			{
-				System.out.println("Not a Valid user");
-			}
-			
+			user1=user_repo.findByUser(user.getUserId(),user.getPassword());
 		} catch (Exception e) {
 			e.getStackTrace();
 			throw new InvalidCredentialException("User not found");

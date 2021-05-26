@@ -1,6 +1,7 @@
 package com.g5.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,14 +26,16 @@ public class BookingServiceImpl implements IBookingService {
 
 	@Override
 	public Booking cancelBooking(int bookingId) throws BookingNotFoundException {
-		Booking booking = booking_repo.findById(bookingId).get();
+		Optional<Booking> opt =null;
 		try {
+			opt=booking_repo.findById(bookingId);
+			
 			booking_repo.deleteById(bookingId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new BookingNotFoundException("No booking found!");
 		}
-		return booking;
+		return opt.get();
 	}
 
 	@Override

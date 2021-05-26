@@ -1,6 +1,7 @@
 package com.g5.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,9 +34,10 @@ public class TravelsServiceImpl implements ITravelsService {
 	@Override
 	@Transactional
 	public Travels updateTravels(Travels travels) throws TravelsNotFoundException {
-		// TODO Auto-generated method stub
+		Optional<Travels> opt=null;
 		try 
-		{
+		{   
+			opt=travels_repo.findById(travels.getTravelsId());
 			travels_repo.save(travels);
 		}
 		catch(Exception e)
@@ -43,23 +45,24 @@ public class TravelsServiceImpl implements ITravelsService {
 			e.printStackTrace();
 			throw new TravelsNotFoundException("Travels cannot be updated");
 		}	
-		return travels;
+		return opt.get();
 		
 	}
 
 	@Override
 	public Travels removeTravels(int travelsId) throws TravelsNotFoundException {
-		// TODO Auto-generated method stub
+		Optional<Travels> opt=null;
 		try {
-			Travels t=travels_repo.findById(travelsId).get();
+			opt=travels_repo.findById(travelsId);
 			travels_repo.deleteById(travelsId);
-			return t;	
+			
 			
 		} catch (Exception e) {
 			e.getStackTrace();
 			throw new TravelsNotFoundException();
 			// TODO: handle exception
 		}
+		return opt.get();	
 
 	}
 

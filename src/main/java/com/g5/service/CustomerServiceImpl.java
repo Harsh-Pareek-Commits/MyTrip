@@ -1,6 +1,7 @@
 package com.g5.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,24 +36,28 @@ public class CustomerServiceImpl implements ICustomerService {
 
 	@Override
 	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException {
+		Optional<Customer>opt=null;
 		try {
+			opt= cust_repo.findById(customer.getUserId());
 			cust_repo.save(customer);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new CustomerNotFoundException();
+			throw new CustomerNotFoundException("Customer id not found for update.");
 		}
-		return customer;
+		return opt.get();
 	}
 
 	@Override
 	public Customer deleteCustomer(Customer customer) throws CustomerNotFoundException {
+		Optional<Customer>opt=null;
 		try {
+			opt=cust_repo.findById(customer.getUserId());
 			cust_repo.delete(customer);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new CustomerNotFoundException();
+			throw new CustomerNotFoundException("Customer id not found for delete.");
 		}
-		return customer;
+		return opt.get();
 	}
 
 	@Override
@@ -62,7 +67,7 @@ public class CustomerServiceImpl implements ICustomerService {
 			cust = cust_repo.findById(custid).get();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new CustomerNotFoundException();
+			throw new CustomerNotFoundException("Customer id not found");
 		}
 		return cust;
 	}
@@ -70,18 +75,10 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	public List<Customer> viewAllCustomers(int packageId) throws PackageNotFoundException {
 		List<Customer> cust_list = null;
-		List<Booking> booking_list = null;
+		
 		try {
 
-			booking_list = booking_repo.findAll();
-			for (Booking booking : booking_list) {
-				if (booking.getPack().getPackageId() == packageId) {
-					int cust_id = booking.getUserId();
-					cust_list.add(cust_repo.findById(cust_id).get());
-				}
-
-			}
-
+       cust_list=cust_repo.findByPackageId(packageId);		
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PackageNotFoundException("Package not found");
@@ -92,23 +89,13 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	public List<Customer> viewCustomerList(int routeId) throws RouteNotFoundException {
 		List<Customer> cust_list = null;
-		List<Booking> booking_list = null;
 		List<Package> package_list = null;
 		try {
-
-			package_list = package_repo.findAll();
-			for (Package pack : package_list) {
-				if (pack.getRoute().getRouteId() == routeId) {
-					booking_list = booking_repo.findAll();
-					for (Booking booking : booking_list) {
-						if (booking.getPack().getPackageId() == pack.getPackageId()) {
-							int cust_id = booking.getUserId();
-							cust_list.add(cust_repo.findById(cust_id).get());
-						}
-
-					}
-				}
-			}
+         package_list=package_repo.findByRouteId(routeId);
+         for(Package pack:package_list) {
+        	 cust_list.addAll(cust_repo.findByPackageId(pack.getPackageId()));
+         }
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

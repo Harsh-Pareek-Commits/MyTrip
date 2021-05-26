@@ -1,6 +1,7 @@
 package com.g5.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -34,8 +35,9 @@ public class RouteServiceImpl implements IRouteService {
 
 	@Override
 	public Route updateRoute(Route route) throws RouteNotFoundException {
-		// TODO Auto-generated method stub
+		Optional<Route> opt=null;
 		try {
+			opt=route_repository.findById(route.getRouteId());
 			route_repository.save(route);
 		}
 		catch(Exception e) {
@@ -43,20 +45,21 @@ public class RouteServiceImpl implements IRouteService {
 			throw new RouteNotFoundException("Route not found!");
 		}
 		
-		return route;
+		return opt.get();
 	}
 
 	@Override
 	public Route removeRoute(int routeId) throws RouteNotFoundException {
-		// TODO Auto-generated method stub
+		Optional<Route> opt=null;
 		Route route = route_repository.findById(routeId).get();
 		try {
+			opt=route_repository.findById(route.getRouteId());
 			route_repository.deleteById(routeId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RouteNotFoundException("Route not found!");
 		}
-		return route;
+		return opt.get();
 	}
 
 	@Override

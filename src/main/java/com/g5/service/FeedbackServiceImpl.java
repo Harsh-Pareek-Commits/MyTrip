@@ -46,22 +46,14 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 
 	@Override
 	public Feedback findByCustomerId(int customerId) throws CustomerNotFoundException {
-		// TODO Auto-generated method stub
+		Feedback feedback=null;
 		try {
-			List<Feedback> feedback_list;
-			feedback_list=feed.findAll();
-			for(Feedback f:feedback_list)
-			{
-				if(f.getCustomer().getUserId()==customerId)
-				{
-					return f;
-				}
-			}
+			feedback= feed.findbyCustId(customerId);
 		}
 		catch (Exception e) {
 			// TODO: handle exception
 		}
-		return null;
+		return feedback;
 	}
 
 	@Override
