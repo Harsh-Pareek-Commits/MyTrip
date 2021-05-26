@@ -32,6 +32,7 @@ public class ReportServiceImpl implements IReportService {
 	}
 
 	@Override
+	@Transactional
 	public Report deleteReport(int reportId) throws ReportNotFoundException {
 		Optional<Report>opt=null;
 		try {

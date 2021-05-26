@@ -31,6 +31,7 @@ public class PackageServiceImpl implements IPackageService {
 	}
 
 	@Override
+	@Transactional
 	public Package deletePackage(int packageId) throws PackageNotFoundException {
 		Optional<Package> opt=null;
 		try {

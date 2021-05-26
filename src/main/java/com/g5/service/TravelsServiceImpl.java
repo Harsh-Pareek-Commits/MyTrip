@@ -50,6 +50,7 @@ public class TravelsServiceImpl implements ITravelsService {
 	}
 
 	@Override
+	@Transactional
 	public Travels removeTravels(int travelsId) throws TravelsNotFoundException {
 		Optional<Travels> opt=null;
 		try {

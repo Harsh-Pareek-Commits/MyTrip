@@ -30,9 +30,9 @@ public class Route {
 	  @JoinTable(name = "Route_Bus", joinColumns = @JoinColumn(name = "routeId"),
 	  inverseJoinColumns = @JoinColumn(name = "busId"))
 	private  List<Bus> buses;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIME)
 	private  LocalDateTime  departureTime;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIME)
 	private  LocalDateTime   arrivalTime;
 	@Temporal(TemporalType.DATE)
 	private  LocalDate   doj;

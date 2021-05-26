@@ -34,6 +34,7 @@ public class RouteServiceImpl implements IRouteService {
 	}
 
 	@Override
+	@Transactional
 	public Route updateRoute(Route route) throws RouteNotFoundException {
 		Optional<Route> opt=null;
 		try {
@@ -49,6 +50,7 @@ public class RouteServiceImpl implements IRouteService {
 	}
 
 	@Override
+	@Transactional
 	public Route removeRoute(int routeId) throws RouteNotFoundException {
 		Optional<Route> opt=null;
 		Route route = route_repository.findById(routeId).get();
