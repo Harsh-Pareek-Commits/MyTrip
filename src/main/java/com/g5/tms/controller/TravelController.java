@@ -38,10 +38,10 @@ ITravelsService travel_service;
 	}
 
 
-	@DeleteMapping("/delete")  
-	public Travels removeTravels(@RequestBody Travels trv) throws TravelsNotFoundException {
-   	 this.travel_service.removeTravels(trv.getTravelsId());
-		return trv;
+	@DeleteMapping("/delete/{Id}")  
+	public Travels removeTravels(@PathVariable int trv ) throws TravelsNotFoundException {
+   	return this.travel_service.removeTravels(trv);
+	
 	}
    @GetMapping("/search/{Id}")
 	public Travels searchTravels(@PathVariable int travelsId) throws TravelsNotFoundException {
@@ -53,8 +53,8 @@ ITravelsService travel_service;
    
     @GetMapping("/all")
 	public  List<Travels>  viewTravels(){
-    List<Travels> list = travel_service.viewTravels(); 
-    return list;
+    return travel_service.viewTravels(); 
+    
     }
     
 
