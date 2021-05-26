@@ -20,7 +20,7 @@ public class ReportServiceImpl implements IReportService {
 	@Override
 	@Transactional
 	public Report addReport(Report report) {
-		// TODO Auto-generated method stub
+		
 		try {
 			report_repository.save(report);
 		}
@@ -50,7 +50,7 @@ public class ReportServiceImpl implements IReportService {
 
 	@Override
 	public Report viewReport(int reportId) throws ReportNotFoundException {
-		// TODO Auto-generated method stub
+	
 		try {
 			return report_repository.findById(reportId).get();
 		}
@@ -63,8 +63,7 @@ public class ReportServiceImpl implements IReportService {
 
 	@Override
 	public List<Report> viewAllReports() {
-		// TODO Auto-generated method stub
-		List<Report> reportList = null;
+				List<Report> reportList = null;
 		try {
 			reportList = report_repository.findAll();
 		}

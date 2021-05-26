@@ -26,7 +26,7 @@ public class PackageServiceImpl implements IPackageService {
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
-		// TODO Auto-generated method stub
+	
 		return pack;
 	}
 
@@ -42,7 +42,7 @@ public class PackageServiceImpl implements IPackageService {
 		} catch (Exception e) {
 			e.getStackTrace();
 			throw new PackageNotFoundException("Package not found in delete");
-			// TODO: handle exception
+			
 		}
 
 	}
@@ -56,7 +56,7 @@ public class PackageServiceImpl implements IPackageService {
 		} catch (Exception e) {
 			e.getStackTrace();
 			throw new PackageNotFoundException("Package Not Found in search");
-			// TODO: handle exception
+			
 		}
 
 	}
@@ -68,7 +68,7 @@ public class PackageServiceImpl implements IPackageService {
 			list = package_repo.findAll();
 		} catch (Exception e) {
 			e.getStackTrace();
-			// TODO: handle exception
+			
 		}
 
 		return list;

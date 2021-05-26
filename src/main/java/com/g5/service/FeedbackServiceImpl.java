@@ -19,7 +19,7 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 	@Override
 	@Transactional
 	public Feedback addFeedback(Feedback feedback) {
-		// TODO Auto-generated method stub
+		
 		try 
 		{
 			feed.save(feedback);
@@ -33,7 +33,7 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 
 	@Override
 	public Feedback findByFeedbackId(int feedbackId) throws FeedbackNotFoundException {
-		// TODO Auto-generated method stub
+	
 		try {
 			return feed.findById(feedbackId).get();
 		}
@@ -51,7 +51,7 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 			feedback= feed.findbyCustId(customerId);
 		}
 		catch (Exception e) {
-			// TODO: handle exception
+		
 		}
 		return feedback;
 	}
@@ -65,10 +65,10 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 			feedbackList = feed.findAll();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+		
 			e.printStackTrace();
 		}
-		// TODO Auto-generated method stub
+	
 		return feedbackList;
 	}
 

@@ -21,7 +21,7 @@ public class RouteServiceImpl implements IRouteService {
 	@Override
 	@Transactional
 	public Route addRoute(Route route) {
-		// TODO Auto-generated method stub
+		
 		try 
 		{
 			route_repository.save(route);
@@ -66,7 +66,7 @@ public class RouteServiceImpl implements IRouteService {
 
 	@Override
 	public Route searchRoute(int routeId) throws RouteNotFoundException {
-		// TODO Auto-generated method stub
+		
 		
 		try {
 			return route_repository.findById(routeId).get();
@@ -80,15 +80,15 @@ public class RouteServiceImpl implements IRouteService {
 
 	@Override
 	public List<Route> viewRouteList() {
-		// TODO Auto-generated method stub
+	
 		List<Route> routeList = null;
 		try {
 			routeList = route_repository.findAll();
 		} catch (Exception e) {
 			e.printStackTrace();
-			// TODO: handle exception
+		
 		}
-		// TODO Auto-generated method stub
+	
 		return routeList;
 	}
 

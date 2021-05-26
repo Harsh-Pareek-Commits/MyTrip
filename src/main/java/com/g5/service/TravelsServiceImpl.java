@@ -19,7 +19,7 @@ public class TravelsServiceImpl implements ITravelsService {
 	@Override
 	@Transactional
 	public Travels addTravels(Travels travels) {
-		// TODO Auto-generated method stub
+	
 			try 
 			{
 				travels_repo.save(travels);
@@ -61,7 +61,7 @@ public class TravelsServiceImpl implements ITravelsService {
 		} catch (Exception e) {
 			e.getStackTrace();
 			throw new TravelsNotFoundException();
-			// TODO: handle exception
+			
 		}
 		return opt.get();	
 
@@ -69,7 +69,7 @@ public class TravelsServiceImpl implements ITravelsService {
 
 	@Override
 	public Travels searchTravels(int travelsId) throws TravelsNotFoundException {
-		// TODO Auto-generated method stub
+	
 		
 		try {
 			return travels_repo.findById(travelsId).get();
@@ -83,17 +83,17 @@ public class TravelsServiceImpl implements ITravelsService {
 
 	@Override
 	public List<Travels> viewTravels() {
-		// TODO Auto-generated method stub
+	
 		List<Travels> travel_list = null;
 		try {
 			
 			travel_list = travels_repo.findAll();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+		
 			e.printStackTrace();
 		}
-		// TODO Auto-generated method stub
+	
 		return travel_list;
 	}
 }

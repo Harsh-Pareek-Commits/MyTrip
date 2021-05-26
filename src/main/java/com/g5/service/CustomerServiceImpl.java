@@ -17,6 +17,7 @@ import com.g5.exceptions.RouteNotFoundException;
 import com.g5.repository.IBookingRepository;
 import com.g5.repository.ICustomerRepository;
 import com.g5.repository.IPackageRepository;
+
 @Service
 public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
@@ -40,9 +41,9 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	@Transactional
 	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException {
-		Optional<Customer>opt=null;
+		Optional<Customer> opt = null;
 		try {
-			opt= cust_repo.findById(customer.getUserId());
+			opt = cust_repo.findById(customer.getUserId());
 			cust_repo.save(customer);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,9 +55,9 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	@Transactional
 	public Customer deleteCustomer(Customer customer) throws CustomerNotFoundException {
-		Optional<Customer>opt=null;
+		Optional<Customer> opt = null;
 		try {
-			opt=cust_repo.findById(customer.getUserId());
+			opt = cust_repo.findById(customer.getUserId());
 			cust_repo.delete(customer);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,10 +81,10 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	public List<Customer> viewAllCustomers(int packageId) throws PackageNotFoundException {
 		List<Customer> cust_list = null;
-		
+
 		try {
 
-       cust_list=cust_repo.findByPackageId(packageId);		
+			cust_list = cust_repo.findByPackageId(packageId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PackageNotFoundException("Package not found");
@@ -96,11 +97,10 @@ public class CustomerServiceImpl implements ICustomerService {
 		List<Customer> cust_list = null;
 		List<Package> package_list = null;
 		try {
-         package_list=package_repo.findByRouteId(routeId);
-         for(Package pack:package_list) {
-        	 cust_list.addAll(cust_repo.findByPackageId(pack.getPackageId()));
-         }
-			
+			package_list = package_repo.findByRouteId(routeId);
+			for (Package pack : package_list) {
+				cust_list.addAll(cust_repo.findByPackageId(pack.getPackageId()));
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
