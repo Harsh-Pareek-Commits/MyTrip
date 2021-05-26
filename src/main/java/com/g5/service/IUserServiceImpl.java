@@ -5,11 +5,12 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.g5.entities.User;
 import com.g5.exceptions.InvalidCredentialException;
 import com.g5.repository.IUserRepository;
-
+@Service
 public class IUserServiceImpl implements IUserService {
 @Autowired
 IUserRepository user_repo;

@@ -5,12 +5,13 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.g5.entities.Route;
 import com.g5.exceptions.RouteNotFoundException;
 import com.g5.repository.IReportRepository;
 import com.g5.repository.IRouteRepository;
-
+@Service
 public class IRouteServiceImpl implements IRouteService {
 	
 	@Autowired

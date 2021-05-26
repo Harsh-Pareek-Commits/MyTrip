@@ -3,6 +3,7 @@ package com.g5.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.g5.entities.Booking;
 import com.g5.entities.Customer;
@@ -13,7 +14,7 @@ import com.g5.exceptions.RouteNotFoundException;
 import com.g5.repository.IBookingRepository;
 import com.g5.repository.ICustomerRepository;
 import com.g5.repository.IPackageRepository;
-
+@Service
 public class CustomerServiceImpl implements ICustomerService {
 	@Autowired
 	ICustomerRepository cust_repo;

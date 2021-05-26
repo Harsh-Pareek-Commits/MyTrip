@@ -7,10 +7,11 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.g5.exceptions.PackageNotFoundException;
 import com.g5.repository.IPackageRepository;
-
+@Service
 public class IPackageServiceImpl implements IPackageService {
 	@Autowired
 	IPackageRepository package_repo;
