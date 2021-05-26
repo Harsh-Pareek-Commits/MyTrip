@@ -3,6 +3,8 @@ package com.g5.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ public class BookingServiceImpl implements IBookingService {
 	IBookingRepository booking_repo;
 
 	@Override
+	@Transactional
 	public Booking makeBooking(Booking booking) {
 		try {
 			booking_repo.save(booking);

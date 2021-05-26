@@ -13,7 +13,7 @@ import com.g5.exceptions.FeedbackNotFoundException;
 @Repository
 public interface IFeedbackRepository extends JpaRepository<Feedback, Integer> {
 	
-	@Query("Select f from Feedback where f.customer.userId=?")
+	@Query("Select f from Feedback where f.customer.userId=:userId")
 	Feedback findbyCustId(int userId);
 		
 	

@@ -12,7 +12,7 @@ import com.g5.exceptions.PackageNotFoundException;
 import com.g5.exceptions.RouteNotFoundException;
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
-@Query("select c from Customer where c.userId in(Select b.userId from Booking where b.pack.packageId=?)")
+@Query("select c from Customer where c.userId in(Select b.userId from Booking where b.pack.packageId=:package_id)")
 List<Customer> findByPackageId(int package_id);
 
 }
