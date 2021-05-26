@@ -11,7 +11,7 @@ import com.g5.entities.User;
 import com.g5.exceptions.InvalidCredentialException;
 import com.g5.repository.IUserRepository;
 @Service
-public class IUserServiceImpl implements IUserService {
+public class UserServiceImpl implements IUserService {
 @Autowired
 IUserRepository user_repo;
 	@Override

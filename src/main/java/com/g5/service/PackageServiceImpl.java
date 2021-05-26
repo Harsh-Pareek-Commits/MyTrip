@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import com.g5.exceptions.PackageNotFoundException;
 import com.g5.repository.IPackageRepository;
 @Service
-public class IPackageServiceImpl implements IPackageService {
+public class PackageServiceImpl implements IPackageService {
 	@Autowired
 	IPackageRepository package_repo;
 

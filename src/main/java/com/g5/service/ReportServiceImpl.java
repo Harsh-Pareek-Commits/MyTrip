@@ -11,7 +11,7 @@ import com.g5.entities.Report;
 import com.g5.exceptions.ReportNotFoundException;
 import com.g5.repository.IReportRepository;
 @Service
-public class IReportServiceImpl implements IReportService {
+public class ReportServiceImpl implements IReportService {
 	
 	@Autowired
 	IReportRepository report_repository;
