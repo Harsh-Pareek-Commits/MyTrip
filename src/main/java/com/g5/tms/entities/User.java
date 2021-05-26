@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Trip_user")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "User_Type", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(name = "User_Info_Type", discriminatorType = DiscriminatorType.INTEGER)
 @DiscriminatorValue(value = "1")
 public class User {
 	

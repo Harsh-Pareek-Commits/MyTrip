@@ -26,7 +26,7 @@ public class Feedback {
 	private String feedback;
 	@Column
 	private int rating;
-	@Temporal(TemporalType.DATE)
+
 	private LocalDate submitDate;
 
 	public Feedback() {

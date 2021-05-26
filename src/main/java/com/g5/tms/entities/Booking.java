@@ -24,7 +24,7 @@ public class Booking {
 	private String description;
 	@Column
 	private String bookingTitle;
-	@Temporal(TemporalType.DATE)
+	
 	private LocalDate bookingDate;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "Package_info", referencedColumnName = "packageId")

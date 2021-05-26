@@ -34,7 +34,9 @@ public class UserServiceImpl implements IUserService {
 		User user1 = null;
 
 		try {
-			user1 = user_repo.findByUser(user.getUserId(), user.getPassword());
+			int username=user.getUserId();
+			String pass=user.getPassword();
+			user1 = user_repo.findByUser(username, pass);
 		} catch (Exception e) {
 			e.getStackTrace();
 			throw new InvalidCredentialException("User not found in signin");
