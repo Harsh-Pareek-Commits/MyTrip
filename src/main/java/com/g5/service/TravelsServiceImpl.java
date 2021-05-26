@@ -77,7 +77,7 @@ public class TravelsServiceImpl implements ITravelsService {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			throw new TravelsNotFoundException("Travels Not found");
+			throw new TravelsNotFoundException("Travels Not foundin search travels");
 		}
 	}
 

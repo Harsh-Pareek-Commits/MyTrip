@@ -41,7 +41,7 @@ public class PackageServiceImpl implements IPackageService {
 
 		} catch (Exception e) {
 			e.getStackTrace();
-			throw new PackageNotFoundException("Package not found");
+			throw new PackageNotFoundException("Package not found in delete");
 			// TODO: handle exception
 		}
 
@@ -55,7 +55,7 @@ public class PackageServiceImpl implements IPackageService {
 
 		} catch (Exception e) {
 			e.getStackTrace();
-			throw new PackageNotFoundException("Package Not Found");
+			throw new PackageNotFoundException("Package Not Found in search");
 			// TODO: handle exception
 		}
 

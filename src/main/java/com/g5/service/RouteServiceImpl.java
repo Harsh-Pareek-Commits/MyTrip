@@ -43,7 +43,7 @@ public class RouteServiceImpl implements IRouteService {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			throw new RouteNotFoundException("Route not found!");
+			throw new RouteNotFoundException("Route not found in update route!");
 		}
 		
 		return opt.get();
@@ -59,7 +59,7 @@ public class RouteServiceImpl implements IRouteService {
 			route_repository.deleteById(routeId);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RouteNotFoundException("Route not found!");
+			throw new RouteNotFoundException("Route not found in remove route!");
 		}
 		return opt.get();
 	}
@@ -74,7 +74,7 @@ public class RouteServiceImpl implements IRouteService {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			throw new RouteNotFoundException("Route not foound!");
+			throw new RouteNotFoundException("Route not foound in search route!");
 		}
 	}
 

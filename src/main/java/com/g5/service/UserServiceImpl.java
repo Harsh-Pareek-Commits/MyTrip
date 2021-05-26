@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 import com.g5.entities.User;
 import com.g5.exceptions.InvalidCredentialException;
 import com.g5.repository.IUserRepository;
+
 @Service
 public class UserServiceImpl implements IUserService {
-@Autowired
-IUserRepository user_repo;
+	@Autowired
+	IUserRepository user_repo;
+
 	@Override
 	@Transactional
 	public User addNewUser(User user) {
@@ -21,31 +23,30 @@ IUserRepository user_repo;
 			user_repo.save(user);
 		} catch (Exception e) {
 			e.getStackTrace();
-			// TODO: handle exception
+
 		}
-		// TODO Auto-generated method stub
+
 		return user;
 	}
 
 	@Override
 	public User signIn(User user) throws InvalidCredentialException {
-		User user1=null;
-		
+		User user1 = null;
+
 		try {
-			user1=user_repo.findByUser(user.getUserId(),user.getPassword());
+			user1 = user_repo.findByUser(user.getUserId(), user.getPassword());
 		} catch (Exception e) {
 			e.getStackTrace();
-			throw new InvalidCredentialException("User not found");
-			// TODO: handle exception
+			throw new InvalidCredentialException("User not found in signin");
+
 		}
-		// TODO Auto-generated method stub
-		return user;
+
+		return user1;
 	}
 
 	@Override
 	public User signOut(User user) {
-		
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 

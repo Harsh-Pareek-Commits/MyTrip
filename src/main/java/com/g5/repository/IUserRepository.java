@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.g5.entities.User;
 @Repository
 public interface IUserRepository extends JpaRepository<User, Integer> {
-@Query("Select u from User where u.userId=? and u.password=?")
+@Query("Select u from User where u.userId=:user_id and u.password=:password")
 User findByUser(int user_id,String password);
 }

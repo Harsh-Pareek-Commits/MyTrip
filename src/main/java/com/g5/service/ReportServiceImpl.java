@@ -43,7 +43,7 @@ public class ReportServiceImpl implements IReportService {
 	    catch (Exception e)
 	    {
 	    	e.printStackTrace();
-	    	throw new ReportNotFoundException("Report not found!");
+	    	throw new ReportNotFoundException("Report not found in delete!");
 	    }
 		return opt.get();
 	}
@@ -56,7 +56,7 @@ public class ReportServiceImpl implements IReportService {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			throw new ReportNotFoundException("Report not found!");
+			throw new ReportNotFoundException("Report not found in view report!");
 		}
 		 
 	}

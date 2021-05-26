@@ -33,7 +33,7 @@ public class BookingServiceImpl implements IBookingService {
 			booking_repo.deleteById(bookingId);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new BookingNotFoundException("No booking found!");
+			throw new BookingNotFoundException("No booking found for cancel!");
 		}
 		return opt.get();
 	}
@@ -46,7 +46,7 @@ public class BookingServiceImpl implements IBookingService {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new BookingNotFoundException("No booking found!");
+			throw new BookingNotFoundException("No booking found for view booking!");
 		}
 		return booking;
 	}

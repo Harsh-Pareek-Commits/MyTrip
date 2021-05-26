@@ -40,7 +40,7 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			throw new FeedbackNotFoundException("FeedbackId not found");
+			throw new FeedbackNotFoundException("FeedbackId not found in find");
 		}
 	}
 
