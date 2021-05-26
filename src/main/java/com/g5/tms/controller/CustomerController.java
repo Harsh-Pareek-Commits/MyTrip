@@ -41,11 +41,10 @@ public class CustomerController {
     	 this.cust_service.deleteCustomer(cust);
 		return cust;
 	}
-    @GetMapping("/view/{id}")
+    @GetMapping("/view/{custid}")
 	public Customer viewCustomer(@PathVariable int custid) throws CustomerNotFoundException {
-    	Customer cust;
-    	cust=this.cust_service.viewCustomer(custid);
-		return cust;
+    	
+    	return cust_service.viewCustomer(custid);
 	}
     @GetMapping("/view/package/{id}")
 	public List<Customer> viewAllCustomers(@PathVariable int packageId) throws PackageNotFoundException {
