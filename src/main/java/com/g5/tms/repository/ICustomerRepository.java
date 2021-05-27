@@ -13,7 +13,9 @@ import com.g5.tms.exceptions.PackageNotFoundException;
 import com.g5.tms.exceptions.RouteNotFoundException;
 @Repository
 public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
-@Query("select c from Customer c where c.userId in(Select b.userId from Booking b where b.pack.packageId=:packageId)")
+@Query("select c from Customer c where c.userId =(Select b.userId from Booking b where b.pack.packageId=:packageId)")
 List<Customer> findByPackageId(@Param("packageId") Integer packageId);
+@Query("select c from Customer c where c.userId in(Select b.userId from Booking b where b.pack.packageId in ( select p.packageId from Package p where p.route.routeId in(Select r.routeId from Route r where r.routeId=:routeId)))")
+List<Customer> findByRouteId(@Param("routeId") Integer routeId);
 
 }

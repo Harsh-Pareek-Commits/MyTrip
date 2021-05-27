@@ -12,7 +12,6 @@ import com.g5.tms.entities.Package;
 @Repository
 public interface IPackageRepository extends JpaRepository<Package, Integer> {
 
-	@Query("select p from Package p where p.route.routeId in(Select r.routeId from Route r where r.routeId=:routeId)")
-	List<Package> findByRouteId(@Param("routeId") Integer routeId);
+	
 
 }

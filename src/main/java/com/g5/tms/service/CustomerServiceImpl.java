@@ -85,6 +85,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		try {
 
 			cust_list = cust_repo.findByPackageId(packageId);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new PackageNotFoundException("Package not found");
@@ -94,14 +95,13 @@ public class CustomerServiceImpl implements ICustomerService {
 
 	@Override
 	public List<Customer> viewCustomerList(int routeId) throws RouteNotFoundException {
+		
+		
 		List<Customer> cust_list = null;
-		List<Package> package_list = null;
 		try {
-			package_list = package_repo.findByRouteId(routeId);
-			for (Package pack : package_list) {
-				cust_list.addAll(cust_repo.findByPackageId(pack.getPackageId()));
-			}
-
+			cust_list = cust_repo.findByRouteId(routeId);
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RouteNotFoundException("Route not found");

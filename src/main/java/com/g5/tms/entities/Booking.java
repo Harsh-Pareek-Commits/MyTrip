@@ -26,15 +26,15 @@ public class Booking {
 	private String bookingTitle;
 	
 	private LocalDate bookingDate;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "Package_info", referencedColumnName = "packageId")
 	private Package pack;
 	@Column
 	private int userId;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "Payment_info", referencedColumnName = "paymentId")
 	private PaymentDetails payment;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "Ticket_info", referencedColumnName = "ticketId")
 	private TicketDetails ticket;
 

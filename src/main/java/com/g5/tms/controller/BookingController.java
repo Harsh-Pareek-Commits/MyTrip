@@ -35,11 +35,11 @@ public class BookingController {
 
 	@GetMapping("/view/{bookingId}")
 	public Booking viewBooking(@PathVariable int bookingId) throws BookingNotFoundException {
-     return this.viewBooking(bookingId);
+     return this.booking_service.viewBooking(bookingId);
 	}
 
 	@GetMapping("/view")
 	public List<Booking> viewAllBookings() {
-        return this.viewAllBookings();
+        return this.booking_service.viewAllBookings();
 	}
 }

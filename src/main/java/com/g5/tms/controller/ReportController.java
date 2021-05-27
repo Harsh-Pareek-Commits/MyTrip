@@ -27,7 +27,7 @@ public class ReportController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public Report deleteReport(@RequestBody int id) throws ReportNotFoundException {
+	public Report deleteReport(@PathVariable int id) throws ReportNotFoundException {
    	 Report repo = this.report_service.deleteReport(id);
 		return repo;
 	}
