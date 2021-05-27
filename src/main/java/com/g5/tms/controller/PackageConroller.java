@@ -3,6 +3,7 @@ package com.g5.tms.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ IPackageService package_service;
 		this.package_service.addPackage(pack);
 		return pack;
 	}
-	@GetMapping("/delete/{packageId}")
+	@DeleteMapping("/delete/{packageId}")
 	public  Package  deletingPackage(@PathVariable int packageId) throws PackageNotFoundException
 	{
 		
