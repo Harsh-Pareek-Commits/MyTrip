@@ -27,13 +27,13 @@ public class BookingController {
 		return booking;
 	}
 
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/delete/{bookingId}")
 	public Booking cancelBooking(@PathVariable int bookingId) throws BookingNotFoundException {
 		return this.booking_service.cancelBooking(bookingId);
 		 
 	}
 
-	@GetMapping("/view/{id}")
+	@GetMapping("/view/{bookingId}")
 	public Booking viewBooking(@PathVariable int bookingId) throws BookingNotFoundException {
      return this.viewBooking(bookingId);
 	}

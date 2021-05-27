@@ -25,13 +25,13 @@ IPackageService package_service;
 		this.package_service.addPackage(pack);
 		return pack;
 	}
-	@GetMapping("/delete/{Id}")
+	@GetMapping("/delete/{packageId}")
 	public  Package  deletingPackage(@PathVariable int packageId) throws PackageNotFoundException
 	{
 		
 	return this.package_service.deletePackage(packageId);
 	}
-	@GetMapping("/search/{Id}")
+	@GetMapping("/search/{packageId}")
 	public  Package  searchingPackage(@PathVariable int packageId) throws PackageNotFoundException
 	{
 		Package pack=this.package_service.searchPackage(packageId);

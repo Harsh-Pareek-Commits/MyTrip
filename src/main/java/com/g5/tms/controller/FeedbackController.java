@@ -27,13 +27,13 @@ IFeedbackService feedback_service;
 		return feed;
 	}
 	
-	@GetMapping("/find/{id}")
+	@GetMapping("/find/{feedbackId}")
 	public Feedback findByFeedbackId(@PathVariable int feedbackId) throws FeedbackNotFoundException {
     	Feedback feed = this.feedback_service.findByFeedbackId(feedbackId);
 		return feed;
 	}
 	
-	@GetMapping("/find/customer/{id}")
+	@GetMapping("/find/customer/{customerId}")
 	public Feedback findByCustomerId(@PathVariable int customerId) throws CustomerNotFoundException {
     	Feedback feed = this.feedback_service.findByCustomerId(customerId);
 		return feed;

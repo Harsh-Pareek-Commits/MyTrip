@@ -39,11 +39,11 @@ ITravelsService travel_service;
 
 
 	@DeleteMapping("/delete/{Id}")  
-	public Travels removeTravels(@PathVariable int trv ) throws TravelsNotFoundException {
-   	return this.travel_service.removeTravels(trv);
+	public Travels removeTravels(@PathVariable int Id ) throws TravelsNotFoundException {
+   	return this.travel_service.removeTravels(Id);
 	
 	}
-   @GetMapping("/search/{Id}")
+   @GetMapping("/search/{travelsId}")
 	public Travels searchTravels(@PathVariable int travelsId) throws TravelsNotFoundException {
    	Travels trv;
    	trv=this.travel_service.searchTravels(travelsId);

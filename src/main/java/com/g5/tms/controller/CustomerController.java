@@ -46,13 +46,13 @@ public class CustomerController {
     	
     	return cust_service.viewCustomer(custid);
 	}
-    @GetMapping("/view/package/{id}")
+    @GetMapping("/view/package/{packageId}")
 	public List<Customer> viewAllCustomers(@PathVariable int packageId) throws PackageNotFoundException {
     	List<Customer> cust_list;
     	cust_list=this.cust_service.viewAllCustomers(packageId);
 		return cust_list;
 	}
-    @GetMapping("/view/route/{id}")
+    @GetMapping("/view/route/{routeId}")
 	public List<Customer> viewCustomerList(@PathVariable int routeId) throws RouteNotFoundException {
     
     	return this.cust_service.viewCustomerList(routeId);

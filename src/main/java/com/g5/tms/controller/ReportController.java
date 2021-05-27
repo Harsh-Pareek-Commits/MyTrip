@@ -32,7 +32,7 @@ public class ReportController {
 		return repo;
 	}
 	
-	@GetMapping("/view/{id}")
+	@GetMapping("/view/{repoid}")
 	public Report viewReport(@PathVariable int repoid) throws ReportNotFoundException {
     	Report repo;
     	repo=this.report_service.viewReport(repoid);
