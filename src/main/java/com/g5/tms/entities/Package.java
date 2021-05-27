@@ -19,7 +19,7 @@ public class Package {
 	private String packageType;
 	@Column
 	private double packageCost;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "Route_info", referencedColumnName = "routeId")
 	private Route route;
 	@OneToOne(cascade = CascadeType.PERSIST)
