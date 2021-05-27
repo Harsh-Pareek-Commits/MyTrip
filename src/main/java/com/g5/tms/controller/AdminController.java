@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.g5.tms.entities.Admin;
 import com.g5.tms.entities.User;
 import com.g5.tms.service.AdminServiceImpl;
+import com.g5.tms.service.IUserService;
 
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
 	@Autowired
-	AdminServiceImpl admin_service;
+	IUserService admin_service;
+	
 	@PostMapping("/add")
 	public User adduser(@RequestBody Admin admin)
 	{

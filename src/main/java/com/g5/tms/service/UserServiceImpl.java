@@ -12,6 +12,7 @@ import com.g5.tms.exceptions.InvalidCredentialException;
 import com.g5.tms.repository.IUserRepository;
 
 @Service
+
 public class UserServiceImpl implements IUserService {
 	@Autowired
 	IUserRepository user_repo;

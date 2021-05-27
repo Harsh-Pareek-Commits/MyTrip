@@ -33,7 +33,7 @@ IFeedbackService feedback_service;
 		return feed;
 	}
 	
-	@GetMapping("/find/customer/{customerId}")
+	@GetMapping("/find/customer/{id}")
 	public Feedback findByCustomerId(@PathVariable int customerId) throws CustomerNotFoundException {
     	Feedback feed = this.feedback_service.findByCustomerId(customerId);
 		return feed;

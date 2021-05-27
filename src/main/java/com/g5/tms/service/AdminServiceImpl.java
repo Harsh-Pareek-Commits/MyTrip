@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.g5.tms.entities.Admin;
 
 import com.g5.tms.exceptions.InvalidCredentialException;
-@Service
+
 public class AdminServiceImpl extends UserServiceImpl {
 
 	@Transactional
