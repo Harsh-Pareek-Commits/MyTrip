@@ -26,7 +26,7 @@ public class Route {
 	private String  routeFrom;
 	@Column
 	private String  routeTo;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.PERSIST)
 	  @JoinTable(name = "Route_Bus", joinColumns = @JoinColumn(name = "routeId"),
 	  inverseJoinColumns = @JoinColumn(name = "busId"))
 	private  List<Bus> buses;

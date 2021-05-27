@@ -22,7 +22,7 @@ public class Package {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "Route_info", referencedColumnName = "routeId")
 	private Route route;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "Hotel_info", referencedColumnName = "hotelId")
 	private Hotel hotel;
 
