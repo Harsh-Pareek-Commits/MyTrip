@@ -23,8 +23,8 @@ IPackageService package_service;
 	@PostMapping("/add")
 	public  Package  addingPackage(@RequestBody Package pack) 
 	{
-		this.package_service.addPackage(pack);
-		return pack;
+		Package pack1=this.package_service.addPackage(pack);
+		return pack1;
 	}
 	@DeleteMapping("/delete/{packageId}")
 	public  Package  deletingPackage(@PathVariable int packageId) throws PackageNotFoundException

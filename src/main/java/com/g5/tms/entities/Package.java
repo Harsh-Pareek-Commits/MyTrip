@@ -1,8 +1,12 @@
 package com.g5.tms.entities;
 
+import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -10,6 +14,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Package {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int packageId;
 	@Column
 	private String packageName;
@@ -19,10 +24,10 @@ public class Package {
 	private String packageType;
 	@Column
 	private double packageCost;
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Route_info", referencedColumnName = "routeId")
 	private Route route;
-	@OneToOne(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name = "Hotel_info", referencedColumnName = "hotelId")
 	private Hotel hotel;
 

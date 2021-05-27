@@ -21,7 +21,7 @@ public class Bus {
 	private  String busNumber;
 	@Column
 	private int capacity;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "Travel_info", referencedColumnName = "travelsId")
 	private Travels travel;
 	
