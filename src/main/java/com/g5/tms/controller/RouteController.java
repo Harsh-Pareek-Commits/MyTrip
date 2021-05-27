@@ -32,6 +32,13 @@ public class RouteController {
 		this.route_services.updateRoute(rout);
 		return rout;
 	}
+	
+	@GetMapping("/view/{id}")
+	public Route searchRoute(@PathVariable int id) throws RouteNotFoundException {
+		Route rout = this.route_services.searchRoute(id);
+		return rout;	
+	}
+	
 	@DeleteMapping("/remove/{id}")
 	public Route removeRoute(@PathVariable int id) throws RouteNotFoundException {
    	 Route rout = this.route_services.removeRoute(id);
