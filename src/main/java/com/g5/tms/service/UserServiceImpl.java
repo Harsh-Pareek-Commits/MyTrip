@@ -22,7 +22,7 @@ public class UserServiceImpl implements IUserService {
 	@Transactional
 	public User addNewUser(User user) {
 		try {
-			user.setUserType("2");
+			user.setUserType("1");
 			user_repo.save(user);
 		} catch (Exception e) {
 			e.getStackTrace();
