@@ -52,7 +52,8 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 			feedback= feed_repo.findbyCustId(customerId);
 		}
 		catch (Exception e) {
-		
+			
+			throw new CustomerNotFoundException("Feedback not found in find by cust id");
 		}
 		return feedback;
 	}
