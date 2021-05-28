@@ -12,51 +12,56 @@ import com.g5.tms.entities.Route;
 import com.g5.tms.exceptions.RouteNotFoundException;
 import com.g5.tms.repository.IReportRepository;
 import com.g5.tms.repository.IRouteRepository;
+
 @Service
 public class RouteServiceImpl implements IRouteService {
-	
+
 	@Autowired
 	IRouteRepository route_repository;
 
 	@Override
 	@Transactional
 	public Route addRoute(Route route) {
-		
-		try 
-		{
+
+		try {
 			route_repository.save(route);
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return route;
 	}
 
 	@Override
 	@Transactional
 	public Route updateRoute(Route route) throws RouteNotFoundException {
-		Optional<Route> opt=null;
+		Optional<Route> opt = null;
 		try {
-			opt=route_repository.findById(route.getRouteId());
-			route_repository.save(route);
-		}
-		catch(Exception e) {
+			opt = route_repository.findById(route.getRouteId());
+			if (opt.isPresent()) {
+				route_repository.save(route);
+			} else {
+				throw new RouteNotFoundException("Route not found in update route!");
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RouteNotFoundException("Route not found in update route!");
 		}
-		
+
 		return opt.get();
 	}
 
 	@Override
 	@Transactional
 	public Route removeRoute(int routeId) throws RouteNotFoundException {
-		Optional<Route> opt=null;
-		Route route = route_repository.findById(routeId).get();
+		Optional<Route> opt = null;
+
 		try {
-			opt=route_repository.findById(route.getRouteId());
-			route_repository.deleteById(routeId);
+			opt = route_repository.findById(routeId);
+			if (opt.isPresent()) {
+				route_repository.deleteById(routeId);
+			} else {
+				throw new RouteNotFoundException("Route not found in remove route!");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RouteNotFoundException("Route not found in remove route!");
@@ -66,29 +71,26 @@ public class RouteServiceImpl implements IRouteService {
 
 	@Override
 	public Route searchRoute(int routeId) throws RouteNotFoundException {
-		
-		
+
 		try {
 			return route_repository.findById(routeId).get();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RouteNotFoundException("Route not foound in search route!");
+			throw new RouteNotFoundException("Route not found in search route!");
 		}
 	}
 
 	@Override
 	public List<Route> viewRouteList() {
-	
+
 		List<Route> routeList = null;
 		try {
 			routeList = route_repository.findAll();
 		} catch (Exception e) {
 			e.printStackTrace();
-		
+
 		}
-	
+
 		return routeList;
 	}
 

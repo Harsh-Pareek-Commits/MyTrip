@@ -10,72 +10,72 @@ import org.springframework.transaction.annotation.Transactional;
 import com.g5.tms.entities.Travels;
 import com.g5.tms.exceptions.TravelsNotFoundException;
 import com.g5.tms.repository.ITravelsRespository;
+
 @Service
 public class TravelsServiceImpl implements ITravelsService {
-	
+
 	@Autowired
 	ITravelsRespository travels_repo;
 
 	@Override
 	@Transactional
 	public Travels addTravels(Travels travels) {
-	
-			try 
-			{
-				travels_repo.save(travels);
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}	
-			return travels;
+
+		try {
+			travels_repo.save(travels);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return travels;
+	}
 
 	@Override
 	@Transactional
 	public Travels updateTravels(Travels travels) throws TravelsNotFoundException {
-		Optional<Travels> opt=null;
-		try 
-		{   
-			opt=travels_repo.findById(travels.getTravelsId());
-			travels_repo.save(travels);
-		}
-		catch(Exception e)
-		{
+		Optional<Travels> opt = null;
+		try {
+			opt = travels_repo.findById(travels.getTravelsId());
+			if (opt.isPresent()) {
+
+				travels_repo.save(travels);
+			} else {
+				throw new TravelsNotFoundException("Travels cannot be updated");
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new TravelsNotFoundException("Travels cannot be updated");
-		}	
+		}
 		return opt.get();
-		
+
 	}
 
 	@Override
 	@Transactional
 	public Travels removeTravels(int travelsId) throws TravelsNotFoundException {
-		Optional<Travels> opt=null;
+		Optional<Travels> opt = null;
 		try {
-			opt=travels_repo.findById(travelsId);
+			opt = travels_repo.findById(travelsId);
+			if (opt.isPresent()) {
 			travels_repo.deleteById(travelsId);
-			
-			
+			}
+			 else {
+					throw new TravelsNotFoundException("Travels cannot be updated");
+				}
 		} catch (Exception e) {
 			e.getStackTrace();
-			throw new TravelsNotFoundException();
-			
+			throw new TravelsNotFoundException("No travels found");
+
 		}
-		return opt.get();	
+		return opt.get();
 
 	}
 
 	@Override
 	public Travels searchTravels(int travelsId) throws TravelsNotFoundException {
-	
-		
+
 		try {
 			return travels_repo.findById(travelsId).get();
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new TravelsNotFoundException("Travels Not foundin search travels");
 		}
@@ -83,17 +83,17 @@ public class TravelsServiceImpl implements ITravelsService {
 
 	@Override
 	public List<Travels> viewTravels() {
-	
+
 		List<Travels> travel_list = null;
 		try {
-			
+
 			travel_list = travels_repo.findAll();
-			
+
 		} catch (Exception e) {
-		
+
 			e.printStackTrace();
 		}
-	
+
 		return travel_list;
 	}
 }

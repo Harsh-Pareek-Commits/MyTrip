@@ -43,8 +43,15 @@ public class CustomerServiceImpl implements ICustomerService {
 	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException {
 		Optional<Customer> opt = null;
 		try {
+			
 			opt = cust_repo.findById(customer.getUserId());
-			cust_repo.save(customer);
+			if(opt.isPresent()) {
+				cust_repo.save(customer);
+			}
+			else {
+				throw new CustomerNotFoundException("Customer id not found for update.");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CustomerNotFoundException("Customer id not found for update.");
@@ -58,7 +65,12 @@ public class CustomerServiceImpl implements ICustomerService {
 		Optional<Customer> opt = null;
 		try {
 			opt = cust_repo.findById(customer.getUserId());
+			if(opt.isPresent()) {
 			cust_repo.delete(customer);
+			}
+			else {
+				throw new CustomerNotFoundException("Customer id not found for delete.");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CustomerNotFoundException("Customer id not found for delete.");
@@ -73,7 +85,7 @@ public class CustomerServiceImpl implements ICustomerService {
 			cust = cust_repo.findById(custid).get();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new CustomerNotFoundException("Customer id not found");
+			throw new CustomerNotFoundException("Customer id not found in view cutomer by id");
 		}
 		return cust;
 	}

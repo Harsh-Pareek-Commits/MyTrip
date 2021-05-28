@@ -32,9 +32,13 @@ public class BookingServiceImpl implements IBookingService {
 		Optional<Booking> opt =null;
 		try {
 			opt=booking_repo.findById(bookingId);
-			
+			if(opt.isPresent()) {
 			booking_repo.deleteById(bookingId);
-		} catch (Exception e) {
+			}
+			else {
+				throw new BookingNotFoundException("No booking found for cancel!");
+			}
+			} catch (Exception e) {
 			e.printStackTrace();
 			throw new BookingNotFoundException("No booking found for cancel!");
 		}

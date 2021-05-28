@@ -35,15 +35,20 @@ public class PackageServiceImpl implements IPackageService {
 		Optional<Package> opt=null;
 		try {
 			opt = package_repo.findById(packageId);
+			if(opt.isPresent()) {
 			package_repo.deleteById(packageId);
-			return opt.get();
+		
+			}
+			else {
+				throw new PackageNotFoundException("Package not found in delete");
+			}
 
 		} catch (Exception e) {
 			e.getStackTrace();
 			throw new PackageNotFoundException("Package not found in delete");
 			
 		}
-
+		return opt.get();
 	}
 
 	@Override

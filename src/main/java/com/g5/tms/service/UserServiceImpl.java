@@ -40,7 +40,7 @@ public class UserServiceImpl implements IUserService {
 			user1 = user_repo.findByUser(username, pass);
 		} catch (Exception e) {
 			e.getStackTrace();
-			throw new InvalidCredentialException("User not found in signin");
+			throw new InvalidCredentialException("Autorization failed! user not found in signin");
 
 		}
 
