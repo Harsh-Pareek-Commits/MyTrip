@@ -1,6 +1,7 @@
 package com.g5.tms.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -32,19 +33,18 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User signIn(User user) throws InvalidCredentialException {
-		User user1 = null;
+		
 
-		try {
 			int username=user.getUserId();
 			String pass=user.getPassword();
-			user1 = user_repo.findByUser(username, pass);
-		} catch (Exception e) {
-			e.getStackTrace();
+		
+			Optional<User>opt = user_repo.findByUser(username, pass);
+	    if(opt.isEmpty()){
 			throw new InvalidCredentialException("Autorization failed! user not found in signin");
 
 		}
 
-		return user1;
+		return opt.get();
 	}
 
 	@Override
