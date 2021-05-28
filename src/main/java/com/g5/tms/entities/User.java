@@ -36,6 +36,7 @@ public class User {
 		this.userId = userId;
 		this.userType = userType;
 		this.password = password;
+		this.setUserId(1);
 	}
 	
 	public int getUserId() {

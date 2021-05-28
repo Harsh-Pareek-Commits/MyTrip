@@ -23,6 +23,7 @@ public class Admin extends User {
 		this.adminName = adminName;
 		this.email = email;
 		this.mobile = mobile;
+		this.setUserId(2);
 	}
 	
 	
