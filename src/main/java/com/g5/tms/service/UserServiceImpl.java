@@ -39,7 +39,7 @@ public class UserServiceImpl implements IUserService {
 			String pass=user.getPassword();
 		
 			Optional<User>opt = user_repo.findByUser(username, pass);
-	    if(opt.isEmpty()){
+	    if(!(opt.isPresent())){
 			throw new InvalidCredentialException("Autorization failed! user not found in signin");
 
 		}
