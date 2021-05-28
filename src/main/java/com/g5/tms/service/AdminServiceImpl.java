@@ -13,6 +13,7 @@ public class AdminServiceImpl extends UserServiceImpl {
 	@Transactional
 	public Admin addNewUser(Admin admin) {
 		try {
+			admin.setUserType("2");
 			user_repo.save(admin);
 		} catch (Exception e) {
 			e.getStackTrace();

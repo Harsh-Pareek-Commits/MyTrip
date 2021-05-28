@@ -31,6 +31,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Transactional
 	public Customer addCustomer(Customer customer) {
 		try {
+			customer.setUserType("3");
 			cust_repo.save(customer);
 		} catch (Exception e) {
 			e.printStackTrace();

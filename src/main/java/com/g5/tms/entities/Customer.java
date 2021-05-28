@@ -28,7 +28,7 @@ public class Customer extends User {
 		this.address = address;
 		this.mobileNo = mobileNo;
 		this.email = email;
-		this.setUserId(3);
+	
 	}
 	
 	/**
