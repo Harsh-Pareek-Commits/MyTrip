@@ -1,6 +1,7 @@
 package com.g5.tms.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,70 +13,60 @@ import com.g5.tms.exceptions.FeedbackNotFoundException;
 import com.g5.tms.repository.IFeedbackRepository;
 
 @Service
-public class FeedbackServiceImpl implements IFeedbackService  {
-	
+public class FeedbackServiceImpl implements IFeedbackService {
+
 	@Autowired
 	IFeedbackRepository feed_repo;
 
 	@Override
 	@Transactional
 	public Feedback addFeedback(Feedback feedback) {
-		
-		try 
-		{
+
+		try {
 			feed_repo.save(feedback);
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
-		}	
+		}
 		return feedback;
 	}
 
 	@Override
 	public Feedback findByFeedbackId(int feedbackId) throws FeedbackNotFoundException {
-	
-		try {
-			return feed_repo.findById(feedbackId).get();
+		Optional<Feedback> opt = feed_repo.findById(feedbackId);
+		if (opt.isPresent()) {
+			return opt.get();
+		} else {
+			throw new FeedbackNotFoundException("Feedback not present whit this id");
 		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			throw new FeedbackNotFoundException("FeedbackId not found in find");
-		}
+
 	}
 
 	@Override
 	public Feedback findByCustomerId(int customerId) throws CustomerNotFoundException {
-		Feedback feedback=null;
-		try {
-			feedback= feed_repo.findbyCustId(customerId);
-			
+
+		Optional<Feedback> opt = feed_repo.findbyCustId(customerId);
+		if (opt.isPresent()) {
+			return opt.get();
+		} else {
+			throw new CustomerNotFoundException("Feedback not present for this customer id");
 		}
-		catch (Exception e) {
-			
-			throw new CustomerNotFoundException("Feedback not found in find by cust id");
-		}
-		return feedback;
+
 	}
 
 	@Override
 	public List<Feedback> viewAllFeedbacks() {
-		
+
 		List<Feedback> feedbackList = null;
 		try {
-			
+
 			feedbackList = feed_repo.findAll();
-			
-			
+
 		} catch (Exception e) {
-		
+
 			e.printStackTrace();
 		}
-	
+
 		return feedbackList;
 	}
-
-	
 
 }
