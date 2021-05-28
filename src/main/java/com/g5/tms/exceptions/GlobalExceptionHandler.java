@@ -23,9 +23,9 @@ public class GlobalExceptionHandler {
 	}
 
 	@ExceptionHandler(InvalidCredentialException.class)
-	public ResponseEntity<String> handleInavalidCredentialException(InvalidCredentialException ex) {
+	public ResponseEntity<String> handleInvalidCredentialException(InvalidCredentialException ex) {
 		HttpHeaders header = new HttpHeaders();
-		header.add("Description", "Authorization faild");
+		header.add("Description", "Authorization failed");
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
 	}
 
