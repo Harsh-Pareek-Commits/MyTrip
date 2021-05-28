@@ -50,6 +50,7 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 		Feedback feedback=null;
 		try {
 			feedback= feed_repo.findbyCustId(customerId);
+			
 		}
 		catch (Exception e) {
 			
@@ -65,6 +66,7 @@ public class FeedbackServiceImpl implements IFeedbackService  {
 		try {
 			
 			feedbackList = feed_repo.findAll();
+			
 			
 		} catch (Exception e) {
 		

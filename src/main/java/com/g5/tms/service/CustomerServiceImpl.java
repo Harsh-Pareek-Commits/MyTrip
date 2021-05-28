@@ -83,6 +83,7 @@ public class CustomerServiceImpl implements ICustomerService {
 		Customer cust = null;
 		try {
 			cust = cust_repo.findById(custid).get();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CustomerNotFoundException("Customer id not found in view cutomer by id");
@@ -97,6 +98,9 @@ public class CustomerServiceImpl implements ICustomerService {
 		try {
 
 			cust_list = cust_repo.findByPackageId(packageId);
+			if(cust_list.isEmpty()) {
+				throw new PackageNotFoundException("Package not found");
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -112,6 +116,9 @@ public class CustomerServiceImpl implements ICustomerService {
 		List<Customer> cust_list = null;
 		try {
 			cust_list = cust_repo.findByRouteId(routeId);
+			if(cust_list.isEmpty()) {
+				throw new RouteNotFoundException("Route not found");
+			}
 			
 			
 		} catch (Exception e) {
