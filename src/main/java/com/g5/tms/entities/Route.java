@@ -35,7 +35,7 @@ public class Route {
 	@Size(min = 2,max = 15,message = "Invalid Origin")
 	private String  routeFrom;
 	@Column
-	@NotEmpty(message = "Report name cannot be left blank or null")
+	@NotEmpty(message = "Route name cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid Destination")
 	private String  routeTo;
 	@OneToMany(cascade = CascadeType.ALL)

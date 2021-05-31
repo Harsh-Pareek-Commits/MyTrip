@@ -37,7 +37,7 @@ public class PaymentDetails {
 	private  String  paymentStatus;
 	@Column
 	@Positive
-	@NotEmpty(message = "User id cannot be left blank or null")
+	@NotNull
 	private  int userId;
 	
 	
