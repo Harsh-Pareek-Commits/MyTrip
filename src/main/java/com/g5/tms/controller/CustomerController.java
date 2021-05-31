@@ -2,8 +2,9 @@ package com.g5.tms.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,13 +27,13 @@ public class CustomerController {
 	ICustomerService cust_service;
 
 	@PostMapping("/add")
-	public Customer addCustomer(@RequestBody Customer cust) {
+	public Customer addCustomer(@RequestBody @Valid Customer cust) {
 		this.cust_service.addCustomer(cust);
 		return cust;
 	}
 
 	@PutMapping("/update")
-	public Customer updateCustomer(@RequestBody Customer cust) throws CustomerNotFoundException {
+	public Customer updateCustomer(@RequestBody @Valid Customer cust) throws CustomerNotFoundException {
 		this.cust_service.updateCustomer(cust);
 		return cust;
 	}

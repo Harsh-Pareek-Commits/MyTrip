@@ -12,6 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Booking {
@@ -19,23 +25,33 @@ public class Booking {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int bookingId;
 	@Column
+	@NotEmpty(message = "Booking Type cannot be left empty or null ")
+	@Size(min = 3,message = "Invaid Booking Type")
 	private String bookingType;
 	@Column
+	@Size(min = 3,max =50 ,message = "description should be min of 3 and max of 50 characters")
 	private String description;
 	@Column
+	@NotEmpty(message = "BookingTitle cannot be left blank or null")
+	@Size(min = 5,max = 20, message = "Invalid Booking Title")
 	private String bookingTitle;
-	
+	@FutureOrPresent(message="Date cannot be in Past")
 	private LocalDate bookingDate;
 	@OneToOne
 	@JoinColumn(name = "Package_info", referencedColumnName = "packageId")
+	@Valid
 	private Package pack;
 	@Column
+	@Positive
+	@NotEmpty(message="UserId cannot be left blank or null")
 	private int userId;
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "Payment_info", referencedColumnName = "paymentId")
+	@Valid
 	private PaymentDetails payment;
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "Ticket_info", referencedColumnName = "ticketId")
+	@Valid
 	private TicketDetails ticket;
 
 	public Booking() {
