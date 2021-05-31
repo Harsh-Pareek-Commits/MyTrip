@@ -2,6 +2,8 @@ package com.g5.tms.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,7 @@ public class BookingController {
 	IBookingService booking_service;
 
 	@PostMapping("/add")
-	public Booking makeBooking(@RequestBody Booking booking) {
+	public Booking makeBooking(@RequestBody @Valid Booking booking) {
 		this.booking_service.makeBooking(booking);
 		return booking;
 	}
