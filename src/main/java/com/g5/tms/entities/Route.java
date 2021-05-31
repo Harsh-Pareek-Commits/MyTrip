@@ -21,8 +21,14 @@ import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Check;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Route {
@@ -44,10 +50,18 @@ public class Route {
 	@Valid
 	private  List<Bus> buses;
 	@FutureOrPresent(message = "Date cannot be past")
+	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss" )
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private  LocalDateTime  departureTime;
 	@Future(message = "Date cannot be past")
+	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss" )
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private  LocalDateTime   arrivalTime;
     @Future(message = "Date cannot be past")
+    @DateTimeFormat(pattern="yyyy-MM-dd" )
+    @JsonFormat(pattern="yyyy-MM-dd")
 	private  LocalDate   doj;
 	@Column
 	@NotEmpty(message = "Pickup point cannot be left blank or null")

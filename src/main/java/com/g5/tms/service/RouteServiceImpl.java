@@ -24,7 +24,9 @@ public class RouteServiceImpl implements IRouteService {
 	public Route addRoute(Route route) {
 
 		try {
+
 			route_repository.save(route);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
