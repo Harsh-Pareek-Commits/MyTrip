@@ -2,6 +2,9 @@ package com.g5.tms.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +24,7 @@ public class ReportController {
 	@Autowired
     IReportService report_service;
 	@PostMapping("/add")
-	public Report addReport(@RequestBody Report repo) {
+	public Report addReport(@RequestBody @Valid Report repo) {
 		this.report_service.addReport(repo);
 		return repo;
 	}
@@ -40,7 +43,7 @@ public class ReportController {
 	}
 	
 	@GetMapping("/all")
-    public List<Report> viewReport(){
+    public List<@NotBlank Report> viewReport(){
 	    return report_service.viewAllReports();
 	}
 }

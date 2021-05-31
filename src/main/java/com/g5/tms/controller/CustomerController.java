@@ -2,6 +2,9 @@ package com.g5.tms.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,18 +29,18 @@ public class CustomerController {
 	ICustomerService cust_service;
 
 	@PostMapping("/add")
-	public Customer addCustomer(@RequestBody Customer cust) {
+	public Customer addCustomer(@RequestBody @Valid Customer cust) {
 		this.cust_service.addCustomer(cust);
 		return cust;
 	}
 
 	@PutMapping("/update")
-	public Customer updateCustomer(@RequestBody Customer cust) throws CustomerNotFoundException {
+	public Customer updateCustomer(@RequestBody @Valid Customer cust) throws CustomerNotFoundException {
 		this.cust_service.updateCustomer(cust);
 		return cust;
 	}
      @DeleteMapping("/delete")  
-	public Customer deleteCustomer(@RequestBody Customer cust) throws CustomerNotFoundException {
+	public Customer deleteCustomer(@RequestBody @Valid Customer cust) throws CustomerNotFoundException {
     	 this.cust_service.deleteCustomer(cust);
 		return cust;
 	}
@@ -53,7 +56,7 @@ public class CustomerController {
 		return cust_list;
 	}
     @GetMapping("/view/route/{routeId}")
-	public List<Customer> viewCustomerList(@PathVariable int routeId) throws RouteNotFoundException {
+	public List<@NotBlank Customer> viewCustomerList(@PathVariable int routeId) throws RouteNotFoundException {
     
     	return this.cust_service.viewCustomerList(routeId);
 		

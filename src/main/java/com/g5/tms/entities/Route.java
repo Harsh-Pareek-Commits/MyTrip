@@ -15,6 +15,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Route {
@@ -23,25 +31,33 @@ public class Route {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int routeId;
 	@Column
+	@NotEmpty(message = "Route name cannot be left blank or null")
+	@Size(min = 2,max = 15,message = "Invalid Origin")
 	private String  routeFrom;
 	@Column
+	@NotEmpty(message = "Report name cannot be left blank or null")
+	@Size(min = 2,max = 15,message = "Invalid Destination")
 	private String  routeTo;
 	@OneToMany(cascade = CascadeType.ALL)
 	  @JoinTable(name = "Route_Bus", joinColumns = @JoinColumn(name = "routeId"),
 	  inverseJoinColumns = @JoinColumn(name = "busId"))
+	@Valid
 	private  List<Bus> buses;
-	
+	@FutureOrPresent(message = "Date cannot be past")
 	private  LocalDateTime  departureTime;
-	
+	@Future(message = "Date cannot be past")
 	private  LocalDateTime   arrivalTime;
-
+    @Future(message = "Date cannot be past")
 	private  LocalDate   doj;
 	@Column
+	@NotEmpty(message = "Pickup point cannot be left blank or null")
+	@Size(min = 2,max = 15,message = "Invalid pickup point")
 	private String pickupPoint;
 	@Column
+	@NotNull
+	@Positive 
+	@Min(value = 300, message = "Enter a valid number")
 	private  double fare;
-	
-	
 	public Route() {
 		super();
 		// TODO Auto-generated constructor stub

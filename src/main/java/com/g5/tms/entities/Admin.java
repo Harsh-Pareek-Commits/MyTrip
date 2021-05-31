@@ -3,17 +3,26 @@ package com.g5.tms.entities;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @DiscriminatorValue(value = "2")
 public class Admin extends User {
 	
 	@Column
+	@NotEmpty(message = "Admin name cannot be left blank or null")
+	@Size(min = 3,max = 20,message = "Invalid Admin Name")
 	private String adminName;
 	@Column
+	@NotEmpty(message = "Email cannot be left blank or null")
+	@Email(message = "Enter valid email Id")
 	private String email;
 	@Column
+	@NotEmpty(message = "MobileNo cannot be left blank or null")
+	@Size(min = 10,max = 10,message = "Invalid Mobile Number")
 	private  String mobile;
 	public Admin() {
 		super();
@@ -24,6 +33,7 @@ public class Admin extends User {
 		this.adminName = adminName;
 		this.email = email;
 		this.mobile = mobile;
+		this.setUserType("2");
 		
 	}
 	

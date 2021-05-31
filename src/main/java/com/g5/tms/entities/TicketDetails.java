@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class TicketDetails {
@@ -16,6 +17,7 @@ public class TicketDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int ticketId;
 	@Column
+	@NotEmpty(message = "Status cannot be left blank or null")
 	private String status;
 
 	public TicketDetails() {

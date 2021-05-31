@@ -2,6 +2,9 @@ package com.g5.tms.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,13 +29,13 @@ public class TravelController {
 ITravelsService travel_service;
 	
 	@PostMapping("/add")
-	public Travels addTravels(@RequestBody Travels trv) {
+	public Travels addTravels(@RequestBody @Valid Travels trv) {
 	this.travel_service.addTravels(trv);
 	return trv;
 	}
 
 	@PutMapping("/update")
-	public Travels updateTravels(@RequestBody Travels trv) throws TravelsNotFoundException{
+	public Travels updateTravels(@RequestBody @Valid Travels trv) throws TravelsNotFoundException{
 	this.travel_service.updateTravels(trv);
 	return trv;
 	}
@@ -52,7 +55,7 @@ ITravelsService travel_service;
     
    
     @GetMapping("/all")
-	public  List<Travels>  viewTravels(){
+	public  List<@NotBlank Travels>  viewTravels(){
     return travel_service.viewTravels(); 
     
     }

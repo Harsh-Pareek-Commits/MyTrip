@@ -2,6 +2,9 @@ package com.g5.tms.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +26,12 @@ public class RouteController {
     IRouteService route_services;
 	
 	@PostMapping("/add")
-	public Route addRoute(@RequestBody Route rout) {
+	public Route addRoute(@RequestBody @Valid Route rout) {
 		this.route_services.addRoute(rout);
 		return rout;
 	}
 	@PutMapping("/update")
-	public Route updateRoute(@RequestBody Route rout) throws RouteNotFoundException {
+	public Route updateRoute(@RequestBody @Valid Route rout) throws RouteNotFoundException {
 		this.route_services.updateRoute(rout);
 		return rout;
 	}
@@ -45,7 +48,7 @@ public class RouteController {
 		return rout;
 	}
 	@GetMapping("/all")
-	 public List<Route> viewRoute(){
+	 public List<@NotBlank Route> viewRoute(){
 	    return route_services.viewRouteList();
 	}
 

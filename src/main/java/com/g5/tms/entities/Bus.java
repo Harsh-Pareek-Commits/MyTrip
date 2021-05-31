@@ -8,6 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Bus {
@@ -16,13 +22,21 @@ public class Bus {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int busId;
 	@Column
+	@NotEmpty(message = "Bus Type cannot be left balnk or null")
+	@Size(min= 2, max =15, message = "Enter valid Bus Type")
 	private  String busType;
 	@Column
+	@NotEmpty(message = "Bus Number cannot be left balnk or null")
+	@Size(min= 9, max =9, message = "Enter valid Bus Number")
 	private  String busNumber;
 	@Column
+	@Positive
+	@NotNull
+	@Max(value = 60, message=" Bus with entered capacity is not allowed")
 	private int capacity;
 	@OneToOne
 	@JoinColumn(name = "Travel_info", referencedColumnName = "travelsId")
+	@Valid
 	private Travels travel;
 	
 	public Bus() {

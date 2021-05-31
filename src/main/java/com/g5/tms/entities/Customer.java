@@ -3,6 +3,9 @@ package com.g5.tms.entities;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @DiscriminatorValue(value = "3")
@@ -10,14 +13,19 @@ public class Customer extends User {
 
 
 	@Column
+	@NotEmpty(message = "Customer name cannot be left blank or null")
+	@Size(min = 3,max = 20,message = "Invalid Customer Name")
 	private String customerName;
 	@Column
+	@NotEmpty(message = "Address cannot be left blank or null")
+	@Size(min = 5,message = "Invalid Address")
 	private String address;
 	@Column
+	@Size(min = 10,max = 10,message = "Invalid Mobile Number")
 	private String mobileNo;
 	@Column
+	@Email(message = "Enter valid email Id")
 	private String email;
-	
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub

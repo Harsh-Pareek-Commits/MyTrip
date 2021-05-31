@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import javax.persistence.JoinColumn;
 @Entity
 public class Report {
@@ -17,12 +20,17 @@ public class Report {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int reportId;
 	@Column
+	@NotEmpty(message = "Report name cannot be left blank or null")
+	@Size(min = 2,max = 15,message = "Invalid report Name")
 	private String reportName;
 	@Column
+	@NotEmpty(message = "Report type cannot be left blank or null")
+	@Size(min = 2,max = 15,message = "Invalid Report Name")
 	private String reportType; 
 	@OneToMany(cascade = CascadeType.ALL)
 	  @JoinTable(name = "Report_booking", joinColumns = @JoinColumn(name = "reportId"),
 	  inverseJoinColumns = @JoinColumn(name = "bookingId"))
+	@Valid
 	private Set<Booking> allBookings;
 	
 	public Report() {

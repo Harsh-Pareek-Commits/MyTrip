@@ -1,5 +1,7 @@
 package com.g5.tms.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +20,7 @@ public class AdminController {
 	IUserService admin_service;
 	
 	@PostMapping("/add")
-	public User adduser(@RequestBody Admin admin)
+	public User adduser(@RequestBody @Valid Admin admin)
 	{
 		this.admin_service.addNewUser(admin);
 		return admin;

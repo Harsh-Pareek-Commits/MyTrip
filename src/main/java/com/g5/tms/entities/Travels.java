@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Travels {
@@ -13,12 +15,20 @@ public class Travels {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int travelsId;
 	@Column
+	@NotEmpty(message = "Travels name cannot be left blank or null")
+	@Size(min = 2,max = 15,message = "Invalid travels Name")
 	private String travelsName;
 	@Column
+	@NotEmpty(message = "Agent name cannot be left blank or null")
+	@Size(min = 2,max = 15,message = "Invalid agent Name")
 	private String  agentName;
 	@Column
+	@NotEmpty(message = "Address cannot be left blank or null")
+	@Size(min = 2,message = "Invalid address")
 	private String  address;
 	@Column
+	@NotEmpty(message = "Contact cannot be left blank or null")
+	@Size(min = 10,max = 10,message = "Invalid contact number")
 	private String  contact;
 	
 	public Travels() {
