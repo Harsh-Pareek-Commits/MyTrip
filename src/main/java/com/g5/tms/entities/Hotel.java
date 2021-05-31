@@ -5,6 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Hotel {
@@ -13,16 +18,28 @@ public class Hotel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int hotelId;
 	@Column
+	@NotEmpty(message = "Hotel name cannot be left blank or null")
+	@Size(min = 2,max = 10,message = "Invalid Hotel Name")
 	private String hotelName;
 	@Column
+	@NotEmpty(message = "Hotel Type cannot be left blank or null")
+	@Size(min = 2,max = 20,message = "Invalid Hotel Type")
 	private String hotelType;
 	@Column
+	@Size(min = 10, max = 50, message 
+    = "Hotel Description must be between 10 and 50 characters")
 	private String hotelDescription;
 	@Column
+	@NotEmpty(message = "Address cannot be left blank or null")
+	@Size(min = 2,message = "Invalid Hotel Address")
 	private String address;
 	@Column
+	@Positive
+	@Min(value = 500, message = "Cost should not be less than 500")
+	@NotNull
 	private double rent;
 	@Column
+	@NotEmpty(message = "Hotel Status cannot be left blank or null")
 	private String status;
 	public Hotel() {
 		super();

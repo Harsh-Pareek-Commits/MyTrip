@@ -13,6 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Feedback {
@@ -22,12 +27,16 @@ public class Feedback {
 	private int feedbackId;
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "User_info", referencedColumnName = "userId")
+	@Valid
 	private Customer customer;
 	@Column
+	@Size(min = 2,max = 50,message = "feedback should be min of 2 and max of 50 characters")
 	private String feedback;
 	@Column
+	@Min(value = 1, message = "Rating should not be less than 1")
+    @Max(value = 5, message = "Rating should not be greater than 5")
 	private int rating;
-
+	@FutureOrPresent(message="date can't be in past")
 	private LocalDate submitDate;
 
 	public Feedback() {

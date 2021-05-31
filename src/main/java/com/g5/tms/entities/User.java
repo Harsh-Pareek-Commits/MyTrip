@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Trip_user")
@@ -25,6 +27,8 @@ public class User {
 	@Column
 	private String userType;
 	@Column
+	@NotEmpty(message = "Password cannot be left blank or null")
+	@Size(min = 8,max = 16,message = "Invalid Password, Password should be min 8")
 	private String password;
 	
 	public User() {

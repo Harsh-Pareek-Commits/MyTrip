@@ -2,6 +2,10 @@ package com.g5.tms.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +26,7 @@ IFeedbackService feedback_service;
 	
 
 	@PostMapping("/add")
-	public Feedback addFeedback(@RequestBody Feedback feed) {
+	public Feedback addFeedback(@RequestBody @Valid Feedback feed) {
 		this.feedback_service.addFeedback(feed);
 		return feed;
 	}
@@ -40,7 +44,7 @@ IFeedbackService feedback_service;
 	}
 	
 	@GetMapping("/find")
-	public List<Feedback> viewAllFeedbacks() {
+	public List< @NotEmpty Feedback> viewAllFeedbacks() {
 		return feedback_service.viewAllFeedbacks();
 		
 	}

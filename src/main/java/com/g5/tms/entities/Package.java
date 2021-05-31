@@ -10,25 +10,44 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Package {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	
 	private int packageId;
 	@Column
+	@NotEmpty(message = "Package name cannot be left blank or null")
+	@Size(min = 2,max = 15,message = "Invalid Package Name")
 	private String packageName;
 	@Column
+	@Size(min = 10, max = 50, message 
+    = "Package Description must be between 10 and 50 characters")
 	private String packageDescription;
 	@Column
+	@NotEmpty(message = "Package Type cannot be left blank or null")
+	@Size(min = 2,max = 15,message = "Invalid Package Type")
 	private String packageType;
 	@Column
+	@Positive
+	@Min(value = 2000, message = "Cost should not be less than 2000")
+	@NotNull
 	private double packageCost;
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Route_info", referencedColumnName = "routeId")
+	@Valid
 	private Route route;
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name = "Hotel_info", referencedColumnName = "hotelId")
+	@Valid
 	private Hotel hotel;
 
 	public Package() {

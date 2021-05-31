@@ -5,6 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
 public class PaymentDetails {
@@ -12,16 +17,27 @@ public class PaymentDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private  int paymentId;
 	@Column
+	@NotEmpty(message = "Payment Mode cannot be left blank or null")
+	@Size(min = 2,max = 15,message = "Invalid Payment Mode")
 	private  String paymentMode;
 	@Column
+	@NotEmpty(message = "Bank Name cannot be left blank or null")
+	@Size(min = 3,message = "Invalid Bank Name")
 	private  String bankName;
 	@Column
+	@NotNull
 	private  long  cardNo;
 	@Column
+	@Positive	
+	@Min(value = 2000, message = "Payment should not be less than 2000")
+	@NotNull
 	private double   netAmount;
 	@Column
+	@NotEmpty(message = "Payment status cannot be left blank or null")
 	private  String  paymentStatus;
 	@Column
+	@Positive
+	@NotEmpty(message = "User id cannot be left blank or null")
 	private  int userId;
 	
 	

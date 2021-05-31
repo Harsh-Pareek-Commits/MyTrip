@@ -2,6 +2,9 @@ package com.g5.tms.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +24,10 @@ public class PackageConroller {
 	@Autowired
 IPackageService package_service;
 	@PostMapping("/add")
-	public  Package  addingPackage(@RequestBody Package pack) 
+	public  Package  addingPackage(@RequestBody @Valid Package pack) 
 	{
 		Package pack1=this.package_service.addPackage(pack);
-		return pack1;
+		return pack1; 
 	}
 	@DeleteMapping("/delete/{packageId}")
 	public  Package  deletingPackage(@PathVariable int packageId) throws PackageNotFoundException
@@ -39,7 +42,7 @@ IPackageService package_service;
 		return pack;
 	}
 	@GetMapping("/all")
-	public  List<Package> viewAllPackages()
+	public  List< @NotEmpty Package> viewAllPackages()
 	{
 		List<Package> list= this.package_service.viewAllPackages();
 		return list;
