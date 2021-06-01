@@ -19,7 +19,7 @@ import com.g5.tms.service.ICustomerService;
 @SpringBootTest
 @ActiveProfiles("test")
 
-public class ApplicationTests {
+public class CustomerServiceTest {
    @Autowired
    private ICustomerService cust_Service;
    
