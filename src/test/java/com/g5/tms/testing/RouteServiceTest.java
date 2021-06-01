@@ -2,6 +2,7 @@ package com.g5.tms.testing;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -42,24 +43,21 @@ public class RouteServiceTest {
 	private RouteServiceImpl routeService;
 	
 	
+	
 	@Test
-	public void testOrderByIt() throws RouteNotFoundException {
-		LocalDateTime depTime = LocalDateTime.now();
-		LocalDateTime arrTime = LocalDateTime.now();
-		LocalDate date = LocalDate.now();
-		Bus bus1 = new Bus(101, "xyz", "AP90", 20, null);
-		Bus bus2 = new Bus(102, "xyz", "AP90", 20, null);
-		List<Bus> bList = Arrays.asList(bus1, bus2);
-		Route r1 = new Route(01, "Hyd", "Banglore", bList, depTime, arrTime, date, "HydStop", 2000.00);
-		Optional<Route> optional_route = Optional.of(r1);
-		Mockito.when(routeRepository.findById(1)).thenReturn(optional_route);
-		Route route_test = routeService.searchRoute(1);
-		assertEquals(r1, route_test);
+	public void testRouteById() throws RouteNotFoundException {
+		int input = 101;
+		Route route = mock(Route.class);
+		Optional<Route> optional_route = Optional.of(route);
+		when(routeRepository.findById(input)).thenReturn(optional_route);
+		Optional<Route> route_test = Optional.of(routeService.searchRoute(input));
+		assertEquals(optional_route, route_test);
 	}
+	
 	
 	@Test
 	public void testViewAllRoutes() {
-		LocalDateTime depTime = LocalDateTime.now();
+		/**LocalDateTime depTime = LocalDateTime.now();
 		LocalDateTime arrTime = LocalDateTime.now();
 		LocalDate date = LocalDate.now();
 		Bus bus1 = new Bus(101, "xyz", "AP90", 20, null);
@@ -75,7 +73,11 @@ public class RouteServiceTest {
 		when(routeRepository.findAll()).thenReturn(routeList);
 		List<Route> expected_outList = routeService.viewRouteList();
 		System.out.println(expected_outList);
-		assertIterableEquals(routeList,expected_outList);
+		assertIterableEquals(routeList,expected_outList);**/
+		List<Route> routeList = mock(List.class);
+		when(routeRepository.findAll()).thenReturn(routeList);
+		List<Route> outputRoutList = routeService.viewRouteList();
+		assertEquals(routeList, outputRoutList);
 		
 	}
 	
