@@ -35,7 +35,6 @@ public class Hotel {
 	private String address;
 	@Column
 	@Positive
-	@Min(value = 500, message = "Cost should not be less than 500")
 	@NotNull
 	private double rent;
 	@Column

@@ -5,6 +5,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -21,7 +23,8 @@ public class Customer extends User {
 	@Size(min = 5,message = "Invalid Address")
 	private String address;
 	@Column
-	@Size(min = 10,max = 10,message = "Invalid Mobile Number")
+	@NotEmpty(message = "Mobile number cannot be left blank or null")
+	@Pattern(regexp="(^$|[0-9]{10})", message ="Enter 10 digit mobile number")
 	private String mobileNo;
 	@Column
 	@Email(message = "Enter valid email Id")

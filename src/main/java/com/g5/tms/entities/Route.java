@@ -69,8 +69,7 @@ public class Route {
 	private String pickupPoint;
 	@Column
 	@NotNull
-	@Positive 
-	@Min(value = 300, message = "Enter a valid number")
+	@Positive
 	private  double fare;
 	public Route() {
 		super();

@@ -32,7 +32,6 @@ public class Bus {
 	@Column
 	@Positive
 	@NotNull
-	@Max(value = 60, message=" Bus with entered capacity is not allowed")
 	private int capacity;
 	@OneToOne
 	@JoinColumn(name = "Travel_info", referencedColumnName = "travelsId")
