@@ -5,6 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.action.spi.Executable;
@@ -54,7 +58,10 @@ public class CustomerServiceTest {
    @Test
    public void testCustomersByPackageId() throws PackageNotFoundException
    {
-	   Customer cust1 =new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
-	   Customer cust2 =new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
+	  // Optional<List<Customer>>cust=Optional.empty();
+	   when(cust_repo.findByPackageId(1)).thenReturn(cust);
+	   org.junit.jupiter.api.function.Executable executable  = ()-> {
+		   assertNotNull(cust_Service.viewCustomer(1));
+	   };
    }
 }

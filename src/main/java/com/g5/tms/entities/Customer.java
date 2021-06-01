@@ -39,6 +39,7 @@ public class Customer extends User {
 	
 	}
 	
+	
 	/**
 	 * @return the customerName
 	 */
