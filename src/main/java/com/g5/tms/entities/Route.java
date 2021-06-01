@@ -70,7 +70,6 @@ public class Route {
 	@Column
 	@NotNull
 	@Positive 
-	@Min(value = 300, message = "Enter a valid number")
 	private  double fare;
 	public Route() {
 		super();

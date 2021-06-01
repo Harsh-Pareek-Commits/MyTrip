@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -27,8 +28,8 @@ public class Travels {
 	@Size(min = 2,message = "Invalid address")
 	private String  address;
 	@Column
-	@NotEmpty(message = "Contact cannot be left blank or null")
-	@Size(min = 10,max = 10,message = "Invalid contact number")
+	@NotEmpty(message = "Contact number cannot be left blank or null")
+	@Pattern(regexp="(^$|[0-9]{10})", message ="Enter 10 digit contact number")
 	private String  contact;
 	
 	public Travels() {

@@ -38,7 +38,6 @@ public class Package {
 	private String packageType;
 	@Column
 	@Positive
-	@Min(value = 2000, message = "Cost should not be less than 2000")
 	@NotNull
 	private double packageCost;
 	@OneToOne(fetch = FetchType.EAGER)

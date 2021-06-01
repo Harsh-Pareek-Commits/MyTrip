@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
@@ -25,8 +26,9 @@ public class PaymentDetails {
 	@Size(min = 3,message = "Invalid Bank Name")
 	private  String bankName;
 	@Column
-	@NotNull
-	private  long  cardNo;
+	@Pattern(regexp="(^$|[0-9]{16})", message ="Enter 16 digit Card number")
+	private  String  cardNo;
+
 	@Column
 	@Positive	
 	@Min(value = 2000, message = "Payment should not be less than 2000")
@@ -45,7 +47,7 @@ public class PaymentDetails {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PaymentDetails(int paymentId, String paymentMode, String bankName, long cardNo, double netAmount,
+	public PaymentDetails(int paymentId, String paymentMode, String bankName, String cardNo, double netAmount,
 			String paymentStatus, int userId) {
 		super();
 		this.paymentId = paymentId;
@@ -95,13 +97,13 @@ public class PaymentDetails {
 	/**
 	 * @return the cardNo
 	 */
-	public long getCardNo() {
+	public String getCardNo() {
 		return cardNo;
 	}
 	/**
 	 * @param cardNo the cardNo to set
 	 */
-	public void setCardNo(long cardNo) {
+	public void setCardNo(String cardNo) {
 		this.cardNo = cardNo;
 	}
 	/**
