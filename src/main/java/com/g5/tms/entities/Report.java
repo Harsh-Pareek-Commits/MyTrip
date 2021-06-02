@@ -29,7 +29,7 @@ public class Report {
 	@NotEmpty(message = "Report type cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid Report Name")
 	private String reportType; 
-	@ManyToMany
+	@OneToMany
 	@JoinColumn(name = "bookingId", referencedColumnName = "bookingId")
 	@Valid
 	private Set<Booking> allBookings;
