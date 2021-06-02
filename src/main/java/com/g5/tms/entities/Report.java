@@ -5,10 +5,12 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -27,9 +29,8 @@ public class Report {
 	@NotEmpty(message = "Report type cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid Report Name")
 	private String reportType; 
-	@OneToMany(cascade = CascadeType.ALL)
-	  @JoinTable(name = "Report_booking", joinColumns = @JoinColumn(name = "reportId"),
-	  inverseJoinColumns = @JoinColumn(name = "bookingId"))
+	@ManyToMany
+	@JoinColumn(name = "bookingId", referencedColumnName = "bookingId")
 	@Valid
 	private Set<Booking> allBookings;
 	
