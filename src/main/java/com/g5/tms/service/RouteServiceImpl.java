@@ -19,7 +19,7 @@ import com.g5.tms.repository.IRouteRepository;
 public class RouteServiceImpl implements IRouteService {
 	Logger log = LoggerFactory.getLogger(RouteServiceImpl.class);
 	@Autowired
-	IRouteRepository route_repository;
+	IRouteRepository routeRepository;
 
 	@Override
 	@Transactional
@@ -27,7 +27,7 @@ public class RouteServiceImpl implements IRouteService {
 
 		try {
 
-			route_repository.save(route);
+			routeRepository.save(route);
 			
 		} catch (Exception e) {
 			log.error("Add route Exception:", e);
@@ -40,9 +40,9 @@ public class RouteServiceImpl implements IRouteService {
 	public Route updateRoute(Route route) throws RouteNotFoundException {
 		Optional<Route> opt = null;
 		try {
-			opt = route_repository.findById(route.getRouteId());
+			opt = routeRepository.findById(route.getRouteId());
 			if (opt.isPresent()) {
-				route_repository.save(route);
+				routeRepository.save(route);
 			} else {
 				throw new RouteNotFoundException("Route not found in update route!");
 			}
@@ -60,9 +60,9 @@ public class RouteServiceImpl implements IRouteService {
 		Optional<Route> opt = null;
 
 		try {
-			opt = route_repository.findById(routeId);
+			opt = routeRepository.findById(routeId);
 			if (opt.isPresent()) {
-				route_repository.deleteById(routeId);
+				routeRepository.deleteById(routeId);
 			} else {
 				throw new RouteNotFoundException("Route not found in remove route!");
 			}
@@ -77,7 +77,7 @@ public class RouteServiceImpl implements IRouteService {
 	public Route searchRoute(int routeId) throws RouteNotFoundException {
 
 		try {
-			Optional<Route>opt= route_repository.findById(routeId);
+			Optional<Route>opt= routeRepository.findById(routeId);
 			if(opt.isPresent()) {
 			return opt.get();
 			}else {
@@ -94,7 +94,7 @@ public class RouteServiceImpl implements IRouteService {
 
 		List<Route> routeList = null;
 		try {
-			routeList = route_repository.findAll();
+			routeList = routeRepository.findAll();
 		} catch (Exception e) {
 			log.error("View route list Exception:", e);
 

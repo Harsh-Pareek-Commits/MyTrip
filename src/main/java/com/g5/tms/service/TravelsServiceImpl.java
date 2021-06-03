@@ -17,14 +17,14 @@ import com.g5.tms.repository.ITravelsRespository;
 public class TravelsServiceImpl implements ITravelsService {
 	Logger log = LoggerFactory.getLogger(TravelsServiceImpl.class);
 	@Autowired
-	ITravelsRespository travels_repo;
+	ITravelsRespository travelsRepository;
 
 	@Override
 	@Transactional
 	public Travels addTravels(Travels travels) {
 
 		try {
-			travels_repo.save(travels);
+			travelsRepository.save(travels);
 		} catch (Exception e) {
 			log.error("Add travels Exception:", e);
 		}
@@ -36,10 +36,10 @@ public class TravelsServiceImpl implements ITravelsService {
 	public Travels updateTravels(Travels travels) throws TravelsNotFoundException {
 		Optional<Travels> opt = null;
 		try {
-			opt = travels_repo.findById(travels.getTravelsId());
+			opt = travelsRepository.findById(travels.getTravelsId());
 			if (opt.isPresent()) {
 
-				travels_repo.save(travels);
+				travelsRepository.save(travels);
 			} else {
 				throw new TravelsNotFoundException("Travels cannot be updated");
 			}
@@ -56,9 +56,9 @@ public class TravelsServiceImpl implements ITravelsService {
 	public Travels removeTravels(int travelsId) throws TravelsNotFoundException {
 		Optional<Travels> opt = null;
 		try {
-			opt = travels_repo.findById(travelsId);
+			opt = travelsRepository.findById(travelsId);
 			if (opt.isPresent()) {
-			travels_repo.deleteById(travelsId);
+			travelsRepository.deleteById(travelsId);
 			}
 			 else {
 					throw new TravelsNotFoundException("Travels cannot be updated");
@@ -76,7 +76,7 @@ public class TravelsServiceImpl implements ITravelsService {
 	public Travels searchTravels(int travelsId) throws TravelsNotFoundException {
 
 		try {
-			Optional<Travels>opt= travels_repo.findById(travelsId);
+			Optional<Travels>opt= travelsRepository.findById(travelsId);
 			if(opt.isPresent()) {
 			return opt.get();
 			}else {
@@ -94,7 +94,7 @@ public class TravelsServiceImpl implements ITravelsService {
 		List<Travels> travel_list = null;
 		try {
 
-			travel_list = travels_repo.findAll();
+			travel_list = travelsRepository.findAll();
 
 		} catch (Exception e) {
 

@@ -18,14 +18,14 @@ import com.g5.tms.repository.IFeedbackRepository;
 public class FeedbackServiceImpl implements IFeedbackService {
 	Logger log = LoggerFactory.getLogger(FeedbackServiceImpl.class);
 	@Autowired
-	IFeedbackRepository feed_repo;
+	IFeedbackRepository feedrepo;
 
 	@Override
 	@Transactional
 	public Feedback addFeedback(Feedback feedback) {
 
 		try {
-			feed_repo.save(feedback);
+			feedrepo.save(feedback);
 		} catch (Exception e) {
 			log.error("Add feedback Exception:", e);
 		}
@@ -34,7 +34,7 @@ public class FeedbackServiceImpl implements IFeedbackService {
 
 	@Override
 	public Feedback findByFeedbackId(int feedbackId) throws FeedbackNotFoundException {
-		Optional<Feedback> opt = feed_repo.findById(feedbackId);
+		Optional<Feedback> opt = feedrepo.findById(feedbackId);
 		if (opt.isPresent()) {
 			return opt.get();
 		} else {
@@ -46,7 +46,7 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	@Override
 	public Feedback findByCustomerId(int customerId) throws CustomerNotFoundException {
 
-		Optional<Feedback> opt = feed_repo.findbyCustId(customerId);
+		Optional<Feedback> opt = feedrepo.findbyCustId(customerId);
 		if (opt.isPresent()) {
 			return opt.get();
 		} else {
@@ -61,7 +61,7 @@ public class FeedbackServiceImpl implements IFeedbackService {
 		List<Feedback> feedbackList = null;
 		try {
 
-			feedbackList = feed_repo.findAll();
+			feedbackList = feedrepo.findAll();
 
 		} catch (Exception e) {
 

@@ -18,13 +18,13 @@ import com.g5.tms.repository.IPackageRepository;
 public class PackageServiceImpl implements IPackageService {
 	Logger log = LoggerFactory.getLogger(PackageServiceImpl.class);
 	@Autowired
-	IPackageRepository package_repo;
+	IPackageRepository packageRepository;
 
 	@Override
 	@Transactional
 	public Package addPackage(Package pack) {
 		try {
-			package_repo.save(pack);
+			packageRepository.save(pack);
 		} catch (Exception e) {
 			log.error("Adding package Exception:", e);
 		}
@@ -36,9 +36,9 @@ public class PackageServiceImpl implements IPackageService {
 	public Package deletePackage(int packageId) throws PackageNotFoundException {
 		Optional<Package> opt = null;
 		try {
-			opt = package_repo.findById(packageId);
+			opt = packageRepository.findById(packageId);
 			if (opt.isPresent()) {
-				package_repo.deleteById(packageId);
+				packageRepository.deleteById(packageId);
 
 			} else {
 				throw new PackageNotFoundException("Package not found in delete");
@@ -55,7 +55,7 @@ public class PackageServiceImpl implements IPackageService {
 	@Override
 	public Package searchPackage(int packageId) throws PackageNotFoundException {
 		try {
-			Optional<Package> opt = package_repo.findById(packageId);
+			Optional<Package> opt = packageRepository.findById(packageId);
 			if (opt.isPresent()) {
 				return opt.get();
 			} else {
@@ -74,7 +74,7 @@ public class PackageServiceImpl implements IPackageService {
 	public List<Package> viewAllPackages() {
 		List<Package> list = null;
 		try {
-			list = package_repo.findAll();
+			list = packageRepository.findAll();
 		} catch (Exception e) {
 			log.error("View all Exception:", e);
 

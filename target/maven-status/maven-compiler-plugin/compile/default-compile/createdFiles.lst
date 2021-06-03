@@ -36,6 +36,7 @@ com\g5\tms\entities\Report.class
 com\g5\tms\entities\User.class
 com\g5\tms\service\FeedbackServiceImpl.class
 com\g5\tms\service\CustomerServiceImpl.class
+com\g5\tms\dto\CustomerDto.class
 com\g5\tms\entities\Booking.class
 com\g5\tms\repository\ICustomerRepository.class
 com\g5\tms\controller\TravelController.class

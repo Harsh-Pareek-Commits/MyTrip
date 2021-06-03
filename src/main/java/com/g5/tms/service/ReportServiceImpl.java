@@ -17,14 +17,14 @@ import com.g5.tms.repository.IReportRepository;
 public class ReportServiceImpl implements IReportService {
 	Logger log = LoggerFactory.getLogger(ReportServiceImpl.class);
 	@Autowired
-	IReportRepository report_repository;
+	IReportRepository reportRepository;
 
 	@Override
 	@Transactional
 	public Report addReport(Report report) {
 		
 		try {
-			report_repository.save(report);
+			reportRepository.save(report);
 		}
 		catch(Exception e)
 		{
@@ -38,9 +38,9 @@ public class ReportServiceImpl implements IReportService {
 	public Report deleteReport(int reportId) throws ReportNotFoundException {
 		Optional<Report>opt=null;
 		try {
-	    	opt = report_repository.findById(reportId);
+	    	opt = reportRepository.findById(reportId);
 		    if(opt.isPresent()) {
-	    	report_repository.deleteById(reportId);
+	    	reportRepository.deleteById(reportId);
 		    }
 		    else {
 		    	throw new ReportNotFoundException("Report not found in delete!");
@@ -58,7 +58,7 @@ public class ReportServiceImpl implements IReportService {
 	public Report viewReport(int reportId) throws ReportNotFoundException {
 	
 		try {
-			Optional<Report>opt= report_repository.findById(reportId);
+			Optional<Report>opt= reportRepository.findById(reportId);
 			if(opt.isPresent()) {
 			 return opt.get();
 			}else {
@@ -76,7 +76,7 @@ public class ReportServiceImpl implements IReportService {
 	public List<Report> viewAllReports() {
 				List<Report> reportList = null;
 		try {
-			reportList = report_repository.findAll();
+			reportList = reportRepository.findAll();
 		}
 		catch(Exception e) {
 			log.error("View all reports Exception:", e);

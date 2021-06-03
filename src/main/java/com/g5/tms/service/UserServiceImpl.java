@@ -17,14 +17,14 @@ import com.g5.tms.repository.IUserRepository;
 
 public class UserServiceImpl implements IUserService {
 	@Autowired
-	IUserRepository user_repo;
+	IUserRepository userRepository;
 
 	@Override
 	@Transactional
 	public User addNewUser(User user) {
 		try {
 			user.setUserType("1");
-			user_repo.save(user);
+			userRepository.save(user);
 		} catch (Exception e) {
 			e.getStackTrace();
 
@@ -36,7 +36,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User signIn(User user) throws InvalidCredentialException {
 		
-		Optional<User> opt = user_repo.findById(user.getUserId());
+		Optional<User> opt = userRepository.findById(user.getUserId());
 		try {
 			if (opt.isPresent()) {
 				User u = opt.get();

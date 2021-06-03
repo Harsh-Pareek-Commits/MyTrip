@@ -20,13 +20,13 @@ public class BookingServiceImpl implements IBookingService {
 	Logger log = LoggerFactory.getLogger(BookingServiceImpl.class);
 	
 	@Autowired
-	IBookingRepository booking_repo;
+	IBookingRepository bookingRepository;
 
 	@Override
 	@Transactional
 	public Booking makeBooking(Booking booking) {
 		try {
-			booking_repo.save(booking);
+			bookingRepository.save(booking);
 		} catch (Exception e) {
 			log.error("Booking exp:",e);
 		}
@@ -38,9 +38,9 @@ public class BookingServiceImpl implements IBookingService {
 		Optional<Booking> opt;
 		try {
 			
-			opt = booking_repo.findById(bookingId);
+			opt = bookingRepository.findById(bookingId);
 			if (opt.isPresent()) {
-				booking_repo.deleteById(bookingId);
+				bookingRepository.deleteById(bookingId);
 				return opt.get();
 			} else {
 				throw new BookingNotFoundException("No booking found for cancel!");
@@ -56,7 +56,7 @@ public class BookingServiceImpl implements IBookingService {
 	public Booking viewBooking(int bookingId) throws BookingNotFoundException {
 		Booking booking = null;
 		try {
-			Optional<Booking> opt = booking_repo.findById(bookingId);
+			Optional<Booking> opt = bookingRepository.findById(bookingId);
 			if (opt.isPresent()) {
 				booking = opt.get();
 			} else {
@@ -73,7 +73,7 @@ public class BookingServiceImpl implements IBookingService {
 	public List<Booking> viewAllBookings() {
 		List<Booking> booking_list = null;
 		try {
-			booking_list = booking_repo.findAll();
+			booking_list = bookingRepository.findAll();
 
 		} catch (Exception e) {
 			log.error("Booking list exception:",e);
