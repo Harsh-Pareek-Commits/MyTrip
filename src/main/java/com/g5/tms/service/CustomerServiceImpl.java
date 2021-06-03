@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.g5.tms.entities.Customer;
@@ -32,10 +33,15 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Transactional
 	public Customer addCustomer(Customer customer) {
 		try {
+			if ((customer.getPassword()!=null)) {
+				String SecuredPasswordHash = BCrypt.hashpw(customer.getPassword(), BCrypt.gensalt(12));
+				customer.setPassword(SecuredPasswordHash);
+			}
 			customer.setUserType("3");
 			cust_repo.save(customer);
+
 		} catch (Exception e) {
-			log.error("Exception:",e);
+			log.error("Adding Customer Exception:", e);
 		}
 		return customer;
 	}
@@ -43,7 +49,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	@Transactional
 	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException {
-		
+
 		Optional<Customer> opt = null;
 		try {
 
@@ -55,7 +61,7 @@ public class CustomerServiceImpl implements ICustomerService {
 			}
 
 		} catch (Exception e) {
-			log.error("Exception:",e);
+
 			throw new CustomerNotFoundException("Customer id not found for update.");
 		}
 		return opt.get();
@@ -73,7 +79,7 @@ public class CustomerServiceImpl implements ICustomerService {
 				throw new CustomerNotFoundException("Customer id not found for delete.");
 			}
 		} catch (Exception e) {
-			log.error("Exception:",e);
+
 			throw new CustomerNotFoundException("Customer id not found for delete.");
 		}
 		return opt.get();
@@ -90,7 +96,7 @@ public class CustomerServiceImpl implements ICustomerService {
 				throw new CustomerNotFoundException("Customer id not found in view cutomer by id");
 			}
 		} catch (Exception e) {
-			log.error("Exception:",e);
+
 			throw new CustomerNotFoundException("Customer id not found in view cutomer by id");
 		}
 		return cust;
@@ -108,7 +114,7 @@ public class CustomerServiceImpl implements ICustomerService {
 			}
 
 		} catch (Exception e) {
-			log.error("Exception:",e);
+
 			throw new PackageNotFoundException("Package not found");
 		}
 		return cust_list;
@@ -125,7 +131,7 @@ public class CustomerServiceImpl implements ICustomerService {
 			}
 
 		} catch (Exception e) {
-			log.error("Exception:",e);
+
 			throw new RouteNotFoundException("Route not found");
 		}
 		return cust_list;

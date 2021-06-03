@@ -16,7 +16,9 @@ import com.g5.tms.repository.IBookingRepository;
 
 @Service
 public class BookingServiceImpl implements IBookingService {
+	
 	Logger log = LoggerFactory.getLogger(BookingServiceImpl.class);
+	
 	@Autowired
 	IBookingRepository booking_repo;
 
@@ -26,16 +28,16 @@ public class BookingServiceImpl implements IBookingService {
 		try {
 			booking_repo.save(booking);
 		} catch (Exception e) {
-			log.error("Exception:",e);
+			log.error("Booking exp:",e);
 		}
 		return booking;
 	}
 
 	@Override
 	public Booking cancelBooking(int bookingId) throws BookingNotFoundException {
-
+		Optional<Booking> opt;
 		try {
-			Optional<Booking> opt;
+			
 			opt = booking_repo.findById(bookingId);
 			if (opt.isPresent()) {
 				booking_repo.deleteById(bookingId);
@@ -44,7 +46,7 @@ public class BookingServiceImpl implements IBookingService {
 				throw new BookingNotFoundException("No booking found for cancel!");
 			}
 		} catch (Exception e) {
-			log.error("Exception:",e);
+			
 			throw new BookingNotFoundException("No booking found for cancel!");
 		}
 
@@ -61,7 +63,7 @@ public class BookingServiceImpl implements IBookingService {
 				throw new BookingNotFoundException("No booking found for view booking!");
 			}
 		} catch (Exception e) {
-			log.error("Exception:",e);
+			
 			throw new BookingNotFoundException("No booking found for view booking!");
 		}
 		return booking;
@@ -74,7 +76,7 @@ public class BookingServiceImpl implements IBookingService {
 			booking_list = booking_repo.findAll();
 
 		} catch (Exception e) {
-			log.error("Exception:",e);
+			log.error("Booking list exception:",e);
 		}
 		return booking_list;
 	}

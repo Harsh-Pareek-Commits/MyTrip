@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.g5.tms.testing.CustomerServiceTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 3.282 s - in com.g5.tms.testing.CustomerServiceTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 2.757 s - in com.g5.tms.testing.CustomerServiceTest

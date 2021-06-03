@@ -30,7 +30,7 @@ public class RouteServiceImpl implements IRouteService {
 			route_repository.save(route);
 			
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			log.error("Add route Exception:", e);
 		}
 		return route;
 	}
@@ -47,7 +47,7 @@ public class RouteServiceImpl implements IRouteService {
 				throw new RouteNotFoundException("Route not found in update route!");
 			}
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			
 			throw new RouteNotFoundException("Route not found in update route!");
 		}
 
@@ -67,7 +67,7 @@ public class RouteServiceImpl implements IRouteService {
 				throw new RouteNotFoundException("Route not found in remove route!");
 			}
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			
 			throw new RouteNotFoundException("Route not found in remove route!");
 		}
 		return opt.get();
@@ -84,7 +84,7 @@ public class RouteServiceImpl implements IRouteService {
 				throw new RouteNotFoundException("Route not found in search route!");
 			}
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			
 			throw new RouteNotFoundException("Route not found in search route!");
 		}
 	}
@@ -96,7 +96,7 @@ public class RouteServiceImpl implements IRouteService {
 		try {
 			routeList = route_repository.findAll();
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			log.error("View route list Exception:", e);
 
 		}
 

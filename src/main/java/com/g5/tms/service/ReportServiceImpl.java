@@ -28,7 +28,7 @@ public class ReportServiceImpl implements IReportService {
 		}
 		catch(Exception e)
 		{
-			log.error("Exception:", e);
+			log.error("Add Report Exception:", e);
 		}
 		return report;
 	}
@@ -48,7 +48,7 @@ public class ReportServiceImpl implements IReportService {
 	    }
 	    catch (Exception e)
 	    {
-	    	log.error("Exception:", e);
+	    	
 	    	throw new ReportNotFoundException("Report not found in delete!");
 	    }
 		return opt.get();
@@ -66,7 +66,7 @@ public class ReportServiceImpl implements IReportService {
 			}
 		}
 		catch(Exception e) {
-			log.error("Exception:", e);
+			
 			throw new ReportNotFoundException("Report not found in view report!");
 		}
 		 
@@ -79,7 +79,7 @@ public class ReportServiceImpl implements IReportService {
 			reportList = report_repository.findAll();
 		}
 		catch(Exception e) {
-			log.error("Exception:", e);
+			log.error("View all reports Exception:", e);
 		}
 		
 		return reportList;

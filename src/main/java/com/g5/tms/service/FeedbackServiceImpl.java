@@ -27,7 +27,7 @@ public class FeedbackServiceImpl implements IFeedbackService {
 		try {
 			feed_repo.save(feedback);
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			log.error("Add feedback Exception:", e);
 		}
 		return feedback;
 	}
@@ -65,7 +65,7 @@ public class FeedbackServiceImpl implements IFeedbackService {
 
 		} catch (Exception e) {
 
-			log.error("Exception:", e);
+			log.error("view all feedback Exception:", e);
 		}
 
 		return feedbackList;

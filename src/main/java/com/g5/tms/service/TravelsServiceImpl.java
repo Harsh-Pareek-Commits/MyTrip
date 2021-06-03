@@ -26,7 +26,7 @@ public class TravelsServiceImpl implements ITravelsService {
 		try {
 			travels_repo.save(travels);
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			log.error("Add travels Exception:", e);
 		}
 		return travels;
 	}
@@ -44,7 +44,7 @@ public class TravelsServiceImpl implements ITravelsService {
 				throw new TravelsNotFoundException("Travels cannot be updated");
 			}
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			
 			throw new TravelsNotFoundException("Travels cannot be updated");
 		}
 		return opt.get();
@@ -64,7 +64,7 @@ public class TravelsServiceImpl implements ITravelsService {
 					throw new TravelsNotFoundException("Travels cannot be updated");
 				}
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			
 			throw new TravelsNotFoundException("No travels found");
 
 		}
@@ -98,7 +98,7 @@ public class TravelsServiceImpl implements ITravelsService {
 
 		} catch (Exception e) {
 
-			log.error("Exception:", e);
+			log.error("View travels Exception:", e);
 		}
 
 		return travel_list;

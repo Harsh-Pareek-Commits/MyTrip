@@ -28,12 +28,12 @@ public class User {
 	private String userType;
 	@Column
 	@NotEmpty(message = "Password cannot be left blank or null")
-	@Size(min = 8,max = 16,message = "Invalid Password, Password should be min 8")
+	@Size(min = 8,message = "Invalid Password, Password should be min 8")
 	private String password;
 	
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public User(int userId, String userType, String password) {
 		super();
@@ -56,7 +56,6 @@ public class User {
 		this.userType = userType;
 	}
 	public String getPassword() {
-		
 		return password;
 	}
 	public void setPassword(String password) {

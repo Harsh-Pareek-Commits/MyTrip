@@ -1,11 +1,12 @@
 package com.g5.tms.service;
 
-import java.util.List;
+
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.g5.tms.entities.User;
@@ -35,17 +36,23 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User signIn(User user) throws InvalidCredentialException {
 		
+		Optional<User> opt = user_repo.findById(user.getUserId());
+		try {
+			if (opt.isPresent()) {
+				User u = opt.get();
+				boolean matched = BCrypt.checkpw(user.getPassword(), u.getPassword());
+				if (matched) {
+					return u;
 
-			int username=user.getUserId();
-			String pass=user.getPassword();
-		
-			Optional<User>opt = user_repo.findByUser(username, pass);
-	    if(!(opt.isPresent())){
-			throw new InvalidCredentialException("Autorization failed! user not found in signin");
-
+				} else {
+					throw new InvalidCredentialException("Invalid username or password");
+				}
+			} else {
+				throw new InvalidCredentialException("Invalid username or password");
+			}
+		} catch (Exception e) {
+			throw new InvalidCredentialException("Invalid username or password");
 		}
-
-		return opt.get();
 	}
 
 	@Override

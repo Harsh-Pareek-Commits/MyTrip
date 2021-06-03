@@ -26,7 +26,7 @@ public class PackageServiceImpl implements IPackageService {
 		try {
 			package_repo.save(pack);
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			log.error("Adding package Exception:", e);
 		}
 		return pack;
 	}
@@ -45,7 +45,7 @@ public class PackageServiceImpl implements IPackageService {
 			}
 
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			
 			throw new PackageNotFoundException("Package not found in delete");
 
 		}
@@ -63,7 +63,7 @@ public class PackageServiceImpl implements IPackageService {
 			}
 
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			
 			throw new PackageNotFoundException("Package Not Found in search");
 
 		}
@@ -76,7 +76,7 @@ public class PackageServiceImpl implements IPackageService {
 		try {
 			list = package_repo.findAll();
 		} catch (Exception e) {
-			log.error("Exception:", e);
+			log.error("View all Exception:", e);
 
 		}
 
