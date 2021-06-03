@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,7 @@ import com.g5.tms.repository.IRouteRepository;
 
 @Service
 public class RouteServiceImpl implements IRouteService {
-
+	Logger log = LoggerFactory.getLogger(RouteServiceImpl.class);
 	@Autowired
 	IRouteRepository route_repository;
 
@@ -28,7 +30,7 @@ public class RouteServiceImpl implements IRouteService {
 			route_repository.save(route);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:", e);
 		}
 		return route;
 	}
@@ -45,7 +47,7 @@ public class RouteServiceImpl implements IRouteService {
 				throw new RouteNotFoundException("Route not found in update route!");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:", e);
 			throw new RouteNotFoundException("Route not found in update route!");
 		}
 
@@ -65,7 +67,7 @@ public class RouteServiceImpl implements IRouteService {
 				throw new RouteNotFoundException("Route not found in remove route!");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:", e);
 			throw new RouteNotFoundException("Route not found in remove route!");
 		}
 		return opt.get();
@@ -75,9 +77,14 @@ public class RouteServiceImpl implements IRouteService {
 	public Route searchRoute(int routeId) throws RouteNotFoundException {
 
 		try {
-			return route_repository.findById(routeId).get();
+			Optional<Route>opt= route_repository.findById(routeId);
+			if(opt.isPresent()) {
+			return opt.get();
+			}else {
+				throw new RouteNotFoundException("Route not found in search route!");
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:", e);
 			throw new RouteNotFoundException("Route not found in search route!");
 		}
 	}
@@ -89,7 +96,7 @@ public class RouteServiceImpl implements IRouteService {
 		try {
 			routeList = route_repository.findAll();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:", e);
 
 		}
 

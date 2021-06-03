@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -31,15 +30,14 @@ public class PaymentDetails {
 
 	@Column
 	@Positive	
-	@Min(value = 2000, message = "Payment should not be less than 2000")
-	@NotNull
+	@Min(0)	
 	private double   netAmount;
 	@Column
 	@NotEmpty(message = "Payment status cannot be left blank or null")
 	private  String  paymentStatus;
 	@Column
 	@Positive
-	@NotNull
+	@Min(0)
 	private  int userId;
 	
 	

@@ -1,7 +1,5 @@
 package com.g5.tms.entities;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -5,12 +5,12 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.g5.tms.entities.Booking;
 import com.g5.tms.entities.Customer;
-import com.g5.tms.entities.Package;
 import com.g5.tms.exceptions.CustomerNotFoundException;
 import com.g5.tms.exceptions.PackageNotFoundException;
 import com.g5.tms.exceptions.RouteNotFoundException;
@@ -20,6 +20,7 @@ import com.g5.tms.repository.IPackageRepository;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
+	Logger log = LoggerFactory.getLogger(CustomerServiceImpl.class);
 	@Autowired
 	ICustomerRepository cust_repo;
 	@Autowired
@@ -34,7 +35,7 @@ public class CustomerServiceImpl implements ICustomerService {
 			customer.setUserType("3");
 			cust_repo.save(customer);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:",e);
 		}
 		return customer;
 	}
@@ -42,19 +43,19 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	@Transactional
 	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException {
+		
 		Optional<Customer> opt = null;
 		try {
-			
+
 			opt = cust_repo.findById(customer.getUserId());
-			if(opt.isPresent()) {
+			if (opt.isPresent()) {
 				cust_repo.save(customer);
-			}
-			else {
+			} else {
 				throw new CustomerNotFoundException("Customer id not found for update.");
 			}
-			
+
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:",e);
 			throw new CustomerNotFoundException("Customer id not found for update.");
 		}
 		return opt.get();
@@ -66,14 +67,13 @@ public class CustomerServiceImpl implements ICustomerService {
 		Optional<Customer> opt = null;
 		try {
 			opt = cust_repo.findById(customer.getUserId());
-			if(opt.isPresent()) {
-			cust_repo.delete(customer);
-			}
-			else {
+			if (opt.isPresent()) {
+				cust_repo.delete(customer);
+			} else {
 				throw new CustomerNotFoundException("Customer id not found for delete.");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:",e);
 			throw new CustomerNotFoundException("Customer id not found for delete.");
 		}
 		return opt.get();
@@ -83,10 +83,14 @@ public class CustomerServiceImpl implements ICustomerService {
 	public Customer viewCustomer(int custid) throws CustomerNotFoundException {
 		Customer cust = null;
 		try {
-			cust = cust_repo.findById(custid).get();
-			
+			Optional<Customer> opt = cust_repo.findById(custid);
+			if (opt.isPresent()) {
+				cust = opt.get();
+			} else {
+				throw new CustomerNotFoundException("Customer id not found in view cutomer by id");
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:",e);
 			throw new CustomerNotFoundException("Customer id not found in view cutomer by id");
 		}
 		return cust;
@@ -99,12 +103,12 @@ public class CustomerServiceImpl implements ICustomerService {
 		try {
 
 			cust_list = cust_repo.findByPackageId(packageId);
-			if(cust_list.isEmpty()) {
+			if (cust_list.isEmpty()) {
 				throw new PackageNotFoundException("Package not found");
 			}
-			
+
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:",e);
 			throw new PackageNotFoundException("Package not found");
 		}
 		return cust_list;
@@ -112,18 +116,16 @@ public class CustomerServiceImpl implements ICustomerService {
 
 	@Override
 	public List<Customer> viewCustomerList(int routeId) throws RouteNotFoundException {
-		
-		
+
 		List<Customer> cust_list = null;
 		try {
 			cust_list = cust_repo.findByRouteId(routeId);
-			if(cust_list.isEmpty()) {
+			if (cust_list.isEmpty()) {
 				throw new RouteNotFoundException("Route not found");
 			}
-			
-			
+
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:",e);
 			throw new RouteNotFoundException("Route not found");
 		}
 		return cust_list;

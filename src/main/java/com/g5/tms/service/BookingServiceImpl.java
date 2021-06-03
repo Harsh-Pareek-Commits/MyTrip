@@ -5,14 +5,18 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.g5.tms.entities.Booking;
 import com.g5.tms.exceptions.BookingNotFoundException;
 import com.g5.tms.repository.IBookingRepository;
+
 @Service
 public class BookingServiceImpl implements IBookingService {
+	Logger log = LoggerFactory.getLogger(BookingServiceImpl.class);
 	@Autowired
 	IBookingRepository booking_repo;
 
@@ -22,38 +26,42 @@ public class BookingServiceImpl implements IBookingService {
 		try {
 			booking_repo.save(booking);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:",e);
 		}
 		return booking;
 	}
 
 	@Override
 	public Booking cancelBooking(int bookingId) throws BookingNotFoundException {
-		Optional<Booking> opt =null;
+
 		try {
-			opt=booking_repo.findById(bookingId);
-			if(opt.isPresent()) {
-			booking_repo.deleteById(bookingId);
-			}
-			else {
+			Optional<Booking> opt;
+			opt = booking_repo.findById(bookingId);
+			if (opt.isPresent()) {
+				booking_repo.deleteById(bookingId);
+				return opt.get();
+			} else {
 				throw new BookingNotFoundException("No booking found for cancel!");
 			}
-			} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			log.error("Exception:",e);
 			throw new BookingNotFoundException("No booking found for cancel!");
 		}
-		return opt.get();
+
 	}
 
 	@Override
 	public Booking viewBooking(int bookingId) throws BookingNotFoundException {
 		Booking booking = null;
 		try {
-			booking = booking_repo.findById(bookingId).get();
-			
-
+			Optional<Booking> opt = booking_repo.findById(bookingId);
+			if (opt.isPresent()) {
+				booking = opt.get();
+			} else {
+				throw new BookingNotFoundException("No booking found for view booking!");
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:",e);
 			throw new BookingNotFoundException("No booking found for view booking!");
 		}
 		return booking;
@@ -61,13 +69,12 @@ public class BookingServiceImpl implements IBookingService {
 
 	@Override
 	public List<Booking> viewAllBookings() {
-		List<Booking> booking_list=null;
+		List<Booking> booking_list = null;
 		try {
-			booking_list=booking_repo.findAll();
+			booking_list = booking_repo.findAll();
 
 		} catch (Exception e) {
-			e.printStackTrace();
-			
+			log.error("Exception:",e);
 		}
 		return booking_list;
 	}

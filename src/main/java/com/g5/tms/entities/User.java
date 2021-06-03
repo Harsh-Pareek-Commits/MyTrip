@@ -56,6 +56,7 @@ public class User {
 		this.userType = userType;
 	}
 	public String getPassword() {
+		
 		return password;
 	}
 	public void setPassword(String password) {

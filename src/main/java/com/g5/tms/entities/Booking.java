@@ -10,12 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
@@ -43,7 +40,6 @@ public class Booking {
 	private Package pack;
 	@Column
 	@Positive
-	@NotNull
 	private int userId;
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "Payment_info", referencedColumnName = "paymentId")

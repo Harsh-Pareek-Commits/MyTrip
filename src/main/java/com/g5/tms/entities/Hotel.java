@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
@@ -35,7 +34,7 @@ public class Hotel {
 	private String address;
 	@Column
 	@Positive
-	@NotNull
+	@Min(0)
 	private double rent;
 	@Column
 	@NotEmpty(message = "Hotel Status cannot be left blank or null")

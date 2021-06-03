@@ -1,7 +1,6 @@
 package com.g5.tms.testing;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -12,25 +11,20 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import org.assertj.core.error.SubarraysShouldHaveSameSize;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.g5.tms.entities.Bus;
-import com.g5.tms.entities.Customer;
 import com.g5.tms.entities.Route;
-import com.g5.tms.entities.Travels;
-import com.g5.tms.exceptions.CustomerNotFoundException;
 import com.g5.tms.exceptions.RouteNotFoundException;
-import com.g5.tms.repository.ICustomerRepository;
+
 import com.g5.tms.repository.IRouteRepository;
-import com.g5.tms.service.ICustomerService;
+
 import com.g5.tms.service.RouteServiceImpl;
-import com.jayway.jsonpath.Option;
+
 
 @SpringBootTest
 @ActiveProfiles("routeTest")

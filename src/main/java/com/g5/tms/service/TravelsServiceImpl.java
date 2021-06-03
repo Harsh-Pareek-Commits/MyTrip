@@ -3,6 +3,8 @@ package com.g5.tms.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +15,7 @@ import com.g5.tms.repository.ITravelsRespository;
 
 @Service
 public class TravelsServiceImpl implements ITravelsService {
-
+	Logger log = LoggerFactory.getLogger(TravelsServiceImpl.class);
 	@Autowired
 	ITravelsRespository travels_repo;
 
@@ -24,7 +26,7 @@ public class TravelsServiceImpl implements ITravelsService {
 		try {
 			travels_repo.save(travels);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:", e);
 		}
 		return travels;
 	}
@@ -42,7 +44,7 @@ public class TravelsServiceImpl implements ITravelsService {
 				throw new TravelsNotFoundException("Travels cannot be updated");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:", e);
 			throw new TravelsNotFoundException("Travels cannot be updated");
 		}
 		return opt.get();
@@ -62,7 +64,7 @@ public class TravelsServiceImpl implements ITravelsService {
 					throw new TravelsNotFoundException("Travels cannot be updated");
 				}
 		} catch (Exception e) {
-			e.getStackTrace();
+			log.error("Exception:", e);
 			throw new TravelsNotFoundException("No travels found");
 
 		}
@@ -74,9 +76,14 @@ public class TravelsServiceImpl implements ITravelsService {
 	public Travels searchTravels(int travelsId) throws TravelsNotFoundException {
 
 		try {
-			return travels_repo.findById(travelsId).get();
+			Optional<Travels>opt= travels_repo.findById(travelsId);
+			if(opt.isPresent()) {
+			return opt.get();
+			}else {
+				throw new TravelsNotFoundException("Travels Not foundin search travels");
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:", e);
 			throw new TravelsNotFoundException("Travels Not foundin search travels");
 		}
 	}
@@ -91,7 +98,7 @@ public class TravelsServiceImpl implements ITravelsService {
 
 		} catch (Exception e) {
 
-			e.printStackTrace();
+			log.error("Exception:", e);
 		}
 
 		return travel_list;

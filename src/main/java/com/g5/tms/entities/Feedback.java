@@ -2,7 +2,7 @@ package com.g5.tms.entities;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,8 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Max;
@@ -41,7 +39,7 @@ public class Feedback {
 
 	public Feedback() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Feedback(int feedbackId, Customer customer, String feedback, int rating, LocalDate submitDate) {

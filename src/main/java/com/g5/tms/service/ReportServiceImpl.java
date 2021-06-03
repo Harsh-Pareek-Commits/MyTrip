@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,7 @@ import com.g5.tms.exceptions.ReportNotFoundException;
 import com.g5.tms.repository.IReportRepository;
 @Service
 public class ReportServiceImpl implements IReportService {
-	
+	Logger log = LoggerFactory.getLogger(ReportServiceImpl.class);
 	@Autowired
 	IReportRepository report_repository;
 
@@ -26,7 +28,7 @@ public class ReportServiceImpl implements IReportService {
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			log.error("Exception:", e);
 		}
 		return report;
 	}
@@ -46,7 +48,7 @@ public class ReportServiceImpl implements IReportService {
 	    }
 	    catch (Exception e)
 	    {
-	    	e.printStackTrace();
+	    	log.error("Exception:", e);
 	    	throw new ReportNotFoundException("Report not found in delete!");
 	    }
 		return opt.get();
@@ -56,10 +58,15 @@ public class ReportServiceImpl implements IReportService {
 	public Report viewReport(int reportId) throws ReportNotFoundException {
 	
 		try {
-			return report_repository.findById(reportId).get();
+			Optional<Report>opt= report_repository.findById(reportId);
+			if(opt.isPresent()) {
+			 return opt.get();
+			}else {
+				throw new ReportNotFoundException("Report not found in view report!");
+			}
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			log.error("Exception:", e);
 			throw new ReportNotFoundException("Report not found in view report!");
 		}
 		 
@@ -72,7 +79,7 @@ public class ReportServiceImpl implements IReportService {
 			reportList = report_repository.findAll();
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			log.error("Exception:", e);
 		}
 		
 		return reportList;

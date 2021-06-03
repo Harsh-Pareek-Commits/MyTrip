@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.g5.tms.entities.Customer;
+
 import com.g5.tms.entities.Travels;
-import com.g5.tms.exceptions.CustomerNotFoundException;
-import com.g5.tms.exceptions.PackageNotFoundException;
+
 import com.g5.tms.exceptions.TravelsNotFoundException;
 import com.g5.tms.service.ITravelsService;
 

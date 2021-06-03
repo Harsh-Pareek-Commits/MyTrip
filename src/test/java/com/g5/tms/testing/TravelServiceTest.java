@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.g5.tms.entities.Feedback;
+
 import com.g5.tms.entities.Travels;
-import com.g5.tms.exceptions.FeedbackNotFoundException;
+
 import com.g5.tms.exceptions.TravelsNotFoundException;
 import com.g5.tms.repository.ITravelsRespository;
 import com.g5.tms.service.ITravelsService;
 
-import java.time.LocalDate;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;

@@ -3,6 +3,8 @@ package com.g5.tms.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +16,7 @@ import com.g5.tms.repository.IFeedbackRepository;
 
 @Service
 public class FeedbackServiceImpl implements IFeedbackService {
-
+	Logger log = LoggerFactory.getLogger(FeedbackServiceImpl.class);
 	@Autowired
 	IFeedbackRepository feed_repo;
 
@@ -25,7 +27,7 @@ public class FeedbackServiceImpl implements IFeedbackService {
 		try {
 			feed_repo.save(feedback);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception:", e);
 		}
 		return feedback;
 	}
@@ -63,7 +65,7 @@ public class FeedbackServiceImpl implements IFeedbackService {
 
 		} catch (Exception e) {
 
-			e.printStackTrace();
+			log.error("Exception:", e);
 		}
 
 		return feedbackList;
