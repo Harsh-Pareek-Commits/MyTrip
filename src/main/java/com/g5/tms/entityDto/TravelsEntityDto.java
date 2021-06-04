@@ -1,4 +1,6 @@
 package com.g5.tms.entityDto;
+import lombok.Data;
+
 
 public class TravelsEntityDto {
 	private int travelsId;

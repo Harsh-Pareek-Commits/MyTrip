@@ -4,7 +4,9 @@ import java.util.Set;
 
 
 import com.g5.tms.entities.Booking;
+import lombok.Data;
 
+@Data
 public class ReportDto {
 	
 	private int reportId;

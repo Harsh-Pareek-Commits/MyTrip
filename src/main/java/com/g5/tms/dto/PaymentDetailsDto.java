@@ -1,6 +1,8 @@
 package com.g5.tms.dto;
 
+import lombok.Data;
 
+@Data
 public class PaymentDetailsDto {
 	private  int paymentId;
 	private double   netAmount;

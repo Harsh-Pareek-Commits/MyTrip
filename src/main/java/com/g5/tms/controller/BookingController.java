@@ -1,11 +1,15 @@
 package com.g5.tms.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.g5.tms.dto.BookingDto;
+
 import com.g5.tms.entities.Booking;
+
+import com.g5.tms.entityDto.BookingEntityDto;
 import com.g5.tms.exceptions.BookingNotFoundException;
 import com.g5.tms.service.IBookingService;
 
@@ -23,26 +31,53 @@ import com.g5.tms.service.IBookingService;
 public class BookingController {
 	@Autowired
 	IBookingService bookingService;
-
+	@Autowired
+	private ModelMapper modelMapper;
 	@PostMapping("/add")
-	public Booking makeBooking(@RequestBody @Valid Booking booking) {
-		this.bookingService.makeBooking(booking);
-		return booking;
+	public ResponseEntity<BookingDto> makeBooking(@RequestBody @Valid BookingEntityDto requestbooking) {
+		
+		Booking actualbooking = modelMapper.map(requestbooking, Booking.class);
+		BookingDto responsebooking = modelMapper.map(this.bookingService.makeBooking(actualbooking), BookingDto.class);
+		return new ResponseEntity<>(responsebooking, HttpStatus.OK);
+		
 	}
 
 	@DeleteMapping("/delete/{bookingId}")
-	public Booking cancelBooking(@PathVariable int bookingId) throws BookingNotFoundException {
-		return this.bookingService.cancelBooking(bookingId);
+	public ResponseEntity<BookingDto> cancelBooking(@PathVariable int bookingId) throws BookingNotFoundException {
+		BookingDto responsebooking = modelMapper.map(this.bookingService.cancelBooking(bookingId), BookingDto.class);
+		if (responsebooking != null) {
+			return new ResponseEntity<>(responsebooking, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responsebooking, HttpStatus.BAD_REQUEST);
+		}
 		 
 	}
 
 	@GetMapping("/view/{bookingId}")
-	public Booking viewBooking(@PathVariable int bookingId) throws BookingNotFoundException {
-     return this.bookingService.viewBooking(bookingId);
+	public ResponseEntity<BookingDto> viewBooking(@PathVariable int bookingId) throws BookingNotFoundException {
+    
+     
+     BookingDto responsebooking = modelMapper.map(this.bookingService.viewBooking(bookingId), BookingDto.class);
+		if (responsebooking != null) {
+			return new ResponseEntity<>(responsebooking, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responsebooking, HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@GetMapping("/view")
-	public List<@NotBlank Booking> viewAllBookings() {
-        return this.bookingService.viewAllBookings();
+	public ResponseEntity<List<BookingDto>> viewAllBookings() {
+       
+        List<Booking> bookingList = this.bookingService.viewAllBookings();
+		List<BookingDto> bookingDtoList = new ArrayList<>();
+		for (Booking b : bookingList) {
+			BookingDto bookingdto = modelMapper.map(b, BookingDto.class);
+			bookingDtoList.add(bookingdto);
+		}
+		if (!(bookingDtoList.isEmpty())) {
+			return new ResponseEntity<>(bookingDtoList, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(bookingDtoList, HttpStatus.BAD_REQUEST);
+		}
 	}
 }

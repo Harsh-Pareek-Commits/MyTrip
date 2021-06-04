@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.g5.tms.entities.Bus;
+import lombok.Data;
+
 
 public class RouteEntityDto {
 	

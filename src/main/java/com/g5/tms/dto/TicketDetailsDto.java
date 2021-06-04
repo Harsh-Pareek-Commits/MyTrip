@@ -1,5 +1,7 @@
 package com.g5.tms.dto;
+import lombok.Data;
 
+@Data
 public class TicketDetailsDto {
 
 	private int ticketId;
