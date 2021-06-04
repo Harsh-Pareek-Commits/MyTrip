@@ -25,13 +25,13 @@ import com.g5.tms.entityDto.CustomerEntityDto;
 import com.g5.tms.exceptions.CustomerNotFoundException;
 import com.g5.tms.exceptions.PackageNotFoundException;
 import com.g5.tms.exceptions.RouteNotFoundException;
-import com.g5.tms.service.CustomerServiceImpl;
+import com.g5.tms.service.ICustomerService;
 
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
 	@Autowired
-	CustomerServiceImpl custService;
+	ICustomerService custService;
 	@Autowired
 	private ModelMapper modelMapper;
 
