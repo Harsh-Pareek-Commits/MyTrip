@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.g5.tms.dto.CustomerDto;
+import com.g5.tms.dto.CustomerEntityDto;
 import com.g5.tms.entities.Customer;
 import com.g5.tms.exceptions.CustomerNotFoundException;
 import com.g5.tms.exceptions.PackageNotFoundException;
@@ -30,57 +32,63 @@ import com.g5.tms.service.CustomerServiceImpl;
 public class CustomerController {
 	@Autowired
 	CustomerServiceImpl custService;
+	@Autowired
+	private ModelMapper modelMapper;
 
 	@PostMapping(value = "/add")
-	public ResponseEntity<CustomerDto> addCustomer(@RequestBody @Valid Customer cust) {
-		Customer customer = this.custService.addCustomer(cust);
-		CustomerDto custdto = this.custService.displayCustomerDetails(customer);
-		return new ResponseEntity<>(custdto, HttpStatus.OK);	}
-	
+	public ResponseEntity<CustomerDto> addCustomer(@RequestBody @Valid CustomerEntityDto requestCust) {
+
+		Customer actualCust = modelMapper.map(requestCust, Customer.class);
+		CustomerDto responseCust = modelMapper.map(this.custService.addCustomer(actualCust), CustomerDto.class);
+		return new ResponseEntity<>(responseCust, HttpStatus.OK);
+	}
 
 	@PutMapping("/update")
-	public ResponseEntity<CustomerDto> updateCustomer(@RequestBody @Valid Customer cust)
+	public ResponseEntity<CustomerDto> updateCustomer(@RequestBody @Valid CustomerEntityDto requestCust)
 			throws CustomerNotFoundException {
-		Customer customer = this.custService.updateCustomer(cust);
-		CustomerDto custdto = this.custService.displayCustomerDetails(customer);
-		if (custdto != null) {
-			return new ResponseEntity<>(custdto, HttpStatus.OK);
+
+		Customer actualCust = modelMapper.map(requestCust, Customer.class);
+		CustomerDto responseCust = modelMapper.map(this.custService.updateCustomer(actualCust), CustomerDto.class);
+
+		if (responseCust != null) {
+			return new ResponseEntity<>(responseCust, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(custdto, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responseCust, HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<CustomerDto> deleteCustomer(@RequestBody @Valid Customer cust)
+	public ResponseEntity<CustomerDto> deleteCustomer(@RequestBody @Valid CustomerEntityDto requestCust)
 			throws CustomerNotFoundException {
-		Customer customer = this.custService.deleteCustomer(cust);
-		CustomerDto custdto = this.custService.displayCustomerDetails(customer);
-		if (custdto != null) {
-			return new ResponseEntity<>(custdto, HttpStatus.OK);
+		Customer actualCust = modelMapper.map(requestCust, Customer.class);
+		CustomerDto responseCust = modelMapper.map(this.custService.deleteCustomer(actualCust), CustomerDto.class);
+
+		if (responseCust != null) {
+			return new ResponseEntity<>(responseCust, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(custdto, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responseCust, HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@GetMapping("/view/{custid}")
 	public ResponseEntity<CustomerDto> viewCustomer(@PathVariable int custid) throws CustomerNotFoundException {
 
-		Customer customer = custService.viewCustomer(custid);
-		CustomerDto custdto = this.custService.displayCustomerDetails(customer);
-		if (custdto != null) {
-			return new ResponseEntity<>(custdto, HttpStatus.OK);
+		CustomerDto responseCust = modelMapper.map(this.custService.viewCustomer(custid), CustomerDto.class);
+		if (responseCust != null) {
+			return new ResponseEntity<>(responseCust, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(custdto, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responseCust, HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@GetMapping("/view/package/{packageId}")
 	public ResponseEntity<List<CustomerDto>> viewAllCustomers(@PathVariable int packageId)
 			throws PackageNotFoundException {
+
 		List<Customer> custList = this.custService.viewAllCustomers(packageId);
 		List<CustomerDto> custDtoList = new ArrayList<>();
 		for (Customer c : custList) {
-			CustomerDto custdto = this.custService.displayCustomerDetails(c);
+			CustomerDto custdto = modelMapper.map(c, CustomerDto.class);
 			custDtoList.add(custdto);
 		}
 		if (!(custDtoList.isEmpty())) {
@@ -97,7 +105,7 @@ public class CustomerController {
 		List<Customer> custList = this.custService.viewCustomerList(routeId);
 		List<CustomerDto> custDtoList = new ArrayList<>();
 		for (Customer c : custList) {
-			CustomerDto custdto = this.custService.displayCustomerDetails(c);
+			CustomerDto custdto = modelMapper.map(c, CustomerDto.class);
 			custDtoList.add(custdto);
 		}
 		if (!(custDtoList.isEmpty())) {

@@ -136,9 +136,13 @@ public class CustomerServiceImpl implements ICustomerService {
 		}
 		return custList;
 	}
-	public CustomerDto displayCustomerDetails(Customer cust) {
-	      CustomerDto custDto= new CustomerDto(cust.getUserId(), cust.getCustomerName(), cust.getAddress(), cust.getMobileNo(), cust.getEmail());
-			return custDto;
-
-		}
+	
+	/*
+	 * public CustomerDto displayCustomerDetails(Customer cust) { CustomerDto
+	 * custDto= new CustomerDto(cust.getUserId(), cust.getCustomerName(),
+	 * cust.getAddress(), cust.getMobileNo(), cust.getEmail()); return custDto;
+	 * 
+	 * }
+	 */
+	 
 }
