@@ -25,19 +25,18 @@ import com.g5.tms.exceptions.PackageNotFoundException;
 import com.g5.tms.exceptions.RouteNotFoundException;
 import com.g5.tms.service.CustomerServiceImpl;
 
-
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
 	@Autowired
 	CustomerServiceImpl cust_service;
 
-	@PostMapping("/add")
+	@PostMapping(value = "/add")
 	public ResponseEntity<CustomerDto> addCustomer(@RequestBody @Valid Customer cust) {
 		Customer customer = this.cust_service.addCustomer(cust);
 		CustomerDto custdto = this.cust_service.displayCustomerDetails(customer);
-		return new ResponseEntity<CustomerDto>(custdto, HttpStatus.OK);
-	}
+		return new ResponseEntity<>(custdto, HttpStatus.OK);	}
+	
 
 	@PutMapping("/update")
 	public ResponseEntity<CustomerDto> updateCustomer(@RequestBody @Valid Customer cust)
@@ -45,9 +44,9 @@ public class CustomerController {
 		Customer customer = this.cust_service.updateCustomer(cust);
 		CustomerDto custdto = this.cust_service.displayCustomerDetails(customer);
 		if (custdto != null) {
-			return new ResponseEntity<CustomerDto>(custdto, HttpStatus.OK);
+			return new ResponseEntity<>(custdto, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<CustomerDto>(custdto, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(custdto, HttpStatus.BAD_REQUEST);
 		}
 	}
 
@@ -57,9 +56,9 @@ public class CustomerController {
 		Customer customer = this.cust_service.deleteCustomer(cust);
 		CustomerDto custdto = this.cust_service.displayCustomerDetails(customer);
 		if (custdto != null) {
-			return new ResponseEntity<CustomerDto>(custdto, HttpStatus.OK);
+			return new ResponseEntity<>(custdto, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<CustomerDto>(custdto, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(custdto, HttpStatus.BAD_REQUEST);
 		}
 	}
 
@@ -69,9 +68,9 @@ public class CustomerController {
 		Customer customer = cust_service.viewCustomer(custid);
 		CustomerDto custdto = this.cust_service.displayCustomerDetails(customer);
 		if (custdto != null) {
-			return new ResponseEntity<CustomerDto>(custdto, HttpStatus.OK);
+			return new ResponseEntity<>(custdto, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<CustomerDto>(custdto, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(custdto, HttpStatus.BAD_REQUEST);
 		}
 	}
 
@@ -85,25 +84,26 @@ public class CustomerController {
 			custDto_list.add(custdto);
 		}
 		if (!(custDto_list.isEmpty())) {
-			return new ResponseEntity<List<CustomerDto>>(custDto_list, HttpStatus.OK);
+			return new ResponseEntity<>(custDto_list, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<List<CustomerDto>>(custDto_list, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(custDto_list, HttpStatus.BAD_REQUEST);
 		}
 	}
 
 	@GetMapping("/view/route/{routeId}")
-	public ResponseEntity<List<@NotBlank CustomerDto>> viewCustomerList(@PathVariable int routeId) throws RouteNotFoundException {
+	public ResponseEntity<List<@NotBlank CustomerDto>> viewCustomerList(@PathVariable int routeId)
+			throws RouteNotFoundException {
 
-		List<Customer> cust_list =  this.cust_service.viewCustomerList(routeId);
+		List<Customer> cust_list = this.cust_service.viewCustomerList(routeId);
 		List<CustomerDto> custDto_list = new ArrayList<>();
 		for (Customer c : cust_list) {
 			CustomerDto custdto = this.cust_service.displayCustomerDetails(c);
 			custDto_list.add(custdto);
 		}
 		if (!(custDto_list.isEmpty())) {
-			return new ResponseEntity<List<CustomerDto>>(custDto_list, HttpStatus.OK);
+			return new ResponseEntity<>(custDto_list, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<List<CustomerDto>>(custDto_list, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(custDto_list, HttpStatus.BAD_REQUEST);
 		}
 	}
 

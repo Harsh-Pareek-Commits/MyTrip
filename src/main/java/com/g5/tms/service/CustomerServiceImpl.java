@@ -33,7 +33,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	@Transactional
 	public Customer addCustomer(Customer customer) {
-		try {
+	       
 			if ((customer.getPassword() != null)) {
 				String SecuredPasswordHash = BCrypt.hashpw(customer.getPassword(), BCrypt.gensalt(12));
 				customer.setPassword(SecuredPasswordHash);
@@ -41,9 +41,7 @@ public class CustomerServiceImpl implements ICustomerService {
 			customer.setUserType("3");
 			custRepository.save(customer);
 
-		} catch (Exception e) {
-			log.error("Adding Customer Exception:", e);
-		}
+		
 		return customer;
 	}
 
