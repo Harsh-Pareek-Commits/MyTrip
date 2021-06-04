@@ -37,7 +37,7 @@ public class BookingDto {
 	
 	private PackageDto pack;
 	private PaymentDetailsDto payment;
-	private TicketDetailsDTo ticket;
+	private TicketDetailsDto ticket;
 	
 	public int getBookingId() {
 		return bookingId;
@@ -95,11 +95,11 @@ public class BookingDto {
 		this.payment = payment;
 	}
 
-	public TicketDetailsDTo getTicket() {
+	public TicketDetailsDto getTicket() {
 		return ticket;
 	}
 
-	public void setTicket(TicketDetailsDTo ticket) {
+	public void setTicket(TicketDetailsDto ticket) {
 		this.ticket = ticket;
 	}
 

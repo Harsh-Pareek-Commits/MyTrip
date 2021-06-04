@@ -18,6 +18,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import com.g5.tms.entities.Hotel;
+
 
 public class PackageEntityDto {
 
@@ -34,7 +36,7 @@ public class PackageEntityDto {
 	
 	private RouteEntityDto route;
 	
-	private HotelEntityDto hotel;
+	private Hotel hotel;
 
 	public int getPackageId() {
 		return packageId;
@@ -84,20 +86,20 @@ public class PackageEntityDto {
 		this.route = route;
 	}
 
-	public HotelEntityDto getHotel() {
+	public Hotel getHotel() {
 		return hotel;
 	}
 
-	public void setHotel(HotelEntityDto hotel) {
+	public void setHotel(Hotel hotel) {
 		this.hotel = hotel;
 	}
 
 	@Override
 	public String toString() {
 		return "PackageEntityDto [packageId=" + packageId + ", packageName=" + packageName + ", packageDescription="
-				+ packageDescription + ", packageType=" + packageType + ", packageCost=" + packageCost + "]";
+				+ packageDescription + ", packageType=" + packageType + ", packageCost=" + packageCost + ", route="
+				+ route + ", hotel=" + hotel + "]";
 	}
 
 	
-
 }

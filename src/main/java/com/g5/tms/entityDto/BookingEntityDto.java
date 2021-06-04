@@ -16,6 +16,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import com.g5.tms.entities.PaymentDetails;
+import com.g5.tms.entities.TicketDetails;
+
 
 public class BookingEntityDto {
 	
@@ -33,9 +36,9 @@ public class BookingEntityDto {
 	
 	private int userId;
 	
-	private PaymentDetailsEntityDto payment;
+	private PaymentDetails payment;
 	
-	private TicketDetailsEntityDto ticket;
+	private TicketDetails ticket;
 
 	public int getBookingId() {
 		return bookingId;
@@ -93,19 +96,19 @@ public class BookingEntityDto {
 		this.userId = userId;
 	}
 
-	public PaymentDetailsEntityDto getPayment() {
+	public PaymentDetails getPayment() {
 		return payment;
 	}
 
-	public void setPayment(PaymentDetailsEntityDto payment) {
+	public void setPayment(PaymentDetails payment) {
 		this.payment = payment;
 	}
 
-	public TicketDetailsEntityDto getTicket() {
+	public TicketDetails getTicket() {
 		return ticket;
 	}
 
-	public void setTicket(TicketDetailsEntityDto ticket) {
+	public void setTicket(TicketDetails ticket) {
 		this.ticket = ticket;
 	}
 
@@ -113,7 +116,7 @@ public class BookingEntityDto {
 	public String toString() {
 		return "BookingEntityDto [bookingId=" + bookingId + ", bookingType=" + bookingType + ", description="
 				+ description + ", bookingTitle=" + bookingTitle + ", bookingDate=" + bookingDate + ", pack=" + pack
-				+ ", userId=" + userId + "]";
+				+ ", userId=" + userId + ", payment=" + payment + ", ticket=" + ticket + "]";
 	}
 
 	
