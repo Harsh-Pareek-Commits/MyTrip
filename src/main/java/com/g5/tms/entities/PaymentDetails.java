@@ -27,7 +27,6 @@ public class PaymentDetails {
 	@Column
 	@Pattern(regexp="(^$|[0-9]{16})", message ="Enter 16 digit Card number")
 	private  String  cardNo;
-
 	@Column
 	@Positive	
 	@Min(0)	

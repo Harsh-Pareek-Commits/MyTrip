@@ -1,10 +1,10 @@
 package com.g5.tms.entityDto;
-
 public class CustomerEntityDto extends UserEntityDto {
 	private String customerName;
 	private String address;
 	private String mobileNo;
 	private String email;
+	
 	public String getCustomerName() {
 		return customerName;
 	}
