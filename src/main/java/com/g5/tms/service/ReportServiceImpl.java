@@ -36,11 +36,12 @@ public class ReportServiceImpl implements IReportService {
 	@Override
 	@Transactional
 	public Report deleteReport(int reportId) throws ReportNotFoundException {
-		Optional<Report>opt=null;
+		
 		try {
-	    	opt = reportRepository.findById(reportId);
+			Optional<Report>opt= reportRepository.findById(reportId);
 		    if(opt.isPresent()) {
 	    	reportRepository.deleteById(reportId);
+	    	return opt.get();
 		    }
 		    else {
 		    	throw new ReportNotFoundException("Report not found in delete!");
@@ -51,7 +52,7 @@ public class ReportServiceImpl implements IReportService {
 	    	
 	    	throw new ReportNotFoundException("Report not found in delete!");
 	    }
-		return opt.get();
+		
 	}
 
 	@Override

@@ -51,7 +51,7 @@ public class Package {
 
 	public Package() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Package(int packageId, String packageName, String packageDescription, String packageType, double packageCost,

@@ -22,30 +22,30 @@ import com.g5.tms.service.IFeedbackService;
 @RequestMapping("/feedback")
 public class FeedbackController {
 	@Autowired
-IFeedbackService feedback_service;
+IFeedbackService feedbackService;
 	
 
 	@PostMapping("/add")
 	public Feedback addFeedback(@RequestBody @Valid Feedback feed) {
-		this.feedback_service.addFeedback(feed);
+		this.feedbackService.addFeedback(feed);
 		return feed;
 	}
 	
 	@GetMapping("/find/{feedbackId}")
 	public Feedback findByFeedbackId(@PathVariable int feedbackId) throws FeedbackNotFoundException {
-    	Feedback feed = this.feedback_service.findByFeedbackId(feedbackId);
+    	Feedback feed = this.feedbackService.findByFeedbackId(feedbackId);
 		return feed;
 	}
 	
 	@GetMapping("/find/customer/{customerId}")
 	public Feedback findByCustomerId(@PathVariable int customerId) throws CustomerNotFoundException {
-    	Feedback feed = this.feedback_service.findByCustomerId(customerId);
+    	Feedback feed = this.feedbackService.findByCustomerId(customerId);
 		return feed;
 	}
 	
 	@GetMapping("/find")
 	public List< @NotEmpty Feedback> viewAllFeedbacks() {
-		return feedback_service.viewAllFeedbacks();
+		return feedbackService.viewAllFeedbacks();
 		
 	}
 	

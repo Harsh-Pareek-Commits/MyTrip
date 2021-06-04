@@ -23,34 +23,34 @@ import com.g5.tms.service.IRouteService;
 @RequestMapping("/route")
 public class RouteController {
 	@Autowired
-    IRouteService route_services;
+    IRouteService routeServices;
 	
 	@PostMapping("/add")
 	public Route addRoute(@RequestBody @Valid Route rout) {
 
-		this.route_services.addRoute(rout);
+		this.routeServices.addRoute(rout);
 		return rout;
 	}
 	@PutMapping("/update")
 	public Route updateRoute(@RequestBody @Valid Route rout) throws RouteNotFoundException {
-		this.route_services.updateRoute(rout);
+		this.routeServices.updateRoute(rout);
 		return rout;
 	}
 	
 	@GetMapping("/view/{id}")
 	public Route searchRoute(@PathVariable int id) throws RouteNotFoundException {
-		Route rout = this.route_services.searchRoute(id);
-		return rout;	
+		return this.routeServices.searchRoute(id);
+			
 	}
 	
 	@DeleteMapping("/remove/{id}")
 	public Route removeRoute(@PathVariable int id) throws RouteNotFoundException {
-   	 Route rout = this.route_services.removeRoute(id);
-		return rout;
+   	return this.routeServices.removeRoute(id);
+		
 	}
 	@GetMapping("/all")
 	 public List<@NotBlank Route> viewRoute(){
-	    return route_services.viewRouteList();
+	    return routeServices.viewRouteList();
 	}
 
 	}

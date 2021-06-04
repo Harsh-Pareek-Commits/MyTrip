@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ import com.g5.tms.repository.IUserRepository;
 @Service
 
 public class UserServiceImpl implements IUserService {
+	Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 	@Autowired
 	IUserRepository userRepository;
 
@@ -26,7 +29,7 @@ public class UserServiceImpl implements IUserService {
 			user.setUserType("1");
 			userRepository.save(user);
 		} catch (Exception e) {
-			e.getStackTrace();
+			log.error("Adding user exception",e);
 
 		}
 
@@ -45,10 +48,10 @@ public class UserServiceImpl implements IUserService {
 					return u;
 
 				} else {
-					throw new InvalidCredentialException("Invalid username or password");
+					throw new InvalidCredentialException("Invalid password");
 				}
 			} else {
-				throw new InvalidCredentialException("Invalid username or password");
+				throw new InvalidCredentialException("Invalid userID");
 			}
 		} catch (Exception e) {
 			throw new InvalidCredentialException("Invalid username or password");

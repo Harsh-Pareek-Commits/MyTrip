@@ -29,20 +29,20 @@ import com.g5.tms.service.CustomerServiceImpl;
 @RequestMapping("/customer")
 public class CustomerController {
 	@Autowired
-	CustomerServiceImpl cust_service;
+	CustomerServiceImpl custService;
 
 	@PostMapping(value = "/add")
 	public ResponseEntity<CustomerDto> addCustomer(@RequestBody @Valid Customer cust) {
-		Customer customer = this.cust_service.addCustomer(cust);
-		CustomerDto custdto = this.cust_service.displayCustomerDetails(customer);
+		Customer customer = this.custService.addCustomer(cust);
+		CustomerDto custdto = this.custService.displayCustomerDetails(customer);
 		return new ResponseEntity<>(custdto, HttpStatus.OK);	}
 	
 
 	@PutMapping("/update")
 	public ResponseEntity<CustomerDto> updateCustomer(@RequestBody @Valid Customer cust)
 			throws CustomerNotFoundException {
-		Customer customer = this.cust_service.updateCustomer(cust);
-		CustomerDto custdto = this.cust_service.displayCustomerDetails(customer);
+		Customer customer = this.custService.updateCustomer(cust);
+		CustomerDto custdto = this.custService.displayCustomerDetails(customer);
 		if (custdto != null) {
 			return new ResponseEntity<>(custdto, HttpStatus.OK);
 		} else {
@@ -53,8 +53,8 @@ public class CustomerController {
 	@DeleteMapping("/delete")
 	public ResponseEntity<CustomerDto> deleteCustomer(@RequestBody @Valid Customer cust)
 			throws CustomerNotFoundException {
-		Customer customer = this.cust_service.deleteCustomer(cust);
-		CustomerDto custdto = this.cust_service.displayCustomerDetails(customer);
+		Customer customer = this.custService.deleteCustomer(cust);
+		CustomerDto custdto = this.custService.displayCustomerDetails(customer);
 		if (custdto != null) {
 			return new ResponseEntity<>(custdto, HttpStatus.OK);
 		} else {
@@ -65,8 +65,8 @@ public class CustomerController {
 	@GetMapping("/view/{custid}")
 	public ResponseEntity<CustomerDto> viewCustomer(@PathVariable int custid) throws CustomerNotFoundException {
 
-		Customer customer = cust_service.viewCustomer(custid);
-		CustomerDto custdto = this.cust_service.displayCustomerDetails(customer);
+		Customer customer = custService.viewCustomer(custid);
+		CustomerDto custdto = this.custService.displayCustomerDetails(customer);
 		if (custdto != null) {
 			return new ResponseEntity<>(custdto, HttpStatus.OK);
 		} else {
@@ -77,16 +77,16 @@ public class CustomerController {
 	@GetMapping("/view/package/{packageId}")
 	public ResponseEntity<List<CustomerDto>> viewAllCustomers(@PathVariable int packageId)
 			throws PackageNotFoundException {
-		List<Customer> cust_list = this.cust_service.viewAllCustomers(packageId);
-		List<CustomerDto> custDto_list = new ArrayList<>();
-		for (Customer c : cust_list) {
-			CustomerDto custdto = this.cust_service.displayCustomerDetails(c);
-			custDto_list.add(custdto);
+		List<Customer> custList = this.custService.viewAllCustomers(packageId);
+		List<CustomerDto> custDtoList = new ArrayList<>();
+		for (Customer c : custList) {
+			CustomerDto custdto = this.custService.displayCustomerDetails(c);
+			custDtoList.add(custdto);
 		}
-		if (!(custDto_list.isEmpty())) {
-			return new ResponseEntity<>(custDto_list, HttpStatus.OK);
+		if (!(custDtoList.isEmpty())) {
+			return new ResponseEntity<>(custDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(custDto_list, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(custDtoList, HttpStatus.BAD_REQUEST);
 		}
 	}
 
@@ -94,16 +94,16 @@ public class CustomerController {
 	public ResponseEntity<List<@NotBlank CustomerDto>> viewCustomerList(@PathVariable int routeId)
 			throws RouteNotFoundException {
 
-		List<Customer> cust_list = this.cust_service.viewCustomerList(routeId);
-		List<CustomerDto> custDto_list = new ArrayList<>();
-		for (Customer c : cust_list) {
-			CustomerDto custdto = this.cust_service.displayCustomerDetails(c);
-			custDto_list.add(custdto);
+		List<Customer> custList = this.custService.viewCustomerList(routeId);
+		List<CustomerDto> custDtoList = new ArrayList<>();
+		for (Customer c : custList) {
+			CustomerDto custdto = this.custService.displayCustomerDetails(c);
+			custDtoList.add(custdto);
 		}
-		if (!(custDto_list.isEmpty())) {
-			return new ResponseEntity<>(custDto_list, HttpStatus.OK);
+		if (!(custDtoList.isEmpty())) {
+			return new ResponseEntity<>(custDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(custDto_list, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(custDtoList, HttpStatus.BAD_REQUEST);
 		}
 	}
 

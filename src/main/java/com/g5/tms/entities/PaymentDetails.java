@@ -43,7 +43,7 @@ public class PaymentDetails {
 	
 	public PaymentDetails() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	public PaymentDetails(int paymentId, String paymentMode, String bankName, String cardNo, double netAmount,
 			String paymentStatus, int userId) {

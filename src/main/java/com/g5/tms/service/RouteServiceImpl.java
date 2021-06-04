@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.g5.tms.entities.Route;
 import com.g5.tms.exceptions.RouteNotFoundException;
-import com.g5.tms.repository.IReportRepository;
 import com.g5.tms.repository.IRouteRepository;
 
 @Service
@@ -28,7 +27,7 @@ public class RouteServiceImpl implements IRouteService {
 		try {
 
 			routeRepository.save(route);
-			
+
 		} catch (Exception e) {
 			log.error("Add route Exception:", e);
 		}
@@ -47,7 +46,7 @@ public class RouteServiceImpl implements IRouteService {
 				throw new RouteNotFoundException("Route not found in update route!");
 			}
 		} catch (Exception e) {
-			
+
 			throw new RouteNotFoundException("Route not found in update route!");
 		}
 
@@ -57,34 +56,34 @@ public class RouteServiceImpl implements IRouteService {
 	@Override
 	@Transactional
 	public Route removeRoute(int routeId) throws RouteNotFoundException {
-		Optional<Route> opt = null;
 
 		try {
-			opt = routeRepository.findById(routeId);
+			Optional<Route> opt = routeRepository.findById(routeId);
 			if (opt.isPresent()) {
 				routeRepository.deleteById(routeId);
+				return opt.get();
 			} else {
 				throw new RouteNotFoundException("Route not found in remove route!");
 			}
 		} catch (Exception e) {
-			
+
 			throw new RouteNotFoundException("Route not found in remove route!");
 		}
-		return opt.get();
+
 	}
 
 	@Override
 	public Route searchRoute(int routeId) throws RouteNotFoundException {
 
 		try {
-			Optional<Route>opt= routeRepository.findById(routeId);
-			if(opt.isPresent()) {
-			return opt.get();
-			}else {
+			Optional<Route> opt = routeRepository.findById(routeId);
+			if (opt.isPresent()) {
+				return opt.get();
+			} else {
 				throw new RouteNotFoundException("Route not found in search route!");
 			}
 		} catch (Exception e) {
-			
+
 			throw new RouteNotFoundException("Route not found in search route!");
 		}
 	}

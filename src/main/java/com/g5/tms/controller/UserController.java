@@ -16,23 +16,23 @@ import com.g5.tms.service.IUserService;
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
-	IUserService user_service;
+	IUserService userService;
 	@PostMapping("/add")
 	public User adduser(@RequestBody @Valid User user)
 	{
-		this.user_service.addNewUser(user);
+		this.userService.addNewUser(user);
 		return user;
 	}
 	@PostMapping("/signin")
 	public User signuser(@RequestBody @Valid User user) throws InvalidCredentialException
 	{
-		this.user_service.signIn(user);
+		this.userService.signIn(user);
 		return user;
 	}
 	@PostMapping("/signout")
 	public User signoutuser(@RequestBody @Valid User user) 
 	{
-		this.user_service.signOut(user);
+		this.userService.signOut(user);
 		return user;
 	}
 	

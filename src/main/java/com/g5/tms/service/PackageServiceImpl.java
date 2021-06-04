@@ -34,11 +34,12 @@ public class PackageServiceImpl implements IPackageService {
 	@Override
 	@Transactional
 	public Package deletePackage(int packageId) throws PackageNotFoundException {
-		Optional<Package> opt = null;
+	
 		try {
-			opt = packageRepository.findById(packageId);
+			Optional<Package> opt =packageRepository.findById(packageId);
 			if (opt.isPresent()) {
 				packageRepository.deleteById(packageId);
+				return opt.get();
 
 			} else {
 				throw new PackageNotFoundException("Package not found in delete");
@@ -49,7 +50,7 @@ public class PackageServiceImpl implements IPackageService {
 			throw new PackageNotFoundException("Package not found in delete");
 
 		}
-		return opt.get();
+	
 	}
 
 	@Override

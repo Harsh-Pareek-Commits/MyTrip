@@ -67,7 +67,7 @@ public class Route {
 	private  double fare;
 	public Route() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	public Route(int routeId, String routeFrom, String routeTo, List<Bus> buses, LocalDateTime departureTime,
 			LocalDateTime arrivalTime, LocalDate doj, String pickupPoint, double fare) {

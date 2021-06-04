@@ -41,7 +41,7 @@ public class TravelsServiceImpl implements ITravelsService {
 
 				travelsRepository.save(travels);
 			} else {
-				throw new TravelsNotFoundException("Travels cannot be updated");
+				throw new TravelsNotFoundException("Travels details not found");
 			}
 		} catch (Exception e) {
 			
@@ -61,7 +61,7 @@ public class TravelsServiceImpl implements ITravelsService {
 			travelsRepository.deleteById(travelsId);
 			}
 			 else {
-					throw new TravelsNotFoundException("Travels cannot be updated");
+					throw new TravelsNotFoundException("Travels id not found for delete");
 				}
 		} catch (Exception e) {
 			
@@ -80,7 +80,7 @@ public class TravelsServiceImpl implements ITravelsService {
 			if(opt.isPresent()) {
 			return opt.get();
 			}else {
-				throw new TravelsNotFoundException("Travels Not foundin search travels");
+				throw new TravelsNotFoundException("Travels Not found in search travels");
 			}
 		} catch (Exception e) {
 			log.error("Exception:", e);
@@ -91,16 +91,16 @@ public class TravelsServiceImpl implements ITravelsService {
 	@Override
 	public List<Travels> viewTravels() {
 
-		List<Travels> travel_list = null;
+		List<Travels> travelList=null;
 		try {
 
-			travel_list = travelsRepository.findAll();
+			travelList = travelsRepository.findAll();
 
 		} catch (Exception e) {
 
 			log.error("View travels Exception:", e);
 		}
 
-		return travel_list;
+		return travelList;
 	}
 }

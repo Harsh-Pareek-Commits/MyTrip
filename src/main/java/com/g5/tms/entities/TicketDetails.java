@@ -20,7 +20,7 @@ public class TicketDetails {
 
 	public TicketDetails() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public TicketDetails(int ticketId, String status) {

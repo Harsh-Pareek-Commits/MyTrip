@@ -34,25 +34,31 @@ public class FeedbackServiceImpl implements IFeedbackService {
 
 	@Override
 	public Feedback findByFeedbackId(int feedbackId) throws FeedbackNotFoundException {
-		Optional<Feedback> opt = feedrepo.findById(feedbackId);
-		if (opt.isPresent()) {
-			return opt.get();
-		} else {
-			throw new FeedbackNotFoundException("Feedback not present whit this id");
+		try {
+			Optional<Feedback> opt = feedrepo.findById(feedbackId);
+			if (opt.isPresent()) {
+				return opt.get();
+			} else {
+				throw new FeedbackNotFoundException("Feedback not present with this id");
+			}
+		} catch (Exception e) {
+			throw new FeedbackNotFoundException("Feedback not found ");
 		}
 
 	}
 
 	@Override
 	public Feedback findByCustomerId(int customerId) throws CustomerNotFoundException {
-
-		Optional<Feedback> opt = feedrepo.findbyCustId(customerId);
-		if (opt.isPresent()) {
-			return opt.get();
-		} else {
-			throw new CustomerNotFoundException("Feedback not present for this customer id");
+		try {
+			Optional<Feedback> opt = feedrepo.findbyCustId(customerId);
+			if (opt.isPresent()) {
+				return opt.get();
+			} else {
+				throw new CustomerNotFoundException("Feedback not present for this customer id");
+			}
+		} catch (Exception e) {
+			throw new CustomerNotFoundException("Customer not found");
 		}
-
 	}
 
 	@Override

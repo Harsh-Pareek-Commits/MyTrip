@@ -16,9 +16,9 @@ import com.g5.tms.repository.IBookingRepository;
 
 @Service
 public class BookingServiceImpl implements IBookingService {
-	
+
 	Logger log = LoggerFactory.getLogger(BookingServiceImpl.class);
-	
+
 	@Autowired
 	IBookingRepository bookingRepository;
 
@@ -28,17 +28,17 @@ public class BookingServiceImpl implements IBookingService {
 		try {
 			bookingRepository.save(booking);
 		} catch (Exception e) {
-			log.error("Booking exp:",e);
+			log.error("Booking exp:", e);
 		}
 		return booking;
 	}
 
 	@Override
 	public Booking cancelBooking(int bookingId) throws BookingNotFoundException {
-		Optional<Booking> opt;
+
 		try {
-			
-			opt = bookingRepository.findById(bookingId);
+
+			Optional<Booking> opt = bookingRepository.findById(bookingId);
 			if (opt.isPresent()) {
 				bookingRepository.deleteById(bookingId);
 				return opt.get();
@@ -46,7 +46,7 @@ public class BookingServiceImpl implements IBookingService {
 				throw new BookingNotFoundException("No booking found for cancel!");
 			}
 		} catch (Exception e) {
-			
+
 			throw new BookingNotFoundException("No booking found for cancel!");
 		}
 
@@ -54,31 +54,32 @@ public class BookingServiceImpl implements IBookingService {
 
 	@Override
 	public Booking viewBooking(int bookingId) throws BookingNotFoundException {
-		Booking booking = null;
+
 		try {
 			Optional<Booking> opt = bookingRepository.findById(bookingId);
 			if (opt.isPresent()) {
-				booking = opt.get();
+				return  opt.get();
+				
 			} else {
 				throw new BookingNotFoundException("No booking found for view booking!");
 			}
 		} catch (Exception e) {
-			
+
 			throw new BookingNotFoundException("No booking found for view booking!");
 		}
-		return booking;
+		
 	}
 
 	@Override
 	public List<Booking> viewAllBookings() {
-		List<Booking> booking_list = null;
+		List<Booking> bookingList = null;
 		try {
-			booking_list = bookingRepository.findAll();
+			bookingList = bookingRepository.findAll();
 
 		} catch (Exception e) {
-			log.error("Booking list exception:",e);
+			log.error("Booking list exception:", e);
 		}
-		return booking_list;
+		return bookingList;
 	}
 
 }

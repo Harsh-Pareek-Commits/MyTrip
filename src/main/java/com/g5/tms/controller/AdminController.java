@@ -16,12 +16,12 @@ import com.g5.tms.service.IUserService;
 @RequestMapping("/admin")
 public class AdminController {
 	@Autowired
-	IUserService admin_service;
+	IUserService adminService;
 	
 	@PostMapping("/add")
 	public User adduser(@RequestBody @Valid Admin admin)
 	{
-		this.admin_service.addNewUser(admin);
+		this.adminService.addNewUser(admin);
 		return admin;
 	}
 }

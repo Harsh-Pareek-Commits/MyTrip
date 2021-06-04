@@ -22,29 +22,29 @@ import com.g5.tms.service.IPackageService;
 @RequestMapping("/package")
 public class PackageConroller {
 	@Autowired
-IPackageService package_service;
+IPackageService packageService;
 	@PostMapping("/add")
 	public  Package  addingPackage(@RequestBody @Valid Package pack) 
 	{
-		Package pack1=this.package_service.addPackage(pack);
+		Package pack1=this.packageService.addPackage(pack);
 		return pack1; 
 	}
 	@DeleteMapping("/delete/{packageId}")
 	public  Package  deletingPackage(@PathVariable int packageId) throws PackageNotFoundException
 	{
 		
-	return this.package_service.deletePackage(packageId);
+	return this.packageService.deletePackage(packageId);
 	}
 	@GetMapping("/search/{packageId}")
 	public  Package  searchingPackage(@PathVariable int packageId) throws PackageNotFoundException
 	{
-		Package pack=this.package_service.searchPackage(packageId);
+		Package pack=this.packageService.searchPackage(packageId);
 		return pack;
 	}
 	@GetMapping("/all")
 	public  List< @NotEmpty Package> viewAllPackages()
 	{
-		List<Package> list= this.package_service.viewAllPackages();
+		List<Package> list= this.packageService.viewAllPackages();
 		return list;
 	}
 }

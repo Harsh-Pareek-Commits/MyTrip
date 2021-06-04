@@ -52,7 +52,7 @@ public class Booking {
 
 	public Booking() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	public Booking(int bookingId, String bookingType, String description, String bookingTitle, LocalDate bookingDate,

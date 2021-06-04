@@ -22,27 +22,27 @@ import com.g5.tms.service.IBookingService;
 @RequestMapping("/booking")
 public class BookingController {
 	@Autowired
-	IBookingService booking_service;
+	IBookingService bookingService;
 
 	@PostMapping("/add")
 	public Booking makeBooking(@RequestBody @Valid Booking booking) {
-		this.booking_service.makeBooking(booking);
+		this.bookingService.makeBooking(booking);
 		return booking;
 	}
 
 	@DeleteMapping("/delete/{bookingId}")
 	public Booking cancelBooking(@PathVariable int bookingId) throws BookingNotFoundException {
-		return this.booking_service.cancelBooking(bookingId);
+		return this.bookingService.cancelBooking(bookingId);
 		 
 	}
 
 	@GetMapping("/view/{bookingId}")
 	public Booking viewBooking(@PathVariable int bookingId) throws BookingNotFoundException {
-     return this.booking_service.viewBooking(bookingId);
+     return this.bookingService.viewBooking(bookingId);
 	}
 
 	@GetMapping("/view")
 	public List<@NotBlank Booking> viewAllBookings() {
-        return this.booking_service.viewAllBookings();
+        return this.bookingService.viewAllBookings();
 	}
 }

@@ -1,91 +1,71 @@
 package com.g5.tms.dto;
+
 public class CustomerDto {
-	private int dtoUserId;
-	private String dtoCustomerName;
-	private String dtoAddress;
-	private String dtoMobileNo;
-	private String dtoEmail;
-	
-	/**
-	 * @return the dtoUserId
-	 */
-	public int getDtoUserId() {
-		return dtoUserId;
-	}
-	/**
-	 * @param dtoUserId the dtoUserId to set
-	 */
-	public void setDtoUserId(int dtoUserId) {
-		this.dtoUserId = dtoUserId;
-	}
-	/**
-	 * @return the dtoCustomerName
-	 */
-	public String getDtoCustomerName() {
-		return dtoCustomerName;
-	}
-	/**
-	 * @param dtoCustomerName the dtoCustomerName to set
-	 */
-	public void setDtoCustomerName(String dtoCustomerName) {
-		this.dtoCustomerName = dtoCustomerName;
-	}
-	/**
-	 * @return the dtoAddress
-	 */
-	public String getDtoAddress() {
-		return dtoAddress;
-	}
-	/**
-	 * @param dtoAddress the dtoAddress to set
-	 */
-	public void setDtoAddress(String dtoAddress) {
-		this.dtoAddress = dtoAddress;
-	}
-	/**
-	 * @return the dtoMobileNo
-	 */
-	public String getDtoMobileNo() {
-		return dtoMobileNo;
-	}
-	/**
-	 * @param dtoMobileNo the dtoMobileNo to set
-	 */
-	public void setDtoMobileNo(String dtoMobileNo) {
-		this.dtoMobileNo = dtoMobileNo;
-	}
-	/**
-	 * @return the dtoEmail
-	 */
-	public String getDtoEmail() {
-		return dtoEmail;
-	}
-	/**
-	 * @param dtoEmail the dtoEmail to set
-	 */
-	public void setDtoEmail(String dtoEmail) {
-		this.dtoEmail = dtoEmail;
-	}
+	private int customerId;
+	private String customerName;
+	private String customerAddress;
+	private String customerMobileNo;
+	private String customerEmail;
+
 	public CustomerDto() {
 		super();
-		
+
 	}
-	public CustomerDto(int dtoUserId, String dtoCustomerName, String dtoAddress, String dtoMobileNo, String dtoEmail) {
+
+	public CustomerDto(int customerId, String customerName, String customerAddress, String customerMobileNo,
+			String customerEmail) {
 		super();
-		this.dtoUserId = dtoUserId;
-		this.dtoCustomerName = dtoCustomerName;
-		this.dtoAddress = dtoAddress;
-		this.dtoMobileNo = dtoMobileNo;
-		this.dtoEmail = dtoEmail;
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.customerAddress = customerAddress;
+		this.customerMobileNo = customerMobileNo;
+		this.customerEmail = customerEmail;
 	}
-	
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public String getCustomerAddress() {
+		return customerAddress;
+	}
+
+	public void setCustomerAddress(String customerAddress) {
+		this.customerAddress = customerAddress;
+	}
+
+	public String getCustomerMobileNo() {
+		return customerMobileNo;
+	}
+
+	public void setCustomerMobileNo(String customerMobileNo) {
+		this.customerMobileNo = customerMobileNo;
+	}
+
+	public String getCustomerEmail() {
+		return customerEmail;
+	}
+
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
+	}
+
 	@Override
 	public String toString() {
-		return "CustomerDto [dtoUserId=" + dtoUserId + ", dtoCustomerName=" + dtoCustomerName + ", dtoAddress="
-				+ dtoAddress + ", dtoMobileNo=" + dtoMobileNo + ", dtoEmail=" + dtoEmail + "]";
+		return "CustomerDto [customerId=" + customerId + ", customerName=" + customerName + ", customerAddress="
+				+ customerAddress + ", customerMobileNo=" + customerMobileNo + ", customerEmail=" + customerEmail + "]";
 	}
-	
 
-	
-	
 }

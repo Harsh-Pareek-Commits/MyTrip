@@ -38,7 +38,7 @@ public class Bus {
 	
 	public Bus() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 	public Bus(int busId, String busType, String busNumber, int capacity, Travels travel) {
 		super();

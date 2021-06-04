@@ -22,28 +22,28 @@ import com.g5.tms.service.IReportService;
 @RequestMapping("/report")
 public class ReportController {
 	@Autowired
-    IReportService report_service;
+    IReportService reportService;
 	@PostMapping("/add")
 	public Report addReport(@RequestBody @Valid Report repo) {
-		this.report_service.addReport(repo);
+		this.reportService.addReport(repo);
 		return repo;
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public Report deleteReport(@PathVariable int id) throws ReportNotFoundException {
-   	 Report repo = this.report_service.deleteReport(id);
+   	 Report repo = this.reportService.deleteReport(id);
 		return repo;
 	}
 	
 	@GetMapping("/view/{repoid}")
 	public Report viewReport(@PathVariable int repoid) throws ReportNotFoundException {
     	Report repo;
-    	repo=this.report_service.viewReport(repoid);
+    	repo=this.reportService.viewReport(repoid);
 		return repo;
 	}
 	
 	@GetMapping("/all")
     public List<@NotBlank Report> viewReport(){
-	    return report_service.viewAllReports();
+	    return reportService.viewAllReports();
 	}
 }

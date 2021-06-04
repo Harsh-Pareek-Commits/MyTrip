@@ -35,8 +35,8 @@ public class CustomerServiceImpl implements ICustomerService {
 	public Customer addCustomer(Customer customer) {
 	       
 			if ((customer.getPassword() != null)) {
-				String SecuredPasswordHash = BCrypt.hashpw(customer.getPassword(), BCrypt.gensalt(12));
-				customer.setPassword(SecuredPasswordHash);
+				String securedPasswordHash = BCrypt.hashpw(customer.getPassword(), BCrypt.gensalt(12));
+				customer.setPassword(securedPasswordHash);
 			}
 			customer.setUserType("3");
 			custRepository.save(customer);
@@ -49,12 +49,13 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Transactional
 	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException {
 
-		Optional<Customer> opt = null;
+		
 		try {
 
-			opt = custRepository.findById(customer.getUserId());
+			Optional<Customer> opt =custRepository.findById(customer.getUserId());
 			if (opt.isPresent()) {
 				custRepository.save(customer);
+				return opt.get();
 			} else {
 				throw new CustomerNotFoundException("Customer id not found for update.");
 			}
@@ -63,17 +64,17 @@ public class CustomerServiceImpl implements ICustomerService {
 
 			throw new CustomerNotFoundException("Customer id not found for update.");
 		}
-		return opt.get();
+		
 	}
 
 	@Override
 	@Transactional
 	public Customer deleteCustomer(Customer customer) throws CustomerNotFoundException {
-		Optional<Customer> opt = null;
-		try {
-			opt = custRepository.findById(customer.getUserId());
+				try {
+					Optional<Customer> opt =  custRepository.findById(customer.getUserId());
 			if (opt.isPresent()) {
 				custRepository.delete(customer);
+				return opt.get();
 			} else {
 				throw new CustomerNotFoundException("Customer id not found for delete.");
 			}
@@ -81,7 +82,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
 			throw new CustomerNotFoundException("Customer id not found for delete.");
 		}
-		return opt.get();
+		
 	}
 
 	@Override
@@ -103,12 +104,12 @@ public class CustomerServiceImpl implements ICustomerService {
 
 	@Override
 	public List<Customer> viewAllCustomers(int packageId) throws PackageNotFoundException {
-		List<Customer> cust_list = null;
+		List<Customer> custList = null;
 
 		try {
 
-			cust_list = custRepository.findByPackageId(packageId);
-			if (cust_list.isEmpty()) {
+			custList = custRepository.findByPackageId(packageId);
+			if (custList.isEmpty()) {
 				throw new PackageNotFoundException("Package not found");
 			}
 
@@ -116,16 +117,16 @@ public class CustomerServiceImpl implements ICustomerService {
 
 			throw new PackageNotFoundException("Package not found");
 		}
-		return cust_list;
+		return custList;
 	}
 
 	@Override
 	public List<Customer> viewCustomerList(int routeId) throws RouteNotFoundException {
 
-		List<Customer> cust_list = null;
+		List<Customer> custList = null;
 		try {
-			cust_list = custRepository.findByRouteId(routeId);
-			if (cust_list.isEmpty()) {
+			custList = custRepository.findByRouteId(routeId);
+			if (custList.isEmpty()) {
 				throw new RouteNotFoundException("Route not found");
 			}
 
@@ -133,7 +134,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
 			throw new RouteNotFoundException("Route not found");
 		}
-		return cust_list;
+		return custList;
 	}
 	public CustomerDto displayCustomerDetails(Customer cust) {
 	      CustomerDto custDto= new CustomerDto(cust.getUserId(), cust.getCustomerName(), cust.getAddress(), cust.getMobileNo(), cust.getEmail());

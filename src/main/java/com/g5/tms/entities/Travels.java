@@ -34,7 +34,6 @@ public class Travels {
 	
 	public Travels() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Travels(int travelsId, String travelsName, String agentName, String address, String contact) {
 		super();

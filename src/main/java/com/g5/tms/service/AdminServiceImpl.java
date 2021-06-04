@@ -15,7 +15,7 @@ public class AdminServiceImpl extends UserServiceImpl {
 			admin.setUserType("2");
 			userRepository.save(admin);
 		} catch (Exception e) {
-			e.getStackTrace();
+			log.error("Adding admin exception",e);
 
 		}
 

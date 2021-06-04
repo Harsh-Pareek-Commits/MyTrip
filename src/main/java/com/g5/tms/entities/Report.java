@@ -32,7 +32,7 @@ public class Report {
 	
 	public Report() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	public Report(int reportId, String reportName, String reportType, Set<Booking> allBookings) {
 		super();

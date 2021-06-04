@@ -25,37 +25,37 @@ import com.g5.tms.service.ITravelsService;
 @RequestMapping("/travel")
 public class TravelController {
 	@Autowired
-ITravelsService travel_service;
+ITravelsService travelService;
 	
 	@PostMapping("/add")
 	public Travels addTravels(@RequestBody @Valid Travels trv) {
-	this.travel_service.addTravels(trv);
+	this.travelService.addTravels(trv);
 	return trv;
 	}
 
 	@PutMapping("/update")
 	public Travels updateTravels(@RequestBody @Valid Travels trv) throws TravelsNotFoundException{
-	this.travel_service.updateTravels(trv);
+	this.travelService.updateTravels(trv);
 	return trv;
 	}
 
 
 	@DeleteMapping("/delete/{Id}")  
 	public Travels removeTravels(@PathVariable int Id ) throws TravelsNotFoundException {
-   	return this.travel_service.removeTravels(Id);
+   	return this.travelService.removeTravels(Id);
 	
 	}
    @GetMapping("/search/{travelsId}")
 	public Travels searchTravels(@PathVariable int travelsId) throws TravelsNotFoundException {
    	Travels trv;
-   	trv=this.travel_service.searchTravels(travelsId);
+   	trv=this.travelService.searchTravels(travelsId);
 	return trv;
 	}
     
    
     @GetMapping("/all")
 	public  List<@NotBlank Travels>  viewTravels(){
-    return travel_service.viewTravels(); 
+    return travelService.viewTravels(); 
     
     }
     

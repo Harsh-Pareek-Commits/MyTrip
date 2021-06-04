@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.g5.tms.testing.CustomerServiceTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 2.218 s - in com.g5.tms.testing.CustomerServiceTest
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 1, Time elapsed: 2.457 s <<< FAILURE! - in com.g5.tms.testing.CustomerServiceTest
+testUpdateCustomer  Time elapsed: 0.021 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <Customer [customerName=HARSH, address=XYZ, mobileNo=12312312312, email=xyz@try.com]> but was: <Customer [customerName=Maya, address=XYZ, mobileNo=12312312312, email=xyz@try.com]>
+	at com.g5.tms.testing.CustomerServiceTest.testUpdateCustomer(CustomerServiceTest.java:96)
+
