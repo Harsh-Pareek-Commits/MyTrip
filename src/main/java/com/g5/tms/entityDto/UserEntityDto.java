@@ -29,7 +29,6 @@ public class UserEntityDto {
 	
 	}
 	
-
 	@Override
 	public String toString() {
 		return "UserEntityDto [userId=" + userId + ", userType=" + userType + ", password=" + password + "]";
