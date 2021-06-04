@@ -1,4 +1,5 @@
-package com.g5.tms.dto;
+package com.g5.tms.entityDto;
+
 public class CustomerEntityDto extends UserEntityDto {
 	private String customerName;
 	private String address;

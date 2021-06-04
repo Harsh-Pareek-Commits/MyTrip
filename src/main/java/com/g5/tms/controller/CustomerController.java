@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.g5.tms.dto.CustomerDto;
-import com.g5.tms.dto.CustomerEntityDto;
 import com.g5.tms.entities.Customer;
+import com.g5.tms.entityDto.CustomerEntityDto;
 import com.g5.tms.exceptions.CustomerNotFoundException;
 import com.g5.tms.exceptions.PackageNotFoundException;
 import com.g5.tms.exceptions.RouteNotFoundException;
