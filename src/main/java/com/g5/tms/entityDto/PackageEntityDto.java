@@ -25,17 +25,21 @@ public class PackageEntityDto {
 
 	
 	private int packageId;
-	
+	@NotEmpty(message = "Package name cannot be left blank or null")
+	@Size(min = 2,max = 15,message = "Invalid Package Name")
 	private String packageName;
-	
+	@Size(min = 10, max = 50, message 
+		    = "Package Description must be between 10 and 50 characters")
 	private String packageDescription;
-	
+	@NotEmpty(message = "Package Type cannot be left blank or null")
+	@Size(min = 2,max = 15,message = "Invalid Package Type")
 	private String packageType;
-	
+	@Positive
+	@Min(0)
 	private double packageCost;
-	
+	@Valid
 	private RouteEntityDto route;
-	
+	@Valid
 	private Hotel hotel;
 
 	public int getPackageId() {
