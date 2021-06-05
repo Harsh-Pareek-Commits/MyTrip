@@ -59,12 +59,9 @@ public class RouteController {
 			return new ResponseEntity<>(responseRoute, HttpStatus.BAD_REQUEST);
 		}
 	}
-	/*public Route updateRoute(@RequestBody @Valid Route rout) throws RouteNotFoundException {
-		this.routeServices.updateRoute(rout);
-		return rout;
-	}*/
 	
-	@GetMapping("/view/{id}")
+	
+	@GetMapping("/view/{routeid}")
 	public ResponseEntity<RouteDto> viewRoutebyId(@PathVariable int routeid) throws RouteNotFoundException {
 
 		RouteDto responseroute = modelMapper.map(this.routeServices.searchRoute(routeid), RouteDto.class);
@@ -74,14 +71,11 @@ public class RouteController {
 			return new ResponseEntity<>(responseroute, HttpStatus.BAD_REQUEST);
 		}
 	}
-	/*public Route searchRoute(@PathVariable int id) throws RouteNotFoundException {
-		return this.routeServices.searchRoute(id);
-			
-	}*/
 	
-	@DeleteMapping("/remove/{id}")
-	public ResponseEntity<RouteDto> deleteRoute(@PathVariable int RouteId) throws RouteNotFoundException {
-		RouteDto responseroute = modelMapper.map(this.routeServices.removeRoute(RouteId), RouteDto.class);
+	
+	@DeleteMapping("/remove/{routeId}")
+	public ResponseEntity<RouteDto> deleteRoute(@PathVariable int routeId) throws RouteNotFoundException {
+		RouteDto responseroute = modelMapper.map(this.routeServices.removeRoute(routeId), RouteDto.class);
 		if (responseroute != null) {
 			return new ResponseEntity<>(responseroute, HttpStatus.OK);
 		} else {
@@ -89,10 +83,7 @@ public class RouteController {
 		}
 		 
 	}
-	/*public Route removeRoute(@PathVariable int id) throws RouteNotFoundException {
-   	return this.routeServices.removeRoute(id);
-		
-	}*/
+	
 	@GetMapping("/all")
 	public ResponseEntity<List<RouteDto>> viewAllRoutes() {
 	       
@@ -109,9 +100,7 @@ public class RouteController {
 		}
 	}
 	
-	/*public List<@NotBlank Route> viewRoute(){
-	    return routeServices.viewRouteList();
-	}*/
+	
 
 	}
 

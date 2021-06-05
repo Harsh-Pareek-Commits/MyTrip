@@ -17,6 +17,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -30,7 +32,7 @@ public class FeedbackDto {
 	private String feedback;
 	
 	private int rating;
-	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate submitDate;
 
 	public int getFeedbackId() {

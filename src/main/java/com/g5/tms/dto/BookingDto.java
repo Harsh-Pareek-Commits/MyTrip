@@ -16,6 +16,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.g5.tms.entities.Package;
 import com.g5.tms.entities.PaymentDetails;
 import com.g5.tms.entities.TicketDetails;
@@ -32,7 +33,7 @@ public class BookingDto {
 	private String description;
 	
 	private String bookingTitle;
-	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate bookingDate;
 	
 	private PackageDto pack;

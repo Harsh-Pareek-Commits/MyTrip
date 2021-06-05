@@ -17,6 +17,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Feedback {
 
@@ -35,6 +37,7 @@ public class Feedback {
     @Max(value = 5, message = "Rating should not be greater than 5")
 	private int rating;
 	@FutureOrPresent(message="date can't be in past")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate submitDate;
 
 	public Feedback() {

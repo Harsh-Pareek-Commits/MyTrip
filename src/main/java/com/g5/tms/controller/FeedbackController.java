@@ -44,7 +44,7 @@ public class FeedbackController {
 		return feed;
 	}*/
 	
-	@GetMapping("/find/{feedbackId}")
+	@GetMapping("/find/{feedid}")
 	public ResponseEntity<FeedbackDto> viewFeedbackbyId(@PathVariable int feedid) throws FeedbackNotFoundException {
 
 		FeedbackDto responsefeed = modelMapper.map(this.feedbackService.findByFeedbackId(feedid), FeedbackDto.class);
@@ -60,7 +60,7 @@ public class FeedbackController {
 		return feed;
 	}*/
 	
-	@GetMapping("/find/customer/{customerId}")
+	@GetMapping("/find/customer/{custid}")
 	public ResponseEntity<FeedbackDto> viewFeedbackbyCustomer(@PathVariable int custid) throws CustomerNotFoundException {
 
 		FeedbackDto responsefeed = modelMapper.map(this.feedbackService.findByCustomerId(custid), FeedbackDto.class);

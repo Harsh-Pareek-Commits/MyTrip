@@ -3,12 +3,19 @@ import lombok.Data;
 
 @Data
 public class TravelsDto {
-
+	private int travelsId;
 	private String travelsName;
 	private String  agentName;
 	private String  address;
 	private String  contact;
 
+	
+	public int getTravelsId() {
+		return travelsId;
+	}
+	public void setTravelsId(int travelsId) {
+		this.travelsId = travelsId;
+	}
 	public String getTravelsName() {
 		return travelsName;
 	}

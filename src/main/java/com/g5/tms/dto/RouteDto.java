@@ -3,6 +3,8 @@ package com.g5.tms.dto;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.g5.tms.entities.Bus;
 import lombok.Data;
 
@@ -14,8 +16,11 @@ public class RouteDto {
 	private String  routeFrom;
 	private String  routeTo;
 	private  List<BusDto> buses;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private  LocalDateTime  departureTime;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private  LocalDateTime   arrivalTime;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private  LocalDate   doj;
 	private String pickupPoint;
 	private  double fare;

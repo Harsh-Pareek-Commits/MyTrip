@@ -43,9 +43,9 @@ public class ReportController {
 		return repo;
 	}*/
 	
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<ReportDto> deleteReport(@PathVariable int ReportId) throws ReportNotFoundException {
-		ReportDto responsereport = modelMapper.map(this.reportService.deleteReport(ReportId), ReportDto.class);
+	@DeleteMapping("/delete/{reportId}")
+	public ResponseEntity<ReportDto> deleteReport(@PathVariable int reportId) throws ReportNotFoundException {
+		ReportDto responsereport = modelMapper.map(this.reportService.deleteReport(reportId), ReportDto.class);
 		if (responsereport != null) {
 			return new ResponseEntity<>(responsereport, HttpStatus.OK);
 		} else {
@@ -59,7 +59,7 @@ public class ReportController {
 		return repo;
 	}*/
 	
-	@GetMapping("/view/{repoid}")
+	@GetMapping("/view/{reportid}")
 	
 	public ResponseEntity<ReportDto> viewReportbyId(@PathVariable int reportid) throws ReportNotFoundException {
 
