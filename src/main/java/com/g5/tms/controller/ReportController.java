@@ -32,20 +32,18 @@ public class ReportController {
 	private ModelMapper modelMapper;
 	
 	@PostMapping("/add")
-	public ResponseEntity<ReportDto> addFeedback(@RequestBody @Valid ReportEntityDto requestreport) {
+	public ResponseEntity<ReportDto> addReport(@RequestBody @Valid ReportEntityDto requestreport) {
 
 		Report actualreport = modelMapper.map(requestreport, Report.class);
 		ReportDto responsereport = modelMapper.map(this.reportService.addReport(actualreport), ReportDto.class);
 		return new ResponseEntity<>(responsereport, HttpStatus.OK);
 	}
-	/*public Report addReport(@RequestBody @Valid Report repo) {
-		this.reportService.addReport(repo);
-		return repo;
-	}*/
 	
 	@DeleteMapping("/delete/{reportId}")
 	public ResponseEntity<ReportDto> deleteReport(@PathVariable int reportId) throws ReportNotFoundException {
+		
 		ReportDto responsereport = modelMapper.map(this.reportService.deleteReport(reportId), ReportDto.class);
+		
 		if (responsereport != null) {
 			return new ResponseEntity<>(responsereport, HttpStatus.OK);
 		} else {
@@ -53,16 +51,10 @@ public class ReportController {
 		}
 		 
 	}
-	/*
-	public Report deleteReport(@PathVariable int id) throws ReportNotFoundException {
-   	 Report repo = this.reportService.deleteReport(id);
-		return repo;
-	}*/
 	
 	@GetMapping("/view/{reportid}")
-	
 	public ResponseEntity<ReportDto> viewReportbyId(@PathVariable int reportid) throws ReportNotFoundException {
-
+		
 		ReportDto responsereport = modelMapper.map(this.reportService.viewReport(reportid), ReportDto.class);
 		if (responsereport != null) {
 			return new ResponseEntity<>(responsereport, HttpStatus.OK);

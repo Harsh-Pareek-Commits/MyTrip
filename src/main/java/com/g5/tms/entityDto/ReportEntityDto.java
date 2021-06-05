@@ -2,14 +2,15 @@ package com.g5.tms.entityDto;
 
 import java.util.Set;
 
-import com.g5.tms.entities.Booking;
+import com.g5.tms.dto.BookingDto;
+
 
 public class ReportEntityDto {
 	
 	private int reportId;
 	private String reportName;
 	private String reportType; 
-	private Set<BookingEntityDto> allBookings;
+	private Set<BookingDto> allBookings;
 	public int getReportId() {
 		return reportId;
 	}
@@ -28,10 +29,10 @@ public class ReportEntityDto {
 	public void setReportType(String reportType) {
 		this.reportType = reportType;
 	}
-	public Set<BookingEntityDto> getAllBookings() {
+	public Set<BookingDto> getAllBookings() {
 		return allBookings;
 	}
-	public void setAllBookings(Set<BookingEntityDto> allBookings) {
+	public void setAllBookings(Set<BookingDto> allBookings) {
 		this.allBookings = allBookings;
 	}
 	@Override
