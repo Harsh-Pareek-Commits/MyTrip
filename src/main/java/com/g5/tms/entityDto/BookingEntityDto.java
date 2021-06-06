@@ -24,21 +24,24 @@ import com.g5.tms.entities.TicketDetails;
 public class BookingEntityDto {
 	
 	private int bookingId;
-	
+	@NotEmpty(message = "Booking Type cannot be left empty or null ")
+	@Size(min = 3,message = "Invaid Booking Type")
 	private String bookingType;
-	
+	@Size(min = 3,max =50 ,message = "description should be min of 3 and max of 50 characters")
 	private String description;
-	
+	@NotEmpty(message = "BookingTitle cannot be left blank or null")
+	@Size(min = 5,max = 20, message = "Invalid Booking Title")
 	private String bookingTitle;
 	@JsonFormat(pattern="yyyy-MM-dd")
+	@FutureOrPresent(message="Date cannot be in Past")
 	private LocalDate bookingDate;
-	
+	@Valid
 	private PackageEntityDto pack;
-	
+	@Positive
 	private int userId;
-	
+	@Valid
 	private PaymentDetails payment;
-	
+	@Valid
 	private TicketDetails ticket;
 
 	public int getBookingId() {
