@@ -19,102 +19,88 @@ public class BookingEntityDto {
 	private int bookingId;
 	@NotEmpty(message = "Booking Type cannot be left empty or null ")
 	@Size(min = 3,message = "Invaid Booking Type")
-	private String bookingType;
+	private String bookType;
 	@Size(min = 3,max =50 ,message = "description should be min of 3 and max of 50 characters")
-	private String description;
+	private String bookDescription;
 	@NotEmpty(message = "BookingTitle cannot be left blank or null")
 	@Size(min = 5,max = 20, message = "Invalid Booking Title")
-	private String bookingTitle;
+	private String bookTitle;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@FutureOrPresent(message="Date cannot be in Past")
-	private LocalDate bookingDate;
+	private LocalDate dateofBooking;
 	@Valid
-	private PackageEntityDto pack;
+	private PackageEntityDto packDetails;
 	@Positive
 	private int userId;
 	@Valid
-	private PaymentDetails payment;
+	private PaymentDetails paymentDetails;
 	@Valid
-	private TicketDetails ticket;
-
-	public int getBookingId() {
-		return bookingId;
+	private TicketDetails ticketDetails;
+	
+	public String getBookDescription() {
+		return bookDescription;
+	}
+	public void setBookDescription(String bookDescription) {
+		this.bookDescription = bookDescription;
 	}
 
-	public void setBookingId(int bookingId) {
-		this.bookingId = bookingId;
+	public LocalDate getDateofBooking() {
+		return dateofBooking;
+	}
+	public void setDateofBooking(LocalDate dateofBooking) {
+		this.dateofBooking = dateofBooking;
 	}
 
-	public String getBookingType() {
-		return bookingType;
+	
+	public String getBookType() {
+		return bookType;
 	}
-
-	public void setBookingType(String bookingType) {
-		this.bookingType = bookingType;
+	public void setBookType(String bookType) {
+		this.bookType = bookType;
 	}
-
-	public String getDescription() {
-		return description;
+	public String getBookTitle() {
+		return bookTitle;
 	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
 	}
-
-	public String getBookingTitle() {
-		return bookingTitle;
-	}
-
-	public void setBookingTitle(String bookingTitle) {
-		this.bookingTitle = bookingTitle;
-	}
-
-	public LocalDate getBookingDate() {
-		return bookingDate;
-	}
-
-	public void setBookingDate(LocalDate bookingDate) {
-		this.bookingDate = bookingDate;
-	}
-
-	public PackageEntityDto getPack() {
-		return pack;
-	}
-
-	public void setPack(PackageEntityDto pack) {
-		this.pack = pack;
-	}
-
 	public int getUserId() {
 		return userId;
 	}
-
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-
-	public PaymentDetails getPayment() {
-		return payment;
+	
+	public int getBookingId() {
+		return bookingId;
 	}
-
-	public void setPayment(PaymentDetails payment) {
-		this.payment = payment;
+	public void setBookingId(int bookingId) {
+		this.bookingId = bookingId;
 	}
-
-	public TicketDetails getTicket() {
-		return ticket;
+	public PackageEntityDto getPackDetails() {
+		return packDetails;
 	}
-
-	public void setTicket(TicketDetails ticket) {
-		this.ticket = ticket;
+	public void setPackDetails(PackageEntityDto packDetails) {
+		this.packDetails = packDetails;
 	}
-
+	public PaymentDetails getPaymentDetails() {
+		return paymentDetails;
+	}
+	public void setPaymentDetails(PaymentDetails paymentDetails) {
+		this.paymentDetails = paymentDetails;
+	}
+	public TicketDetails getTicketDetails() {
+		return ticketDetails;
+	}
+	public void setTicketDetails(TicketDetails ticketDetails) {
+		this.ticketDetails = ticketDetails;
+	}
 	@Override
 	public String toString() {
-		return "BookingEntityDto [bookingId=" + bookingId + ", bookingType=" + bookingType + ", description="
-				+ description + ", bookingTitle=" + bookingTitle + ", bookingDate=" + bookingDate + ", pack=" + pack
-				+ ", userId=" + userId + ", payment=" + payment + ", ticket=" + ticket + "]";
+		return "BookingEntityDto [bookingId=" + bookingId + ", bookType=" + bookType + ", bookDescription="
+				+ bookDescription + ", bookTitle=" + bookTitle + ", dateofBooking=" + dateofBooking + ", packDetails="
+				+ packDetails + ", userId=" + userId + ", paymentDetails=" + paymentDetails + ", ticketDetails="
+				+ ticketDetails + "]";
 	}
-
 	
 }

@@ -8,35 +8,34 @@ public class AdminEntityDto extends UserEntityDto {
 	
 	@NotEmpty(message = "Admin name cannot be left blank or null")
 	@Size(min = 3, max = 20, message = "Invalid Admin Name")
-	private String adminName;
+	private String name;
 	@NotEmpty(message = "Email cannot be left blank or null")
 	@Email(message = "Enter valid email Id")
-	private String email;
+	private String adminEmail;
 	@NotEmpty(message = "MobileNo cannot be left blank or null")
 	@Size(min = 10, max = 10, message = "Invalid Mobile Number")
-	private String mobile;
-	
-	public String getAdminName() {
-		return adminName;
+	private String adminMobile;
+	public String getName() {
+		return name;
 	}
-	public void setAdminName(String adminName) {
-		this.adminName = adminName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getEmail() {
-		return email;
+	public String getAdminEmail() {
+		return adminEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAdminEmail(String adminEmail) {
+		this.adminEmail = adminEmail;
 	}
-	public String getMobile() {
-		return mobile;
+	public String getAdminMobile() {
+		return adminMobile;
 	}
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
+	public void setAdminMobile(String adminMobile) {
+		this.adminMobile = adminMobile;
 	}
 	@Override
 	public String toString() {
-		return "AdminEntityDto [adminName=" + adminName + ", email=" + email + ", mobile=" + mobile + "]";
+		return "AdminEntityDto [name=" + name + ", adminEmail=" + adminEmail + ", adminMobile=" + adminMobile + "]";
 	}
 
 }

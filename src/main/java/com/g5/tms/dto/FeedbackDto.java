@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.g5.tms.entities.Customer;
 
 import lombok.Data;
 
@@ -15,8 +16,8 @@ public class FeedbackDto {
 	
 	private int feedbackId;
 	
+	private Customer customer;
 
-	
 	private String feedback;
 	
 	private int rating;
@@ -54,11 +55,22 @@ public class FeedbackDto {
 	public void setSubmitDate(LocalDate submitDate) {
 		this.submitDate = submitDate;
 	}
+	
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 
 	@Override
 	public String toString() {
-		return "FeedbackDto [feedbackId=" + feedbackId + ", feedback=" + feedback + ", rating=" + rating
-				+ ", submitDate=" + submitDate + "]";
+		return "FeedbackDto [feedbackId=" + feedbackId + ", customer=" + customer + ", feedback=" + feedback
+				+ ", rating=" + rating + ", submitDate=" + submitDate + "]";
 	}
+
+	
 
 }

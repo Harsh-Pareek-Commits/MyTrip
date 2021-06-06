@@ -5,6 +5,7 @@ import javax.validation.constraints.Size;
 
 
 public class TravelsEntityDto {
+	
 	private int travelsId;
 	@NotEmpty(message = "Travels name cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid travels Name")
@@ -14,45 +15,49 @@ public class TravelsEntityDto {
 	private String  agentName;
 	@NotEmpty(message = "Address cannot be left blank or null")
 	@Size(min = 2,message = "Invalid address")
-	private String  address;
+	private String  agentsAddress;
 	@NotEmpty(message = "Contact number cannot be left blank or null")
 	@Pattern(regexp="(^$|[0-9]{10})", message ="Enter 10 digit contact number")
-	private String  contact;
+	private String  agentsContact;
 	
+
 	public int getTravelsId() {
 		return travelsId;
 	}
 	public void setTravelsId(int travelsId) {
 		this.travelsId = travelsId;
 	}
+	
 	public String getTravelsName() {
 		return travelsName;
 	}
 	public void setTravelsName(String travelsName) {
 		this.travelsName = travelsName;
 	}
+	
 	public String getAgentName() {
 		return agentName;
 	}
 	public void setAgentName(String agentName) {
 		this.agentName = agentName;
 	}
-	public String getAddress() {
-		return address;
+	public String getAgentsAddress() {
+		return agentsAddress;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAgentsAddress(String agentsAddress) {
+		this.agentsAddress = agentsAddress;
 	}
-	public String getContact() {
-		return contact;
+	public String getAgentsContact() {
+		return agentsContact;
 	}
-	public void setContact(String contact) {
-		this.contact = contact;
+	public void setAgentsContact(String agentsContact) {
+		this.agentsContact = agentsContact;
 	}
 	@Override
 	public String toString() {
 		return "TravelsEntityDto [travelsId=" + travelsId + ", travelsName=" + travelsName + ", agentName=" + agentName
-				+ ", address=" + address + ", contact=" + contact + "]";
+				+ ", agentsAddress=" + agentsAddress + ", agentsContact=" + agentsContact + "]";
 	}
+	
 
 }

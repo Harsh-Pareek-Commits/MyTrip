@@ -21,24 +21,23 @@ import com.g5.tms.entities.Bus;
 
 public class RouteEntityDto {
 	
-	
 	private int routeId;
 	@NotEmpty(message = "Route name cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid Origin")
-	private String  routeFrom;
+	private String  from;
 	@NotEmpty(message = "Route name cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid Destination")
-	private String  routeTo;
+	private String  to;
 	@Valid
 	private  List<Bus> buses;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@FutureOrPresent(message = "Date cannot be past")
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss" )
-	private  LocalDateTime  departureTime;
+	private  LocalDateTime  timeofDeparture;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@Future(message = "Date cannot be past")
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss" )
-	private  LocalDateTime   arrivalTime;
+	private  LocalDateTime   timeofArrival;
 	  @Future(message = "Date cannot be past")
     @DateTimeFormat(pattern="yyyy-MM-dd" )
     @JsonFormat(pattern="yyyy-MM-dd")
@@ -48,25 +47,18 @@ public class RouteEntityDto {
 	private String pickupPoint;
 	  @Min(0)
 		@Positive 
-	private  double fare;
-	
-	public int getRouteId() {
-		return routeId;
+	private  double fareAmt;
+	public String getFrom() {
+		return from;
 	}
-	public void setRouteId(int routeId) {
-		this.routeId = routeId;
+	public void setFrom(String from) {
+		this.from = from;
 	}
-	public String getRouteFrom() {
-		return routeFrom;
+	public String getTo() {
+		return to;
 	}
-	public void setRouteFrom(String routeFrom) {
-		this.routeFrom = routeFrom;
-	}
-	public String getRouteTo() {
-		return routeTo;
-	}
-	public void setRouteTo(String routeTo) {
-		this.routeTo = routeTo;
+	public void setTo(String to) {
+		this.to = to;
 	}
 	public List<Bus> getBuses() {
 		return buses;
@@ -74,17 +66,17 @@ public class RouteEntityDto {
 	public void setBuses(List<Bus> buses) {
 		this.buses = buses;
 	}
-	public LocalDateTime getDepartureTime() {
-		return departureTime;
+	public LocalDateTime getTimeofDeparture() {
+		return timeofDeparture;
 	}
-	public void setDepartureTime(LocalDateTime departureTime) {
-		this.departureTime = departureTime;
+	public void setTimeofDeparture(LocalDateTime timeofDeparture) {
+		this.timeofDeparture = timeofDeparture;
 	}
-	public LocalDateTime getArrivalTime() {
-		return arrivalTime;
+	public LocalDateTime getTimeofArrival() {
+		return timeofArrival;
 	}
-	public void setArrivalTime(LocalDateTime arrivalTime) {
-		this.arrivalTime = arrivalTime;
+	public void setTimeofArrival(LocalDateTime timeofArrival) {
+		this.timeofArrival = timeofArrival;
 	}
 	public LocalDate getDoj() {
 		return doj;
@@ -98,16 +90,25 @@ public class RouteEntityDto {
 	public void setPickupPoint(String pickupPoint) {
 		this.pickupPoint = pickupPoint;
 	}
-	public double getFare() {
-		return fare;
+	public double getFareAmt() {
+		return fareAmt;
 	}
-	public void setFare(double fare) {
-		this.fare = fare;
+	public void setFareAmt(double fareAmt) {
+		this.fareAmt = fareAmt;
+	}
+	
+	public int getRouteId() {
+		return routeId;
+	}
+	public void setRouteId(int routeId) {
+		this.routeId = routeId;
 	}
 	@Override
 	public String toString() {
-		return "RouteEntityDto [routeId=" + routeId + ", routeFrom=" + routeFrom + ", routeTo=" + routeTo + ", buses="
-				+ buses + ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", doj=" + doj
-				+ ", pickupPoint=" + pickupPoint + ", fare=" + fare + "]";
+		return "RouteEntityDto [routeId=" + routeId + ", from=" + from + ", to=" + to + ", buses=" + buses
+				+ ", timeofDeparture=" + timeofDeparture + ", timeofArrival=" + timeofArrival + ", doj=" + doj
+				+ ", pickupPoint=" + pickupPoint + ", fareAmt=" + fareAmt + "]";
 	}
+	
+	
 }

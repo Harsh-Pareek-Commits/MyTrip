@@ -23,6 +23,7 @@ public class BookingDto {
 	private PackageDto pack;
 	private PaymentDetailsDto payment;
 	private TicketDetailsDto ticket;
+	private int userId;
 	
 	public int getBookingId() {
 		return bookingId;
@@ -87,12 +88,23 @@ public class BookingDto {
 	public void setTicket(TicketDetailsDto ticket) {
 		this.ticket = ticket;
 	}
+	
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
 	@Override
 	public String toString() {
 		return "BookingDto [bookingId=" + bookingId + ", bookingType=" + bookingType + ", description=" + description
-				+ ", bookingTitle=" + bookingTitle + ", bookingDate=" + bookingDate + ", pack=" + pack + "]";
+				+ ", bookingTitle=" + bookingTitle + ", bookingDate=" + bookingDate + ", pack=" + pack + ", payment="
+				+ payment + ", ticket=" + ticket + ", userId=" + userId + "]";
 	}
+
 	
 
 }
