@@ -18,13 +18,13 @@ public class Admin extends User {
 	@NotEmpty(message = "Admin name cannot be left blank or null")
 	@Size(min = 3, max = 20, message = "Invalid Admin Name")
 	private String adminName;
-	
+
 	@ApiModelProperty(name = "Email", value = "Email cannot be empty")
 	@Column
 	@NotEmpty(message = "Email cannot be left blank or null")
 	@Email(message = "Enter valid email Id")
 	private String email;
-	
+
 	@ApiModelProperty(name = "Mobile", value = "Mobile number cannot be null, holds max and min 10 digits")
 	@Column
 	@NotEmpty(message = "MobileNo cannot be left blank or null")
@@ -43,30 +43,6 @@ public class Admin extends User {
 		this.mobile = mobile;
 		this.setUserType("2");
 
-	}
-
-	public String getAdminName() {
-		return adminName;
-	}
-
-	public void setAdminName(String adminName) {
-		this.adminName = adminName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
 	}
 
 	@Override
@@ -104,6 +80,30 @@ public class Admin extends User {
 		} else if (!mobile.equals(other.mobile))
 			return false;
 		return true;
+	}
+
+	public String getAdminName() {
+		return adminName;
+	}
+
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 	@Override

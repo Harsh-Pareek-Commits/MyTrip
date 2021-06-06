@@ -1,9 +1,7 @@
-package com.g5.tms.entityDto;
+package com.g5.tms.entitydto;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
-import lombok.Data;
 
 
 public class TravelsEntityDto {

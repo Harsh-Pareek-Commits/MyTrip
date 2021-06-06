@@ -2,8 +2,6 @@ package com.g5.tms.controller;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,13 +22,10 @@ public class UserController {
 	@Autowired
 	IUserService userService;
 	
-	Logger log = LoggerFactory.getLogger(UserController.class);
-	
 	@ApiOperation(value = "User Post mapping to add user", response = User.class)
 	@PostMapping("/add")
 	public User adduser(@RequestBody @Valid User user)
 	{
-		log.info("Inside add user");
 		this.userService.addNewUser(user);
 		return user;
 	}
@@ -39,7 +34,6 @@ public class UserController {
 	@PostMapping("/signin")
 	public User signuser(@RequestBody @Valid User user) throws InvalidCredentialException
 	{
-		log.info("Inside user sign in");
 		this.userService.signIn(user);
 		return user;
 	}
@@ -48,8 +42,7 @@ public class UserController {
 	@PostMapping("/signout")
 	public User signoutuser(@RequestBody @Valid User user) 
 	{
-		log.info("Inside user sign out");
-		this.userService.signOut(user);
+	this.userService.signOut(user);
 		return user;
 	}
 	

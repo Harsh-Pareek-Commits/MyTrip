@@ -1,4 +1,4 @@
-package com.g5.tms.entityDto;
+package com.g5.tms.entitydto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.g5.tms.entities.Bus;
-import lombok.Data;
+
 
 
 public class RouteEntityDto {

@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.g5.tms.entities.Bus;
 import lombok.Data;
 
 @Data

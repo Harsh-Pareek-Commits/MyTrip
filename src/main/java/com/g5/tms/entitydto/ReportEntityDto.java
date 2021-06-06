@@ -1,4 +1,4 @@
-package com.g5.tms.entityDto;
+package com.g5.tms.entitydto;
 
 import java.util.Set;
 

@@ -37,11 +37,12 @@ public class RouteServiceImpl implements IRouteService {
 	@Override
 	@Transactional
 	public Route updateRoute(Route route) throws RouteNotFoundException {
-		Optional<Route> opt = null;
+	
 		try {
-			opt = routeRepository.findById(route.getRouteId());
+			Optional<Route> opt = routeRepository.findById(route.getRouteId());
 			if (opt.isPresent()) {
 				routeRepository.save(route);
+				return opt.get();
 			} else {
 				throw new RouteNotFoundException("Route not found in update route!");
 			}
@@ -50,7 +51,7 @@ public class RouteServiceImpl implements IRouteService {
 			throw new RouteNotFoundException("Route not found in update route!");
 		}
 
-		return opt.get();
+		
 	}
 
 	@Override

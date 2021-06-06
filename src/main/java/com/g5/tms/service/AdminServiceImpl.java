@@ -2,12 +2,12 @@ package com.g5.tms.service;
 
 import javax.transaction.Transactional;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.g5.tms.entities.Admin;
 
-
 public class AdminServiceImpl extends UserServiceImpl {
+	@Autowired
 
 	@Transactional
 	public Admin addNewUser(Admin admin) {

@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.g5.tms.dto.BookingDto;
-import com.g5.tms.dto.CustomerDto;
 import com.g5.tms.dto.PackageDto;
-import com.g5.tms.entities.Booking;
-import com.g5.tms.entities.Customer;
 import com.g5.tms.entities.Package;
-import com.g5.tms.entityDto.PackageEntityDto;
+import com.g5.tms.entitydto.PackageEntityDto;
 import com.g5.tms.exceptions.PackageNotFoundException;
 import com.g5.tms.service.IPackageService;
 
@@ -42,16 +35,12 @@ public class PackageConroller {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	Logger log = LoggerFactory.getLogger(PackageConroller.class);
-	
 	@ApiOperation(value ="Package Post mapping to add package", response = Package.class)
 	@PostMapping("/add")
 	public  ResponseEntity<PackageDto>  addingPackage(@RequestBody @Valid PackageEntityDto requestpack) 
 	{
 	 
-
-		log.info("Inside add package");
-		Package actualpack = modelMapper.map(requestpack, Package.class);
+	Package actualpack = modelMapper.map(requestpack, Package.class);
 		PackageDto responsepack = modelMapper.map(this.packageService.addPackage(actualpack), PackageDto.class);
 		return new ResponseEntity<>(responsepack, HttpStatus.OK);
 	}
@@ -61,7 +50,6 @@ public class PackageConroller {
 	public ResponseEntity<PackageDto> deletingPackage(@PathVariable int packageId) throws PackageNotFoundException
 	{
 		
-		log.info("Inside delete package");
 	PackageDto responsepack = modelMapper.map(this.packageService.deletePackage(packageId), PackageDto.class);
 	if (responsepack != null) {
 		return new ResponseEntity<>(responsepack, HttpStatus.OK);
@@ -74,8 +62,6 @@ public class PackageConroller {
 	@GetMapping("/search/{packageId}")
 	public  ResponseEntity<PackageDto>  searchingPackage(@PathVariable int packageId) throws PackageNotFoundException
 	{
-	
-		log.info("Inside finding package by package id");
 		 PackageDto responsepack = modelMapper.map(this.packageService.searchPackage(packageId), PackageDto.class);
 			if (responsepack != null) {
 				return new ResponseEntity<>(responsepack, HttpStatus.OK);
@@ -89,9 +75,7 @@ public class PackageConroller {
 	@GetMapping("/all")
 	public  ResponseEntity<List<PackageDto>> viewAllPackages()
 	{
-		
-	       	log.info("Inside finding all packages");
-	        List<Package> packList = this.packageService.viewAllPackages();
+		   List<Package> packList = this.packageService.viewAllPackages();
 			List<PackageDto> packDtoList = new ArrayList<>();
 			for (Package p : packList) {
 				PackageDto packdto = modelMapper.map(p, PackageDto.class);

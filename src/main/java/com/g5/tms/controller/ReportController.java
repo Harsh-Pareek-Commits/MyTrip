@@ -6,8 +6,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.g5.tms.dto.ReportDto;
 import com.g5.tms.entities.Report;
-import com.g5.tms.entityDto.ReportEntityDto;
+import com.g5.tms.entitydto.ReportEntityDto;
 import com.g5.tms.exceptions.ReportNotFoundException;
 import com.g5.tms.service.IReportService;
 
@@ -37,14 +35,10 @@ public class ReportController {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	Logger log = LoggerFactory.getLogger(ReportController.class);
-	
 	@ApiOperation(value = "Report Post mapping to add report", response = Report.class)
 	@PostMapping("/add")
 	public ResponseEntity<ReportDto> addReport(@RequestBody @Valid ReportEntityDto requestreport) {
-
-		log.info("Inside add report");
-		Report actualreport = modelMapper.map(requestreport, Report.class);
+	Report actualreport = modelMapper.map(requestreport, Report.class);
 		ReportDto responsereport = modelMapper.map(this.reportService.addReport(actualreport), ReportDto.class);
 		return new ResponseEntity<>(responsereport, HttpStatus.OK);
 	}
@@ -52,8 +46,6 @@ public class ReportController {
 	@ApiOperation(value = "Report Delete mapping to delete report", response = Report.class)
 	@DeleteMapping("/delete/{reportId}")
 	public ResponseEntity<ReportDto> deleteReport(@PathVariable int reportId) throws ReportNotFoundException {
-		
-		log.info("Inside delete report");
 		ReportDto responsereport = modelMapper.map(this.reportService.deleteReport(reportId), ReportDto.class);
 		
 		if (responsereport != null) {
@@ -68,43 +60,32 @@ public class ReportController {
 	@ApiOperation(value = "Report Get mapping to fetch report by report id", response = Report.class)
 	@GetMapping("/view/{reportid}")
 	public ResponseEntity<ReportDto> viewReportbyId(@PathVariable int reportid) throws ReportNotFoundException {
-		
-		
-		log.info("Inside finding report by report id");
-		ReportDto responsereport = modelMapper.map(this.reportService.viewReport(reportid), ReportDto.class);
+	ReportDto responsereport = modelMapper.map(this.reportService.viewReport(reportid), ReportDto.class);
 		if (responsereport != null) {
 			return new ResponseEntity<>(responsereport, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(responsereport, HttpStatus.BAD_REQUEST);
 		}
 	}
-	/*public Report viewReport(@PathVariable int repoid) throws ReportNotFoundException {
-    	Report repo;
-    	repo=this.reportService.viewReport(repoid);
-		return repo;
-	}*/
+	
 	
 	
 	@ApiOperation(value = "Report Get mapping to fetch all reports", response = List.class)
 	@GetMapping("/all")
 	public ResponseEntity<List<ReportDto>> viewAllReports() {
 	       
-		
-		log.info("Inside get all reports");
-        List<Report> reportList = this.reportService.viewAllReports();
-		List<ReportDto> ReportDtoList = new ArrayList<>();
+		 List<Report> reportList = this.reportService.viewAllReports();
+		List<ReportDto> reportDtoList = new ArrayList<>();
 		for (Report r : reportList) {
 			ReportDto reportdto = modelMapper.map(r, ReportDto.class);
-			ReportDtoList.add(reportdto);
+			reportDtoList.add(reportdto);
 		}
-		if (!(ReportDtoList.isEmpty())) {
-			return new ResponseEntity<>(ReportDtoList, HttpStatus.OK);
+		if (!(reportDtoList.isEmpty())) {
+			return new ResponseEntity<>(reportDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(ReportDtoList, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(reportDtoList, HttpStatus.BAD_REQUEST);
 		}
 	}
 	
-    /*public List<@NotBlank Report> viewReport(){
-	    return reportService.viewAllReports();
-	}*/
+  
 }
