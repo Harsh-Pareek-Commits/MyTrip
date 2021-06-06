@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "Trip_user")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -24,8 +26,12 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
+	
+	@ApiModelProperty(name = "UserType", value = "Holds type of user")
 	@Column
 	private String userType;
+	
+	@ApiModelProperty(name = "Password", value = "Cannot be empty, holds min of 8 characters")
 	@Column
 	@NotEmpty(message = "Password cannot be left blank or null")
 	@Size(min = 8,message = "Invalid Password, Password should be min 8")

@@ -7,18 +7,25 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @DiscriminatorValue(value = "2")
 public class Admin extends User {
 
+	@ApiModelProperty(name = "AdminName", value = "Holds the min 3 characters admin name", required = true)
 	@Column
 	@NotEmpty(message = "Admin name cannot be left blank or null")
 	@Size(min = 3, max = 20, message = "Invalid Admin Name")
 	private String adminName;
+	
+	@ApiModelProperty(name = "Email", value = "Email cannot be empty")
 	@Column
 	@NotEmpty(message = "Email cannot be left blank or null")
 	@Email(message = "Enter valid email Id")
 	private String email;
+	
+	@ApiModelProperty(name = "Mobile", value = "Mobile number cannot be null, holds max and min 10 digits")
 	@Column
 	@NotEmpty(message = "MobileNo cannot be left blank or null")
 	@Size(min = 10, max = 10, message = "Invalid Mobile Number")

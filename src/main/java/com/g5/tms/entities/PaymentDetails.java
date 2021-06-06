@@ -11,29 +11,43 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 public class PaymentDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private  int paymentId;
+	
+	@ApiModelProperty(name = "PaymentMode", value = "Cannot be empty, holds min of 2 max of 15 characters")
 	@Column
 	@NotEmpty(message = "Payment Mode cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid Payment Mode")
 	private  String paymentMode;
+	
+	@ApiModelProperty(name = "BankName", value = "Cannot be empty, holds min of 3 characters")
 	@Column
 	@NotEmpty(message = "Bank Name cannot be left blank or null")
 	@Size(min = 3,message = "Invalid Bank Name")
 	private  String bankName;
+	
+	@ApiModelProperty(name = "CardNumber", value = "Contains card number")
 	@Column
 	@Pattern(regexp="(^$|[0-9]{16})", message ="Enter 16 digit Card number")
 	private  String  cardNo;
+	
+	@ApiModelProperty(name = "NetAmount", value = "Holds positive value")
 	@Column
 	@Positive	
 	@Min(0)	
 	private double   netAmount;
+	
+	@ApiModelProperty(name = "PaymentStatus", value = "Cannot be empty")
 	@Column
 	@NotEmpty(message = "Payment status cannot be left blank or null")
 	private  String  paymentStatus;
+	
+	@ApiModelProperty(name = "UserId", value = "Contains valid user id and must be positive")
 	@Column
 	@Positive
 	@Min(0)
