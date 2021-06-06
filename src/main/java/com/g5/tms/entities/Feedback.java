@@ -19,6 +19,8 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 public class Feedback {
 
@@ -29,13 +31,19 @@ public class Feedback {
 	@JoinColumn(name = "User_info", referencedColumnName = "userId")
 	@Valid
 	private Customer customer;
+	
+	@ApiModelProperty(name = "Feedback", value = "Holds min of 2 and max of 50 characters")
 	@Column
 	@Size(min = 2,max = 50,message = "feedback should be min of 2 and max of 50 characters")
 	private String feedback;
+	
+	@ApiModelProperty(name = "Rating", value = "Rating can only be in between 1 to 5")
 	@Column
 	@Min(value = 1, message = "Rating should not be less than 1")
     @Max(value = 5, message = "Rating should not be greater than 5")
 	private int rating;
+	
+	@ApiModelProperty(name = "SubmitDate", value = "Date cannot be past")
 	@FutureOrPresent(message="date can't be in past")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate submitDate;

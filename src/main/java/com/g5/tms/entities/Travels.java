@@ -9,24 +9,34 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 public class Travels {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int travelsId;
+	
+	@ApiModelProperty(name = "TravelsName", value = "Cannot be empty, holds min of 2 and max of 15 characters")
 	@Column
 	@NotEmpty(message = "Travels name cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid travels Name")
 	private String travelsName;
+	
+	@ApiModelProperty(name = "AgentName", value = "Cannot be empty, holds min of 2 and max of 15 characters")
 	@Column
 	@NotEmpty(message = "Agent name cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid agent Name")
 	private String  agentName;
+	
+	@ApiModelProperty(name = "Address", value = "Cannot be empty, holds min of 2 characters")
 	@Column
 	@NotEmpty(message = "Address cannot be left blank or null")
 	@Size(min = 2,message = "Invalid address")
 	private String  address;
+	
+	@ApiModelProperty(name = "Contact", value = "Contains valid 10 digit mobile number")
 	@Column
 	@NotEmpty(message = "Contact number cannot be left blank or null")
 	@Pattern(regexp="(^$|[0-9]{10})", message ="Enter 10 digit contact number")

@@ -1,4 +1,4 @@
-package com.g5.tms.configuration;
+/**package com.g5.tms.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,3 +34,4 @@ public class SwaggerConfiguration extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
 }
+**/

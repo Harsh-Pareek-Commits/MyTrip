@@ -10,32 +10,46 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 public class Hotel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int hotelId;
+	
+	@ApiModelProperty(name = "HotelName", value = "Cannot be empty, holds min of 3  and max of 10 characters")
 	@Column
 	@NotEmpty(message = "Hotel name cannot be left blank or null")
 	@Size(min = 2,max = 10,message = "Invalid Hotel Name")
 	private String hotelName;
+	
+	@ApiModelProperty(name = "HotelType", value = "Cannot be empty, holds min of 2 and max of 20 characters")
 	@Column
 	@NotEmpty(message = "Hotel Type cannot be left blank or null")
 	@Size(min = 2,max = 20,message = "Invalid Hotel Type")
 	private String hotelType;
+	
+	@ApiModelProperty(name = "HotelDescription", value = "Holds min of 10 and max of 50 characters")
 	@Column
 	@Size(min = 10, max = 50, message 
     = "Hotel Description must be between 10 and 50 characters")
 	private String hotelDescription;
+	
+	@ApiModelProperty(name = "Adrress", value = "Contains hotel address, cannot be empty")
 	@Column
 	@NotEmpty(message = "Address cannot be left blank or null")
 	@Size(min = 2,message = "Invalid Hotel Address")
 	private String address;
+	
+	@ApiModelProperty(name = "Rent", value = "Holds positive value")
 	@Column
 	@Positive
 	@Min(0)
 	private double rent;
+	
+	@ApiModelProperty(name = "Status", value = "Cannot be empty")
 	@Column
 	@NotEmpty(message = "Hotel Status cannot be left blank or null")
 	private String status;

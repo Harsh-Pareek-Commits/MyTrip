@@ -13,24 +13,34 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 public class Bus {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int busId;
+	
+	@ApiModelProperty(name = "BusType", value = "Cannot be null, holds min of 2 characters and max of 15 characters")
 	@Column
 	@NotEmpty(message = "Bus Type cannot be left balnk or null")
 	@Size(min= 2, max =15, message = "Enter valid Bus Type")
 	private  String busType;
+	
+	@ApiModelProperty(name = "BusNumber", value = "Cannot be null, holds 9 characters")
 	@Column
 	@NotEmpty(message = "Bus Number cannot be left balnk or null")
 	@Size(min= 9, max =9, message = "Enter valid Bus Number")
 	private  String busNumber;
+	
+	@ApiModelProperty(name = "Capacity", value = "Holds positive value")
 	@Column
 	@Positive
 	@Min(0)
 	private int capacity;
+	
+	@ApiModelProperty(name = "Travel", value = "Conatins travel details")
 	@OneToOne
 	@JoinColumn(name = "Travel_info", referencedColumnName = "travelsId")
 	@Valid

@@ -18,32 +18,46 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 public class Package {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	
 	private int packageId;
+	
+	@ApiModelProperty(name = "PackageName", value = "Cannot be empty, holds min of 2 max of 15 characters")
 	@Column
 	@NotEmpty(message = "Package name cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid Package Name")
 	private String packageName;
+	
+	@ApiModelProperty(name = "PackageDescription", value = "Holds min of 10 max of 50 characters")
 	@Column
 	@Size(min = 10, max = 50, message 
     = "Package Description must be between 10 and 50 characters")
 	private String packageDescription;
+	
+	@ApiModelProperty(name = "PackageType", value = "Cannot be empty, holds min of 2 max of 15 characters")
 	@Column
 	@NotEmpty(message = "Package Type cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid Package Type")
 	private String packageType;
+	
+	@ApiModelProperty(name = "PackageCost", value = "Contains positive value")
 	@Column
 	@Positive
 	@Min(0)
 	private double packageCost;
+	
+	@ApiModelProperty(name = "Route", value = "Contains route information")
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Route_info", referencedColumnName = "routeId")
 	@Valid
 	private Route route;
+	
+	@ApiModelProperty(name = "Hotel", value = "Contains hotel information")
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name = "Hotel_info", referencedColumnName = "hotelId")
 	@Valid

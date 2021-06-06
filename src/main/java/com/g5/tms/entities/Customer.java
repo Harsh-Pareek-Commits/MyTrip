@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,18 +20,26 @@ import lombok.NoArgsConstructor;
 @DiscriminatorValue(value = "3")
 public class Customer extends User {
 
+	
+	@ApiModelProperty(name = "CustomerName", value = "Cannot be null, holds min of 3 characters and max of 20 characters")
 	@Column
 	@NotEmpty(message = "Customer name cannot be left blank or null")
 	@Size(min = 3, max = 20, message = "Invalid Customer Name")
 	private String customerName;
+	
+	@ApiModelProperty(name = "Address", value = "Cannot be null, holds min of 5 characters")
 	@Column
 	@NotEmpty(message = "Address cannot be left blank or null")
 	@Size(min = 5, message = "Invalid Address")
 	private String address;
+	
+	@ApiModelProperty(name = "MobileNumber", value = "Cannot be null, should be valid 10 digit mobile number")
 	@Column
 	@NotEmpty(message = "Mobile number cannot be left blank or null")
 	@Pattern(regexp = "(^$|[0-9]{10})", message = "Enter 10 digit mobile number")
 	private String mobileNo;
+	
+	@ApiModelProperty(name = "Email", value = "Holds email id")
 	@Column
 	@Email(message = "Enter valid email Id")
 	private String email;
