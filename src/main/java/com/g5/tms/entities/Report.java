@@ -11,20 +11,29 @@ import javax.persistence.ManyToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.JoinColumn;
 @Entity
 public class Report {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int reportId;
+	
+	@ApiModelProperty(name = "ReportName", value = "Cannot be empty, holds min of 2 and max of 15 characters")
 	@Column
 	@NotEmpty(message = "Report name cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid report Name")
 	private String reportName;
+	
+	@ApiModelProperty(name = "ReportType", value = "Cannot be empty, holds min of 2 and max of 15 characters")
 	@Column
 	@NotEmpty(message = "Report type cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid Report Name")
 	private String reportType; 
+	
+	@ApiModelProperty(name = "Bookings", value = "Contails booking details")
 	@ManyToMany
 	@JoinColumn(name = "bookingId", referencedColumnName = "bookingId")
 	@Valid

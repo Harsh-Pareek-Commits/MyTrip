@@ -40,6 +40,11 @@ public class CustomerDto {
 	public void setCustomerEmail(String customerEmail) {
 		this.customerEmail = customerEmail;
 	}
+	@Override
+	public String toString() {
+		return "CustomerDto [customerId=" + customerId + ", customerName=" + customerName + ", customerAddress="
+				+ customerAddress + ", customerMobileNo=" + customerMobileNo + ", customerEmail=" + customerEmail + "]";
+	}
 
 	
 

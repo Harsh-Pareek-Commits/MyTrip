@@ -41,8 +41,9 @@ public class ReportServiceImpl implements IReportService {
 			Optional<Report>opt= reportRepository.findById(reportId);
 		    if(opt.isPresent()) {
 	    	reportRepository.deleteById(reportId);
+	    	
 	    	return opt.get();
-		    }
+		    		    }
 		    else {
 		    	throw new ReportNotFoundException("Report not found in delete!");
 		    }

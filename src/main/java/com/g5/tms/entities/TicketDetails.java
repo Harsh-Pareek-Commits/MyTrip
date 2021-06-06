@@ -8,12 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 public class TicketDetails {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int ticketId;
+	
+	@ApiModelProperty(name = "Status", value = "Cannot be empty")
 	@Column
 	@NotEmpty(message = "Status cannot be left blank or null")
 	private String status;

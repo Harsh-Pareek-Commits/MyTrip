@@ -1,10 +1,16 @@
 package com.g5.tms.entityDto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class UserEntityDto {
 	private int userId;
+	
 	private String userType;
+	@NotEmpty(message = "Password cannot be left blank or null")
+	@Size(min = 8,message = "Invalid Password, Password should be min 8")
 	private String password;
+	
 	public int getUserId() {
 		return userId;
 	}
@@ -29,7 +35,6 @@ public class UserEntityDto {
 	
 	}
 	
-
 	@Override
 	public String toString() {
 		return "UserEntityDto [userId=" + userId + ", userType=" + userType + ", password=" + password + "]";
