@@ -24,43 +24,61 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 public class Route {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int routeId;
+	
+	@ApiModelProperty(name = "RouteFrom", value = "Cannot be empty, holds min of 2 and max of 15 characters")
 	@Column
 	@NotEmpty(message = "Route name cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid Origin")
 	private String  routeFrom;
+	
+	@ApiModelProperty(name = "RouteTo", value = "Cannot be empty, holds min of 2 and max of 15 characters")
 	@Column
 	@NotEmpty(message = "Route name cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid Destination")
 	private String  routeTo;
+	
+	@ApiModelProperty(name = "Buses", value = "Contains bus list and information")
 	@OneToMany(cascade = CascadeType.ALL)
 	  @JoinTable(name = "Route_Bus", joinColumns = @JoinColumn(name = "routeId"),
 	  inverseJoinColumns = @JoinColumn(name = "busId"))
 	@Valid
 	private  List<Bus> buses;
+	
+	@ApiModelProperty(name = "DepartureTime", value = "Date cannot be past")
 	@FutureOrPresent(message = "Date cannot be past")
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss" )
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private  LocalDateTime  departureTime;
+	
+	@ApiModelProperty(name = "ArrivalTime", value = "Date cannot be past")
 	@Future(message = "Date cannot be past")
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss" )
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private  LocalDateTime   arrivalTime;
+	
+	@ApiModelProperty(name = "Date", value = "Cannot be past")
     @Future(message = "Date cannot be past")
     @DateTimeFormat(pattern="yyyy-MM-dd" )
     @JsonFormat(pattern="yyyy-MM-dd")
 	private  LocalDate   doj;
+	
+	@ApiModelProperty(name = "PickUpPoint", value = "Cannot be empty, holds min of 2 and max of 15 characters")
 	@Column
 	@NotEmpty(message = "Pickup point cannot be left blank or null")
 	@Size(min = 2,max = 15,message = "Invalid pickup point")
 	private String pickupPoint;
+	
+	@ApiModelProperty(name = "Fare", value = "Holds positive value")
 	@Column
 	@Min(0)
 	@Positive 
