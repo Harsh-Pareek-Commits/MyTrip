@@ -1,6 +1,9 @@
 package com.g5.tms.testing;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +71,15 @@ public class TravelServiceTest {
 		assertEquals(travel_list, actual_travel);
 	};
 	
-	
+	@Test
+	void testTravelsNotFoundException() {
+		Travels travels = new Travels(1, "MakeMyTrip", "Harsh","indranagar","7485961230");
+		
+		Optional<Travels> opt = Optional.of(travels);
+		when(travel_repo.findById(1)).thenReturn(opt);
+		org.junit.jupiter.api.function.Executable executable = ()->travel_service.searchTravels(3);
+		assertThrows(TravelsNotFoundException.class, executable);
+	}
+
 
 }
