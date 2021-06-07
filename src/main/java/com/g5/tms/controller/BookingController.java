@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,51 +36,46 @@ public class BookingController {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	
 	@ApiOperation(value = "Booking Post mapping for booking", response = Booking.class)
 	@PostMapping("/add")
-	public ResponseEntity<BookingDto> makeBooking(@RequestBody @Valid BookingEntityDto requestbooking) {
-	
-		Booking actualbooking = modelMapper.map(requestbooking, Booking.class);
-		System.out.println(actualbooking);
-		System.out.println(requestbooking);
-		BookingDto responsebooking = modelMapper.map(this.bookingService.makeBooking(actualbooking), BookingDto.class);
-		return new ResponseEntity<>(responsebooking, HttpStatus.OK);
-		
+	public ResponseEntity<BookingDto> makeBooking(@RequestBody @Valid BookingEntityDto requestBooking) {
+
+		Booking actualBooking = modelMapper.map(requestBooking, Booking.class);
+		BookingDto responseBooking = modelMapper.map(this.bookingService.makeBooking(actualBooking), BookingDto.class);
+		return new ResponseEntity<>(responseBooking, HttpStatus.OK);
+
 	}
 
 	@ApiOperation(value = "Booking Delete mapping to cancel booking", response = Booking.class)
 	@DeleteMapping("/delete/{bookingId}")
 	public ResponseEntity<BookingDto> cancelBooking(@PathVariable int bookingId) throws BookingNotFoundException {
-		
-		BookingDto responsebooking = modelMapper.map(this.bookingService.cancelBooking(bookingId), BookingDto.class);
-		if (responsebooking != null) {
-			return new ResponseEntity<>(responsebooking, HttpStatus.OK);
+
+		BookingDto responseBooking = modelMapper.map(this.bookingService.cancelBooking(bookingId), BookingDto.class);
+		if (responseBooking != null) {
+			return new ResponseEntity<>(responseBooking, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsebooking, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responseBooking, HttpStatus.BAD_REQUEST);
 		}
-		 
+
 	}
 
-	
 	@ApiOperation(value = "Booking Get mapping to fetch booking by booking id", response = Booking.class)
 	@GetMapping("/view/{bookingId}")
 	public ResponseEntity<BookingDto> viewBooking(@PathVariable int bookingId) throws BookingNotFoundException {
-    
-     BookingDto responsebooking = modelMapper.map(this.bookingService.viewBooking(bookingId), BookingDto.class);
-		if (responsebooking != null) {
-			return new ResponseEntity<>(responsebooking, HttpStatus.OK);
+
+		BookingDto responseBooking = modelMapper.map(this.bookingService.viewBooking(bookingId), BookingDto.class);
+		if (responseBooking != null) {
+			return new ResponseEntity<>(responseBooking, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsebooking, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responseBooking, HttpStatus.BAD_REQUEST);
 		}
 	}
 
-	
 	@ApiOperation(value = "Booking Get mapping to fetch all bookings")
 	@GetMapping("/view")
 	public ResponseEntity<List<BookingDto>> viewAllBookings() {
-       
-        List<Booking> bookingList = this.bookingService.viewAllBookings();
+
+		List<Booking> bookingList = this.bookingService.viewAllBookings();
 		List<BookingDto> bookingDtoList = new ArrayList<>();
 		for (Booking b : bookingList) {
 			BookingDto bookingdto = modelMapper.map(b, BookingDto.class);

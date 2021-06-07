@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
-
-import com.g5.tms.dto.CustomerDto;
 import com.g5.tms.entities.Customer;
 import com.g5.tms.exceptions.CustomerNotFoundException;
 import com.g5.tms.exceptions.PackageNotFoundException;
@@ -20,6 +18,7 @@ import com.g5.tms.repository.IBookingRepository;
 import com.g5.tms.repository.ICustomerRepository;
 import com.g5.tms.repository.IPackageRepository;
 
+ 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
 	Logger log = LoggerFactory.getLogger(CustomerServiceImpl.class);
@@ -29,7 +28,12 @@ public class CustomerServiceImpl implements ICustomerService {
 	IBookingRepository bookingRepository;
 	@Autowired
 	IPackageRepository packageRepository;
-
+	/*
+	 *Author= Harsh Pareek
+	 *Date= 24-May-2021
+	 *Method name:addCustomer 
+	 *Parameters: Customer object
+	 *Return Type: Customer object*/
 	@Override
 	@Transactional
 	public Customer addCustomer(Customer customer) {
@@ -44,7 +48,12 @@ public class CustomerServiceImpl implements ICustomerService {
 		
 		return customer;
 	}
-
+	/*
+	 *Author= Harsh Pareek
+	 *Date= 24-May-2021
+	 *Method name: updateCustomer 
+	 *Parameters: Customer object
+	 *Return Type: Customer object*/
 	@Override
 	@Transactional
 	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException {
@@ -69,6 +78,14 @@ public class CustomerServiceImpl implements ICustomerService {
 
 	@Override
 	@Transactional
+	/*
+	 *Author= Harsh Pareek
+	 *Date= 24-May-2021
+	 *Method name: deleteCustomer 
+	 *Parameters: Customer object
+	 *Return Type: Customer object
+	 *
+	 **/
 	public Customer deleteCustomer(Customer customer) throws CustomerNotFoundException {
 				try {
 					Optional<Customer> opt =  custRepository.findById(customer.getUserId());
@@ -84,7 +101,14 @@ public class CustomerServiceImpl implements ICustomerService {
 		}
 		
 	}
-
+	/*
+	 *Author= Harsh Pareek
+	 *Date= 24-May-2021
+	 *Method name: deleteCustomer 
+	 *Parameters: Customer object
+	 *Return Type: Customer object
+	 *
+	 **/
 	@Override
 	public Customer viewCustomer(int custid) throws CustomerNotFoundException {
 		Customer cust = null;

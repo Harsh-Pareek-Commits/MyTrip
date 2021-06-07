@@ -24,6 +24,11 @@ public class PackageServiceImpl implements IPackageService {
 	@Transactional
 	public Package addPackage(Package pack) {
 		try {
+		
+		    double total=pack.getRoute().getFare();
+		    total+=pack.getHotel().getRent();
+		    total+=pack.getPackageCost();
+		    pack.setPackageCost(total);
 			packageRepository.save(pack);
 		} catch (Exception e) {
 			log.error("Adding package Exception:", e);

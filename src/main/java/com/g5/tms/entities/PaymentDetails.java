@@ -36,10 +36,6 @@ public class PaymentDetails {
 	@Pattern(regexp="(^$|[0-9]{16})", message ="Enter 16 digit Card number")
 	private  String  cardNo;
 	
-	@ApiModelProperty(name = "NetAmount", value = "Holds positive value")
-	@Column
-	@Positive	
-	@Min(0)	
 	private double   netAmount;
 	
 	@ApiModelProperty(name = "PaymentStatus", value = "Cannot be empty")

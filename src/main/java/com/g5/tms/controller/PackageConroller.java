@@ -41,8 +41,6 @@ public class PackageConroller {
 	{
 	 
 	Package actualpack = modelMapper.map(requestpack, Package.class);
-	System.out.println(actualpack);
-	System.out.println(requestpack);
 		PackageDto responsepack = modelMapper.map(this.packageService.addPackage(actualpack), PackageDto.class);
 		return new ResponseEntity<>(responsepack, HttpStatus.OK);
 	}

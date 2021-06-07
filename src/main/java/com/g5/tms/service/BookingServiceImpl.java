@@ -26,9 +26,14 @@ public class BookingServiceImpl implements IBookingService {
 	@Transactional
 	public Booking makeBooking(Booking booking) {
 		try {
+			double netAmount=booking.getPack().getPackageCost();
+		
+			netAmount+=(netAmount*0.05);
+			booking.getPayment().setNetAmount(netAmount);
 			bookingRepository.save(booking);
 		} catch (Exception e) {
 			log.error("Booking exp:", e);
+
 		}
 		return booking;
 	}

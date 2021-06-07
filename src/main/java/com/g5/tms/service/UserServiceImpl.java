@@ -38,9 +38,10 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User signIn(User user) throws InvalidCredentialException {
-		
-		Optional<User> opt = userRepository.findById(user.getUserId());
 		try {
+
+			Optional<User> opt = userRepository.findById(user.getUserId());
+			
 			if (opt.isPresent()) {
 				User u = opt.get();
 				boolean matched = BCrypt.checkpw(user.getPassword(), u.getPassword());

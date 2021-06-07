@@ -40,8 +40,6 @@ public class RouteController {
 	@PostMapping("/add")
 	public ResponseEntity<RouteDto> addRoute(@RequestBody @Valid RouteEntityDto requestRoute) {
 	Route actualRoute = modelMapper.map(requestRoute, Route.class);
-	System.out.println(actualRoute);
-	System.out.println(requestRoute);
 		RouteDto responseRoute = modelMapper.map(this.routeServices.addRoute(actualRoute), RouteDto.class);
 		return new ResponseEntity<>(responseRoute, HttpStatus.OK);
 	}
