@@ -34,7 +34,14 @@ public class ReportController {
 	
 	@Autowired
 	private ModelMapper modelMapper;
-	
+	/*
+	 *Author= Jaydeep Maity
+	 *Date= 26-May-2021
+	 *Method name: addReport
+	 *Parameters: ReportEntityDto object
+	 *Return Type: ReportDto object
+	 *
+	 **/
 	@ApiOperation(value = "Report Post mapping to add report", response = Report.class)
 	@PostMapping("/add")
 	public ResponseEntity<ReportDto> addReport(@RequestBody @Valid ReportEntityDto requestreport) {
@@ -42,6 +49,15 @@ public class ReportController {
 		ReportDto responsereport = modelMapper.map(this.reportService.addReport(actualreport), ReportDto.class);
 		return new ResponseEntity<>(responsereport, HttpStatus.OK);
 	}
+	
+	/*
+	 *Author= Jaydeep Maity
+	 *Date= 26-May-2021
+	 *Method name: deleteReport
+	 *Parameters: Report id
+	 *Return Type: ReportDto object
+	 *
+	 **/
 	
 	@ApiOperation(value = "Report Delete mapping to delete report", response = Report.class)
 	@DeleteMapping("/delete/{reportId}")
@@ -56,6 +72,15 @@ public class ReportController {
 		 
 	}
 	
+	/*
+	 *Author= Jaydeep Maity
+	 *Date= 26-May-2021
+	 *Method name: viewReportbyId
+	 *Parameters: Report id
+	 *Return Type: ReportDto object
+	 *
+	 **/
+	
 	
 	@ApiOperation(value = "Report Get mapping to fetch report by report id", response = Report.class)
 	@GetMapping("/view/{reportid}")
@@ -68,6 +93,13 @@ public class ReportController {
 		}
 	}
 	
+	/*
+	 *Author= Jaydeep Maity
+	 *Date= 26-May-2021
+	 *Method name: viewAllReports
+	 *Return Type: ReportDto object list
+	 *
+	 **/
 	
 	
 	@ApiOperation(value = "Report Get mapping to fetch all reports", response = List.class)

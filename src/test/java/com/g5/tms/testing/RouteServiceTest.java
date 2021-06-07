@@ -1,6 +1,7 @@
 package com.g5.tms.testing;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -19,6 +20,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.g5.tms.entities.Bus;
 import com.g5.tms.entities.Route;
+import com.g5.tms.exceptions.ReportNotFoundException;
 import com.g5.tms.exceptions.RouteNotFoundException;
 
 import com.g5.tms.repository.IRouteRepository;
@@ -109,7 +111,17 @@ public class RouteServiceTest {
 		assertEquals(updatedRoute, outputCustomer);
 		
 	}
-
+	@Test
+	void testRouteNotFoundException() {
+		LocalDateTime depTime = LocalDateTime.now();
+		LocalDateTime arrTime = LocalDateTime.now();
+		LocalDate date = LocalDate.now();
+		Route r1 = new Route(1, "Hyd", "Banglore", null, depTime, arrTime, date, "HydStop", 2000.00);
+		Optional<Route> route = Optional.of(r1);
+		when(routeRepository.findById(1)).thenReturn(route);
+		org.junit.jupiter.api.function.Executable executable = ()->routeService.searchRoute(3);
+		assertThrows(RouteNotFoundException.class, executable);
+	}
 	
 	
 }

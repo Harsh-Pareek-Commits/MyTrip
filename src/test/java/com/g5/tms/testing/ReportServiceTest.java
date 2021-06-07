@@ -1,18 +1,25 @@
 package com.g5.tms.testing;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.g5.tms.entities.Customer;
+import com.g5.tms.entities.Feedback;
 import com.g5.tms.entities.Report;
+import com.g5.tms.exceptions.FeedbackNotFoundException;
 import com.g5.tms.exceptions.ReportNotFoundException;
 import com.g5.tms.repository.IReportRepository;
 import com.g5.tms.service.IReportService;
@@ -21,23 +28,23 @@ import com.g5.tms.service.IReportService;
 @ActiveProfiles("test8")
 public class ReportServiceTest {
 	@Autowired
-	IReportRepository report_repo;
+	IReportRepository reportRepository;
 	@Autowired
-	IReportService report_serv;
+	IReportService reportService;
 
 	@Test
 	public void testReportById() throws ReportNotFoundException {
 		Report rep = new Report(12, "vvvvuu", "reportType", null);
 		Optional<Report>opt=Optional.of(rep);
-		Mockito.when(report_repo.findById(12)).thenReturn(opt);
-		Report test_rep = report_serv.viewReport(12);
+		Mockito.when(reportRepository.findById(12)).thenReturn(opt);
+		Report test_rep = reportService.viewReport(12);
 		assertEquals(rep, test_rep);
 	}
 	@Test
 	public void testAddREport() {
 		Report rep = new Report(12, "vvvvuu", "reportType", null);
-		Mockito.when(report_repo.save(rep)).thenReturn(rep);
-		Report test_rep = report_serv.addReport(rep);
+		Mockito.when(reportRepository.save(rep)).thenReturn(rep);
+		Report test_rep = reportService.addReport(rep);
 		assertEquals(rep, test_rep);
 		
 	}
@@ -47,8 +54,8 @@ public class ReportServiceTest {
 		
 		Report rep = new Report(12, "vvvvuu", "reportType", null);
 		List<Report> rep_list = Arrays.asList(rep);
-		Mockito.when(report_repo.findAll()).thenReturn(rep_list);
-		List<Report> actual_replist = report_serv.viewAllReports();
+		Mockito.when(reportRepository.findAll()).thenReturn(rep_list);
+		List<Report> actual_replist = reportService.viewAllReports();
 		assertEquals(rep_list, actual_replist);
 	}
 
@@ -57,13 +64,22 @@ public class ReportServiceTest {
 
 		Report rep = new Report(12, "vvvvuu", "reportType", null);
 		Optional<Report> opt = Optional.of(rep);
-		report_repo.save(rep);
-		report_repo.delete(rep);
-		Mockito.when(report_repo.findById(12)).thenReturn(opt);
+		reportRepository.save(rep);
+		reportRepository.delete(rep);
+		Mockito.when(reportRepository.findById(12)).thenReturn(opt);
 		
-		Report test_rep = report_serv.deleteReport(12);
+		Report test_rep = reportService.deleteReport(12);
 		assertEquals(rep, test_rep);
 		
+	}
+	
+	@Test
+	void testReportNotFoundexception() {
+		Report rep = new Report(12, "vvvvuu", "reportType", null);
+		Optional<Report> report = Optional.of(rep);
+		when(reportRepository.findById(12)).thenReturn(report);
+		Executable executable = ()->reportService.viewReport(14);
+		assertThrows(ReportNotFoundException.class, executable);
 	}
 
 }
