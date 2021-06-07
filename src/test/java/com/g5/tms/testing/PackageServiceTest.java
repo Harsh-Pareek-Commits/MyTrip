@@ -1,11 +1,17 @@
 package com.g5.tms.testing;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+
 
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -63,4 +69,14 @@ public class PackageServiceTest {
 		assertEquals(pack, test_pack);
 		
 	}
+	@Test
+		void testPackageNotFound() {
+		Package pack = new Package(12, "packi2", "descc", "type", 12356,null, null);
+		
+		Optional<Package> opt = Optional.of(pack);
+		when(pack_repo.findById(12)).thenReturn(opt);
+		Executable executable = ()->pack_serv.searchPackage(10);
+		assertThrows(PackageNotFoundException.class, executable);
+	}
+	
 }

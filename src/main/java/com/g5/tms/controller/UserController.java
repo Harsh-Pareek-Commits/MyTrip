@@ -21,7 +21,14 @@ import io.swagger.annotations.ApiOperation;
 public class UserController {
 	@Autowired
 	IUserService userService;
-	
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 24-May-2021
+	 *Method name: addUser
+	 *Parameters: user object
+	 *Return Type: user object
+	 *
+	 **/
 	@ApiOperation(value = "User Post mapping to add user", response = User.class)
 	@PostMapping("/add")
 	public User adduser(@RequestBody @Valid User user)
@@ -29,7 +36,14 @@ public class UserController {
 		this.userService.addNewUser(user);
 		return user;
 	}
-	
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 24-May-2021
+	 *Method name: signuser
+	 *Parameters: user object
+	 *Return Type: user object
+	 *
+	 **/
 	@ApiOperation(value = "User Post mapping for user signing in", response = User.class)
 	@PostMapping("/signin")
 	public User signuser(@RequestBody @Valid User user) throws InvalidCredentialException
@@ -37,7 +51,14 @@ public class UserController {
 		this.userService.signIn(user);
 		return user;
 	}
-	
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 
+	 *Method name: signout
+	 *Parameters: user object
+	 *Return Type: user object
+	 *
+	 **/
 	@ApiOperation(value = "User Post mapping for user signing out", response = User.class)
 	@PostMapping("/signout")
 	public User signoutuser(@RequestBody @Valid User user) 

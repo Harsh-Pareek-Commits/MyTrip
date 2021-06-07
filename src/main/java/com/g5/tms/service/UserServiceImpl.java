@@ -21,6 +21,16 @@ public class UserServiceImpl implements IUserService {
 	Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 	@Autowired
 	IUserRepository userRepository;
+	
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 24-May-2021
+	 *Method name: addNewUser
+	 *Parameters: user object
+	 *Return Type: user object
+	 *
+	 **/
+
 
 	@Override
 	@Transactional
@@ -36,12 +46,20 @@ public class UserServiceImpl implements IUserService {
 		return user;
 	}
 
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 24-May-2021
+	 *Method name: signIn
+	 *Parameters: user object
+	 *Return Type: user object
+	 *
+	 **/
+	
 	@Override
 	public User signIn(User user) throws InvalidCredentialException {
+		
+		Optional<User> opt = userRepository.findById(user.getUserId());
 		try {
-
-			Optional<User> opt = userRepository.findById(user.getUserId());
-			
 			if (opt.isPresent()) {
 				User u = opt.get();
 				boolean matched = BCrypt.checkpw(user.getPassword(), u.getPassword());
@@ -59,6 +77,14 @@ public class UserServiceImpl implements IUserService {
 		}
 	}
 
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 
+	 *Method name: signOut
+	 *Parameters: user object
+	 *
+	 **/
+	
 	@Override
 	public User signOut(User user) {
 
