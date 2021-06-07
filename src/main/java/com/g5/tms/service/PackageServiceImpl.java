@@ -22,6 +22,14 @@ public class PackageServiceImpl implements IPackageService {
 
 	@Override
 	@Transactional
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 24-May-2021
+	 *Method name: addPackage
+	 *Parameters: package object
+	 *Return Type: package object
+	 *
+	 **/
 	public Package addPackage(Package pack) {
 		try {
 		
@@ -38,6 +46,14 @@ public class PackageServiceImpl implements IPackageService {
 
 	@Override
 	@Transactional
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 24-May-2021
+	 *Method name: deletePackage
+	 *Parameters: packageId
+	 *Return Type: Package object
+	 *
+	 **/
 	public Package deletePackage(int packageId) throws PackageNotFoundException {
 	
 		try {
@@ -59,6 +75,14 @@ public class PackageServiceImpl implements IPackageService {
 	}
 
 	@Override
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 24-May-2021
+	 *Method name: searchPackage
+	 *Parameters: packageId
+	 *Return Type: Package object
+	 *
+	 **/
 	public Package searchPackage(int packageId) throws PackageNotFoundException {
 		try {
 			Optional<Package> opt = packageRepository.findById(packageId);
@@ -77,6 +101,14 @@ public class PackageServiceImpl implements IPackageService {
 	}
 
 	@Override
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 24-May-2021
+	 *Method name: deletePackage
+	 *Parameters: none
+	 *Return Type: List of Package objects
+	 *
+	 **/
 	public List<Package> viewAllPackages() {
 		List<Package> list = null;
 		try {

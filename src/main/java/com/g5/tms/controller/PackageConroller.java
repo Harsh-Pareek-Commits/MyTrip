@@ -34,7 +34,14 @@ public class PackageConroller {
 	IPackageService packageService;
 	@Autowired
 	private ModelMapper modelMapper;
-	
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 26-May-2021
+	 *Method name: addPackage
+	 *Parameters: packageEntityDto object
+	 *Return Type: packageDto object
+	 *
+	 **/
 	@ApiOperation(value ="Package Post mapping to add package", response = Package.class)
 	@PostMapping("/add")
 	public  ResponseEntity<PackageDto>  addingPackage(@RequestBody @Valid PackageEntityDto requestpack) 
@@ -44,7 +51,14 @@ public class PackageConroller {
 		PackageDto responsepack = modelMapper.map(this.packageService.addPackage(actualpack), PackageDto.class);
 		return new ResponseEntity<>(responsepack, HttpStatus.OK);
 	}
-	
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 26-May-2021
+	 *Method name: deletingPackage
+	 *Parameters: packageid
+	 *Return Type: packageDto object
+	 *
+	 **/
 	@ApiOperation(value = "Package Delete mapping to delete package", response = Package.class)
 	@DeleteMapping("/delete/{packageId}")
 	public ResponseEntity<PackageDto> deletingPackage(@PathVariable int packageId) throws PackageNotFoundException
@@ -57,7 +71,14 @@ public class PackageConroller {
 		return new ResponseEntity<>(responsepack, HttpStatus.BAD_REQUEST);
 	}
 	}
-	
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 26-May-2021
+	 *Method name: searchingPackage
+	 *Parameters: packageid
+	 *Return Type: packageDto object
+	 *
+	 **/
 	@ApiOperation(value = "Package Get mapping to fetch package by package id", response = Package.class)
 	@GetMapping("/search/{packageId}")
 	public  ResponseEntity<PackageDto>  searchingPackage(@PathVariable int packageId) throws PackageNotFoundException
@@ -70,7 +91,14 @@ public class PackageConroller {
 			}
 	}
 	
-	
+	/*
+	 *Author= Iflak Yousuf Mir
+	 *Date= 26-May-2021
+	 *Method name: viewAllPackages
+	 *Parameters: none
+	 *Return Type: list of packageDto objects
+	 *
+	 **/
 	@ApiOperation(value = "Package Get mapping to fetch all packages", response = List.class)
 	@GetMapping("/all")
 	public  ResponseEntity<List<PackageDto>> viewAllPackages()
