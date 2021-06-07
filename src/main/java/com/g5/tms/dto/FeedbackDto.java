@@ -16,7 +16,7 @@ public class FeedbackDto {
 	
 	private int feedbackId;
 	
-	private Customer customer;
+	private CustomerDto customer;
 
 	private String feedback;
 	
@@ -55,13 +55,12 @@ public class FeedbackDto {
 	public void setSubmitDate(LocalDate submitDate) {
 		this.submitDate = submitDate;
 	}
-	
 
-	public Customer getCustomer() {
+	public CustomerDto getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(Customer customer) {
+	public void setCustomer(CustomerDto customer) {
 		this.customer = customer;
 	}
 
@@ -70,6 +69,7 @@ public class FeedbackDto {
 		return "FeedbackDto [feedbackId=" + feedbackId + ", customer=" + customer + ", feedback=" + feedback
 				+ ", rating=" + rating + ", submitDate=" + submitDate + "]";
 	}
+	
 
 	
 

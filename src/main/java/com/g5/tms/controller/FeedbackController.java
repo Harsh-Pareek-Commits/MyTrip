@@ -36,6 +36,14 @@ public class FeedbackController {
 	private ModelMapper modelMapper;
 	
 	
+	/*
+	 *Author= Jaydeep Maity
+	 *Date= 26-May-2021
+	 *Method name: addFeedback
+	 *Parameters: FeedbackEntityDto object
+	 *Return Type: FeedbackDto object
+	 *
+	 **/
 	
 	@ApiOperation(value = "Feedback Post mapping to add feedback", response = Feedback.class)
 	@PostMapping("/add")
@@ -44,6 +52,15 @@ Feedback actualfeed = modelMapper.map(requestFeed, Feedback.class);
 		FeedbackDto responsefeed = modelMapper.map(this.feedbackService.addFeedback(actualfeed), FeedbackDto.class);
 		return new ResponseEntity<>(responsefeed, HttpStatus.OK);
 	}
+	
+	/*
+	 *Author= Jaydeep Maity
+	 *Date= 26-May-2021
+	 *Method name: viewFeedbackbyId
+	 *Parameters: Feedback id
+	 *Return Type: FeedbackDto object
+	 *
+	 **/
 	
 	@ApiOperation(value = "Feedback Get mapping to fetch feedback by feedback Id", response = Feedback.class)
 	@GetMapping("/find/{feedid}")
@@ -58,6 +75,15 @@ Feedback actualfeed = modelMapper.map(requestFeed, Feedback.class);
 	}
 	
 	
+	/*
+	 *Author= Jaydeep Maity
+	 *Date= 26-May-2021
+	 *Method name: viewFeedbackbyCustomer
+	 *Parameters: Customer id
+	 *Return Type: FeedbackDto object
+	 *
+	 **/
+	
 	@ApiOperation(value = "Feedback Get mapping to fetch feedback by customer id", response = Feedback.class)
 	@GetMapping("/find/customer/{custid}")
 	public ResponseEntity<FeedbackDto> viewFeedbackbyCustomer(@PathVariable int custid) throws CustomerNotFoundException {
@@ -70,6 +96,13 @@ Feedback actualfeed = modelMapper.map(requestFeed, Feedback.class);
 		}
 	}
 	
+	/*
+	 *Author= Jaydeep Maity
+	 *Date= 26-May-2021
+	 *Method name: viewAllFeedback
+	 *Return Type: FeedbackDto object list
+	 *
+	 **/
 	
 	
 	@ApiOperation(value = "Feedback Get mapping to fetch all feedbacks", response = List.class)
