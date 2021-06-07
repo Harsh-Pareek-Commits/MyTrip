@@ -18,6 +18,15 @@ public class ReportServiceImpl implements IReportService {
 	Logger log = LoggerFactory.getLogger(ReportServiceImpl.class);
 	@Autowired
 	IReportRepository reportRepository;
+	
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: addReport
+	 *Parameters: Report object
+	 *Return Type: Report object
+	 *
+	 **/
 
 	@Override
 	@Transactional
@@ -33,6 +42,15 @@ public class ReportServiceImpl implements IReportService {
 		return report;
 	}
 
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: deleteReport
+	 *Parameters: Report Id
+	 *Return Type: Report object
+	 *
+	 **/
+	
 	@Override
 	@Transactional
 	public Report deleteReport(int reportId) throws ReportNotFoundException {
@@ -55,6 +73,15 @@ public class ReportServiceImpl implements IReportService {
 	    }
 		
 	}
+	
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: viewReport
+	 *Parameters: Report id
+	 *Return Type: Report object
+	 *
+	 **/
 
 	@Override
 	public Report viewReport(int reportId) throws ReportNotFoundException {
@@ -73,6 +100,14 @@ public class ReportServiceImpl implements IReportService {
 		}
 		 
 	}
+	
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: viewAllReportsReport
+	 *Return Type: Report object List
+	 *
+	 **/
 
 	@Override
 	public List<Report> viewAllReports() {

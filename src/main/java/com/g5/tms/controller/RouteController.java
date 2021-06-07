@@ -36,6 +36,15 @@ public class RouteController {
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: addRoute
+	 *Parameters: RouteEntityDto object
+	 *Return Type: RouteDto object
+	 *
+	 **/
+	
 	@ApiOperation(value = "Route Post mapping to add route", response = Route.class)
 	@PostMapping("/add")
 	public ResponseEntity<RouteDto> addRoute(@RequestBody @Valid RouteEntityDto requestRoute) {
@@ -44,6 +53,14 @@ public class RouteController {
 		return new ResponseEntity<>(responseRoute, HttpStatus.OK);
 	}
 	
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: updateRoute
+	 *Parameters: RouteEntityDto object
+	 *Return Type: RouteDto object
+	 *
+	 **/
 	
 	@ApiOperation(value = "Route Put mapping to update route", response = Route.class)
 	@PutMapping("/update")
@@ -59,6 +76,14 @@ public class RouteController {
 		}
 	}
 	
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: viewRoute
+	 *Parameters: Route Id
+	 *Return Type: RouteDto object
+	 *
+	 **/
 	
 	@ApiOperation(value = "Route Get mapping to fetch route by route id")
 	@GetMapping("/view/{routeid}")
@@ -71,6 +96,14 @@ public class RouteController {
 		}
 	}
 	
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: deleteRoute
+	 *Parameters: Route Id
+	 *Return Type: RouteDto object
+	 *
+	 **/
 	
 	@ApiOperation(value = "Route Delete mapping to delete route", response = Route.class)
 	@DeleteMapping("/remove/{routeId}")
@@ -83,6 +116,14 @@ public class RouteController {
 		}
 		 
 	}
+	
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: viewAllRoutes
+	 *Return Type: RouteDto object list
+	 *
+	 **/
 	
 	@ApiOperation(value = "Route Get mapping to fetch all routes", response = List.class)
 	@GetMapping("/all")
