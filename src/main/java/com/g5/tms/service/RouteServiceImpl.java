@@ -19,6 +19,15 @@ public class RouteServiceImpl implements IRouteService {
 	Logger log = LoggerFactory.getLogger(RouteServiceImpl.class);
 	@Autowired
 	IRouteRepository routeRepository;
+	
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: addRoute
+	 *Parameters: Route object
+	 *Return Type: route object
+	 *
+	 **/
 
 	@Override
 	@Transactional
@@ -34,6 +43,15 @@ public class RouteServiceImpl implements IRouteService {
 		return route;
 	}
 
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: updateRoute
+	 *Parameters: Route object
+	 *Return Type: route object
+	 *
+	 **/
+	
 	@Override
 	@Transactional
 	public Route updateRoute(Route route) throws RouteNotFoundException {
@@ -53,6 +71,15 @@ public class RouteServiceImpl implements IRouteService {
 
 		
 	}
+	
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: removeRoute
+	 *Parameters: Route Id
+	 *Return Type: Route object
+	 *
+	 **/
 
 	@Override
 	@Transactional
@@ -72,6 +99,15 @@ public class RouteServiceImpl implements IRouteService {
 		}
 
 	}
+	
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: searchRoute
+	 *Parameters: Route Id
+	 *Return Type: Route object
+	 *
+	 **/
 
 	@Override
 	public Route searchRoute(int routeId) throws RouteNotFoundException {
@@ -88,6 +124,14 @@ public class RouteServiceImpl implements IRouteService {
 			throw new RouteNotFoundException("Route not found in search route!");
 		}
 	}
+	
+	/*
+	 *Author= Himagani Mishra
+	 *Date= 24-May-2021
+	 *Method name: viewRouteReport
+	 *Return Type: Report object list
+	 *
+	 **/
 
 	@Override
 	public List<Route> viewRouteList() {
