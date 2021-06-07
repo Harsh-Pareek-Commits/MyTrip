@@ -19,7 +19,15 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	Logger log = LoggerFactory.getLogger(FeedbackServiceImpl.class);
 	@Autowired
 	IFeedbackRepository feedrepo;
-
+	
+	/*
+	 *Author= Jaydeep Maity
+	 *Date= 24-May-2021
+	 *Method name: addFeedback
+	 *Parameters: Feedback object
+	 *Return Type: Feedback object
+	 *
+	 **/
 	@Override
 	@Transactional
 	public Feedback addFeedback(Feedback feedback) {
@@ -31,6 +39,15 @@ public class FeedbackServiceImpl implements IFeedbackService {
 		}
 		return feedback;
 	}
+	
+	/*
+	 *Author= Jaydeep Maity
+	 *Date= 24-May-2021
+	 *Method name: findByFeedbackId
+	 *Parameters: Feedback id
+	 *Return Type: Feedback object
+	 *
+	 **/
 
 	@Override
 	public Feedback findByFeedbackId(int feedbackId) throws FeedbackNotFoundException {
@@ -46,6 +63,16 @@ public class FeedbackServiceImpl implements IFeedbackService {
 		}
 
 	}
+	
+	
+	/*
+	 *Author= Jaydeep Maity
+	 *Date= 24-May-2021
+	 *Method name: findByCustomerId
+	 *Parameters: Customer id 
+	 *Return Type: Feedback object
+	 *
+	 **/
 
 	@Override
 	public Feedback findByCustomerId(int customerId) throws CustomerNotFoundException {
@@ -60,6 +87,14 @@ public class FeedbackServiceImpl implements IFeedbackService {
 			throw new CustomerNotFoundException("Customer not found");
 		}
 	}
+	
+	/*
+	 *Author= Jaydeep Maity
+	 *Date= 24-May-2021
+	 *Method name: viewallFeedbacks
+	 *Return Type: Feedback object List
+	 *
+	 **/
 
 	@Override
 	public List<Feedback> viewAllFeedbacks() {
