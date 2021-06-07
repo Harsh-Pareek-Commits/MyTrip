@@ -48,6 +48,14 @@ public class TravelController {
 	return new ResponseEntity<>(responsetravel, HttpStatus.OK);
 	
 	}
+	/*
+	 *Author= Harshvardhan
+	 *Date= 26-May-2021
+	 *Method name: addTravels
+	 *Parameters: Travels object
+	 *Return Type: Travels object
+	 *
+	 **/
 
 	
 	@ApiOperation(value = "Travels Put mapping to update travels", response = Travels.class)
@@ -63,6 +71,14 @@ public class TravelController {
 	}
 	
 	}
+	/*
+	 *Author= Harshvardhan
+	 *Date= 26-May-2021
+	 *Method name: updateTravels
+	 *Parameters: Travels object
+	 *Return Type: Travels object
+	 *
+	 **/
 
 	
 	
@@ -77,6 +93,14 @@ public class TravelController {
 	}
 	
 	}
+	/*
+	 *Author= Harshvardhan
+	 *Date= 26-May-2021
+	 *Method name: deleteTravels
+	 *Parameters: TravelsId
+	 *Return Type: Travels object
+	 *
+	 **/
 	
 	@ApiOperation(value = "Travels Get mapping to fetch travels using travels id")
    @GetMapping("/search/{travelsId}")
@@ -88,6 +112,14 @@ TravelsDto responsetravel = modelMapper.map(this.travelService.searchTravels(tra
 		return new ResponseEntity<>(responsetravel, HttpStatus.BAD_REQUEST);
 	}
 	}
+	/*
+	 *Author= Harshvardhan
+	 *Date= 26-May-2021
+	 *Method name: searchTravels
+	 *Parameters: TravelsId
+	 *Return Type: Travels object
+	 *
+	 **/
     
 	
 	
@@ -105,6 +137,13 @@ TravelsDto responsetravel = modelMapper.map(this.travelService.searchTravels(tra
 	} else {
 		return new ResponseEntity<>(trvDtoList, HttpStatus.BAD_REQUEST);
 	}
+	/*
+	 *Author= Harshvardhan
+	 *Date= 24-May-2021
+	 *Method name: searchTravels
+	 *Return Type: Travels object
+	 *
+	 **/
     
     }
     

@@ -30,6 +30,14 @@ public class TravelsServiceImpl implements ITravelsService {
 		}
 		return travels;
 	}
+	/*
+	 *Author= Harshvardhan
+	 *Date= 24-May-2021
+	 *Method name: addTravels
+	 *Parameters: Travels object
+	 *Return Type: Travels object
+	 *
+	 **/
 
 	@Override
 	@Transactional
@@ -50,7 +58,15 @@ public class TravelsServiceImpl implements ITravelsService {
 		return opt.get();
 
 	}
-
+	/*
+	 *Author= Harshvardhan
+	 *Date= 24-May-2021
+	 *Method name: updateTravels
+	 *Parameters: TravelsId
+	 *Return Type: Travels object
+	 *
+	 **/
+	
 	@Override
 	@Transactional
 	public Travels removeTravels(int travelsId) throws TravelsNotFoundException {
@@ -71,6 +87,14 @@ public class TravelsServiceImpl implements ITravelsService {
 		return opt.get();
 
 	}
+	/*
+	 *Author= Harshvardhan
+	 *Date= 24-May-2021
+	 *Method name: removeTravels
+	 *Parameters: TravelsId
+	 *Return Type: Travels object
+	 *
+	 **/
 
 	@Override
 	public Travels searchTravels(int travelsId) throws TravelsNotFoundException {
@@ -87,6 +111,14 @@ public class TravelsServiceImpl implements ITravelsService {
 			throw new TravelsNotFoundException("Travels Not foundin search travels");
 		}
 	}
+	/*
+	 *Author= Harshvardhan
+	 *Date= 24-May-2021
+	 *Method name: searchTravels
+	 *Parameters: TravelsId
+	 *Return Type: Travels object
+	 *
+	 **/
 
 	@Override
 	public List<Travels> viewTravels() {
@@ -103,4 +135,11 @@ public class TravelsServiceImpl implements ITravelsService {
 
 		return travelList;
 	}
+	/*
+	 *Author= Harshvardhan
+	 *Date= 24-May-2021
+	 *Method name: searchTravels
+	 *Return Type: Travels object
+	 *
+	 **/
 }
