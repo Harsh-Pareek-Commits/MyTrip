@@ -44,28 +44,6 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void testSignIn() throws InvalidCredentialException {
-		//Customer cust = new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
-		//Customer cust = new Customer(customerName, address, mobileNo, email);
-		User user= new User();
-		user.setUserType("3");
-		user.setUserId(1);
-		user.setPassword("nshshsh");
-		String securedPasswordHash = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
-		user.setPassword(securedPasswordHash);
-		user_repo.save(user);
-		System.out.println(user);
-		Optional<User> opt = Optional.of(user);
-		when(user_service.signIn(user)).thenReturn(user);
-		when(user_repo.findById(1)).thenReturn(opt);
-		User usera =user_service.signIn(user);
-		System.out.println(usera);
-		//User user2=(User)cust2;
-		
-		assertEquals(usera, user);
-		
-	}
-	@Test
 	void testInvalidCredintialsException() {
 		User user = new User(12, "2", "phhhhifn");
 		User user2 = new User(10, "2", "kjnfkkjn");
