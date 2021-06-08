@@ -2,6 +2,7 @@ package com.g5.tms.entitydto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class AdminEntityDto extends UserEntityDto {
@@ -12,8 +13,8 @@ public class AdminEntityDto extends UserEntityDto {
 	@NotEmpty(message = "Email cannot be left blank or null")
 	@Email(message = "Enter valid email Id")
 	private String adminEmail;
-	@NotEmpty(message = "MobileNo cannot be left blank or null")
-	@Size(min = 10, max = 10, message = "Invalid Mobile Number")
+	@NotEmpty(message = "Mobile number cannot be left blank or null")
+	@Pattern(regexp = "(^$|[0-9]{10})", message = "Enter 10 digit mobile number")
 	private String adminMobile;
 	public String getName() {
 		return name;
