@@ -14,7 +14,7 @@ public class AdminServiceImpl extends UserServiceImpl {
 	public Admin addNewUser(Admin admin) {
 		try {
 			admin.setUserType("2");
-			if ((admin != null)) {
+			if ((admin.getPassword() != null)) {
 				String securedPasswordHash = BCrypt.hashpw(admin.getPassword(), BCrypt.gensalt(12));
 				admin.setPassword(securedPasswordHash);
 			}
