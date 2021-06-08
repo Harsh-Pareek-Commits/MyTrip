@@ -24,6 +24,14 @@ public class BookingServiceImpl implements IBookingService {
 
 	@Override
 	@Transactional
+	/*
+	 *Author= Harsh Pareek
+	 *Date= 24-May-2021
+	 *Method name: makeBooking 
+	 *Parameters: Booking object
+	 *Return Type: Booking object
+	 *
+	 **/
 	public Booking makeBooking(Booking booking) {
 		try {
 			double netAmount=booking.getPack().getPackageCost();
@@ -37,7 +45,14 @@ public class BookingServiceImpl implements IBookingService {
 		}
 		return booking;
 	}
-
+	/*
+	 *Author= Harsh Pareek
+	 *Date= 24-May-2021
+	 *Method name: cancelBooking 
+	 *Parameters: Booking int id
+	 *Return Type: Booking object
+	 *
+	 **/
 	@Override
 	public Booking cancelBooking(int bookingId) throws BookingNotFoundException {
 
@@ -56,7 +71,14 @@ public class BookingServiceImpl implements IBookingService {
 		}
 
 	}
-
+	/*
+	 *Author= Harsh Pareek
+	 *Date= 24-May-2021
+	 *Method name: viewBooking 
+	 *Parameters: Booking int id
+	 *Return Type: Booking object
+	 *
+	 **/
 	@Override
 	public Booking viewBooking(int bookingId) throws BookingNotFoundException {
 
@@ -74,7 +96,14 @@ public class BookingServiceImpl implements IBookingService {
 		}
 		
 	}
-
+	/*
+	 *Author= Harsh Pareek
+	 *Date= 24-May-2021
+	 *Method name: viewAllBookings 
+	 *Parameters:no parameter
+	 *Return Type:list of  Booking object
+	 *
+	 **/
 	@Override
 	public List<Booking> viewAllBookings() {
 		List<Booking> bookingList = null;

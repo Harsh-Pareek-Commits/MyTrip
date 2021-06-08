@@ -104,8 +104,8 @@ public class CustomerServiceImpl implements ICustomerService {
 	/*
 	 *Author= Harsh Pareek
 	 *Date= 24-May-2021
-	 *Method name: deleteCustomer 
-	 *Parameters: Customer object
+	 *Method name: viewCustomer 
+	 *Parameters: Customer int id
 	 *Return Type: Customer object
 	 *
 	 **/
@@ -125,7 +125,14 @@ public class CustomerServiceImpl implements ICustomerService {
 		}
 		return cust;
 	}
-
+	/*
+	 *Author= Harsh Pareek
+	 *Date= 24-May-2021
+	 *Method name: viewAllCustomers 
+	 *Parameters: Package int id
+	 *Return Type: list of Customer object
+	 *
+	 **/
 	@Override
 	public List<Customer> viewAllCustomers(int packageId) throws PackageNotFoundException {
 		List<Customer> custList = null;
@@ -143,7 +150,14 @@ public class CustomerServiceImpl implements ICustomerService {
 		}
 		return custList;
 	}
-
+	/*
+	 *Author= Harsh Pareek
+	 *Date= 24-May-2021
+	 *Method name: viewCustomerList 
+	 *Parameters: Route int id
+	 *Return Type:list of Customer object
+	 *
+	 **/
 	@Override
 	public List<Customer> viewCustomerList(int routeId) throws RouteNotFoundException {
 
@@ -161,12 +175,6 @@ public class CustomerServiceImpl implements ICustomerService {
 		return custList;
 	}
 	
-	/*
-	 * public CustomerDto displayCustomerDetails(Customer cust) { CustomerDto
-	 * custDto= new CustomerDto(cust.getUserId(), cust.getCustomerName(),
-	 * cust.getAddress(), cust.getMobileNo(), cust.getEmail()); return custDto;
-	 * 
-	 * }
-	 */
+	
 	 
 }

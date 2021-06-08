@@ -39,8 +39,8 @@ public class CustomerController {
 	@Autowired
 	private ModelMapper modelMapper;
 	/*
-	 *Author= Hasrh Pareek
-	 *Date= 24-May-2021
+	 *Author= Harsh Pareek
+	 *Date= 26-May-2021
 	 *Method name: addCustomer
 	 *Parameters: Customer Entity DTO object
 	 *Return Type: Customer object
@@ -56,8 +56,8 @@ public class CustomerController {
 	}
 
 	/*
-	 *Author= Hasrh Pareek
-	 *Date= 24-May-2021
+	 *Author= Harsh Pareek
+	 *Date= 26-May-2021
 	 *Method name: updateCustomer
 	 *Parameters: Customer Entity DTO object
 	 *Return Type: Customer object
@@ -79,8 +79,8 @@ public class CustomerController {
 	}
 
 	/*
-	 *Author= Hasrh Pareek
-	 *Date= 24-May-2021
+	 *Author= Harsh Pareek
+	 *Date= 26-May-2021
 	 *Method name: deleteCustomer
 	 *Parameters: Customer Entity DTO object
 	 *Return Type: Customer object
@@ -101,7 +101,7 @@ public class CustomerController {
 	}
 
 	/*
-	 *Author= Hasrh Pareek
+	 *Author= Harsh Pareek
 	 *Date= 24-May-2021
 	 *Method name: viewCustomer
 	 *Parameters: Customer int id
@@ -120,7 +120,7 @@ public class CustomerController {
 	}
 
 	/*
-	 *Author= Hasrh Pareek
+	 *Author= Harsh Pareek
 	 *Date= 24-May-2021
 	 *Method name: viewAllCustomers
 	 *Parameters: Package int id
@@ -147,7 +147,7 @@ public class CustomerController {
 	
 
 	/*
-	 *Author= Hasrh Pareek
+	 *Author= Harsh Pareek
 	 *Date= 24-May-2021
 	 *Method name: viewCustomerList
 	 *Parameters: Route int id

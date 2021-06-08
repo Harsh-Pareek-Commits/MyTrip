@@ -39,8 +39,8 @@ public class BookingController {
 	@ApiOperation(value = "Booking Post mapping for booking", response = Booking.class)
 	@PostMapping("/add")
 	/*
-	 *Author= Hasrh Pareek
-	 *Date= 24-May-2021
+	 *Author= Harsh Pareek
+	 *Date= 26-May-2021
 	 *Method name: makeBooking
 	 *Parameters: Booking Entity DTO object
 	 *Return Type: Booking object
@@ -54,8 +54,8 @@ public class BookingController {
 
 	}
 	/*
-	 *Author= Hasrh Pareek
-	 *Date= 24-May-2021
+	 *Author= Harsh Pareek
+	 *Date= 26-May-2021
 	 *Method name: makeBooking
 	 *Parameters: Booking Entity DTO object
 	 *Return Type: Booking object
@@ -74,8 +74,8 @@ public class BookingController {
 
 	}
 	/*
-	 *Author= Hasrh Pareek
-	 *Date= 24-May-2021
+	 *Author= Harsh Pareek
+	 *Date= 26-May-2021
 	 *Method name: viewBooking
 	 *Parameters: Booking int id
 	 *Return Type: Booking object
@@ -93,8 +93,8 @@ public class BookingController {
 		}
 	}
 	/*
-	 *Author= Hasrh Pareek
-	 *Date= 24-May-2021
+	 *Author= Harsh Pareek
+	 *Date= 26-May-2021
 	 *Method name: viewAllBookings
 	 *Parameters: no parameter
 	 *Return Type: List of  Booking object
