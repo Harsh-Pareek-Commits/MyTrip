@@ -38,8 +38,14 @@ public class CustomerController {
 	ICustomerService custService;
 	@Autowired
 	private ModelMapper modelMapper;
-
-	
+	/*
+	 *Author= Hasrh Pareek
+	 *Date= 24-May-2021
+	 *Method name: addCustomer
+	 *Parameters: Customer Entity DTO object
+	 *Return Type: Customer object
+	 *
+	 **/
 	@ApiOperation(value = "Customer Post mapping", response = CustomerController.class)
 	@PostMapping(value = "/add")
 	public ResponseEntity<CustomerDto> addCustomer(@RequestBody @Valid CustomerEntityDto requestCust) {
@@ -49,7 +55,14 @@ public class CustomerController {
 		return new ResponseEntity<>(responseCust, HttpStatus.OK);
 	}
 
-	
+	/*
+	 *Author= Hasrh Pareek
+	 *Date= 24-May-2021
+	 *Method name: updateCustomer
+	 *Parameters: Customer Entity DTO object
+	 *Return Type: Customer object
+	 *
+	 **/
 	@ApiOperation(value = "Customer Put mapping to update customer", response = Customer.class)
 	@PutMapping("/update")
 	public ResponseEntity<CustomerDto> updateCustomer(@RequestBody @Valid CustomerEntityDto requestCust)
@@ -65,7 +78,14 @@ public class CustomerController {
 		}
 	}
 
-	
+	/*
+	 *Author= Hasrh Pareek
+	 *Date= 24-May-2021
+	 *Method name: deleteCustomer
+	 *Parameters: Customer Entity DTO object
+	 *Return Type: Customer object
+	 *
+	 **/
 	@ApiOperation(value = "Customer Delete mapping to delete customer", response = Customer.class)
 	@DeleteMapping("/delete")
 	public ResponseEntity<CustomerDto> deleteCustomer(@RequestBody @Valid CustomerEntityDto requestCust)
@@ -80,7 +100,14 @@ public class CustomerController {
 		}
 	}
 
-	
+	/*
+	 *Author= Hasrh Pareek
+	 *Date= 24-May-2021
+	 *Method name: viewCustomer
+	 *Parameters: Customer int id
+	 *Return Type: Customer object
+	 *
+	 **/
 	@ApiOperation(value = "Customer Get mapping to fetch customer using customer Id", response = Customer.class)
 	@GetMapping("/view/{custid}")
 	public ResponseEntity<CustomerDto> viewCustomer(@PathVariable int custid) throws CustomerNotFoundException {
@@ -92,7 +119,14 @@ public class CustomerController {
 		}
 	}
 
-	
+	/*
+	 *Author= Hasrh Pareek
+	 *Date= 24-May-2021
+	 *Method name: viewAllCustomers
+	 *Parameters: Package int id
+	 *Return Type:List of Customer object
+	 *
+	 **/
 	@ApiOperation(value = "Customer Get mapping to fetch all the customers", response = List.class)
 	@GetMapping("/view/package/{packageId}")
 	public ResponseEntity<List<CustomerDto>> viewAllCustomers(@PathVariable int packageId)
@@ -112,6 +146,14 @@ public class CustomerController {
 	
 	
 
+	/*
+	 *Author= Hasrh Pareek
+	 *Date= 24-May-2021
+	 *Method name: viewCustomerList
+	 *Parameters: Route int id
+	 *Return Type: List of Customer object
+	 *
+	 **/
 	@ApiOperation(value = "Customer Get mapping to fetch the list of customers using route id", response = List.class)
 	@GetMapping("/view/route/{routeId}")
 	public ResponseEntity<List<@NotBlank CustomerDto>> viewCustomerList(@PathVariable int routeId)

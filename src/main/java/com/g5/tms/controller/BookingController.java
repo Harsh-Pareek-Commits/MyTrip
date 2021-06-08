@@ -38,6 +38,14 @@ public class BookingController {
 
 	@ApiOperation(value = "Booking Post mapping for booking", response = Booking.class)
 	@PostMapping("/add")
+	/*
+	 *Author= Hasrh Pareek
+	 *Date= 24-May-2021
+	 *Method name: makeBooking
+	 *Parameters: Booking Entity DTO object
+	 *Return Type: Booking object
+	 *
+	 **/
 	public ResponseEntity<BookingDto> makeBooking(@RequestBody @Valid BookingEntityDto requestBooking) {
 
 		Booking actualBooking = modelMapper.map(requestBooking, Booking.class);
@@ -45,7 +53,14 @@ public class BookingController {
 		return new ResponseEntity<>(responseBooking, HttpStatus.OK);
 
 	}
-
+	/*
+	 *Author= Hasrh Pareek
+	 *Date= 24-May-2021
+	 *Method name: makeBooking
+	 *Parameters: Booking Entity DTO object
+	 *Return Type: Booking object
+	 *
+	 **/
 	@ApiOperation(value = "Booking Delete mapping to cancel booking", response = Booking.class)
 	@DeleteMapping("/delete/{bookingId}")
 	public ResponseEntity<BookingDto> cancelBooking(@PathVariable int bookingId) throws BookingNotFoundException {
@@ -58,7 +73,14 @@ public class BookingController {
 		}
 
 	}
-
+	/*
+	 *Author= Hasrh Pareek
+	 *Date= 24-May-2021
+	 *Method name: viewBooking
+	 *Parameters: Booking int id
+	 *Return Type: Booking object
+	 *
+	 **/
 	@ApiOperation(value = "Booking Get mapping to fetch booking by booking id", response = Booking.class)
 	@GetMapping("/view/{bookingId}")
 	public ResponseEntity<BookingDto> viewBooking(@PathVariable int bookingId) throws BookingNotFoundException {
@@ -70,7 +92,14 @@ public class BookingController {
 			return new ResponseEntity<>(responseBooking, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	/*
+	 *Author= Hasrh Pareek
+	 *Date= 24-May-2021
+	 *Method name: viewAllBookings
+	 *Parameters: no parameter
+	 *Return Type: List of  Booking object
+	 *
+	 **/
 	@ApiOperation(value = "Booking Get mapping to fetch all bookings")
 	@GetMapping("/view")
 	public ResponseEntity<List<BookingDto>> viewAllBookings() {

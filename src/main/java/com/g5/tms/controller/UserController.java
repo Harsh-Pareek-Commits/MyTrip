@@ -3,6 +3,8 @@ package com.g5.tms.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,10 +48,11 @@ public class UserController {
 	 **/
 	@ApiOperation(value = "User Post mapping for user signing in", response = User.class)
 	@PostMapping("/signin")
-	public User signuser(@RequestBody @Valid User user) throws InvalidCredentialException
+	public ResponseEntity<User> signuser(@RequestBody @Valid User user) throws InvalidCredentialException
 	{
 		this.userService.signIn(user);
-		return user;
+		return new ResponseEntity<>(user, HttpStatus.OK);
+
 	}
 	/*
 	 *Author= Iflak Yousuf Mir
@@ -61,10 +64,11 @@ public class UserController {
 	 **/
 	@ApiOperation(value = "User Post mapping for user signing out", response = User.class)
 	@PostMapping("/signout")
-	public User signoutuser(@RequestBody @Valid User user) 
+	public ResponseEntity<User> signoutuser(@RequestBody @Valid User user) 
 	{
 	this.userService.signOut(user);
-		return user;
+	return new ResponseEntity<>(user, HttpStatus.RESET_CONTENT);
+
 	}
 	
 }
