@@ -42,8 +42,6 @@ public class TravelController {
 	public ResponseEntity<TravelsDto> addTravels(@RequestBody @Valid TravelsEntityDto requesttrvel) {
 	
 	Travels actualtravel = modelMapper.map(requesttrvel, Travels.class);
-	System.out.println(requesttrvel);
-	System.out.println(actualtravel);
 	TravelsDto responsetravel = modelMapper.map(this.travelService.addTravels(actualtravel), TravelsDto.class);
 	return new ResponseEntity<>(responsetravel, HttpStatus.OK);
 	
