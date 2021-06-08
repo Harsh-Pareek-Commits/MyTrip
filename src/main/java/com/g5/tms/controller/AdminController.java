@@ -29,6 +29,7 @@ public class AdminController {
 	@Autowired
 	private ModelMapper modelMapper;
 
+	private int userId;
 	
 	@ApiOperation(value = "Admin Post mapping to add user", response = Admin.class)
 	@PostMapping("/add")

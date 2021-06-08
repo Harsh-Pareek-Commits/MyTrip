@@ -5,13 +5,22 @@ import lombok.Data;
 
 @Data
 public class AdminDto  {
-
+	private int adminId;
+	
 	
 	private String adminName;
 	
 	private String email;
 	
 	private String mobile;
+
+	public int getAdminId() {
+		return adminId;
+	}
+
+	public void setAdminId(int adminId) {
+		this.adminId = adminId;
+	}
 
 	public String getAdminName() {
 		return adminName;
@@ -39,7 +48,8 @@ public class AdminDto  {
 
 	@Override
 	public String toString() {
-		return "AdminDto [adminName=" + adminName + ", email=" + email + ", mobile=" + mobile + "]";
+		return "AdminDto [adminId=" + adminId + ", adminName=" + adminName + ", email=" + email + ", mobile=" + mobile
+				+ "]";
 	}
 
 	
