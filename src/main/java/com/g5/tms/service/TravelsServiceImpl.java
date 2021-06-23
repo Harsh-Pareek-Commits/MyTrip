@@ -24,7 +24,6 @@ public class TravelsServiceImpl implements ITravelsService {
 	public Travels addTravels(Travels travels) {
 
 		try {
-			
 			travelsRepository.save(travels);
 		} catch (Exception e) {
 			log.error("Add travels Exception:", e);
