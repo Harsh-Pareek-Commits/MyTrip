@@ -21,14 +21,17 @@ public class TravelsServiceImpl implements ITravelsService {
 
 	@Override
 	@Transactional
-	public Travels addTravels(Travels travels) {
-
+	public Travels addTravels(Travels travels) throws TravelsNotFoundException  {
+		Optional<Travels> opt = null;
 		try {
-			travelsRepository.save(travels);
+			opt = travelsRepository.findByName(travels.getTravelsName());
+			if (opt.isPresent()) {
+				throw new TravelsNotFoundException("Travels name already exists");}
+			else
+				return travelsRepository.save(travels);
 		} catch (Exception e) {
-			log.error("Add travels Exception:", e);
+			throw new TravelsNotFoundException("Travels cannot be added");
 		}
-		return travels;
 	}
 	/*
 	 *Author= Harshvardhan
@@ -142,4 +145,40 @@ public class TravelsServiceImpl implements ITravelsService {
 	 *Return Type: Travels object
 	 *
 	 **/
+
+	@Override
+	public Travels searchbyName(String name) throws TravelsNotFoundException {
+		
+		try {
+			Optional<Travels>opt= travelsRepository.findByName(name);
+			if(opt.isPresent()) {
+			return opt.get();
+			}else {
+				throw new TravelsNotFoundException("Travels Not found by the name");
+			}
+		} catch (Exception e) {
+			log.error("Exception:", e);
+			throw new TravelsNotFoundException("Travels Not found by the name");
+		}
+		
+	}
+
+	@Override
+	public Travels removeTravelsbyName(String travelsName) throws TravelsNotFoundException {
+		Optional<Travels> opt = null;
+		try {
+			opt = travelsRepository.findByName(travelsName);
+			if (opt.isPresent()) {
+			travelsRepository.deleteById(opt.get().getTravelsId());
+			}
+			 else {
+					throw new TravelsNotFoundException("Travels name not found for delete");
+				}
+		} catch (Exception e) {
+			
+			throw new TravelsNotFoundException("No travels found");
+
+		}
+		return opt.get();
+	}
 }

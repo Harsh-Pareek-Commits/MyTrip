@@ -39,7 +39,7 @@ public class PackageServiceTest {
 		assertEquals(pack, test_pack);
 	}
 	@Test
-	public void testAddPackage() {
+	public void testAddPackage() throws PackageNotFoundException{
 		Package pack = new Package(12,"xyz","bchd","type",2000,null,null);
 		Mockito.when(pack_repo.save(pack)).thenReturn(pack);
 		Package test_pack = pack_serv.addPackage(pack);
