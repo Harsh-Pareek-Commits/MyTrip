@@ -35,8 +35,7 @@ public class Package {
 	
 	@ApiModelProperty(name = "PackageDescription", value = "Holds min of 10 max of 50 characters")
 	@Column
-	@Size(min = 10, max = 50, message 
-    = "Package Description must be between 10 and 50 characters")
+	@Size(min = 10, max = 50, message = "Package Description must be between 10 and 50 characters")
 	private String packageDescription;
 	
 	@ApiModelProperty(name = "PackageType", value = "Cannot be empty, holds min of 2 max of 15 characters")
