@@ -32,7 +32,7 @@ public class TravelServiceTest {
 	ITravelsService travel_service;
 	
 	@Test
-	public void testAddTravel() {
+	public void testAddTravel() throws TravelsNotFoundException  {
 		Travels travel = new Travels(1, "MakeMyTrip", "Harsh","indranagar","7485961230");
 		Mockito.when(travel_repo.save(travel)).thenReturn(travel);
 		Travels result = travel_service.addTravels(travel);

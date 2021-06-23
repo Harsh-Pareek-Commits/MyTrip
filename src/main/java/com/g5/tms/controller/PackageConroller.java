@@ -44,7 +44,7 @@ public class PackageConroller {
 	 **/
 	@ApiOperation(value ="Package Post mapping to add package", response = Package.class)
 	@PostMapping("/add")
-	public  ResponseEntity<PackageDto>  addingPackage(@RequestBody @Valid PackageEntityDto requestpack) 
+	public  ResponseEntity<PackageDto>  addingPackage(@RequestBody @Valid PackageEntityDto requestpack) throws PackageNotFoundException
 	{
 	 
 	Package actualpack = modelMapper.map(requestpack, Package.class);
@@ -115,4 +115,47 @@ public class PackageConroller {
 				return new ResponseEntity<>(packDtoList, HttpStatus.BAD_REQUEST);
 			}
 	}
+	
+	@ApiOperation(value = "Package Get mapping to fetch all packages for a route", response = List.class)
+	@GetMapping("/route/{from}/{to}")
+	public  ResponseEntity<List<PackageDto>> viewAllPackagesbyRoute(@PathVariable String from,@PathVariable String to) throws PackageNotFoundException
+	{
+		List<Package> packList = this.packageService.viewByRoute(from, to);
+		List<PackageDto> packDtoList = new ArrayList<>();
+		for (Package p : packList) {
+			PackageDto packdto = modelMapper.map(p, PackageDto.class);
+			packDtoList.add(packdto);
+		}
+		if (!(packDtoList.isEmpty())) {
+			return new ResponseEntity<>(packDtoList, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(packDtoList, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@ApiOperation(value = "Package Get mapping to fetch package by package name", response = Package.class)
+	@GetMapping("/search/packname/{name}")
+	public  ResponseEntity<PackageDto>searchingPackagebyName(@PathVariable String name) throws PackageNotFoundException
+	{
+		 PackageDto responsepack = modelMapper.map(this.packageService.searchPackagebyName(name), PackageDto.class);
+			if (responsepack != null) {
+				return new ResponseEntity<>(responsepack, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(responsepack, HttpStatus.BAD_REQUEST);
+			}
+	}
+	
+	@ApiOperation(value = "Package Delete mapping to delete package by name", response = Package.class)
+	@DeleteMapping("/delete/name/{name}")
+	public ResponseEntity<PackageDto> deletingPackagebyName(@PathVariable String name) throws PackageNotFoundException
+	{
+		
+	PackageDto responsepack = modelMapper.map(this.packageService.deletePackagebyName(name), PackageDto.class);
+	if (responsepack != null) {
+		return new ResponseEntity<>(responsepack, HttpStatus.OK);
+	} else {
+		return new ResponseEntity<>(responsepack, HttpStatus.BAD_REQUEST);
+	}
+	}
 }
+

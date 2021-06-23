@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.g5.tms.entities.Package;
+import com.g5.tms.entities.Travels;
 import com.g5.tms.exceptions.PackageNotFoundException;
+import com.g5.tms.exceptions.RouteNotFoundException;
 import com.g5.tms.repository.IPackageRepository;
 
 @Service
@@ -30,18 +32,23 @@ public class PackageServiceImpl implements IPackageService {
 	 *Return Type: package object
 	 *
 	 **/
-	public Package addPackage(Package pack) {
+	public Package addPackage(Package pack) throws PackageNotFoundException {
+		Optional<Package> opt = null;
 		try {
 		
+			opt =packageRepository.findByName(pack.getPackageName());
+			if (opt.isPresent()) {
+				throw new PackageNotFoundException("PackageName already exists");
+			}
+			else {
 		    double total=pack.getRoute().getFare();
 		    total+=pack.getHotel().getRent();
 		    total+=pack.getPackageCost();
 		    pack.setPackageCost(total);
-			packageRepository.save(pack);
+			return packageRepository.save(pack);}
 		} catch (Exception e) {
-			log.error("Adding package Exception:", e);
+			throw new PackageNotFoundException("Package cannot be added");
 		}
-		return pack;
 	}
 
 	@Override
@@ -119,6 +126,58 @@ public class PackageServiceImpl implements IPackageService {
 		}
 
 		return list;
+	}
+
+	@Override
+	public List<Package> viewByRoute(String from, String to) throws PackageNotFoundException {
+		List<Package> list = null;
+		try {
+			list=packageRepository.findByRoute(from,to);
+			if (list.isEmpty()) {
+				throw new PackageNotFoundException("Package is not available for this route");
+			}
+			return list;
+		} catch (Exception e) {
+			throw new PackageNotFoundException("Package Not Found with given Route");
+		}
+	}
+
+	@Override
+	public Package searchPackagebyName(String name) throws PackageNotFoundException {
+		try {
+			Optional<Package> opt = packageRepository.findByName(name);
+			if (opt.isPresent()) {
+				return opt.get();
+			} else {
+				throw new PackageNotFoundException("Package Not Found in search by Name");
+			}
+
+		} catch (Exception e) {
+			
+			throw new PackageNotFoundException("Package Not Found in search by Name");
+
+		}
+	}
+
+	@Override
+	public Package deletePackagebyName(String name) throws PackageNotFoundException {
+		
+		try {
+			Optional<Package> opt =packageRepository.findByName(name);
+			if (opt.isPresent()) {
+				packageRepository.deleteById(opt.get().getPackageId());
+				return opt.get();
+
+			} else {
+				throw new PackageNotFoundException("Package name not found in delete");
+			}
+
+		} catch (Exception e) {
+			
+			throw new PackageNotFoundException("Package not found in delete");
+
+		}
+		
 	}
 
 }

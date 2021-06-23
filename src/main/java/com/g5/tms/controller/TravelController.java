@@ -39,12 +39,10 @@ public class TravelController {
 	
 	@ApiOperation(value = "Travels Post mapping to add travels", response = Travels.class)
 	@PostMapping("/add")
-	public ResponseEntity<TravelsDto> addTravels(@RequestBody @Valid TravelsEntityDto requesttrvel) {
-	
+	public ResponseEntity<TravelsDto> addTravels(@RequestBody @Valid TravelsEntityDto requesttrvel) throws TravelsNotFoundException{
 	Travels actualtravel = modelMapper.map(requesttrvel, Travels.class);
 	TravelsDto responsetravel = modelMapper.map(this.travelService.addTravels(actualtravel), TravelsDto.class);
 	return new ResponseEntity<>(responsetravel, HttpStatus.OK);
-	
 	}
 	/*
 	 *Author= Harshvardhan
@@ -103,7 +101,7 @@ public class TravelController {
 	@ApiOperation(value = "Travels Get mapping to fetch travels using travels id")
    @GetMapping("/search/{travelsId}")
 	public ResponseEntity<TravelsDto> searchTravels(@PathVariable int travelsId) throws TravelsNotFoundException {
-TravelsDto responsetravel = modelMapper.map(this.travelService.searchTravels(travelsId), TravelsDto.class);
+		TravelsDto responsetravel = modelMapper.map(this.travelService.searchTravels(travelsId), TravelsDto.class);
 	if (responsetravel != null) {
 		return new ResponseEntity<>(responsetravel, HttpStatus.OK);
 	} else {
@@ -144,7 +142,29 @@ TravelsDto responsetravel = modelMapper.map(this.travelService.searchTravels(tra
 	 **/
     
     }
-    
+	
+	@ApiOperation(value = "Travels Get mapping to fetch travels by name", response = List.class)
+    @GetMapping("/search/name/{name}")
+	public ResponseEntity<TravelsDto> searchTravelsbyName(@PathVariable String name) throws TravelsNotFoundException {
+		TravelsDto responsetravel = modelMapper.map(this.travelService.searchbyName(name), TravelsDto.class);
+	if (responsetravel != null) {
+		return new ResponseEntity<>(responsetravel, HttpStatus.OK);
+	} else {
+		return new ResponseEntity<>(responsetravel, HttpStatus.BAD_REQUEST);
+	}
+	}
+	
+	@ApiOperation(value = "Travels Delete mapping to delete travels by name", response = Travels.class)
+	@DeleteMapping("/delete/name/{name}")  
+	public ResponseEntity<TravelsDto> removeTravelsbyName(@PathVariable String name ) throws TravelsNotFoundException {
+    	TravelsDto responsetravel = modelMapper.map(this.travelService.removeTravelsbyName(name), TravelsDto.class);
+	if (responsetravel != null) {
+		return new ResponseEntity<>(responsetravel, HttpStatus.OK);
+	} else {
+		return new ResponseEntity<>(responsetravel, HttpStatus.BAD_REQUEST);
+	}
+	
+	}
 
 	
 }
