@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.FutureOrPresent;
@@ -47,92 +48,34 @@ public class Feedback {
 	@FutureOrPresent(message="date can't be in past")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate submitDate;
+	
+	@ApiModelProperty(name = "Package", value = "Contains package information")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "package_info", referencedColumnName = "packageId")
+	@Valid
+	private Package pack;
+	
 
 	public Feedback() {
 		super();
 
 	}
 
-	public Feedback(int feedbackId, Customer customer, String feedback, int rating, LocalDate submitDate) {
+
+	public Feedback(int feedbackId, @Valid Customer customer,
+			@Size(min = 2, max = 50, message = "feedback should be min of 2 and max of 50 characters") String feedback,
+			@Min(value = 1, message = "Rating should not be less than 1") @Max(value = 5, message = "Rating should not be greater than 5") int rating,
+			@FutureOrPresent(message = "date can't be in past") LocalDate submitDate, @Valid Package pack) {
 		super();
 		this.feedbackId = feedbackId;
 		this.customer = customer;
 		this.feedback = feedback;
 		this.rating = rating;
 		this.submitDate = submitDate;
+		this.pack = pack;
 	}
 
-	/**
-	 * @return the feedbackId
-	 */
-	public int getFeedbackId() {
-		return feedbackId;
-	}
 
-	/**
-	 * @param feedbackId2 the feedbackId to set
-	 */
-	public void setFeedbackId(int feedbackId2) {
-		this.feedbackId = feedbackId2;
-	}
-
-	/**
-	 * @return the customer
-	 */
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	/**
-	 * @param customer the customer to set
-	 */
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	/**
-	 * @return the feedback
-	 */
-	public String getFeedback() {
-		return feedback;
-	}
-
-	/**
-	 * @param feedback the feedback to set
-	 */
-	public void setFeedback(String feedback) {
-		this.feedback = feedback;
-	}
-
-	/**
-	 * @return the rating
-	 */
-	public int getRating() {
-		return rating;
-	}
-
-	/**
-	 * @param rating the rating to set
-	 */
-	public void setRating(int rating) {
-		this.rating = rating;
-	}
-
-	/**
-	 * @return the submitDate
-	 */
-	public LocalDate getSubmitDate() {
-		return submitDate;
-	}
-
-	/**
-	 * @param submitDate the submitDate to set
-	 */
-	public void setSubmitDate(LocalDate submitDate) {
-		this.submitDate = submitDate;
-	}
-
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -140,6 +83,7 @@ public class Feedback {
 		result = prime * result + feedbackId;
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -155,10 +99,73 @@ public class Feedback {
 		return true;
 	}
 
+
+	public int getFeedbackId() {
+		return feedbackId;
+	}
+
+
+	public void setFeedbackId(int feedbackId) {
+		this.feedbackId = feedbackId;
+	}
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+
+	public String getFeedback() {
+		return feedback;
+	}
+
+
+	public void setFeedback(String feedback) {
+		this.feedback = feedback;
+	}
+
+
+	public int getRating() {
+		return rating;
+	}
+
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
+
+	public LocalDate getSubmitDate() {
+		return submitDate;
+	}
+
+
+	public void setSubmitDate(LocalDate submitDate) {
+		this.submitDate = submitDate;
+	}
+
+
+	public Package getPack() {
+		return pack;
+	}
+
+
+	public void setPack(Package pack) {
+		this.pack = pack;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Feedback [feedbackId=" + feedbackId + ", customer=" + customer + ", feedback=" + feedback + ", rating="
-				+ rating + ", submitDate=" + submitDate + "]";
+				+ rating + ", submitDate=" + submitDate + ", pack=" + pack + "]";
 	}
-
+	
 }
+
+	

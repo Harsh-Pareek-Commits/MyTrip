@@ -75,11 +75,11 @@ public class FeedbackServiceImpl implements IFeedbackService {
 	 **/
 
 	@Override
-	public Feedback findByCustomerId(int customerId) throws CustomerNotFoundException {
+	public List<Feedback> findByCustomerId(int customerId) throws CustomerNotFoundException {
 		try {
-			Optional<Feedback> opt = feedbackRepository.findbyCustId(customerId);
-			if (opt.isPresent()) {
-				return opt.get();
+			List<Feedback> opt = feedbackRepository.findbyCustId(customerId);
+			if (opt!=null) {
+				return opt;
 			} else {
 				throw new CustomerNotFoundException("Feedback not present for this customer id");
 			}

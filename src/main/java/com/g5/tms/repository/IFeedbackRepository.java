@@ -1,5 +1,6 @@
 package com.g5.tms.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,7 +14,7 @@ import com.g5.tms.entities.Feedback;
 public interface IFeedbackRepository extends JpaRepository<Feedback, Integer> {
 	
 	@Query("Select f from Feedback f where f.customer.userId=:customerId")
-	Optional<Feedback> findbyCustId(@Param("customerId") Integer customerId);
+	List<Feedback> findbyCustId(@Param("customerId") Integer customerId);
 		
 	
 

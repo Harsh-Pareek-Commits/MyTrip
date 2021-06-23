@@ -11,6 +11,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.g5.tms.entities.Package;
 
 
 public class FeedbackEntityDto {
@@ -25,7 +26,14 @@ public class FeedbackEntityDto {
 	@FutureOrPresent(message="date can't be in past")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate submitDate;
-	
+	@Valid
+	private PackageEntityDto pack;
+	public PackageEntityDto getPack() {
+		return pack;
+	}
+	public void setPack(PackageEntityDto pack) {
+		this.pack = pack;
+	}
 	public String getFeedbackInfo() {
 		return feedbackInfo;
 	}
@@ -53,7 +61,7 @@ public class FeedbackEntityDto {
 	@Override
 	public String toString() {
 		return "FeedbackEntityDto [customer=" + customer + ", feedbackInfo=" + feedbackInfo + ", feedbackRating="
-				+ feedbackRating + ", submitDate=" + submitDate + "]";
+				+ feedbackRating + ", submitDate=" + submitDate + ", pack=" + pack + "]";
 	}
 	
 }

@@ -23,6 +23,16 @@ public class FeedbackDto {
 	private int rating;
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private LocalDate submitDate;
+	 
+	private PackageDto pack;
+
+	public PackageDto getPack() {
+		return pack;
+	}
+
+	public void setPack(PackageDto pack) {
+		this.pack = pack;
+	}
 
 	public int getFeedbackId() {
 		return feedbackId;
@@ -67,7 +77,7 @@ public class FeedbackDto {
 	@Override
 	public String toString() {
 		return "FeedbackDto [feedbackId=" + feedbackId + ", customer=" + customer + ", feedback=" + feedback
-				+ ", rating=" + rating + ", submitDate=" + submitDate + "]";
+				+ ", rating=" + rating + ", submitDate=" + submitDate + ", pack=" + pack + "]";
 	}
 	
 

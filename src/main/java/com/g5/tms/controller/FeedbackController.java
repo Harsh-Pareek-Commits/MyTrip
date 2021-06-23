@@ -86,13 +86,19 @@ Feedback actualfeed = modelMapper.map(requestFeed, Feedback.class);
 	
 	@ApiOperation(value = "Feedback Get mapping to fetch feedback by customer id", response = Feedback.class)
 	@GetMapping("/find/customer/{custid}")
-	public ResponseEntity<FeedbackDto> viewFeedbackbyCustomer(@PathVariable int custid) throws CustomerNotFoundException {
+	public ResponseEntity<List<FeedbackDto>> viewFeedbackbyCustomer(@PathVariable int custid) throws CustomerNotFoundException {
 
-		FeedbackDto responsefeed = modelMapper.map(this.feedbackService.findByCustomerId(custid), FeedbackDto.class);
-		if (responsefeed != null) {
-			return new ResponseEntity<>(responsefeed, HttpStatus.OK);
+		List<Feedback> feedbackList = this.feedbackService.findByCustomerId(custid);
+		List<FeedbackDto> responslist=new ArrayList<>();
+		for (Feedback f : feedbackList) {
+			FeedbackDto responsefeed = modelMapper.map(f, FeedbackDto.class);
+			responslist.add(responsefeed);
+		}
+		
+		if (!(responslist.isEmpty())) {
+			return new ResponseEntity<>(responslist, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsefeed, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responslist, HttpStatus.BAD_REQUEST);
 		}
 	}
 	
