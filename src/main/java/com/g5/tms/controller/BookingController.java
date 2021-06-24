@@ -116,4 +116,24 @@ public class BookingController {
 			return new ResponseEntity<>(bookingDtoList, HttpStatus.BAD_REQUEST);
 		}
 	}
+	/*
+	 *Author= Harsh Pareek
+	 *Date= 26-May-2021
+	 *Method name: booking by ticket id
+	 *Parameters:int ticketid 
+	 *Return Type:   Booking object
+	 *
+	 **/
+	@ApiOperation(value = "Booking Get mapping to fetch all bookings")
+	@GetMapping("/view/ticket/{ticketId}")
+	public ResponseEntity<BookingDto> viewBookingbyticketId(@PathVariable int ticketId) throws BookingNotFoundException  {
+
+		Booking booking = this.bookingService.ticketdetails(ticketId);
+			BookingDto bookingdto = modelMapper.map(booking, BookingDto.class);
+		if (bookingdto!= null) {
+			return new ResponseEntity<>(bookingdto, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(bookingdto, HttpStatus.BAD_REQUEST);
+		}
+	}
 }

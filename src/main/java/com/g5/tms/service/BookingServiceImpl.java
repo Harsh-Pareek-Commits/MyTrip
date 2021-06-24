@@ -115,5 +115,21 @@ public class BookingServiceImpl implements IBookingService {
 		}
 		return bookingList;
 	}
+	@Override
+	public Booking ticketdetails(int ticketId)throws BookingNotFoundException {
+		try {
+
+			Optional<Booking> opt =bookingRepository.findByTicketId(ticketId);
+			if (opt.isPresent()) {
+			
+				return opt.get();
+			} else {
+				throw new BookingNotFoundException("Invalid Ticket ID!");
+			}
+		} catch (Exception e) {
+
+			throw new BookingNotFoundException("No booking found with this ticket ID!");
+		}
+	}
 
 }

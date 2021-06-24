@@ -52,7 +52,7 @@ public class PackageServiceTest {
 		Package pack = new Package(12,"xyz","bchd","type",2000,null,null);
 		List<Package> pack_list = Arrays.asList(pack);
 		Mockito.when(pack_repo.findAll()).thenReturn(pack_list);
-		List<Package> actual_packlist = pack_serv.viewAllPackages();
+		List<Package> actual_packlist = pack_serv.viewAllPackages(null, null);
 		assertEquals(pack_list, actual_packlist);
 	}
 
