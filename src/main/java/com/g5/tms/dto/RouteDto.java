@@ -2,6 +2,7 @@ package com.g5.tms.dto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -19,13 +20,27 @@ public class RouteDto {
 	private  LocalDateTime  departureTime;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private  LocalDateTime   arrivalTime;
-	@JsonFormat(pattern="yyyy-MM-dd")
-	private  LocalDate   doj;
+	
+	private  double duration;
 	private String pickupPoint;
 	private  double fare;
 	public int getRouteId() {
 		return routeId;
 	}
+	
+
+	public double getDuration() {
+		return duration;
+	}
+
+
+
+	public void setDuration(double duration) {
+		this.duration = duration;
+	}
+
+
+
 	public void setRouteId(int routeId) {
 		this.routeId = routeId;
 	}
@@ -59,12 +74,7 @@ public class RouteDto {
 	public void setArrivalTime(LocalDateTime arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
-	public LocalDate getDoj() {
-		return doj;
-	}
-	public void setDoj(LocalDate doj) {
-		this.doj = doj;
-	}
+	
 	public String getPickupPoint() {
 		return pickupPoint;
 	}
@@ -77,11 +87,12 @@ public class RouteDto {
 	public void setFare(double fare) {
 		this.fare = fare;
 	}
+	
 	@Override
 	public String toString() {
-		return "RouteDto [routeId=" + routeId + ", routeFrom=" + routeFrom + ", routeTo=" + routeTo + ", departureTime="
-				+ departureTime + ", arrivalTime=" + arrivalTime + ", doj=" + doj + ", pickupPoint=" + pickupPoint
-				+ ", fare=" + fare + "]";
+		return "RouteDto [routeId=" + routeId + ", routeFrom=" + routeFrom + ", routeTo=" + routeTo + ", buses=" + buses
+				+ ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", duration=" + duration
+				+ ", pickupPoint=" + pickupPoint + ", fare=" + fare + "]";
 	}
 	
 

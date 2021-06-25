@@ -2,6 +2,7 @@ package com.g5.tms.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -66,11 +67,9 @@ public class Route {
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private  LocalDateTime   arrivalTime;
 	
-	@ApiModelProperty(name = "Date", value = "Cannot be past")
-    @Future(message = "Date cannot be past")
-    @DateTimeFormat(pattern="yyyy-MM-dd" )
-    @JsonFormat(pattern="yyyy-MM-dd")
-	private  LocalDate   doj;
+	@ApiModelProperty(name = "Duration", value = "Time taken")
+    
+	private  double duration ;
 	
 	@ApiModelProperty(name = "PickUpPoint", value = "Cannot be empty, holds min of 2 and max of 15 characters")
 	@Column
@@ -83,12 +82,14 @@ public class Route {
 	@Min(0)
 	@Positive 
 	private  double fare;
+
 	public Route() {
 		super();
-
+	
 	}
+
 	public Route(int routeId, String routeFrom, String routeTo, List<Bus> buses, LocalDateTime departureTime,
-			LocalDateTime arrivalTime, LocalDate doj, String pickupPoint, double fare) {
+			LocalDateTime arrivalTime, String pickupPoint, double fare) {
 		super();
 		this.routeId = routeId;
 		this.routeFrom = routeFrom;
@@ -96,120 +97,84 @@ public class Route {
 		this.buses = buses;
 		this.departureTime = departureTime;
 		this.arrivalTime = arrivalTime;
-		this.doj = doj;
 		this.pickupPoint = pickupPoint;
 		this.fare = fare;
 	}
-	
-	/**
-	 * @return the routeId
-	 */
+
+	public void setDuration(double duration) {
+		this.duration = duration;
+	}
+
 	public int getRouteId() {
 		return routeId;
 	}
-	/**
-	 * @param routeId the routeId to set
-	 */
+
 	public void setRouteId(int routeId) {
 		this.routeId = routeId;
 	}
-	/**
-	 * @return the routeFrom
-	 */
+
 	public String getRouteFrom() {
 		return routeFrom;
 	}
-	/**
-	 * @param routeFrom the routeFrom to set
-	 */
+
 	public void setRouteFrom(String routeFrom) {
 		this.routeFrom = routeFrom;
 	}
-	/**
-	 * @return the routeTo
-	 */
+
 	public String getRouteTo() {
 		return routeTo;
 	}
-	/**
-	 * @param routeTo the routeTo to set
-	 */
+
 	public void setRouteTo(String routeTo) {
 		this.routeTo = routeTo;
 	}
-	/**
-	 * @return the buses
-	 */
+
 	public List<Bus> getBuses() {
 		return buses;
 	}
-	/**
-	 * @param buses the buses to set
-	 */
+
 	public void setBuses(List<Bus> buses) {
 		this.buses = buses;
 	}
-	/**
-	 * @return the departureTime
-	 */
+
 	public LocalDateTime getDepartureTime() {
 		return departureTime;
 	}
-	/**
-	 * @param departureTime the departureTime to set
-	 */
+
 	public void setDepartureTime(LocalDateTime departureTime) {
 		this.departureTime = departureTime;
 	}
-	/**
-	 * @return the arrivalTime
-	 */
+
 	public LocalDateTime getArrivalTime() {
 		return arrivalTime;
 	}
-	/**
-	 * @param arrivalTime the arrivalTime to set
-	 */
+
 	public void setArrivalTime(LocalDateTime arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
-	/**
-	 * @return the doj
-	 */
-	public LocalDate getDoj() {
-		return doj;
+
+	
+
+	public double getDuration() {
+		return duration;
 	}
-	/**
-	 * @param doj the doj to set
-	 */
-	public void setDoj(LocalDate doj) {
-		this.doj = doj;
-	}
-	/**
-	 * @return the pickupPoint
-	 */
+
 	public String getPickupPoint() {
 		return pickupPoint;
 	}
-	/**
-	 * @param pickupPoint the pickupPoint to set
-	 */
+
 	public void setPickupPoint(String pickupPoint) {
 		this.pickupPoint = pickupPoint;
 	}
-	/**
-	 * @return the fare
-	 */
+
 	public double getFare() {
 		return fare;
 	}
-	/**
-	 * @param fare the fare to set
-	 */
+
 	public void setFare(double fare) {
 		this.fare = fare;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -217,6 +182,7 @@ public class Route {
 		result = prime * result + routeId;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -230,10 +196,11 @@ public class Route {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Route [routeId=" + routeId + ", routeFrom=" + routeFrom + ", routeTo=" + routeTo + ", buses=" + buses
-				+ ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", doj=" + doj
+				+ ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", duration=" + duration
 				+ ", pickupPoint=" + pickupPoint + ", fare=" + fare + "]";
 	}
 	

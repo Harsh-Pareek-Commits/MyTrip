@@ -1,5 +1,7 @@
 package com.g5.tms.service;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +36,14 @@ public class RouteServiceImpl implements IRouteService {
 	public Route addRoute(Route route) {
 
 		try {
-
+			LocalDateTime start = route.getDepartureTime();
+			LocalDateTime end = route.getArrivalTime();
+			long dur = Duration.between(start, end).getSeconds();
+			double d = dur/3600;
+			double r = (dur%3600)/60f;
+			r=r/100;
+			d=d+r;
+			route.setDuration(d);
 			routeRepository.save(route);
 
 		} catch (Exception e) {
