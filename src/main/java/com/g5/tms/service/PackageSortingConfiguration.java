@@ -29,4 +29,14 @@ public class PackageSortingConfiguration {
 			return b.getPackageName().compareTo(a.getPackageName());
 		}
 	}
+	class SortbyArrTimeAsc implements Comparator<Package> {
+		public int compare(Package a, Package b) {
+			return a.getRoute().getArrivalTime().compareTo(b.getRoute().getArrivalTime());
+		}
+	}
+	class SortbyArrTimeDes implements Comparator<Package> {
+		public int compare(Package a, Package b) {
+			return b.getRoute().getArrivalTime().compareTo(a.getRoute().getArrivalTime());
+		}
+	}
 }
