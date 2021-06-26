@@ -3,6 +3,9 @@ package com.g5.tms.service;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.lang.String.*;
+import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.transaction.Transactional;
 
@@ -12,9 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.g5.tms.entities.Package;
-import com.g5.tms.entities.Travels;
+
 import com.g5.tms.exceptions.PackageNotFoundException;
-import com.g5.tms.exceptions.RouteNotFoundException;
+
 import com.g5.tms.repository.IPackageRepository;
 
 @Service
@@ -122,19 +125,13 @@ public class PackageServiceImpl implements IPackageService {
 	}
 
 	@Override
-	public List<Package> viewByRoute(String from, String to, Optional<String> sortby, Optional<String> sort) throws PackageNotFoundException {
+	public List<Package> viewByRoute(String from, String to, Optional<String> sortBy, Optional<String> sort,java.util.Date d ) throws PackageNotFoundException {
 		List<Package> list = null;
 		try {
-			list = packageRepository.findByRoute(from, to);
+			list = packageRepository.findByRoute(from, to,d);
 			if (list.isEmpty()) {
 				throw new PackageNotFoundException("Package is not available for this route");
-			} else {
-				if (sortby.isPresent()) {
-					list = Sorting(list, sortby.get(), sort);
-
-				}
-
-				}
+			} 
 				return list;
 			
 		}catch(
@@ -184,7 +181,7 @@ public class PackageServiceImpl implements IPackageService {
 	}
 
 	public List<Package> Sorting(List<Package> packageList, String Sortby, Optional<String> sort) {
-		if (sort.isEmpty()) {
+		if (sort.isPresent()) {
 			if (Sortby.equals("Asc")) {
 				Collections.sort(packageList, new PackageSortingConfiguration().new SortbyPriceAsc());
 			} else {

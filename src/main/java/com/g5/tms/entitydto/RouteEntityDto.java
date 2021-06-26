@@ -2,6 +2,7 @@ package com.g5.tms.entitydto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -38,16 +39,20 @@ public class RouteEntityDto {
 	@Future(message = "Date cannot be past")
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss" )
 	private  LocalDateTime   timeofArrival;
-	  @Future(message = "Date cannot be past")
-    @DateTimeFormat(pattern="yyyy-MM-dd" )
-    @JsonFormat(pattern="yyyy-MM-dd")
-	private  LocalDate   doj;
+	
+	private  double duration;
 	  @NotEmpty(message = "Pickup point cannot be left blank or null")
 		@Size(min = 2,max = 15,message = "Invalid pickup point")
 	private String pickupPoint;
 	  @Min(0)
 		@Positive 
 	private  double fareAmt;
+	public int getRouteId() {
+		return routeId;
+	}
+	public void setRouteId(int routeId) {
+		this.routeId = routeId;
+	}
 	public String getFrom() {
 		return from;
 	}
@@ -78,11 +83,13 @@ public class RouteEntityDto {
 	public void setTimeofArrival(LocalDateTime timeofArrival) {
 		this.timeofArrival = timeofArrival;
 	}
-	public LocalDate getDoj() {
-		return doj;
+	
+	
+	public double getDuration() {
+		return duration;
 	}
-	public void setDoj(LocalDate doj) {
-		this.doj = doj;
+	public void setDuration(double duration) {
+		this.duration = duration;
 	}
 	public String getPickupPoint() {
 		return pickupPoint;
@@ -96,19 +103,12 @@ public class RouteEntityDto {
 	public void setFareAmt(double fareAmt) {
 		this.fareAmt = fareAmt;
 	}
-	
-	public int getRouteId() {
-		return routeId;
-	}
-	public void setRouteId(int routeId) {
-		this.routeId = routeId;
-	}
 	@Override
 	public String toString() {
 		return "RouteEntityDto [routeId=" + routeId + ", from=" + from + ", to=" + to + ", buses=" + buses
-				+ ", timeofDeparture=" + timeofDeparture + ", timeofArrival=" + timeofArrival + ", doj=" + doj
+				+ ", timeofDeparture=" + timeofDeparture + ", timeofArrival=" + timeofArrival + ", duration=" + duration
 				+ ", pickupPoint=" + pickupPoint + ", fareAmt=" + fareAmt + "]";
 	}
-	
+
 	
 }

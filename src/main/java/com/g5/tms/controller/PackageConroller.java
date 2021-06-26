@@ -1,5 +1,8 @@
 package com.g5.tms.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,10 +111,11 @@ public class PackageConroller {
 	}
 
 	@ApiOperation(value = "Package Get mapping to fetch all packages for a route", response = List.class)
-	@GetMapping("/route/{from}/{to}")
-	public ResponseEntity<List<PackageDto>> viewAllPackagesbyRoute(@PathVariable String from, @PathVariable String to,
-			@RequestParam java.util.Optional<String> sortBy, @RequestParam java.util.Optional<String> sort) throws PackageNotFoundException {
-		List<Package> packList = this.packageService.viewByRoute(from, to,sortBy,sort);
+	@GetMapping("/route/{from}/{to}/{d}")
+	public ResponseEntity<List<PackageDto>> viewAllPackagesbyRoute(@PathVariable String from, @PathVariable String to,@PathVariable String d,
+			@RequestParam java.util.Optional<String> sortBy, @RequestParam java.util.Optional<String> sort
+			) throws PackageNotFoundException, ParseException {
+		List<Package> packList = this.packageService.viewByRoute(from, to,sortBy,sort,new SimpleDateFormat("yyyy-MM-dd").parse(d) );
 		List<PackageDto> packDtoList = new ArrayList<>();
 		for (Package p : packList) {
 			PackageDto packdto = modelMapper.map(p, PackageDto.class);
