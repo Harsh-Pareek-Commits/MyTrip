@@ -1,6 +1,0 @@
-projectKey=com.g5.tms:TripManagementSystem
-serverUrl=http://localhost:9000
-serverVersion=7.0.0.36138
-dashboardUrl=http://localhost:9000/dashboard/index/com.g5.tms:TripManagementSystem
-ceTaskId=AXnqKKuH3jwpbZ3bw4Xk
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXnqKKuH3jwpbZ3bw4Xk

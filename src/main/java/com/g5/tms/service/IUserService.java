@@ -7,6 +7,6 @@ import com.g5.tms.exceptions.InvalidCredentialException;
 
 public interface IUserService {
 public  User addNewUser(User user);
-public User signIn(User user) throws InvalidCredentialException;
+public String signIn(User user) throws InvalidCredentialException;
 public User signOut(User user);
 }

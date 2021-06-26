@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.g5.tms.entities.User;
 import com.g5.tms.exceptions.InvalidCredentialException;
+import com.g5.tms.security.JwtResponse;
 import com.g5.tms.service.IUserService;
 
 import io.swagger.annotations.Api;
@@ -48,10 +49,10 @@ public class UserController {
 	 **/
 	@ApiOperation(value = "User Post mapping for user signing in", response = User.class)
 	@PostMapping("/signin")
-	public ResponseEntity<User> signuser(@RequestBody @Valid User user) throws InvalidCredentialException
+	public ResponseEntity<JwtResponse> signuser(@RequestBody @Valid User user) throws InvalidCredentialException
 	{
-		this.userService.signIn(user);
-		return new ResponseEntity<>(user, HttpStatus.OK);
+		
+		return new ResponseEntity<>(new JwtResponse(this.userService.signIn(user)), HttpStatus.OK);
 
 	}
 	/*
