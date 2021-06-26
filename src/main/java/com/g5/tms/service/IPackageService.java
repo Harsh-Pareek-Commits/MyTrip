@@ -17,7 +17,7 @@ public interface IPackageService {
 	public  Package  deletePackage(int packageId) throws PackageNotFoundException;
 	public  Package  searchPackage(int packageId) throws PackageNotFoundException;
 	public  List<Package> viewAllPackages(Optional<String> sortBy, Optional<String> sort);
-	public List<Package> viewByRoute(String from, String to, Optional<String> sortBy, Optional<String> sort,Date date ) throws PackageNotFoundException;
+	public List<Package> viewByRoute(String from, String to, Optional<String> sortBy, Optional<String> sort,String string ) throws PackageNotFoundException;
 	public Package searchPackagebyName(String name) throws PackageNotFoundException;
 	public  Package  deletePackagebyName(String name) throws PackageNotFoundException;
 	

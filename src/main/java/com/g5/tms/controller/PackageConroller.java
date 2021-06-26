@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -96,8 +97,9 @@ public class PackageConroller {
 	 **/
 	@ApiOperation(value = "Package Get mapping to fetch all packages", response = List.class)
 	@GetMapping("/all")
-	public ResponseEntity<List<PackageDto>> viewAllPackages(	@RequestParam java.util.Optional<String> sortBy, @RequestParam java.util.Optional<String> sort) {
-		List<Package> packList = this.packageService.viewAllPackages(sortBy,sort);
+	public ResponseEntity<List<PackageDto>> viewAllPackages(@RequestParam java.util.Optional<String> sortBy,
+			@RequestParam java.util.Optional<String> sort) {
+		List<Package> packList = this.packageService.viewAllPackages(sortBy, sort);
 		List<PackageDto> packDtoList = new ArrayList<>();
 		for (Package p : packList) {
 			PackageDto packdto = modelMapper.map(p, PackageDto.class);
@@ -112,10 +114,11 @@ public class PackageConroller {
 
 	@ApiOperation(value = "Package Get mapping to fetch all packages for a route", response = List.class)
 	@GetMapping("/route/{from}/{to}/{d}")
-	public ResponseEntity<List<PackageDto>> viewAllPackagesbyRoute(@PathVariable String from, @PathVariable String to,@PathVariable String d,
-			@RequestParam java.util.Optional<String> sortBy, @RequestParam java.util.Optional<String> sort
-			) throws PackageNotFoundException, ParseException {
-		List<Package> packList = this.packageService.viewByRoute(from, to,sortBy,sort,new SimpleDateFormat("yyyy-MM-dd").parse(d) );
+	public ResponseEntity<List<PackageDto>> viewAllPackagesbyRoute(@PathVariable String from, @PathVariable String to,
+			@PathVariable String d, @RequestParam java.util.Optional<String> sortBy,
+			@RequestParam java.util.Optional<String> sort) throws PackageNotFoundException, ParseException {
+		
+		List<Package> packList = this.packageService.viewByRoute(from, to, sortBy, sort,d);
 		List<PackageDto> packDtoList = new ArrayList<>();
 		for (Package p : packList) {
 			PackageDto packdto = modelMapper.map(p, PackageDto.class);
@@ -123,7 +126,7 @@ public class PackageConroller {
 
 		}
 		if (!(packDtoList.isEmpty())) {
-			
+
 			return new ResponseEntity<>(packDtoList, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(packDtoList, HttpStatus.BAD_REQUEST);

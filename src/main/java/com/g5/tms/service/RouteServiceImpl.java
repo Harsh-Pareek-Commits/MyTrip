@@ -21,13 +21,10 @@ public class RouteServiceImpl implements IRouteService {
 	Logger log = LoggerFactory.getLogger(RouteServiceImpl.class);
 	@Autowired
 	IRouteRepository routeRepository;
-	
+
 	/*
-	 *Author= Himagani Mishra
-	 *Date= 24-May-2021
-	 *Method name: addRoute
-	 *Parameters: Route object
-	 *Return Type: route object
+	 * Author= Himagani Mishra Date= 24-May-2021 Method name: addRoute Parameters:
+	 * Route object Return Type: route object
 	 *
 	 **/
 
@@ -39,12 +36,22 @@ public class RouteServiceImpl implements IRouteService {
 			LocalDateTime start = route.getDepartureTime();
 			LocalDateTime end = route.getArrivalTime();
 			long dur = Duration.between(start, end).getSeconds();
-			double d = dur/3600;
-			double r = (dur%3600)/60f;
-			r=r/100;
-			d=d+r;
-			route.setDuration(d);
-			routeRepository.save(route);
+			long d = dur / 60;
+			 Duration durr = Duration.ofMinutes(d);
+		        long days = durr.toDays();
+		        long hours = durr.toHours() % 24;
+		        long minutes = durr.toMinutes() % 60;
+		       String duration="";
+		        if(days>0) {
+		    	   duration=days+" day/s";
+		       }
+		       if(hours>0) {
+		    	  duration+=" "+ hours+" hr";
+		       }
+		       if(minutes>0) {
+		    	   duration+=" "+ minutes+" min";
+		       }
+		       route.setDuration(duration);
 
 		} catch (Exception e) {
 			log.error("Add route Exception:", e);
@@ -53,18 +60,15 @@ public class RouteServiceImpl implements IRouteService {
 	}
 
 	/*
-	 *Author= Himagani Mishra
-	 *Date= 24-May-2021
-	 *Method name: updateRoute
-	 *Parameters: Route object
-	 *Return Type: route object
+	 * Author= Himagani Mishra Date= 24-May-2021 Method name: updateRoute
+	 * Parameters: Route object Return Type: route object
 	 *
 	 **/
-	
+
 	@Override
 	@Transactional
 	public Route updateRoute(Route route) throws RouteNotFoundException {
-	
+
 		try {
 			Optional<Route> opt = routeRepository.findById(route.getRouteId());
 			if (opt.isPresent()) {
@@ -78,15 +82,11 @@ public class RouteServiceImpl implements IRouteService {
 			throw new RouteNotFoundException("Route not found in update route!");
 		}
 
-		
 	}
-	
+
 	/*
-	 *Author= Himagani Mishra
-	 *Date= 24-May-2021
-	 *Method name: removeRoute
-	 *Parameters: Route Id
-	 *Return Type: Route object
+	 * Author= Himagani Mishra Date= 24-May-2021 Method name: removeRoute
+	 * Parameters: Route Id Return Type: Route object
 	 *
 	 **/
 
@@ -108,13 +108,10 @@ public class RouteServiceImpl implements IRouteService {
 		}
 
 	}
-	
+
 	/*
-	 *Author= Himagani Mishra
-	 *Date= 24-May-2021
-	 *Method name: searchRoute
-	 *Parameters: Route Id
-	 *Return Type: Route object
+	 * Author= Himagani Mishra Date= 24-May-2021 Method name: searchRoute
+	 * Parameters: Route Id Return Type: Route object
 	 *
 	 **/
 
@@ -133,12 +130,10 @@ public class RouteServiceImpl implements IRouteService {
 			throw new RouteNotFoundException("Route not found in search route!");
 		}
 	}
-	
+
 	/*
-	 *Author= Himagani Mishra
-	 *Date= 24-May-2021
-	 *Method name: viewRouteReport
-	 *Return Type: Report object list
+	 * Author= Himagani Mishra Date= 24-May-2021 Method name: viewRouteReport Return
+	 * Type: Report object list
 	 *
 	 **/
 

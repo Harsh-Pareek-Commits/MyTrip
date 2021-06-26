@@ -82,8 +82,7 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 	public String signIn(User user) throws InvalidCredentialException {
 		String email = "try@xyz.com";
 		try {
-            System.out.println(userRepository.findById(user.getUserId()).get().getPassword());
-			System.out.println(email);
+         
 			this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserId(),user.getPassword()));
 		} catch (Exception e) {
 			e.printStackTrace();

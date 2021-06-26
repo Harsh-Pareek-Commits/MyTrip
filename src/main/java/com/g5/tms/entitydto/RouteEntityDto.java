@@ -40,7 +40,7 @@ public class RouteEntityDto {
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss" )
 	private  LocalDateTime   timeofArrival;
 	
-	private  double duration;
+	private  String duration;
 	  @NotEmpty(message = "Pickup point cannot be left blank or null")
 		@Size(min = 2,max = 15,message = "Invalid pickup point")
 	private String pickupPoint;
@@ -85,10 +85,10 @@ public class RouteEntityDto {
 	}
 	
 	
-	public double getDuration() {
+	public String getDuration() {
 		return duration;
 	}
-	public void setDuration(double duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 	public String getPickupPoint() {

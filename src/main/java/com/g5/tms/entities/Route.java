@@ -69,7 +69,7 @@ public class Route {
 	
 	@ApiModelProperty(name = "Duration", value = "Time taken")
     
-	private  double duration ;
+	private  String duration ;
 	
 	@ApiModelProperty(name = "PickUpPoint", value = "Cannot be empty, holds min of 2 and max of 15 characters")
 	@Column
@@ -101,7 +101,7 @@ public class Route {
 		this.fare = fare;
 	}
 
-	public void setDuration(double duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 
@@ -155,7 +155,7 @@ public class Route {
 
 	
 
-	public double getDuration() {
+	public String getDuration() {
 		return duration;
 	}
 

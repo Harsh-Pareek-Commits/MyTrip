@@ -21,7 +21,7 @@ public class RouteDto {
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private  LocalDateTime   arrivalTime;
 	
-	private  double duration;
+	private  String duration;
 	private String pickupPoint;
 	private  double fare;
 	public int getRouteId() {
@@ -29,13 +29,13 @@ public class RouteDto {
 	}
 	
 
-	public double getDuration() {
+	public String getDuration() {
 		return duration;
 	}
 
 
 
-	public void setDuration(double duration) {
+	public void setDuration(String duration) {
 		this.duration = duration;
 	}
 

@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Optional;
 import java.lang.String.*;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.transaction.Transactional;
 
@@ -125,10 +127,15 @@ public class PackageServiceImpl implements IPackageService {
 	}
 
 	@Override
-	public List<Package> viewByRoute(String from, String to, Optional<String> sortBy, Optional<String> sort,java.util.Date d ) throws PackageNotFoundException {
+	public List<Package> viewByRoute(String from, String to, Optional<String> sortBy, Optional<String> sort,String d ) throws PackageNotFoundException {
 		List<Package> list = null;
 		try {
-			list = packageRepository.findByRoute(from, to,d);
+			SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat myFormat = new SimpleDateFormat("yy-MM-dd");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
+			LocalDate dt = LocalDate.parse(myFormat.format(fromUser.parse(d)), formatter);
+			System.out.println("Seconf="+dt);
+			list = packageRepository.findByRoute(from, to,dt);
 			if (list.isEmpty()) {
 				throw new PackageNotFoundException("Package is not available for this route");
 			} 
@@ -137,7 +144,8 @@ public class PackageServiceImpl implements IPackageService {
 		}catch(
 
 	Exception e)
-	{
+	{   
+			e.printStackTrace();
 		throw new PackageNotFoundException("Package Not Found with given Route");
 	}
 	}

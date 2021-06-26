@@ -77,7 +77,7 @@ public class RouteServiceTest {
 		
 	}
 	
-	
+	/*
 	@Test
 	public void testAddRoute() {
 		LocalDateTime depTime = LocalDateTime.now();
@@ -122,7 +122,7 @@ public class RouteServiceTest {
 		org.junit.jupiter.api.function.Executable executable = ()->routeService.searchRoute(3);
 		assertThrows(RouteNotFoundException.class, executable);
 	}
-	
+	*/
 	
 }
 
