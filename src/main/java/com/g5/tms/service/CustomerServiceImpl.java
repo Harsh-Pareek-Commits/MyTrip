@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.g5.tms.entities.Customer;
 import com.g5.tms.exceptions.CustomerNotFoundException;
@@ -28,6 +29,8 @@ public class CustomerServiceImpl implements ICustomerService {
 	IBookingRepository bookingRepository;
 	@Autowired
 	IPackageRepository packageRepository;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	/*
 	 *Author= Harsh Pareek
 	 *Date= 24-May-2021
@@ -39,7 +42,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	public Customer addCustomer(Customer customer) {
 	       
 			if ((customer.getPassword() != null)) {
-				String securedPasswordHash = BCrypt.hashpw(customer.getPassword(), BCrypt.gensalt(12));
+				String securedPasswordHash =passwordEncoder.encode(customer.getPassword());
 				customer.setPassword(securedPasswordHash);
 			}
 			customer.setUserType("3");
