@@ -52,7 +52,7 @@ public class RouteServiceImpl implements IRouteService {
 		    	   duration+=" "+ minutes+" min";
 		       }
 		       route.setDuration(duration);
-
+               routeRepository.save(route);
 		} catch (Exception e) {
 			log.error("Add route Exception:", e);
 		}
