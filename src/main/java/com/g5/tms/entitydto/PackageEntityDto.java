@@ -2,6 +2,8 @@ package com.g5.tms.entitydto;
 
 
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import javax.validation.constraints.Min;
@@ -32,7 +34,14 @@ public class PackageEntityDto {
 	@Valid
 	private RouteEntityDto route;
 	@Valid
-	private Hotel hotel;
+	private List<HotelEntityDto> hotel;
+	
+	public int getPackageId() {
+		return packageId;
+	}
+	public void setPackageId(int packageId) {
+		this.packageId = packageId;
+	}
 	public String getPackName() {
 		return packName;
 	}
@@ -57,22 +66,16 @@ public class PackageEntityDto {
 	public void setPackCost(double packCost) {
 		this.packCost = packCost;
 	}
-	public int getPackageId() {
-		return packageId;
-	}
-	public void setPackageId(int packageId) {
-		this.packageId = packageId;
-	}
 	public RouteEntityDto getRoute() {
 		return route;
 	}
 	public void setRoute(RouteEntityDto route) {
 		this.route = route;
 	}
-	public Hotel getHotel() {
+	public List<HotelEntityDto> getHotel() {
 		return hotel;
 	}
-	public void setHotel(Hotel hotel) {
+	public void setHotel(List<HotelEntityDto> hotel) {
 		this.hotel = hotel;
 	}
 	@Override
@@ -82,5 +85,4 @@ public class PackageEntityDto {
 				+ ", hotel=" + hotel + "]";
 	}
 	
-
 }

@@ -2,6 +2,7 @@ package com.g5.tms.dto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Period;
 import java.util.List;
 
@@ -17,30 +18,19 @@ public class RouteDto {
 	private String  routeTo;
 	private  List<BusDto> buses;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private  LocalDateTime  departureTime;
+	private  LocalDateTime  departureDate;
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private  LocalDateTime   arrivalTime;
-	
+	private  LocalDateTime   arrivalDate;
+	@JsonFormat(pattern="HH:mm:ss")
+	private  LocalTime   departureTime;
+	@JsonFormat(pattern="HH:mm:ss")
+	private  LocalTime   arrivalTime;
 	private  String duration;
 	private String pickupPoint;
 	private  double fare;
 	public int getRouteId() {
 		return routeId;
 	}
-	
-
-	public String getDuration() {
-		return duration;
-	}
-
-
-
-	public void setDuration(String duration) {
-		this.duration = duration;
-	}
-
-
-
 	public void setRouteId(int routeId) {
 		this.routeId = routeId;
 	}
@@ -62,19 +52,36 @@ public class RouteDto {
 	public void setBuses(List<BusDto> buses) {
 		this.buses = buses;
 	}
-	public LocalDateTime getDepartureTime() {
+	public LocalDateTime getDepartureDate() {
+		return departureDate;
+	}
+	public void setDepartureDate(LocalDateTime departureDate) {
+		this.departureDate = departureDate;
+	}
+	public LocalDateTime getArrivalDate() {
+		return arrivalDate;
+	}
+	public void setArrivalDate(LocalDateTime arrivalDate) {
+		this.arrivalDate = arrivalDate;
+	}
+	public LocalTime getDepartureTime() {
 		return departureTime;
 	}
-	public void setDepartureTime(LocalDateTime departureTime) {
+	public void setDepartureTime(LocalTime departureTime) {
 		this.departureTime = departureTime;
 	}
-	public LocalDateTime getArrivalTime() {
+	public LocalTime getArrivalTime() {
 		return arrivalTime;
 	}
-	public void setArrivalTime(LocalDateTime arrivalTime) {
+	public void setArrivalTime(LocalTime arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
-	
+	public String getDuration() {
+		return duration;
+	}
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
 	public String getPickupPoint() {
 		return pickupPoint;
 	}
@@ -87,13 +94,12 @@ public class RouteDto {
 	public void setFare(double fare) {
 		this.fare = fare;
 	}
-	
 	@Override
 	public String toString() {
 		return "RouteDto [routeId=" + routeId + ", routeFrom=" + routeFrom + ", routeTo=" + routeTo + ", buses=" + buses
-				+ ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", duration=" + duration
-				+ ", pickupPoint=" + pickupPoint + ", fare=" + fare + "]";
+				+ ", departureDate=" + departureDate + ", arrivalDate=" + arrivalDate + ", departureTime="
+				+ departureTime + ", arrivalTime=" + arrivalTime + ", duration=" + duration + ", pickupPoint="
+				+ pickupPoint + ", fare=" + fare + "]";
 	}
 	
-
 }

@@ -19,9 +19,6 @@ public class CustomerEntityDto extends UserEntityDto {
 	@Pattern(regexp = "(^$|[0-9]{10})", message = "Enter 10 digit mobile number")
 	private String custMobileNo;
 
-	@Email(message = "Enter valid email Id")
-	private String custEmail;
-
 	public String getCustName() {
 		return custName;
 	}
@@ -46,12 +43,5 @@ public class CustomerEntityDto extends UserEntityDto {
 		this.custMobileNo = custMobileNo;
 	}
 
-	public String getCustEmail() {
-		return custEmail;
-	}
-
-	public void setCustEmail(String custEmail) {
-		this.custEmail = custEmail;
-	}
 
 }

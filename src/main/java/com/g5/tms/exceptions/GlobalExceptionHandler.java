@@ -69,6 +69,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 		header.add("Description", "Trying to get travels");
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
 	}
+	@ExceptionHandler(HotelNotFoundException.class)
+	public ResponseEntity<String> handleTHotelException(HotelNotFoundException ex) {
+		HttpHeaders header = new HttpHeaders();
+		header.add("Description", "Trying to get hotel");
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
+	}
+	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<String> handleRouteException(Exception ex) {
 		HttpHeaders header = new HttpHeaders();

@@ -1,6 +1,7 @@
 package com.g5.tms.service;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -33,9 +34,9 @@ public class RouteServiceImpl implements IRouteService {
 	public Route addRoute(Route route) {
 
 		try {
-			LocalDateTime start = route.getDepartureTime();
-			LocalDateTime end = route.getArrivalTime();
-			long dur = Duration.between(start, end).getSeconds();
+			/*LocalDate start = route.getDepartureDate();
+			LocalDate end = route.getDepartureDate();
+		   long dur = Duration.between(start, end).getSeconds();
 			long d = dur / 60;
 			 Duration durr = Duration.ofMinutes(d);
 		        long days = durr.toDays();
@@ -51,7 +52,7 @@ public class RouteServiceImpl implements IRouteService {
 		       if(minutes>0) {
 		    	   duration+=" "+ minutes+" min";
 		       }
-		       route.setDuration(duration);
+		       route.setDuration(duration);*/
                routeRepository.save(route);
 		} catch (Exception e) {
 			log.error("Add route Exception:", e);

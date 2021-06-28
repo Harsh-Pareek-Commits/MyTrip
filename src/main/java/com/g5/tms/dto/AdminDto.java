@@ -9,9 +9,7 @@ public class AdminDto  {
 	
 	
 	private String adminName;
-	
-	private String email;
-	
+
 	private String mobile;
 
 	public int getAdminId() {
@@ -30,14 +28,6 @@ public class AdminDto  {
 		this.adminName = adminName;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getMobile() {
 		return mobile;
 	}
@@ -48,10 +38,7 @@ public class AdminDto  {
 
 	@Override
 	public String toString() {
-		return "AdminDto [adminId=" + adminId + ", adminName=" + adminName + ", email=" + email + ", mobile=" + mobile
-				+ "]";
+		return "AdminDto [adminId=" + adminId + ", adminName=" + adminName + ", mobile=" + mobile + "]";
 	}
-
-	
 
 }

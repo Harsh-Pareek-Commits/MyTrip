@@ -15,7 +15,6 @@ public class CustomerDto {
 	
 	private String customerMobileNo;
 	
-	private String customerEmail;
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -40,18 +39,12 @@ public class CustomerDto {
 	public void setCustomerMobileNo(String customerMobileNo) {
 		this.customerMobileNo = customerMobileNo;
 	}
-	public String getCustomerEmail() {
-		return customerEmail;
-	}
-	public void setCustomerEmail(String customerEmail) {
-		this.customerEmail = customerEmail;
-	}
 	@Override
 	public String toString() {
 		return "CustomerDto [customerId=" + customerId + ", customerName=" + customerName + ", customerAddress="
-				+ customerAddress + ", customerMobileNo=" + customerMobileNo + ", customerEmail=" + customerEmail + "]";
+				+ customerAddress + ", customerMobileNo=" + customerMobileNo + "]";
 	}
-
+	
 	
 
 }

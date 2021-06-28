@@ -16,7 +16,7 @@ import java.util.Optional;
 @Repository
 public interface IPackageRepository extends JpaRepository<Package, Integer> {
 	
-	@Query("select p from Package p where p.route.routeFrom=:routeFrom and p.route.routeTo=:routeTo and to_date(p.route.departureTime, 'yy-mm-dd')=to_date(:d, 'yy-mm-dd')")
+	@Query("select p from Package p where p.route.routeFrom=:routeFrom and p.route.routeTo=:routeTo and to_date(p.route.departureDate, 'yy-mm-dd')=to_date(:d, 'yy-mm-dd')")
 	List<Package> findByRoute(@Param("routeFrom") String routeFrom,@Param("routeTo") String routeTo, @Param("d") LocalDate d);
 	
 	@Query("select p from Package p where p.packageName=:packageName")

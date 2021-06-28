@@ -2,6 +2,7 @@ package com.g5.tms.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Period;
 import java.util.List;
 
@@ -53,22 +54,34 @@ public class Route {
 	@Valid
 	private  List<Bus> buses;
 	
-	@ApiModelProperty(name = "DepartureTime", value = "Date cannot be past")
+	@Column
+	@ApiModelProperty(name = "DepartureDate", value = "Date cannot be past")
 	@FutureOrPresent(message = "Date cannot be past")
-	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss" )
+	@DateTimeFormat(pattern="yyyy-MM-dd" )
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private  LocalDate  departureDate;
 	
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private  LocalDateTime  departureTime;
-	
-	@ApiModelProperty(name = "ArrivalTime", value = "Date cannot be past")
+	@Column
+	@ApiModelProperty(name = "ArrivalDate", value = "Date cannot be past")
 	@Future(message = "Date cannot be past")
-	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss" )
+	@DateTimeFormat(pattern="yyyy-MM-dd" )
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private  LocalDate   arrivalDate;
 	
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private  LocalDateTime   arrivalTime;
+	@Column
+	@ApiModelProperty(name = "ArrivalTime", value = "Contains arrival time")
+	@DateTimeFormat(pattern="hh:mm:ss" )
+	@JsonFormat(pattern="HH:mm:ss")
+	private  LocalTime   arrivalTime;
 	
+	@Column
+	@ApiModelProperty(name = "DepartureTime", value = "Contains departure time")
+	@DateTimeFormat(pattern="hh:mm:ss" )
+	@JsonFormat(pattern="HH:mm:ss")
+	private  LocalTime   departureTime;
+	
+	@Column
 	@ApiModelProperty(name = "Duration", value = "Time taken")
-    
 	private  String duration ;
 	
 	@ApiModelProperty(name = "PickUpPoint", value = "Cannot be empty, holds min of 2 and max of 15 characters")
@@ -86,23 +99,6 @@ public class Route {
 	public Route() {
 		super();
 	
-	}
-
-	public Route(int routeId, String routeFrom, String routeTo, List<Bus> buses, LocalDateTime departureTime,
-			LocalDateTime arrivalTime, String pickupPoint, double fare) {
-		super();
-		this.routeId = routeId;
-		this.routeFrom = routeFrom;
-		this.routeTo = routeTo;
-		this.buses = buses;
-		this.departureTime = departureTime;
-		this.arrivalTime = arrivalTime;
-		this.pickupPoint = pickupPoint;
-		this.fare = fare;
-	}
-
-	public void setDuration(String duration) {
-		this.duration = duration;
 	}
 
 	public int getRouteId() {
@@ -137,26 +133,44 @@ public class Route {
 		this.buses = buses;
 	}
 
-	public LocalDateTime getDepartureTime() {
-		return departureTime;
+	public LocalDate getDepartureDate() {
+		return departureDate;
 	}
 
-	public void setDepartureTime(LocalDateTime departureTime) {
-		this.departureTime = departureTime;
+	public void setDepartureDate(LocalDate departureDate) {
+		this.departureDate = departureDate;
 	}
 
-	public LocalDateTime getArrivalTime() {
+	public LocalDate getArrivalDate() {
+		return arrivalDate;
+	}
+
+	public void setArrivalDate(LocalDate arrivalDate) {
+		this.arrivalDate = arrivalDate;
+	}
+
+	public LocalTime getArrivalTime() {
 		return arrivalTime;
 	}
 
-	public void setArrivalTime(LocalDateTime arrivalTime) {
+	public void setArrivalTime(LocalTime arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 
-	
+	public LocalTime getDepartureTime() {
+		return departureTime;
+	}
+
+	public void setDepartureTime(LocalTime departureTime) {
+		this.departureTime = departureTime;
+	}
 
 	public String getDuration() {
 		return duration;
+	}
+
+	public void setDuration(String duration) {
+		this.duration = duration;
 	}
 
 	public String getPickupPoint() {
@@ -200,10 +214,10 @@ public class Route {
 	@Override
 	public String toString() {
 		return "Route [routeId=" + routeId + ", routeFrom=" + routeFrom + ", routeTo=" + routeTo + ", buses=" + buses
-				+ ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", duration=" + duration
-				+ ", pickupPoint=" + pickupPoint + ", fare=" + fare + "]";
+				+ ", departureDate=" + departureDate + ", arrivalDate=" + arrivalDate + ", arrivalTime=" + arrivalTime
+				+ ", departureTime=" + departureTime + ", duration=" + duration + ", pickupPoint=" + pickupPoint
+				+ ", fare=" + fare + "]";
 	}
-	
-	
+
 
 }

@@ -3,6 +3,8 @@ package com.g5.tms.dto;
 
 
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -19,7 +21,7 @@ public class PackageDto {
 	private double packageCost;
 	private RouteDto route;
 	
-	private HotelDto hotel;
+	private List<HotelDto> hotel;
 
 
 	public int getPackageId() {
@@ -72,19 +74,19 @@ public class PackageDto {
 		this.route = route;
 	}
 
-	public HotelDto getHotel() {
+	public List<HotelDto> getHotel() {
 		return hotel;
 	}
 
-	public void setHotel(HotelDto hotel) {
+	public void setHotel(List<HotelDto> hotel) {
 		this.hotel = hotel;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "PackageDto [packageId=" + packageId + ", packageName=" + packageName + ", packageDescription="
-				+ packageDescription + ", packageType=" + packageType + ", packageCost=" + packageCost + ", hotel="
-				+ hotel + "]";
+				+ packageDescription + ", packageType=" + packageType + ", packageCost=" + packageCost + ", route="
+				+ route + ", hotel=" + hotel + "]";
 	}
-	
+
 }

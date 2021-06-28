@@ -1,6 +1,8 @@
 package com.g5.tms.entities;
 
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 
@@ -57,123 +61,69 @@ public class Package {
 	private Route route;
 	
 	@ApiModelProperty(name = "Hotel", value = "Contains hotel information")
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name = "Hotel_info", referencedColumnName = "hotelId")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "Hotel_info",joinColumns = @JoinColumn(name = "packageId"),inverseJoinColumns = @JoinColumn(name = "hotelId"))
 	@Valid
-	private Hotel hotel;
+	private List<Hotel> hotel;
 
 	public Package() {
 		super();
 
 	}
 
-	public Package(int packageId, String packageName, String packageDescription, String packageType, double packageCost,
-			Route route, Hotel hotel) {
-		super();
-		this.packageId = packageId;
-		this.packageName = packageName;
-		this.packageDescription = packageDescription;
-		this.packageType = packageType;
-		this.packageCost = packageCost;
-		this.route = route;
-		this.hotel = hotel;
-	}
-
-	/**
-	 * @return the packageId
-	 */
 	public int getPackageId() {
 		return packageId;
 	}
 
-	/**
-	 * @param packageId the packageId to set
-	 */
 	public void setPackageId(int packageId) {
 		this.packageId = packageId;
 	}
 
-	/**
-	 * @return the packageName
-	 */
 	public String getPackageName() {
 		return packageName;
 	}
 
-	/**
-	 * @param packageName the packageName to set
-	 */
 	public void setPackageName(String packageName) {
 		this.packageName = packageName;
 	}
 
-	/**
-	 * @return the packageDescription
-	 */
 	public String getPackageDescription() {
 		return packageDescription;
 	}
 
-	/**
-	 * @param packageDescription the packageDescription to set
-	 */
 	public void setPackageDescription(String packageDescription) {
 		this.packageDescription = packageDescription;
 	}
 
-	/**
-	 * @return the packageType
-	 */
 	public String getPackageType() {
 		return packageType;
 	}
 
-	/**
-	 * @param packageType the packageType to set
-	 */
 	public void setPackageType(String packageType) {
 		this.packageType = packageType;
 	}
 
-	/**
-	 * @return the packageCost
-	 */
 	public double getPackageCost() {
 		return packageCost;
 	}
 
-	/**
-	 * @param packageCost the packageCost to set
-	 */
 	public void setPackageCost(double packageCost) {
 		this.packageCost = packageCost;
 	}
 
-	/**
-	 * @return the route
-	 */
 	public Route getRoute() {
 		return route;
 	}
 
-	/**
-	 * @param route the route to set
-	 */
 	public void setRoute(Route route) {
 		this.route = route;
 	}
 
-	/**
-	 * @return the hotel
-	 */
-	public Hotel getHotel() {
+	public List<Hotel> getHotel() {
 		return hotel;
 	}
 
-	/**
-	 * @param hotel the hotel to set
-	 */
-	public void setHotel(Hotel hotel) {
+	public void setHotel(List<Hotel> hotel) {
 		this.hotel = hotel;
 	}
 
@@ -205,5 +155,4 @@ public class Package {
 				+ packageDescription + ", packageType=" + packageType + ", packageCost=" + packageCost + ", route="
 				+ route + ", hotel=" + hotel + "]";
 	}
-
 }

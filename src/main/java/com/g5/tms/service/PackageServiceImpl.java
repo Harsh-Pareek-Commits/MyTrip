@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.g5.tms.entities.Hotel;
 import com.g5.tms.entities.Package;
 
 import com.g5.tms.exceptions.PackageNotFoundException;
@@ -44,7 +45,7 @@ public class PackageServiceImpl implements IPackageService {
 				throw new PackageNotFoundException("PackageName already exists");
 			} else {
 				double total = pack.getRoute().getFare();
-				total += pack.getHotel().getRent();
+			//	total += pack.getHotel().;
 				total += pack.getPackageCost();
 				pack.setPackageCost(total);
 				return packageRepository.save(pack);

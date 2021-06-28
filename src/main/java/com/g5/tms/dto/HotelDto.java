@@ -21,6 +21,8 @@ public class HotelDto {
 	private double rent;
 	
 	private String status;
+	
+	private String city;
 
 	public int getHotelId() {
 		return hotelId;
@@ -77,13 +79,24 @@ public class HotelDto {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 
 	@Override
 	public String toString() {
 		return "HotelDto [hotelId=" + hotelId + ", hotelName=" + hotelName + ", hotelType=" + hotelType
 				+ ", hotelDescription=" + hotelDescription + ", address=" + address + ", rent=" + rent + ", status="
-				+ status + "]";
+				+ status + ", city=" + city + "]";
 	}
+
+	
 	
 	
 

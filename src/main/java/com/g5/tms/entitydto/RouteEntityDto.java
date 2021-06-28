@@ -2,6 +2,7 @@ package com.g5.tms.entitydto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Period;
 import java.util.List;
 
@@ -18,6 +19,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.g5.tms.entities.Bus;
 
+import io.swagger.annotations.ApiModelProperty;
+
 
 
 public class RouteEntityDto {
@@ -31,14 +34,27 @@ public class RouteEntityDto {
 	private String  to;
 	@Valid
 	private  List<Bus> buses;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@ApiModelProperty(name = "DepartureDate", value = "Date cannot be past")
 	@FutureOrPresent(message = "Date cannot be past")
-	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss" )
-	private  LocalDateTime  timeofDeparture;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(pattern="yyyy-MM-dd" )
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private  LocalDate  departureDate;
+	
+	@ApiModelProperty(name = "ArrivalDate", value = "Date cannot be past")
 	@Future(message = "Date cannot be past")
-	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss" )
-	private  LocalDateTime   timeofArrival;
+	@DateTimeFormat(pattern="yyyy-MM-dd" )
+	@JsonFormat(pattern="yyyy-MM-dd")
+	private  LocalDate   arrivalDate;
+	
+	@ApiModelProperty(name = "ArrivalTime", value = "Contains arrival time")
+	@DateTimeFormat(pattern="hh:mm:ss" )
+	@JsonFormat(pattern="HH:mm:ss")
+	private  LocalTime   arrivalTime;
+	
+	@ApiModelProperty(name = "DepartureTime", value = "Contains departure time")
+	@DateTimeFormat(pattern="hh:mm:ss" )
+	@JsonFormat(pattern="HH:mm:ss")
+	private  LocalTime   departureTime;
 	
 	private  String duration;
 	  @NotEmpty(message = "Pickup point cannot be left blank or null")
@@ -71,20 +87,30 @@ public class RouteEntityDto {
 	public void setBuses(List<Bus> buses) {
 		this.buses = buses;
 	}
-	public LocalDateTime getTimeofDeparture() {
-		return timeofDeparture;
+	public LocalDate getDepartureDate() {
+		return departureDate;
 	}
-	public void setTimeofDeparture(LocalDateTime timeofDeparture) {
-		this.timeofDeparture = timeofDeparture;
+	public void setDepartureDate(LocalDate departureDate) {
+		this.departureDate = departureDate;
 	}
-	public LocalDateTime getTimeofArrival() {
-		return timeofArrival;
+	public LocalDate getArrivalDate() {
+		return arrivalDate;
 	}
-	public void setTimeofArrival(LocalDateTime timeofArrival) {
-		this.timeofArrival = timeofArrival;
+	public void setArrivalDate(LocalDate arrivalDate) {
+		this.arrivalDate = arrivalDate;
 	}
-	
-	
+	public LocalTime getArrivalTime() {
+		return arrivalTime;
+	}
+	public void setArrivalTime(LocalTime arrivalTime) {
+		this.arrivalTime = arrivalTime;
+	}
+	public LocalTime getDepartureTime() {
+		return departureTime;
+	}
+	public void setDepartureTime(LocalTime departureTime) {
+		this.departureTime = departureTime;
+	}
 	public String getDuration() {
 		return duration;
 	}
@@ -106,9 +132,10 @@ public class RouteEntityDto {
 	@Override
 	public String toString() {
 		return "RouteEntityDto [routeId=" + routeId + ", from=" + from + ", to=" + to + ", buses=" + buses
-				+ ", timeofDeparture=" + timeofDeparture + ", timeofArrival=" + timeofArrival + ", duration=" + duration
-				+ ", pickupPoint=" + pickupPoint + ", fareAmt=" + fareAmt + "]";
+				+ ", departureDate=" + departureDate + ", arrivalDate=" + arrivalDate + ", arrivalTime=" + arrivalTime
+				+ ", departureTime=" + departureTime + ", duration=" + duration + ", pickupPoint=" + pickupPoint
+				+ ", fareAmt=" + fareAmt + "]";
 	}
-
 	
+	  
 }

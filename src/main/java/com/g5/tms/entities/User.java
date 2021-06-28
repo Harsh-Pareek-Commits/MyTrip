@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -37,45 +38,55 @@ public class User {
 	@Size(min = 8,message = "Invalid Password, Password should be min 8")
 	private String password;
 	
-	public User() {
-		super();
-		
-	}
-	public User(int userId, String userType, String password) {
-		super();
-		this.userId = userId;
-		this.userType = userType;
-		this.password = password;
-		
-	}
-	
+	@ApiModelProperty(name = "Email", value = "Email cannot be empty")
+	@Column
+	@NotEmpty(message = "Email cannot be left blank or null")
+	@Email(message = "Enter valid email Id")
+	private String email;
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 	public String getUserType() {
 		return userType;
 	}
+
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + userId;
 		result = prime * result + ((userType == null) ? 0 : userType.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -85,6 +96,11 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -99,10 +115,11 @@ public class User {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userType=" + userType + ", password=" + password + "]";
+		return "User [userId=" + userId + ", userType=" + userType + ", password=" + password + ", email=" + email
+				+ "]";
 	}
 	
-
 }
