@@ -20,7 +20,6 @@ public class PackageDto {
 	
 	private double packageCost;
 	private RouteDto route;
-	
 	private List<HotelDto> hotel;
 
 

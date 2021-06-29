@@ -3,6 +3,7 @@ package com.g5.tms.service;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,8 +35,26 @@ public class RouteServiceImpl implements IRouteService {
 	public Route addRoute(Route route) {
 
 		try {
-			/*LocalDate start = route.getDepartureDate();
-			LocalDate end = route.getDepartureDate();
+			String deptTime="";
+			String arrTime="";
+			if(route.getDepartureTime().toString().length()==6) {
+				deptTime=route.getDepartureTime().toString()+":00";
+			}
+			else {
+				 deptTime=route.getDepartureTime().toString();
+			}
+			if(route.getArrivalTime().toString().length()==6) {
+				 arrTime=route.getArrivalTime().toString()+":00";
+			}
+			else {
+				 arrTime=route.getArrivalTime().toString();
+			}
+			String dt=route.getDepartureDate().toString()+" "+deptTime;
+			String at=route.getArrivalDate().toString()+" "+arrTime;
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			
+			LocalDateTime start = LocalDateTime.parse(dt, formatter);
+			LocalDateTime end = LocalDateTime.parse(at, formatter);
 		   long dur = Duration.between(start, end).getSeconds();
 			long d = dur / 60;
 			 Duration durr = Duration.ofMinutes(d);
@@ -52,7 +71,7 @@ public class RouteServiceImpl implements IRouteService {
 		       if(minutes>0) {
 		    	   duration+=" "+ minutes+" min";
 		       }
-		       route.setDuration(duration);*/
+		       route.setDuration(duration);
                routeRepository.save(route);
 		} catch (Exception e) {
 			log.error("Add route Exception:", e);

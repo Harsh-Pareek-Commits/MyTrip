@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
@@ -61,9 +63,10 @@ public class Package {
 	private Route route;
 	
 	@ApiModelProperty(name = "Hotel", value = "Contains hotel information")
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "Hotel_info",joinColumns = @JoinColumn(name = "packageId"),inverseJoinColumns = @JoinColumn(name = "hotelId"))
-	@Valid
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Hotel_info", referencedColumnName = "hotelId")	
+	 @Valid
 	private List<Hotel> hotel;
 
 	public Package() {

@@ -17,10 +17,10 @@ public class RouteDto {
 	private String  routeFrom;
 	private String  routeTo;
 	private  List<BusDto> buses;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private  LocalDateTime  departureDate;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private  LocalDateTime   arrivalDate;
+	
+	private  LocalDate  departureDate;
+	
+	private  LocalDate   arrivalDate;
 	@JsonFormat(pattern="HH:mm:ss")
 	private  LocalTime   departureTime;
 	@JsonFormat(pattern="HH:mm:ss")
@@ -52,16 +52,16 @@ public class RouteDto {
 	public void setBuses(List<BusDto> buses) {
 		this.buses = buses;
 	}
-	public LocalDateTime getDepartureDate() {
+	public LocalDate getDepartureDate() {
 		return departureDate;
 	}
-	public void setDepartureDate(LocalDateTime departureDate) {
+	public void setDepartureDate(LocalDate departureDate) {
 		this.departureDate = departureDate;
 	}
-	public LocalDateTime getArrivalDate() {
+	public LocalDate getArrivalDate() {
 		return arrivalDate;
 	}
-	public void setArrivalDate(LocalDateTime arrivalDate) {
+	public void setArrivalDate(LocalDate arrivalDate) {
 		this.arrivalDate = arrivalDate;
 	}
 	public LocalTime getDepartureTime() {
