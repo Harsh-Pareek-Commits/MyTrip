@@ -1,7 +1,11 @@
 package com.g5.tms.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -10,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -65,30 +71,18 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 	 * user object Return Type: user object
 	 *
 	 **/
-	/*
-	 * @Override public User signIn(User user) throws InvalidCredentialException {
-	 * 
-	 * Optional<User> opt = userRepository.findById(user.getUserId()); try { if
-	 * (opt.isPresent()) { User u = opt.get(); boolean matched =
-	 * BCrypt.checkpw(user.getPassword(), u.getPassword()); if (matched) { return u;
-	 * 
-	 * } else { throw new InvalidCredentialException("Invalid password"); } } else {
-	 * throw new InvalidCredentialException("Invalid userID"); } } catch (Exception
-	 * e) { throw new InvalidCredentialException("Invalid username or password"); }
-	 * }
-	 * 
-	 */
+	
 	@Override
 	public String signIn(User user) throws InvalidCredentialException {
-		String email = "try@xyz.com";
+		
 		try {
          
-			this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserId(),user.getPassword()));
+			this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(),user.getPassword()));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new InvalidCredentialException("Invalid Credential");
 		}
-		UserDetails userdetail = this.loadUserByUsername(email);
+		UserDetails userdetail = this.loadUserByUsername(user.getEmail());
 		String token = this.jwtutil.generateToken(userdetail);
 		return token;
 	}
@@ -105,9 +99,27 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 	}
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findById(1).get();
-		return new org.springframework.security.core.userdetails.User("sca", user.getPassword(),new ArrayList<>());
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		
+		User user = userRepository.findByEmail(email).get();
+		System.out.println("USER ROCKS" +"   "+ user.getUserType());
+		 String role="";
+		if(user.getUserType().equals("2")) {
+			System.out.println("ADMIN ROCKS");
+			role="ROLE_ADMIN";
+			
+		}
+		else if(user.getUserType().equals("3")) {
+			System.out.println("CUSTOMER ROCKS");
+			role="ROLE_USER";
+			
+		}
+		 Set auth = new HashSet<>();
+		
+	            auth.add(new SimpleGrantedAuthority(role));
+		
+		System.out.println(auth);
+		 	return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),auth);
 
 	}
 	

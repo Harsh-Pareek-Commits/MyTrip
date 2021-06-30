@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,6 +48,8 @@ public class PackageConroller {
 	 * Parameters: packageEntityDto object Return Type: packageDto object
 	 *
 	 **/
+	 //@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 	@ApiOperation(value = "Package Post mapping to add package", response = Package.class)
 	@PostMapping("/add")
 	public ResponseEntity<PackageDto> addingPackage(@RequestBody @Valid PackageEntityDto requestpack)
