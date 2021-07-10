@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "http://localhost:4200")
 @Api("Travel Management Application")
 public class UserController {
 	@Autowired
@@ -48,11 +50,13 @@ public class UserController {
 	 *
 	 **/
 	@ApiOperation(value = "User Post mapping for user signing in", response = User.class)
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/signin")
 	public ResponseEntity<JwtResponse> signuser(@RequestBody @Valid User user) throws InvalidCredentialException
-	{
-		
-		return new ResponseEntity<>(new JwtResponse(this.userService.signIn(user)), HttpStatus.OK);
+	{    String token= this.userService.signIn(user);
+	     int id=this.userService.getUserid(user);
+		JwtResponse jwtResponse= new JwtResponse(token,id);
+		return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
 
 	}
 	/*

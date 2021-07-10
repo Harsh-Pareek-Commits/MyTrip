@@ -1,5 +1,7 @@
 package com.g5.tms.security;
 
+import java.util.Arrays;
+
 import javax.annotation.security.PermitAll;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.g5.tms.service.UserServiceImpl;
 @Configuration
@@ -38,14 +43,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 	         http 	              
-	              .cors().disable()
+	             
+	              .cors()
+	              .and()
 	              .csrf().disable()
 	              .authorizeRequests()
-	              .antMatchers("/customer/add","/user/signin","/package/route/{from}/{to}/{d}","/route/all","/route/add").permitAll()
+	              .antMatchers("/customer/add","/user/signin").permitAll()
 	              .anyRequest().authenticated()
 	              .and()
 	              .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-                  http.addFilterBefore(jwtfilter, UsernamePasswordAuthenticationFilter.class);
+                   http.addFilterBefore(jwtfilter, UsernamePasswordAuthenticationFilter.class);
 	}
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -57,5 +64,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
+	@Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
+        configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
  
 }

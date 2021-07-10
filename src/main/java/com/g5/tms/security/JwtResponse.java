@@ -2,16 +2,21 @@ package com.g5.tms.security;
 
 public class JwtResponse {
 String token;
+int id;
+
 
 public JwtResponse() {
 	super();
-	// TODO Auto-generated constructor stub
+	
 }
 
-public JwtResponse(String token) {
+
+public JwtResponse(String token, int id) {
 	super();
 	this.token = token;
+	this.id = id;
 }
+
 
 public String getToken() {
 	return token;
@@ -21,9 +26,13 @@ public void setToken(String token) {
 	this.token = token;
 }
 
-@Override
-public String toString() {
-	return "JwtResponse [token=" + token + "]";
+public int getId() {
+	return id;
 }
+
+public void setId(int id) {
+	this.id = id;
+}
+
 
 }

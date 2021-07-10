@@ -1,6 +1,8 @@
 package com.g5.tms.exceptions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.ConversionNotSupportedException;
@@ -17,70 +19,89 @@ import org.springframework.validation.FieldError;
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
+	
 	@ExceptionHandler(CustomerNotFoundException.class)
-	public ResponseEntity<String> handleCustomerException(CustomerNotFoundException ex) {
-		HttpHeaders header = new HttpHeaders();
-		header.add("Description", "Trying to get customer");
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
-	}
+	public ResponseEntity<MyExceptionResponse> handleCustomerException(CustomerNotFoundException ex) {
+		MyExceptionResponse exeResponse = new MyExceptionResponse();
+		exeResponse.setHttpStatus(HttpStatus.NOT_FOUND.value());
+		exeResponse.setMessage(ex.getMessage());
+		return new ResponseEntity<MyExceptionResponse>(exeResponse,HttpStatus.NOT_FOUND);
+			}
 
 	@ExceptionHandler(BookingNotFoundException.class)
-	public ResponseEntity<String> handleBookingException(BookingNotFoundException ex) {
-		HttpHeaders header = new HttpHeaders();
-		header.add("Description", "Trying to get booking");
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
+	public ResponseEntity<MyExceptionResponse> handleBookingException(BookingNotFoundException ex) {
+		MyExceptionResponse exeResponse = new MyExceptionResponse();
+		exeResponse.setHttpStatus(HttpStatus.NOT_FOUND.value());
+		exeResponse.setMessage(ex.getMessage());
+		return new ResponseEntity<MyExceptionResponse>(exeResponse,HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(InvalidCredentialException.class)
-	public ResponseEntity<String> handleInvalidCredentialException(InvalidCredentialException ex) {
-		HttpHeaders header = new HttpHeaders();
-		header.add("Description", "Authorization failed");
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
+	public ResponseEntity<MyExceptionResponse> invalidSeedId(InvalidCredentialException ex) {
+
+    	MyExceptionResponse exeResponse = new MyExceptionResponse();
+		exeResponse.setHttpStatus(HttpStatus.NOT_FOUND.value());
+		exeResponse.setMessage(ex.getMessage());
+		return new ResponseEntity<MyExceptionResponse>(exeResponse,HttpStatus.NOT_FOUND);
 	}
+	
 
 	@ExceptionHandler(PackageNotFoundException.class)
-	public ResponseEntity<String> handlePackageException(PackageNotFoundException ex) {
-		HttpHeaders header = new HttpHeaders();
-		header.add("Description", "Trying to get package");
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
+	public ResponseEntity<MyExceptionResponse> handlePackageException(PackageNotFoundException ex) {
+		MyExceptionResponse exeResponse = new MyExceptionResponse();
+		exeResponse.setHttpStatus(HttpStatus.NOT_FOUND.value());
+		exeResponse.setMessage(ex.getMessage());
+		return new ResponseEntity<MyExceptionResponse>(exeResponse,HttpStatus.NOT_FOUND);
 	}
 
 	@ExceptionHandler(ReportNotFoundException.class)
-	public ResponseEntity<String> handleReportException(ReportNotFoundException ex) {
-		HttpHeaders header = new HttpHeaders();
-		header.add("Description", "Trying to get report");
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
+	public ResponseEntity<MyExceptionResponse> handleReportException(ReportNotFoundException ex) {
+		
+		MyExceptionResponse exeResponse = new MyExceptionResponse();
+		exeResponse.setHttpStatus(HttpStatus.NOT_FOUND.value());
+		exeResponse.setMessage(ex.getMessage());
+		return new ResponseEntity<MyExceptionResponse>(exeResponse,HttpStatus.NOT_FOUND);
 	}
 	@ExceptionHandler(RouteNotFoundException.class)
-	public ResponseEntity<String> handleRouteException(RouteNotFoundException ex) {
-		HttpHeaders header = new HttpHeaders();
-		header.add("Description", "Trying to get route");
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
+	public ResponseEntity<MyExceptionResponse> handleRouteException(RouteNotFoundException ex) {
+
+		MyExceptionResponse exeResponse = new MyExceptionResponse();
+		exeResponse.setHttpStatus(HttpStatus.NOT_FOUND.value());
+		exeResponse.setMessage(ex.getMessage());
+		return new ResponseEntity<MyExceptionResponse>(exeResponse,HttpStatus.NOT_FOUND);
 	}
 	@ExceptionHandler(FeedbackNotFoundException.class)
-	public ResponseEntity<String> handleFeedbackException(FeedbackNotFoundException ex) {
-		HttpHeaders header = new HttpHeaders();
-		header.add("Description", "Trying to get feedback");
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
+	public ResponseEntity<MyExceptionResponse> handleFeedbackException(FeedbackNotFoundException ex) {
+
+		MyExceptionResponse exeResponse = new MyExceptionResponse();
+		exeResponse.setHttpStatus(HttpStatus.NOT_FOUND.value());
+		exeResponse.setMessage(ex.getMessage());
+		return new ResponseEntity<MyExceptionResponse>(exeResponse,HttpStatus.NOT_FOUND);
 	}
 	@ExceptionHandler(TravelsNotFoundException.class)
-	public ResponseEntity<String> handleTravelsException(TravelsNotFoundException ex) {
-		HttpHeaders header = new HttpHeaders();
-		header.add("Description", "Trying to get travels");
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
+	public ResponseEntity<MyExceptionResponse> handleTravelsException(TravelsNotFoundException ex) {
+
+		MyExceptionResponse exeResponse = new MyExceptionResponse();
+		exeResponse.setHttpStatus(HttpStatus.NOT_FOUND.value());
+		exeResponse.setMessage(ex.getMessage());
+		return new ResponseEntity<MyExceptionResponse>(exeResponse,HttpStatus.NOT_FOUND);
 	}
 	@ExceptionHandler(HotelNotFoundException.class)
-	public ResponseEntity<String> handleTHotelException(HotelNotFoundException ex) {
-		HttpHeaders header = new HttpHeaders();
-		header.add("Description", "Trying to get hotel");
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
+	public ResponseEntity<MyExceptionResponse> handleTHotelException(HotelNotFoundException ex) {
+
+		MyExceptionResponse exeResponse = new MyExceptionResponse();
+		exeResponse.setHttpStatus(HttpStatus.NOT_FOUND.value());
+		exeResponse.setMessage(ex.getMessage());
+		return new ResponseEntity<MyExceptionResponse>(exeResponse,HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<String> handleRouteException(Exception ex) {
-		HttpHeaders header = new HttpHeaders();
-		header.add("Description", "Trying to get date");
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(header).body(ex.getMessage());
+	public ResponseEntity<MyExceptionResponse> handleRouteException(Exception ex) {
+
+		MyExceptionResponse exeResponse = new MyExceptionResponse();
+		exeResponse.setHttpStatus(HttpStatus.BAD_REQUEST.value());
+		exeResponse.setMessage(ex.getMessage());
+		return new ResponseEntity<MyExceptionResponse>(exeResponse,HttpStatus.BAD_REQUEST);
 	}
 	
 	@Override
@@ -88,16 +109,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 			HttpHeaders headers,HttpStatus status,WebRequest request){
 		
 		//fieldName,errorMsg
-		Map<String,String> map = new HashMap<>();
-		
+		Map<String,List<String>> map = new HashMap<>();
+		List<String> myerrors=new ArrayList<>();
 		ex.getBindingResult().getAllErrors().forEach((error)->{
 			
-			String fieldName = ((FieldError)error).getField();
-			String msg = error.getDefaultMessage();
 			
-			map.put(fieldName,msg);
+			myerrors.add(error.getDefaultMessage());
+			
+			
 		});
-		
+		map.put("message",myerrors);
 		
 	return new ResponseEntity<Object>(map,HttpStatus.BAD_REQUEST);
 		
@@ -105,13 +126,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		// TODO Auto-generated method stub
+		
 		return new ResponseEntity<Object>(ex.getMessage(),HttpStatus.BAD_REQUEST);
 	}
 	@Override
 	protected ResponseEntity<Object> handleConversionNotSupported(ConversionNotSupportedException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		// TODO Auto-generated method stub
 		System.out.println(ex.getMessage());
 		return new ResponseEntity<Object>(ex.getMessage(),HttpStatus.BAD_REQUEST);
 	}

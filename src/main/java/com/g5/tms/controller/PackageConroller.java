@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/package")
 @Api("Travel Management Application")
 public class PackageConroller {
@@ -99,6 +101,7 @@ public class PackageConroller {
 	 *
 	 **/
 	@ApiOperation(value = "Package Get mapping to fetch all packages", response = List.class)
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/all")
 	public ResponseEntity<List<PackageDto>> viewAllPackages(@RequestParam java.util.Optional<String> sortBy,
 			@RequestParam java.util.Optional<String> sort) {
@@ -116,6 +119,7 @@ public class PackageConroller {
 	}
 
 	@ApiOperation(value = "Package Get mapping to fetch all packages for a route", response = List.class)
+	
 	@GetMapping("/route/{from}/{to}/{d}")
 	public ResponseEntity<List<PackageDto>> viewAllPackagesbyRoute(@PathVariable String from, @PathVariable String to,
 			@PathVariable String d, @RequestParam java.util.Optional<String> sortBy,
