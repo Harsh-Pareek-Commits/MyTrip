@@ -112,9 +112,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 		Map<String,List<String>> map = new HashMap<>();
 		List<String> myerrors=new ArrayList<>();
 		ex.getBindingResult().getAllErrors().forEach((error)->{
-			
-			
-			myerrors.add(error.getDefaultMessage());
+			String fieldName = ((FieldError)error).getField();
+			myerrors.add( fieldName+" : "+error.getDefaultMessage());
 			
 			
 		});

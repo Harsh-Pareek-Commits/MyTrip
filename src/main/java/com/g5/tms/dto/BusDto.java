@@ -11,45 +11,56 @@ public class BusDto {
 	
 	private  String busNumber;
 	
-	
+	private  String capacity;
 	private TravelsDto travel;
-
-	public TravelsDto getTravel() {
-		return travel;
+	
+	
+	public BusDto() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public void setTravel(TravelsDto travel) {
+	
+	public BusDto(int busId, String busType, String busNumber, String capacity, TravelsDto travel) {
+		super();
+		this.busId = busId;
+		this.busType = busType;
+		this.busNumber = busNumber;
+		this.capacity = capacity;
 		this.travel = travel;
 	}
 
 	public int getBusId() {
 		return busId;
 	}
-
 	public void setBusId(int busId) {
 		this.busId = busId;
 	}
-
 	public String getBusType() {
 		return busType;
 	}
-
 	public void setBusType(String busType) {
 		this.busType = busType;
 	}
-
 	public String getBusNumber() {
 		return busNumber;
 	}
-
 	public void setBusNumber(String busNumber) {
 		this.busNumber = busNumber;
 	}
-
-	@Override
-	public String toString() {
-		return "BusDto [busId=" + busId + ", busType=" + busType + ", busNumber=" + busNumber + "]";
+	public String getCapacity() {
+		return capacity;
 	}
+	public void setCapacity(String capacity) {
+		this.capacity = capacity;
+	}
+	public TravelsDto getTravel() {
+		return travel;
+	}
+	public void setTravel(TravelsDto travel) {
+		this.travel = travel;
+	}
+
+	
 	
 }
 	

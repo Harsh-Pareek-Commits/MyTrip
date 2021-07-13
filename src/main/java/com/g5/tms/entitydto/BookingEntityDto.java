@@ -25,10 +25,11 @@ public class BookingEntityDto {
 	@NotEmpty(message = "BookingTitle cannot be left blank or null")
 	@Size(min = 5,max = 20, message = "Invalid Booking Title")
 	private String bookTitle;
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
+	
 	@FutureOrPresent(message="Date cannot be in Past")
 	private LocalDate dateofBooking;
-	@Valid
+	
 	private PackageEntityDto packDetails;
 	@Positive
 	private int userId;

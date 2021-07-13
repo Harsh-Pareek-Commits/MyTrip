@@ -34,13 +34,13 @@ public class RouteEntityDto {
 	private String  to;
 	@Valid
 	private  List<Bus> buses;
-	@ApiModelProperty(name = "DepartureDate", value = "Date cannot be past")
+	@ApiModelProperty(name = "DepartureDate", value = "Departure Date cannot be past")
 	@FutureOrPresent(message = "Date cannot be past")
 	@DateTimeFormat(pattern="yyyy-MM-dd" )
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private  LocalDate  departureDate;
 	
-	@ApiModelProperty(name = "ArrivalDate", value = "Date cannot be past")
+	@ApiModelProperty(name = "ArrivalDate", value = "Arrival Date cannot be past")
 	@Future(message = "Date cannot be past")
 	@DateTimeFormat(pattern="yyyy-MM-dd" )
 	@JsonFormat(pattern="yyyy-MM-dd")

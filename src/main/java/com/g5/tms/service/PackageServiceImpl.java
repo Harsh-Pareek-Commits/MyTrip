@@ -45,7 +45,9 @@ public class PackageServiceImpl implements IPackageService {
 				throw new PackageNotFoundException("PackageName already exists");
 			} else {
 				double total = pack.getRoute().getFare();
-			//	total += pack.getHotel().;
+				for(Hotel h:pack.getHotel()) {
+					total += h.getRent();
+				}
 				total += pack.getPackageCost();
 				pack.setPackageCost(total);
 				return packageRepository.save(pack);
@@ -111,44 +113,42 @@ public class PackageServiceImpl implements IPackageService {
 	 * Parameters: none Return Type: List of Package objects
 	 *
 	 **/
-	public List<Package> viewAllPackages( Optional<String> sortby, Optional<String> sort) {
+	public List<Package> viewAllPackages(Optional<String> sortby, Optional<String> sort) {
 		List<Package> list = null;
 		try {
 			list = packageRepository.findAll();
 			if (sortby.isPresent()) {
-			 	 list=Sorting(list, sortby.get(), sort);
-			 
+				list = Sorting(list, sortby.get(), sort);
+
 			}
 		} catch (Exception e) {
 			log.error("View all Exception:", e);
 
 		}
-       
+
 		return list;
 	}
 
 	@Override
-	public List<Package> viewByRoute(String from, String to, Optional<String> sortBy, Optional<String> sort,String d ) throws PackageNotFoundException {
+	public List<Package> viewByRoute(String from, String to, Optional<String> sortBy, Optional<String> sort, String d)
+			throws PackageNotFoundException {
 		List<Package> list = null;
 		try {
 			SimpleDateFormat fromUser = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat myFormat = new SimpleDateFormat("yy-MM-dd");
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
 			LocalDate dt = LocalDate.parse(myFormat.format(fromUser.parse(d)), formatter);
-			System.out.println("Seconf="+dt);
-			list = packageRepository.findByRoute(from, to,dt);
+			System.out.println("Seconf=" + dt);
+			list = packageRepository.findByRoute(from, to, dt);
 			if (list.isEmpty()) {
 				throw new PackageNotFoundException("Package is not available for this route");
-			} 
-				return list;
-			
-		}catch(
+			}
+			return list;
 
-	Exception e)
-	{   
-			e.printStackTrace();
-		throw new PackageNotFoundException("Package Not Found with given Route");
-	}
+		} catch (Exception e) {
+			
+			throw new PackageNotFoundException("Package Not Found with given Route");
+		}
 	}
 
 	@Override

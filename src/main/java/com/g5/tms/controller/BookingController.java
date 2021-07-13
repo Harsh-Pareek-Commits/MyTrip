@@ -49,7 +49,7 @@ public class BookingController {
 	 *
 	 **/
 	public ResponseEntity<BookingDto> makeBooking(@RequestBody @Valid BookingEntityDto requestBooking) {
-
+          System.out.println(requestBooking);
 		Booking actualBooking = modelMapper.map(requestBooking, Booking.class);
 		BookingDto responseBooking = modelMapper.map(this.bookingService.makeBooking(actualBooking), BookingDto.class);
 		return new ResponseEntity<>(responseBooking, HttpStatus.OK);
