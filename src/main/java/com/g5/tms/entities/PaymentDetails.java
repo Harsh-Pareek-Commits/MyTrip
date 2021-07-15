@@ -25,17 +25,6 @@ public class PaymentDetails {
 	@Size(min = 2,max = 15,message = "Invalid Payment Mode")
 	private  String paymentMode;
 	
-	@ApiModelProperty(name = "BankName", value = "Cannot be empty, holds min of 3 characters")
-	@Column
-	@NotEmpty(message = "Bank Name cannot be left blank or null")
-	@Size(min = 3,message = "Invalid Bank Name")
-	private  String bankName;
-	
-	@ApiModelProperty(name = "CardNumber", value = "Contains card number")
-	@Column
-	@Pattern(regexp="(^$|[0-9]{16})", message ="Enter 16 digit Card number")
-	private  String  cardNo;
-	
 	private double   netAmount;
 	
 	@ApiModelProperty(name = "PaymentStatus", value = "Cannot be empty")
@@ -54,102 +43,71 @@ public class PaymentDetails {
 		super();
 
 	}
-	public PaymentDetails(int paymentId, String paymentMode, String bankName, String cardNo, double netAmount,
-			String paymentStatus, int userId) {
+
+
+	public PaymentDetails(int paymentId,
+			@NotEmpty(message = "Payment Mode cannot be left blank or null") @Size(min = 2, max = 15, message = "Invalid Payment Mode") String paymentMode,
+			double netAmount, @NotEmpty(message = "Payment status cannot be left blank or null") String paymentStatus,
+			@Positive @Min(0) int userId) {
 		super();
 		this.paymentId = paymentId;
 		this.paymentMode = paymentMode;
-		this.bankName = bankName;
-		this.cardNo = cardNo;
 		this.netAmount = netAmount;
 		this.paymentStatus = paymentStatus;
 		this.userId = userId;
 	}
-	/**
-	 * @return the paymentId
-	 */
+
+
 	public int getPaymentId() {
 		return paymentId;
 	}
-	/**
-	 * @param paymentId the paymentId to set
-	 */
+
+
 	public void setPaymentId(int paymentId) {
 		this.paymentId = paymentId;
 	}
-	/**
-	 * @return the paymentMode
-	 */
+
+
 	public String getPaymentMode() {
 		return paymentMode;
 	}
-	/**
-	 * @param paymentMode the paymentMode to set
-	 */
+
+
 	public void setPaymentMode(String paymentMode) {
 		this.paymentMode = paymentMode;
 	}
-	/**
-	 * @return the bankName
-	 */
-	public String getBankName() {
-		return bankName;
-	}
-	/**
-	 * @param bankName the bankName to set
-	 */
-	public void setBankName(String bankName) {
-		this.bankName = bankName;
-	}
-	/**
-	 * @return the cardNo
-	 */
-	public String getCardNo() {
-		return cardNo;
-	}
-	/**
-	 * @param cardNo the cardNo to set
-	 */
-	public void setCardNo(String cardNo) {
-		this.cardNo = cardNo;
-	}
-	/**
-	 * @return the netAmount
-	 */
+
+
 	public double getNetAmount() {
 		return netAmount;
 	}
-	/**
-	 * @param netAmount the netAmount to set
-	 */
+
+
 	public void setNetAmount(double netAmount) {
 		this.netAmount = netAmount;
 	}
-	/**
-	 * @return the paymentStatus
-	 */
+
+
 	public String getPaymentStatus() {
 		return paymentStatus;
 	}
-	/**
-	 * @param paymentStatus the paymentStatus to set
-	 */
+
+
 	public void setPaymentStatus(String paymentStatus) {
 		this.paymentStatus = paymentStatus;
 	}
-	/**
-	 * @return the userId
-	 */
+
+
 	public int getUserId() {
 		return userId;
 	}
-	/**
-	 * @param userId the userId to set
-	 */
+
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -157,6 +115,8 @@ public class PaymentDetails {
 		result = prime * result + paymentId;
 		return result;
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -170,12 +130,12 @@ public class PaymentDetails {
 			return false;
 		return true;
 	}
+
+
 	@Override
 	public String toString() {
-		return "PaymentDetails [paymentId=" + paymentId + ", paymentMode=" + paymentMode + ", bankName=" + bankName
-				+ ", cardNo=" + cardNo + ", netAmount=" + netAmount + ", paymentStatus=" + paymentStatus + ", userId="
-				+ userId + "]";
+		return "PaymentDetails [paymentId=" + paymentId + ", paymentMode=" + paymentMode + ", netAmount=" + netAmount
+				+ ", paymentStatus=" + paymentStatus + ", userId=" + userId + "]";
 	}
 	
-
 }
