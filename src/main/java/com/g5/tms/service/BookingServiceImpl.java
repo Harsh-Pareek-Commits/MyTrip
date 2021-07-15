@@ -131,5 +131,11 @@ public class BookingServiceImpl implements IBookingService {
 			throw new BookingNotFoundException("No booking found with this ticket ID!");
 		}
 	}
+	@Override
+	public List<Booking> viewAllCustomerBookings(int id) {
+		List<Booking>booking_list=this.bookingRepository.findByUserId(id);
+				
+		return booking_list;
+	}
 
 }

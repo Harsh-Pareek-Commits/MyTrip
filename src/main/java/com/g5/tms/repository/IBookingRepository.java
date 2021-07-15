@@ -16,4 +16,6 @@ import com.g5.tms.entities.Booking;
 public interface IBookingRepository extends JpaRepository<Booking, Integer> {
 	@Query("select b from Booking b where  b.ticket.ticketId=:ticketId")
     Optional<Booking> findByTicketId(@Param("ticketId") Integer ticketId);
+	
+	List<Booking> findByUserId(int id);
 }
