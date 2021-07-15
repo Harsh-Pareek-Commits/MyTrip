@@ -61,6 +61,26 @@ public class Hotel {
 		super();
 
 	}
+	
+	public Hotel(int hotelId,
+			 String hotelName,
+			String hotelType,
+			String hotelDescription,
+			String address,
+			 double rent,
+			String status,
+			 String city) {
+		super();
+		this.hotelId = hotelId;
+		this.hotelName = hotelName;
+		this.hotelType = hotelType;
+		this.hotelDescription = hotelDescription;
+		this.address = address;
+		this.rent = rent;
+		this.status = status;
+		this.city = city;
+	}
+
 	public int getHotelId() {
 		return hotelId;
 	}

@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,23 +54,6 @@ public class RouteServiceTest {
 	
 	@Test
 	public void testViewAllRoutes() {
-		/**LocalDateTime depTime = LocalDateTime.now();
-		LocalDateTime arrTime = LocalDateTime.now();
-		LocalDate date = LocalDate.now();
-		Bus bus1 = new Bus(101, "xyz", "AP90", 20, null);
-		Bus bus2 = new Bus(102, "xyz", "AP90", 20, null);
-		List<Bus> bList1 = Arrays.asList(bus1, bus2);
-		Route r1 = new Route(01, "Hyd", "Banglore", bList1, depTime, arrTime, date, "HydStop", 2000.00);
-		Bus bus3 = new Bus(101, "xyz", "AP90", 20, null);
-		Bus bus4 = new Bus(102, "xyz", "AP90", 20, null);
-		List<Bus> bList2 = Arrays.asList(bus3, bus4);
-		Route r2 = new Route(01, "Hyd", "Banglore", bList2, depTime, arrTime, date, "HydStop", 2000.00);
-		List<Route> routeList = Arrays.asList(r1, r2);
-		System.out.println(routeList);
-		when(routeRepository.findAll()).thenReturn(routeList);
-		List<Route> expected_outList = routeService.viewRouteList();
-		System.out.println(expected_outList);
-		assertIterableEquals(routeList,expected_outList);**/
 		List<Route> routeList = mock(List.class);
 		when(routeRepository.findAll()).thenReturn(routeList);
 		List<Route> outputRoutList = routeService.viewRouteList();
@@ -77,16 +61,17 @@ public class RouteServiceTest {
 		
 	}
 	
-	/*
+	
 	@Test
 	public void testAddRoute() {
-		LocalDateTime depTime = LocalDateTime.now();
-		LocalDateTime arrTime = LocalDateTime.now();
-		LocalDate date = LocalDate.now();
+		LocalDate depTime = LocalDate.now();
+		LocalDate arrTime = LocalDate.now();
+		LocalTime depaTime= LocalTime.now();
+		LocalTime arraTime= LocalTime.now();
 		Bus bus1 = new Bus(101, "xyz", "AP90", 20, null);
 		Bus bus2 = new Bus(102, "xyz", "AP90", 20, null);
 		List<Bus> bList = Arrays.asList(bus1, bus2);
-		Route r1 = new Route(01, "Hyd", "Banglore", bList, depTime, arrTime, date, "HydStop", 2000.00);
+		Route r1 = new Route(01, "Hyd", "Banglore", bList, depTime, arrTime, depaTime,arraTime, "HydStop", 2000.00);
 		when(routeRepository.save(r1)).thenReturn(r1);
 		Route result = routeService.addRoute(r1);
 		assertEquals(r1, result);
@@ -96,15 +81,16 @@ public class RouteServiceTest {
 	
 	@Test
 	public void testUpdateRoute() throws RouteNotFoundException {
-		LocalDateTime depTime = LocalDateTime.now();
-		LocalDateTime arrTime = LocalDateTime.now();
-		LocalDate date = LocalDate.now();
+		LocalDate depTime = LocalDate.now();
+		LocalDate arrTime = LocalDate.now();
+		LocalTime depaTime= LocalTime.now();
+		LocalTime arraTime= LocalTime.now();
 		Bus bus1 = new Bus(101, "xyz", "AP90", 20, null);
 		Bus bus2 = new Bus(102, "xyz", "AP90", 20, null);
 		List<Bus> bList = Arrays.asList(bus1, bus2);
-		Route r1 = new Route(1, "Hyd", "Banglore", bList, depTime, arrTime, date, "HydStop", 2000.00);
+		Route r1 = new Route(01, "Hyd", "Banglore", bList, depTime, arrTime, depaTime,arraTime, "HydStop", 2000.00);
 		Optional<Route> optionalRoute = Optional.of(r1);
-		Route updatedRoute = new Route(1, "Banglore", "Hyd", bList, depTime, arrTime, date, "BangloreStop", 2000.00);
+		Route updatedRoute = new Route(01, "Hyd", "Banglore", bList, depTime, arrTime, depaTime,arraTime, "HydStop", 2000.00);
 		when(routeRepository.findById(1)).thenReturn(optionalRoute);
 		when(routeRepository.save(updatedRoute)).thenReturn(updatedRoute);
 		Route outputCustomer = routeService.updateRoute(updatedRoute);
@@ -113,17 +99,19 @@ public class RouteServiceTest {
 	}
 	@Test
 	void testRouteNotFoundException() {
-		LocalDateTime depTime = LocalDateTime.now();
-		LocalDateTime arrTime = LocalDateTime.now();
-		LocalDate date = LocalDate.now();
-		Route r1 = new Route(1, "Hyd", "Banglore", null, depTime, arrTime, date, "HydStop", 2000.00);
+		LocalDate depTime = LocalDate.now();
+		LocalDate arrTime = LocalDate.now();
+		LocalTime depaTime= LocalTime.now();
+		LocalTime arraTime= LocalTime.now();
+		Bus bus1 = new Bus(101, "xyz", "AP90", 20, null);
+		Bus bus2 = new Bus(102, "xyz", "AP90", 20, null);
+		List<Bus> bList = Arrays.asList(bus1, bus2);
+		Route r1 = new Route(01, "Hyd", "Banglore", bList, depTime, arrTime, depaTime,arraTime, "HydStop", 2000.00);
 		Optional<Route> route = Optional.of(r1);
 		when(routeRepository.findById(1)).thenReturn(route);
 		org.junit.jupiter.api.function.Executable executable = ()->routeService.searchRoute(3);
 		assertThrows(RouteNotFoundException.class, executable);
 	}
-	*/
-	
 }
 
 

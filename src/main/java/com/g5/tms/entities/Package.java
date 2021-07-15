@@ -73,6 +73,23 @@ public class Package {
 		super();
 
 	}
+	
+
+	public Package(int packageId,
+			String packageName,
+			String packageDescription,
+			 String packageType,
+		 double packageCost,  Route route,  List<Hotel> hotel) {
+		super();
+		this.packageId = packageId;
+		this.packageName = packageName;
+		this.packageDescription = packageDescription;
+		this.packageType = packageType;
+		this.packageCost = packageCost;
+		this.route = route;
+		this.hotel = hotel;
+	}
+
 
 	public int getPackageId() {
 		return packageId;

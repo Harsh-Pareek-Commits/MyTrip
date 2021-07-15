@@ -34,7 +34,7 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testCustomerById() throws CustomerNotFoundException {
-		Customer cust = new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
+		Customer cust = new Customer("HARSH", "XYZYVC", "12312312312");
 		cust.setUserType("3");
 		cust.setUserId(1);
 		Optional<Customer> opt = Optional.of(cust);
@@ -45,7 +45,7 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testCustomersByPackageId() throws PackageNotFoundException {
-		Customer c1 = new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
+		Customer c1 = new Customer("HARSH", "XYZ", "12312312312");
 		c1.setUserType("3");
 		c1.setUserId(1);
 		List<Customer> cust = Arrays.asList(c1);
@@ -56,7 +56,7 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testCustomerByRouteId() throws RouteNotFoundException {
-		Customer c1 = new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
+		Customer c1 = new Customer("HARSH", "XYZ", "12312312312");
 		c1.setUserType("3");
 		c1.setUserId(1);
 
@@ -69,7 +69,7 @@ public class CustomerServiceTest {
 
 	@Test
 	public void testAddCustomer() {
-		Customer cust = new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
+		Customer cust = new Customer("HARSH", "XYZ", "12312312312");
 		cust.setUserType("3");
 		cust.setUserId(1);
 		when(cust_repo.save(cust)).thenReturn(cust);
@@ -83,7 +83,7 @@ public class CustomerServiceTest {
 	@Disabled
 	public void testDeleteCustomer() throws CustomerNotFoundException {
 
-		Customer cust = new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
+		Customer cust = new Customer("HARSH", "XYZ", "12312312312");
 		cust.setUserType("3");
 		cust.setUserId(1);
 
@@ -95,7 +95,7 @@ public class CustomerServiceTest {
 
 	@Test
 	void testCustomerNotFoundException() {
-		Customer customer = new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
+		Customer customer = new Customer("HARSH", "XYZ", "12312312312");
 		customer.setUserType("3");
 		customer.setUserId(1);
 		Optional<Customer> cust = Optional.of(customer);
@@ -107,7 +107,7 @@ public class CustomerServiceTest {
 	@Test
 	void testPackageNotFoundException() {
 		
-		Customer customer = new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
+		Customer customer = new Customer("HARSH", "XYZ", "12312312312");
 		customer.setUserType("3");
 		customer.setUserId(1);
 		List<Customer>custList= Arrays.asList(customer);
