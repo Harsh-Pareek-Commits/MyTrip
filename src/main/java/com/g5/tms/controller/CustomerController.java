@@ -50,7 +50,7 @@ public class CustomerController {
 	 **/
 	@ApiOperation(value = "Customer Post mapping", response = CustomerController.class)
 	@PostMapping(value = "/add")
-	public ResponseEntity<CustomerDto> addCustomer(@RequestBody @Valid CustomerEntityDto requestCust) {
+	public ResponseEntity<CustomerDto> addCustomer(@RequestBody @Valid CustomerEntityDto requestCust) throws Exception{
 
 		Customer actualCust = modelMapper.map(requestCust, Customer.class);
 		CustomerDto responseCust = modelMapper.map(this.custService.addCustomer(actualCust), CustomerDto.class);

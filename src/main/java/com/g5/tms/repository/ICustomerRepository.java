@@ -1,6 +1,7 @@
 package com.g5.tms.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,5 +15,6 @@ public interface ICustomerRepository extends JpaRepository<Customer, Integer> {
 List<Customer> findByPackageId(@Param("packageId") Integer packageId);
 @Query("select c from Customer c where c.userId in(Select b.userId from Booking b where b.pack.packageId in ( select p.packageId from Package p where p.route.routeId in(Select r.routeId from Route r where r.routeId=:routeId)))")
 List<Customer> findByRouteId(@Param("routeId") Integer routeId);
+Optional<Customer> findByEmail (String email);
 
 }

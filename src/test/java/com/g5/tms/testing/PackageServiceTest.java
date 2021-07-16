@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.text.SimpleDateFormat;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.List;
@@ -113,24 +113,49 @@ public class PackageServiceTest {
 	*/
 	@Test
 	public void testsearchPackagebyName(String name) throws PackageNotFoundException{
-		Package pack = new Package(12,"xyz","bchd","type",2000,null,null);		
+		LocalDate depTime = LocalDate.now();
+		LocalDate arrTime = LocalDate.now();
+		LocalTime depaTime= LocalTime.now();
+		LocalTime arraTime= LocalTime.now();
+		Bus bus1 = new Bus(101, "xyz", "AP90", 20, null);
+		Bus bus2 = new Bus(102, "xyz", "AP90", 20, null);
+		List<Bus> bList = Arrays.asList(bus1, bus2);
+		Route r1 = new Route(01, "Hyd", "Banglore", bList, depTime, arrTime, depaTime,arraTime, "HydStop", 2000.00);
+		Hotel hotel = new Hotel(1,"abcd","xyzab","dsff","aervc",2000,"available","adbcd");
+		List<Hotel>hlist= Arrays.asList(hotel);
+		Package pack = new Package(13,"rst","bchd","type",2000,r1,hlist);		
 		Optional<Package> opt = Optional.of(pack);
-		Mockito.when(pack_repo.findByName("xyz")).thenReturn(opt);
-		Package test_pack = pack_serv.searchPackagebyName("xyz");
+		Mockito.when(pack_repo.findByName("rst")).thenReturn(opt);
+		Package test_pack = pack_serv.searchPackagebyName("rst");
 		assertEquals(pack, test_pack);
 	}
+	
 	@Test
-	public  void  testdeletePackagebyName(String name) throws PackageNotFoundException{
-		Package pack = new Package(12,"xyz","bchd","type",2000,null,null);
+	public void testdeletebyName(String name) throws PackageNotFoundException{
+		Package pack = new Package(11,"lmn","bchd","type",2000,null,null);
 		Optional<Package> opt = Optional.of(pack);
 		pack_repo.save(pack);
 		pack_repo.delete(pack);
-		Mockito.when(pack_repo.findByName("xyz")).thenReturn(opt);
-		
-		Package test_pack = pack_serv.deletePackagebyName("xyz");
+		Mockito.when(pack_repo.findByName("lmn")).thenReturn(opt);	
+		Package test_pack = pack_serv.deletePackagebyName("lmn");
+		assertEquals(pack, test_pack);
+	}
+	/*@Test
+	public  void  testdeletePackagebyName(String name) throws PackageNotFoundException{
+	
+		Package pack = new Package(11,"lmn","bchd","type",2000,null,null);
+		Optional<Package> opt = Optional.of(pack);
+		pack_repo.save(pack);
+		pack_repo.delete(pack);
+		Mockito.when(pack_repo.findByName("lmn")).thenReturn(opt);	
+		Package test_pack = pack_serv.deletePackagebyName("lmn");
 		assertEquals(pack, test_pack);
 		
+	}*/
+	
 	}
-	}
+
+
+
 	
 

@@ -39,7 +39,7 @@ public class User {
 	private String password;
 	
 	@ApiModelProperty(name = "Email", value = "Email cannot be empty")
-	@Column
+	@Column(unique = true)
 	@NotEmpty(message = "Email cannot be left blank or null")
 	@Email(message = "Enter valid email Id")
 	private String email;

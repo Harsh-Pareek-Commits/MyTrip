@@ -39,16 +39,19 @@ public class CustomerServiceImpl implements ICustomerService {
 	 *Return Type: Customer object*/
 	@Override
 	@Transactional
-	public Customer addCustomer(Customer customer) {
+	public Customer addCustomer(Customer customer) throws Exception {
 	       
 			if ((customer.getPassword() != null)) {
 				String securedPasswordHash =passwordEncoder.encode(customer.getPassword());
 				customer.setPassword(securedPasswordHash);
 			}
+			Optional<Customer> opt =custRepository.findByEmail(customer.getEmail());
+			if(opt.isPresent())
+			{
+				throw new Exception("Please add unique email");
+			}
 			customer.setUserType("3");
 			custRepository.save(customer);
-
-		
 		return customer;
 	}
 	/*

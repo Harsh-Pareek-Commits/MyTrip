@@ -35,7 +35,7 @@ public class AdminController {
 	
 	@ApiOperation(value = "Admin Post mapping to add user", response = Admin.class)
 	@PostMapping("/add")
-	public ResponseEntity<AdminDto> addAdmin(@RequestBody @Valid AdminEntityDto admin)
+	public ResponseEntity<AdminDto> addAdmin(@RequestBody @Valid AdminEntityDto admin) throws Exception
 	{
 
 		Admin actualAdmin = modelMapper.map(admin, Admin.class);
