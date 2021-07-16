@@ -123,9 +123,9 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 	}
 
 	@Override
-	public int getUserid(User user) {
+	public User getUser(User user) {
 		User user1 = userRepository.findByEmail(user.getEmail()).get();
-		return user1.getUserId();
+		return user1;
 			}
 
 }
