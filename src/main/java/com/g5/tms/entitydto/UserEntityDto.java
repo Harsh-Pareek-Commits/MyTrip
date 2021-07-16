@@ -1,5 +1,6 @@
 package com.g5.tms.entitydto;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -13,6 +14,7 @@ public class UserEntityDto {
 	@NotEmpty(message = "Password cannot be left blank or null")
 	@Size(min = 8,message = "Invalid Password, Password should be min 8")
 	private String password;
+	@Column(unique = true)
 	@NotEmpty(message = "Email number cannot be left blank or null")
 	@Email(message = "Enter valid email Id")
 	private String userEmail;

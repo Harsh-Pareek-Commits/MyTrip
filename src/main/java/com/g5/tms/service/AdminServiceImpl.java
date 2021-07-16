@@ -15,8 +15,8 @@ public class AdminServiceImpl extends UserServiceImpl {
 
 	@Transactional
 	public Admin addNewUser(Admin admin) throws Exception {
-		try {
-			admin.setUserType("2");
+		
+			
 			if ((admin.getPassword() != null)) {
 				String securedPasswordHash = BCrypt.hashpw(admin.getPassword(), BCrypt.gensalt(12));
 				admin.setPassword(securedPasswordHash);
@@ -24,13 +24,11 @@ public class AdminServiceImpl extends UserServiceImpl {
 			Optional<User> opt =userRepository.findByEmail(admin.getEmail());
 			if(opt.isPresent())
 			{
-				throw new Exception("Please ann unique email id");
+				throw new Exception("Please add unique email id");
 			}
+			admin.setUserType("2");
 			userRepository.save(admin);
-		} catch (Exception e) {
-			log.error("Adding admin exception",e);
-
-		}
+	
 
 		return admin;
 	}
