@@ -121,5 +121,7 @@ public class User {
 		return "User [userId=" + userId + ", userType=" + userType + ", password=" + password + ", email=" + email
 				+ "]";
 	}
+
+
 	
 }

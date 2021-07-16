@@ -34,7 +34,7 @@ public class FeedbackServiceTest {
 	
 	@Test
 	public void testAddFeedback() {
-		Customer cust = new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
+		Customer cust = new Customer("HARSH", "XYZ", "12312312312");
 		cust.setUserType("3");
 		cust.setUserId(1);
 		LocalDate date = LocalDate.now();
@@ -58,7 +58,7 @@ public class FeedbackServiceTest {
 	@Test
 	public void testFeedbackByCustId() throws CustomerNotFoundException {
 		
-		Customer cust = new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
+		Customer cust = new Customer("HARSH", "XYZ", "12312312312");
 		cust.setUserType("3");
 		cust.setUserId(1);
 		LocalDate date = LocalDate.now();
@@ -84,7 +84,7 @@ public class FeedbackServiceTest {
 	
 	@Test
 	void testCustomerNotFoundException() {
-		Customer customer = new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
+		Customer customer = new Customer("HARSH", "XYZ", "12312312312");
 		customer.setUserType("3");
 		customer.setUserId(1);
 		LocalDate date = LocalDate.now();
@@ -97,7 +97,7 @@ public class FeedbackServiceTest {
 	
 	@Test
 	void testFeedbackNotFoundException() {
-		Customer customer = new Customer("HARSH", "XYZ", "12312312312", "xyz@try.com");
+		Customer customer = new Customer("HARSH", "XYZ", "12312312312");
 		customer.setUserType("3");
 		customer.setUserId(2);
 		LocalDate date = LocalDate.now();

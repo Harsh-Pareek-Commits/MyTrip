@@ -35,7 +35,7 @@ public class BookingServiceTest {
 	@Test
 	public void testBookingbyId() throws BookingNotFoundException {
 		LocalDate date = LocalDate.now();
-		Package pack = new Package(12, "xyz", "bchd", "type", 2000, null, null);
+		Package pack = new Package(11,"packname","desc","type",1200,null,null);
 		PaymentDetails pd=new PaymentDetails();
 		pd.setNetAmount(2000);
 		Booking book = new Booking(12, "xys", "hcjks", "bjhh", date, pack, 1, pd, null);

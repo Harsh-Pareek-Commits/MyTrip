@@ -219,5 +219,27 @@ public class Route {
 				+ ", fare=" + fare + "]";
 	}
 
+	public Route(int routeId,
+			String routeFrom,
+			 String routeTo, List<Bus> buses,
+			LocalDate departureDate,
+			 LocalDate arrivalDate, LocalTime arrivalTime,
+			LocalTime departureTime, 
+			 String pickupPoint,
+		 double fare) {
+		super();
+		this.routeId = routeId;
+		this.routeFrom = routeFrom;
+		this.routeTo = routeTo;
+		this.buses = buses;
+		this.departureDate = departureDate;
+		this.arrivalDate = arrivalDate;
+		this.arrivalTime = arrivalTime;
+		this.departureTime = departureTime;
+		
+		this.pickupPoint = pickupPoint;
+		this.fare = fare;
+	}
+
 
 }

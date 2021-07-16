@@ -1,5 +1,6 @@
 package com.g5.tms.testing;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
@@ -10,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-
+import com.g5.tms.entities.Package;
 import com.g5.tms.entities.Travels;
-
+import com.g5.tms.exceptions.PackageNotFoundException;
 import com.g5.tms.exceptions.TravelsNotFoundException;
 import com.g5.tms.repository.ITravelsRespository;
 import com.g5.tms.service.ITravelsService;
@@ -80,6 +81,26 @@ public class TravelServiceTest {
 		org.junit.jupiter.api.function.Executable executable = ()->travel_service.searchTravels(3);
 		assertThrows(TravelsNotFoundException.class, executable);
 	}
-
+	@Test
+	public void testsearchTravelbyName(String name) throws TravelsNotFoundException{
+		Travels travels = new Travels(1, "MakeMyTrip", "Harsh","indranagar","7485961230");
+		Optional<Travels> opt = Optional.of(travels);
+		when(travel_repo.findByName("Harsh")).thenReturn(opt);
+		Travels test_travles=travel_service.searchbyName("Harsh");
+	
+		assertEquals(travels, test_travles);
+	}
+	@Test
+	public  void  testdeletePackagebyName(String name) throws TravelsNotFoundException {
+		Travels travels = new Travels(1, "MakeMyTrip", "Harsh","indranagar","7485961230");
+		Optional<Travels> opt = Optional.of(travels);
+		travel_repo.save(travels);
+		travel_repo.delete(travels);
+		when(travel_repo.findByName("MakeMyTrip")).thenReturn(opt);
+		
+		Travels test_trv = travel_service.removeTravelsbyName("MakeMyTrip");
+		assertEquals(travels, test_trv);
+		
+	}
 
 }
