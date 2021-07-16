@@ -11,7 +11,7 @@ import com.g5.tms.exceptions.RouteNotFoundException;
 
 public interface ICustomerService {
 
-	public Customer addCustomer(Customer customer);
+	public Customer addCustomer(Customer customer) throws Exception;
 	public Customer updateCustomer(Customer customer) throws CustomerNotFoundException;
 	public Customer deleteCustomer(Customer customer) throws CustomerNotFoundException;//admin
 	public Customer viewCustomer(int custid) throws CustomerNotFoundException;

@@ -68,10 +68,11 @@ public class CustomerServiceTest {
 	}
 
 	@Test
-	public void testAddCustomer() {
+	public void testAddCustomer() throws Exception {
 		Customer cust = new Customer("HARSH", "XYZ", "12312312312");
 		cust.setUserType("3");
 		cust.setUserId(1);
+		cust.setEmail("abcd@xyz");
 		when(cust_repo.save(cust)).thenReturn(cust);
 		Customer result = cust_Service.addCustomer(cust);
 		// verify(cust_repo).save(input);

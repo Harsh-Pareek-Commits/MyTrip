@@ -78,7 +78,7 @@ public class Package {
 	public Package(int packageId,
 			String packageName,
 			String packageDescription,
-			 String packageType,
+			String packageType,
 		 double packageCost,  Route route,  List<Hotel> hotel) {
 		super();
 		this.packageId = packageId;
