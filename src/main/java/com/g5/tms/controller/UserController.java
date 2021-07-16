@@ -54,8 +54,9 @@ public class UserController {
 	@PostMapping("/signin")
 	public ResponseEntity<JwtResponse> signuser(@RequestBody @Valid User user) throws InvalidCredentialException
 	{    String token= this.userService.signIn(user);
-	     int id=this.userService.getUserid(user);
-		JwtResponse jwtResponse= new JwtResponse(token,id);
+	     int id=this.userService.getUser(user).getUserId();
+	     String userTyp=this.userService.getUser(user).getUserType();
+		JwtResponse jwtResponse= new JwtResponse(token,id,userTyp);
 		return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
 
 	}
