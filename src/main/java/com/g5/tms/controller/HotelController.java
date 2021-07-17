@@ -98,7 +98,7 @@ public class HotelController {
 	
 	@ApiOperation(value = "Hotel Delete mapping to delete hotel", response = Hotel.class)
 	@DeleteMapping("/delete/{hotelId}")
-	public ResponseEntity<HotelDto> cancelBooking(@PathVariable int hotelId) throws HotelNotFoundException {
+	public ResponseEntity<HotelDto> deleteHotel(@PathVariable int hotelId) throws HotelNotFoundException {
 
 		HotelDto responseHotel = modelMapper.map(this.hotelService.deleteHotel(hotelId), HotelDto.class);
 		if (responseHotel != null) {
