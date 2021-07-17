@@ -69,7 +69,7 @@ public class CustomerController {
 	@PutMapping("/update")
 	public ResponseEntity<CustomerDto> updateCustomer(@RequestBody @Valid CustomerEntityDto requestCust)
 			throws CustomerNotFoundException {
-
+         
 		Customer actualCust = modelMapper.map(requestCust, Customer.class);
 		CustomerDto responseCust = modelMapper.map(this.custService.updateCustomer(actualCust), CustomerDto.class);
 

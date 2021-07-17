@@ -69,6 +69,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
 			Optional<Customer> opt =custRepository.findById(customer.getUserId());
 			if (opt.isPresent()) {
+				customer.setPassword(opt.get().getPassword());
 				custRepository.save(customer);
 				return opt.get();
 			} else {
