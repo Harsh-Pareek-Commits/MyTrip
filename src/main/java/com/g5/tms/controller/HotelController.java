@@ -10,15 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.g5.tms.dto.BookingDto;
 import com.g5.tms.dto.HotelDto;
+import com.g5.tms.entities.Booking;
 import com.g5.tms.entities.Hotel;
 import com.g5.tms.entitydto.HotelEntityDto;
+import com.g5.tms.exceptions.BookingNotFoundException;
 import com.g5.tms.exceptions.HotelNotFoundException;
 import com.g5.tms.service.IHotelService;
 
@@ -89,6 +94,19 @@ public class HotelController {
 		} else {
 			return new ResponseEntity<>(hotelDtoList, HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@ApiOperation(value = "Hotel Delete mapping to delete hotel", response = Hotel.class)
+	@DeleteMapping("/delete/{hotelId}")
+	public ResponseEntity<HotelDto> cancelBooking(@PathVariable int hotelId) throws HotelNotFoundException {
+
+		HotelDto responseHotel = modelMapper.map(this.hotelService.deleteHotel(hotelId), HotelDto.class);
+		if (responseHotel != null) {
+			return new ResponseEntity<>(responseHotel, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responseHotel, HttpStatus.BAD_REQUEST);
+		}
+
 	}
 	
 	

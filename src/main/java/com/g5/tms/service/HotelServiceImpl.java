@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.g5.tms.entities.Booking;
 import com.g5.tms.entities.Hotel;
 import com.g5.tms.entities.Package;
+import com.g5.tms.exceptions.BookingNotFoundException;
 import com.g5.tms.exceptions.HotelNotFoundException;
 import com.g5.tms.exceptions.PackageNotFoundException;
 import com.g5.tms.repository.IHotelRepository;;
@@ -78,6 +79,23 @@ public class HotelServiceImpl implements IHotelService {
 			log.error("Hotel list exception:", e);
 		}
 		return hotelList;
+	}
+
+	@Override
+	public Hotel deleteHotel(int hotelId) throws HotelNotFoundException {
+		try {
+
+			Optional<Hotel> opt = hotelRepository.findById(hotelId);
+			if (opt.isPresent()) {
+				hotelRepository.deleteById(hotelId);
+				return opt.get();
+			} else {
+				throw new HotelNotFoundException("No Hotel found for delete!");
+			}
+		} catch (Exception e) {
+
+			throw new HotelNotFoundException("No Hotel found for delete!");
+		}
 	}
 
 }
