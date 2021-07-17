@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.g5.tms.entities.Booking;
 import com.g5.tms.entities.Hotel;
 import com.g5.tms.entities.Package;
 import com.g5.tms.exceptions.HotelNotFoundException;
@@ -65,6 +66,18 @@ public class HotelServiceImpl implements IHotelService {
 
 		}
 		return list;
+	}
+
+	@Override
+	public List<Hotel> ViewAllHotel() {
+		List<Hotel> hotelList = null;
+		try {
+			hotelList = hotelRepository.findAll();
+
+		} catch (Exception e) {
+			log.error("Hotel list exception:", e);
+		}
+		return hotelList;
 	}
 
 }

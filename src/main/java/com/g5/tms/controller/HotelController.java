@@ -15,16 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.g5.tms.dto.HotelDto;
-import com.g5.tms.dto.PackageDto;
 import com.g5.tms.entities.Hotel;
-import com.g5.tms.entities.Package;
 import com.g5.tms.entitydto.HotelEntityDto;
 import com.g5.tms.exceptions.HotelNotFoundException;
-import com.g5.tms.exceptions.PackageNotFoundException;
 import com.g5.tms.service.IHotelService;
 
 import io.swagger.annotations.Api;
@@ -78,5 +73,24 @@ public class HotelController {
 			return new ResponseEntity<>(hotelDtoList, HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@ApiOperation(value = "Hotel Get mapping to fetch all hotel", response = List.class)
+	@GetMapping("/view")
+	public ResponseEntity<List<HotelDto>> viewAllHotels() {
+	       
+		 List<Hotel> hotelList = this.hotelService.ViewAllHotel();
+		List<HotelDto> hotelDtoList = new ArrayList<>();
+		for (Hotel h : hotelList) {
+			HotelDto hoteldto = modelMapper.map(h, HotelDto.class);
+			hotelDtoList.add(hoteldto);
+		}
+		if (!(hotelDtoList.isEmpty())) {
+			return new ResponseEntity<>(hotelDtoList, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(hotelDtoList, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	
 
 }
