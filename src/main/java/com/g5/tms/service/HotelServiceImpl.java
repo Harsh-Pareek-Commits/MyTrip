@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.g5.tms.entities.Feedback;
 import com.g5.tms.entities.Hotel;
 import com.g5.tms.entities.Package;
 import com.g5.tms.exceptions.HotelNotFoundException;
@@ -22,17 +23,13 @@ public class HotelServiceImpl implements IHotelService {
 
 	@Override
 	public Hotel addHotel(Hotel hotel) throws HotelNotFoundException {
-		Optional<Hotel> opt = null;
 		try {
-			opt = hotelRepository.findByName(hotel.getHotelName());
-			if (opt.isPresent()) {
-				throw new HotelNotFoundException("Hotel Name already exists");
-			}
-			else {
-			return hotelRepository.save(hotel);}
+	
+			return hotelRepository.save(hotel);
 		}
 		catch(Exception e)
 		{
+			e.printStackTrace();
 			throw new HotelNotFoundException("Hotel cannot be added");
 		}
 	}
@@ -67,4 +64,22 @@ public class HotelServiceImpl implements IHotelService {
 		return list;
 	}
 
+	@Override
+	public List<Hotel> viewAll() {
+		List<Hotel> hotelList = null;
+		try {
+
+			hotelList = hotelRepository.findAll();
+
+		} catch (Exception e) {
+
+			log.error("view all hotel Exception:", e);
+		}
+
+		return hotelList;
+	}
+	
+	
+
 }
+
