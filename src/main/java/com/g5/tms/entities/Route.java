@@ -70,14 +70,14 @@ public class Route {
 	
 	@Column
 	@ApiModelProperty(name = "ArrivalTime", value = "Contains arrival time")
-	@DateTimeFormat(pattern="hh:mm:ss" )
-	@JsonFormat(pattern="HH:mm:ss")
+	@DateTimeFormat(pattern="hh:mm" )
+	@JsonFormat(pattern="HH:mm")
 	private  LocalTime   arrivalTime;
 	
 	@Column
 	@ApiModelProperty(name = "DepartureTime", value = "Contains departure time")
-	@DateTimeFormat(pattern="hh:mm:ss" )
-	@JsonFormat(pattern="HH:mm:ss")
+	@DateTimeFormat(pattern="hh:mm" )
+	@JsonFormat(pattern="HH:mm")
 	private  LocalTime   departureTime;
 	
 	@Column

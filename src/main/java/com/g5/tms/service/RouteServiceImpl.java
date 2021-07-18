@@ -51,7 +51,7 @@ public class RouteServiceImpl implements IRouteService {
 			}
 			String dt=route.getDepartureDate().toString()+" "+deptTime;
 			String at=route.getArrivalDate().toString()+" "+arrTime;
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 			
 			LocalDateTime start = LocalDateTime.parse(dt, formatter);
 			LocalDateTime end = LocalDateTime.parse(at, formatter);
@@ -72,7 +72,9 @@ public class RouteServiceImpl implements IRouteService {
 		    	   duration+=" "+ minutes+" min";
 		       }
 		       route.setDuration(duration);
+		       System.out.println(duration);
                routeRepository.save(route);
+               System.out.println(route);
 		} catch (Exception e) {
 			log.error("Add route Exception:", e);
 		}

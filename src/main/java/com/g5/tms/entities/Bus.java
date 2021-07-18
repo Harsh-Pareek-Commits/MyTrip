@@ -31,7 +31,7 @@ public class Bus {
 	@ApiModelProperty(name = "BusNumber", value = "Cannot be null, holds 9 characters")
 	@Column
 	@NotEmpty(message = "Bus Number cannot be left balnk or null")
-	@Size(min= 9, max =9, message = "Enter valid Bus Number")
+	//@Size(min= 9, max =9, message = "Enter valid Bus Number")
 	private  String busNumber;
 	
 	@ApiModelProperty(name = "Capacity", value = "Holds positive value")
