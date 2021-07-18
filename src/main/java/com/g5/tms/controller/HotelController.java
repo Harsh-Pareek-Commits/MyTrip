@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.g5.tms.dto.FeedbackDto;
 import com.g5.tms.dto.HotelDto;
 import com.g5.tms.dto.PackageDto;
+import com.g5.tms.entities.Feedback;
 import com.g5.tms.entities.Hotel;
 import com.g5.tms.entities.Package;
 import com.g5.tms.entitydto.HotelEntityDto;
@@ -70,6 +72,23 @@ public class HotelController {
 		List<HotelDto> hotelDtoList = new ArrayList<>();
 		for (Hotel p : hotelList) {
 			HotelDto hoteldto = modelMapper.map(p, HotelDto.class);
+			hotelDtoList.add(hoteldto);
+		}
+		if (!(hotelDtoList.isEmpty())) {
+			return new ResponseEntity<>(hotelDtoList, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(hotelDtoList, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@ApiOperation(value = "Hotel Get mapping to fetch all hotels", response = List.class)
+	@GetMapping("/view")
+	public ResponseEntity<List<HotelDto>> viewAllHotel() {
+	       
+	   List<Hotel> hotelList = this.hotelService.viewAll();
+		List<HotelDto> hotelDtoList = new ArrayList<>();
+		for (Hotel f : hotelList) {
+			HotelDto hoteldto = modelMapper.map(f, HotelDto.class);
 			hotelDtoList.add(hoteldto);
 		}
 		if (!(hotelDtoList.isEmpty())) {

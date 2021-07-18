@@ -10,6 +10,7 @@ public interface IHotelService {
 	public Hotel addHotel (Hotel hotel ) throws HotelNotFoundException;
 	public Hotel searchHotelbyName(String name) throws HotelNotFoundException;
 	public List<Hotel> searchHotelbyCity(String city) throws HotelNotFoundException;
+	public List<Hotel> viewAll();
 	
 
 }
