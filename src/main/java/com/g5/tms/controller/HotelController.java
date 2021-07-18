@@ -64,6 +64,18 @@ public class HotelController {
 			return new ResponseEntity<>(responsehotel, HttpStatus.BAD_REQUEST);
 		}
 	}
+	@ApiOperation(value = "Hotel Get mapping to fetch hotel by hotel id", response = Hotel.class)
+	@GetMapping("/search/{id}")
+	public ResponseEntity<HotelDto> searchingHotelbyId(@PathVariable int id)
+			throws HotelNotFoundException {
+		HotelDto responsehotel = modelMapper.map(this.hotelService.getHotelByid(id), HotelDto.class);
+		if (responsehotel != null) {
+			return new ResponseEntity<>(responsehotel, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responsehotel, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 	
 	@ApiOperation(value = "Hotel Get mapping to fetch all hotel by city", response = List.class)
 	@GetMapping("/search/city/{city}")

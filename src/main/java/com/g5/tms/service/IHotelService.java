@@ -11,6 +11,6 @@ public interface IHotelService {
 	public Hotel searchHotelbyName(String name) throws HotelNotFoundException;
 	public List<Hotel> searchHotelbyCity(String city) throws HotelNotFoundException;
 	public List<Hotel> viewAll();
-	
+	public Hotel getHotelByid(int id)throws HotelNotFoundException;
 
 }

@@ -78,6 +78,23 @@ public class HotelServiceImpl implements IHotelService {
 
 		return hotelList;
 	}
+
+	@Override
+	public Hotel getHotelByid(int id) throws HotelNotFoundException {
+		try {
+			Optional<Hotel> opt = hotelRepository.findById(id);
+			if (opt.isPresent()) {
+				return opt.get();
+			} else {
+				throw new HotelNotFoundException("Hotel Not Found in search by id");
+			}
+
+		} catch (Exception e) {
+
+			throw new HotelNotFoundException("Hotel Not Found in search by id");
+
+		}
+	}
 	
 	
 

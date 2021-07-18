@@ -56,7 +56,7 @@ public class PackageConroller {
 	@PostMapping("/add")
 	public ResponseEntity<PackageDto> addingPackage(@RequestBody @Valid PackageEntityDto requestpack)
 			throws PackageNotFoundException {
-
+        System.out.println(requestpack);
 		Package actualpack = modelMapper.map(requestpack, Package.class);
 		PackageDto responsepack = modelMapper.map(this.packageService.addPackage(actualpack), PackageDto.class);
 		return new ResponseEntity<>(responsepack, HttpStatus.OK);
