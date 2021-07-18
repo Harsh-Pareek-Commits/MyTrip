@@ -181,6 +181,20 @@ public class CustomerServiceImpl implements ICustomerService {
 		}
 		return custList;
 	}
+	@Override
+	public List<Customer> viewAll() {
+		List<Customer> customerList = null;
+		try {
+
+			customerList = custRepository.findAll();
+
+		} catch (Exception e) {
+
+			log.error("View all customer Exception:", e);
+		}
+
+		return customerList;
+	}
 	
 	
 	 

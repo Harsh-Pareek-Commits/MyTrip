@@ -17,7 +17,7 @@ public interface ICustomerService {
 	public Customer viewCustomer(int custid) throws CustomerNotFoundException;
 	public List<Customer> viewAllCustomers(int packageId)throws PackageNotFoundException;
 	public List<Customer> viewCustomerList(int routeId)throws RouteNotFoundException;
-
+	public List<Customer> viewAll();
 	
 	
 	

@@ -11,12 +11,9 @@ import com.g5.tms.dto.BookingDto;
 public class ReportEntityDto {
 	private int reportId;
 	@NotEmpty(message = "Report name cannot be left blank or null")
-	@Size(min = 2,max = 15,message = "Invalid report Name")
 	private String rptName;
 	@NotEmpty(message = "Report type cannot be left blank or null")
-	@Size(min = 2,max = 15,message = "Invalid Report Name")
 	private String rptType; 
-	@Valid
 	private Set<BookingEntityDto> allbookings;
 	public String getRptName() {
 		return rptName;

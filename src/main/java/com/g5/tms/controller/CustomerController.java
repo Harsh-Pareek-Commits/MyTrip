@@ -172,5 +172,22 @@ public class CustomerController {
 			return new ResponseEntity<>(custDtoList, HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@ApiOperation(value = "Customer Get mapping to fetch all customers", response = List.class)
+	@GetMapping("/view")
+	public ResponseEntity<List<CustomerDto>> viewAllCustomer() {
+	       
+	   List<Customer> customerList = this.custService.viewAll();
+		List<CustomerDto> CustomerDtoList = new ArrayList<>();
+		for (Customer c : customerList) {
+			CustomerDto customerdto = modelMapper.map(c, CustomerDto.class);
+			CustomerDtoList.add(customerdto);
+		}
+		if (!(CustomerDtoList.isEmpty())) {
+			return new ResponseEntity<>(CustomerDtoList, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(CustomerDtoList, HttpStatus.BAD_REQUEST);
+		}
+	}
 
 }

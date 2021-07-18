@@ -25,19 +25,16 @@ public class Report {
 	@ApiModelProperty(name = "ReportName", value = "Cannot be empty, holds min of 2 and max of 15 characters")
 	@Column
 	@NotEmpty(message = "Report name cannot be left blank or null")
-	@Size(min = 2,max = 15,message = "Invalid report Name")
 	private String reportName;
 	
 	@ApiModelProperty(name = "ReportType", value = "Cannot be empty, holds min of 2 and max of 15 characters")
 	@Column
 	@NotEmpty(message = "Report type cannot be left blank or null")
-	@Size(min = 2,max = 15,message = "Invalid Report Name")
 	private String reportType; 
 	
 	@ApiModelProperty(name = "Bookings", value = "Contails booking details")
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "bookingId", referencedColumnName = "bookingId")
-	@Valid
 	private Set<Booking> allBookings;
 	
 	public Report() {
