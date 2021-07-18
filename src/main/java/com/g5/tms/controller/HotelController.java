@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -108,6 +109,18 @@ public class HotelController {
 		} else {
 			return new ResponseEntity<>(hotelDtoList, HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@ApiOperation(value = "Hotel Delete mapping to delete hotel", response = Hotel.class)
+	@DeleteMapping("/delete/{hotelId}")
+	public ResponseEntity<HotelDto> deleteHotel(@PathVariable int hotelId) throws HotelNotFoundException {
+		HotelDto responsehotel = modelMapper.map(this.hotelService.deleteHotel(hotelId), HotelDto.class);
+		if (responsehotel != null) {
+			return new ResponseEntity<>(responsehotel, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responsehotel, HttpStatus.BAD_REQUEST);
+		}
+		 
 	}
 
 }

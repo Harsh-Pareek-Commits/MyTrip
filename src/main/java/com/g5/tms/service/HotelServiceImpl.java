@@ -95,7 +95,24 @@ public class HotelServiceImpl implements IHotelService {
 
 		}
 	}
-	
+	@Override
+	public Hotel deleteHotel(int hotelId) throws HotelNotFoundException {
+		try {
+			Optional<Hotel> opt = hotelRepository.findById(hotelId);
+			if (opt.isPresent()) {
+				hotelRepository.deleteById(hotelId);
+				return opt.get();
+
+			} else {
+				throw new HotelNotFoundException("Hotel not found in delete");
+			}
+
+		} catch (Exception e) {
+
+			throw new HotelNotFoundException("Hotel not found in delete");
+
+		}
+	}
 	
 
 }
