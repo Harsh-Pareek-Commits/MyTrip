@@ -197,14 +197,14 @@ public class PackageServiceImpl implements IPackageService {
 				Collections.sort(packageList, new PackageSortingConfiguration().new SortbyPriceDes());
 			}
 		} else {
-			if (sort.get().equals("name")) {
+			if (sort.get().equals("Name")) {
 				if (Sortby.equals("Asc")) {
 					Collections.sort(packageList, new PackageSortingConfiguration().new SortbynameAsc());
 				} else {
 					Collections.sort(packageList, new PackageSortingConfiguration().new SortbynameDes());
 				}
 			}
-			if (sort.get().equals("arrtime")) {
+			if (sort.get().equals("Arrival Time")) {
 				if (Sortby.equals("Asc")) {
 					Collections.sort(packageList, new PackageSortingConfiguration().new SortbyArrTimeAsc());
 				} else {
