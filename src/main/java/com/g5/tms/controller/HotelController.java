@@ -62,7 +62,7 @@ public class HotelController {
 		if (responsehotel != null) {
 			return new ResponseEntity<>(responsehotel, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsehotel, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responsehotel, HttpStatus.NOT_FOUND);
 		}
 	}
 	@ApiOperation(value = "Hotel Get mapping to fetch hotel by hotel id", response = Hotel.class)
@@ -73,7 +73,7 @@ public class HotelController {
 		if (responsehotel != null) {
 			return new ResponseEntity<>(responsehotel, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsehotel, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responsehotel, HttpStatus.NOT_FOUND);
 		}
 	}
 	
@@ -90,7 +90,7 @@ public class HotelController {
 		if (!(hotelDtoList.isEmpty())) {
 			return new ResponseEntity<>(hotelDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(hotelDtoList, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(hotelDtoList, HttpStatus.NOT_FOUND);
 		}
 	}
 	
@@ -107,7 +107,7 @@ public class HotelController {
 		if (!(hotelDtoList.isEmpty())) {
 			return new ResponseEntity<>(hotelDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(hotelDtoList, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(hotelDtoList, HttpStatus.NOT_FOUND);
 		}
 	}
 	
@@ -118,7 +118,7 @@ public class HotelController {
 		if (responsehotel != null) {
 			return new ResponseEntity<>(responsehotel, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsehotel, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responsehotel, HttpStatus.NOT_FOUND);
 		}
 		 
 	}

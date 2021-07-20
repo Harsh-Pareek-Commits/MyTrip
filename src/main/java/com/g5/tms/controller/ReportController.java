@@ -69,7 +69,7 @@ public class ReportController {
 		if (responsereport != null) {
 			return new ResponseEntity<>(responsereport, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsereport, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responsereport, HttpStatus.NOT_FOUND);
 		}
 		 
 	}
@@ -91,7 +91,7 @@ public class ReportController {
 		if (responsereport != null) {
 			return new ResponseEntity<>(responsereport, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsereport, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responsereport, HttpStatus.NOT_FOUND);
 		}
 	}
 	
@@ -117,7 +117,7 @@ public class ReportController {
 		if (!(reportDtoList.isEmpty())) {
 			return new ResponseEntity<>(reportDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(reportDtoList, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(reportDtoList, HttpStatus.NOT_FOUND);
 		}
 	}
 	

@@ -72,7 +72,7 @@ Feedback actualfeed = modelMapper.map(requestFeed, Feedback.class);
 		if (responsefeed != null) {
 			return new ResponseEntity<>(responsefeed, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsefeed, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responsefeed, HttpStatus.NOT_FOUND);
 		}
 	}
 	
@@ -94,7 +94,7 @@ Feedback actualfeed = modelMapper.map(requestFeed, Feedback.class);
 		if (responsefeed != null) {
 			return new ResponseEntity<>(responsefeed, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsefeed, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responsefeed, HttpStatus.NOT_FOUND);
 		}
 	}
 	
@@ -120,7 +120,7 @@ Feedback actualfeed = modelMapper.map(requestFeed, Feedback.class);
 		if (!(feedbackDtoList.isEmpty())) {
 			return new ResponseEntity<>(feedbackDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(feedbackDtoList, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(feedbackDtoList, HttpStatus.NOT_FOUND);
 		}
 	}
 

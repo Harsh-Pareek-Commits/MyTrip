@@ -65,7 +65,7 @@ public class TravelController {
 	if (responsetravel != null) {
 		return new ResponseEntity<>(responsetravel, HttpStatus.OK);
 	} else {
-		return new ResponseEntity<>(responsetravel, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(responsetravel, HttpStatus.NOT_FOUND);
 	}
 	
 	}
@@ -87,7 +87,7 @@ public class TravelController {
 	if (responsetravel != null) {
 		return new ResponseEntity<>(responsetravel, HttpStatus.OK);
 	} else {
-		return new ResponseEntity<>(responsetravel, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(responsetravel, HttpStatus.NOT_FOUND);
 	}
 	
 	}
@@ -107,7 +107,7 @@ public class TravelController {
 	if (responsetravel != null) {
 		return new ResponseEntity<>(responsetravel, HttpStatus.OK);
 	} else {
-		return new ResponseEntity<>(responsetravel, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(responsetravel, HttpStatus.NOT_FOUND);
 	}
 	}
 	/*
@@ -133,7 +133,7 @@ public class TravelController {
 	if (!(trvDtoList.isEmpty())) {
 		return new ResponseEntity<>(trvDtoList, HttpStatus.OK);
 	} else {
-		return new ResponseEntity<>(trvDtoList, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(trvDtoList, HttpStatus.NOT_FOUND);
 	}
 	/*
 	 *Author= Harshvardhan
@@ -152,7 +152,7 @@ public class TravelController {
 	if (responsetravel != null) {
 		return new ResponseEntity<>(responsetravel, HttpStatus.OK);
 	} else {
-		return new ResponseEntity<>(responsetravel, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(responsetravel, HttpStatus.NOT_FOUND);
 	}
 	}
 	
@@ -163,7 +163,7 @@ public class TravelController {
 	if (responsetravel != null) {
 		return new ResponseEntity<>(responsetravel, HttpStatus.OK);
 	} else {
-		return new ResponseEntity<>(responsetravel, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(responsetravel, HttpStatus.NOT_FOUND);
 	}
 	
 	}

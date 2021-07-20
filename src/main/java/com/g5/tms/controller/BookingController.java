@@ -115,7 +115,7 @@ public class BookingController {
 		if (!(bookingDtoList.isEmpty())) {
 			return new ResponseEntity<>(bookingDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(bookingDtoList, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(bookingDtoList, HttpStatus.NOT_FOUND);
 		}
 	}
 	/*
@@ -135,7 +135,7 @@ public class BookingController {
 		if (bookingdto!= null) {
 			return new ResponseEntity<>(bookingdto, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(bookingdto, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(bookingdto, HttpStatus.NOT_FOUND);
 		}
 	}
 	/*
@@ -158,7 +158,7 @@ public class BookingController {
 		if (!(bookingDtoList.isEmpty())) {
 			return new ResponseEntity<>(bookingDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(bookingDtoList, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(bookingDtoList, HttpStatus.NOT_FOUND);
 		}
 		
 	}

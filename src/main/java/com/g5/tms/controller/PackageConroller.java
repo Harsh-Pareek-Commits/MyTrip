@@ -75,7 +75,7 @@ public class PackageConroller {
 		if (responsepack != null) {
 			return new ResponseEntity<>(responsepack, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsepack, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responsepack, HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -91,7 +91,7 @@ public class PackageConroller {
 		if (responsepack != null) {
 			return new ResponseEntity<>(responsepack, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsepack, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responsepack, HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -114,7 +114,7 @@ public class PackageConroller {
 		if (!(packDtoList.isEmpty())) {
 			return new ResponseEntity<>(packDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(packDtoList, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(packDtoList, HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -136,7 +136,7 @@ public class PackageConroller {
 
 			return new ResponseEntity<>(packDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(packDtoList, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(packDtoList, HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -148,7 +148,7 @@ public class PackageConroller {
 		if (responsepack != null) {
 			return new ResponseEntity<>(responsepack, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsepack, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responsepack, HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -160,7 +160,7 @@ public class PackageConroller {
 		if (responsepack != null) {
 			return new ResponseEntity<>(responsepack, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responsepack, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responsepack, HttpStatus.NOT_FOUND);
 		}
 	}
 }

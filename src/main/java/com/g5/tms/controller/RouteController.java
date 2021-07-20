@@ -74,7 +74,7 @@ public class RouteController {
 		if (responseRoute != null) {
 			return new ResponseEntity<>(responseRoute, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responseRoute, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responseRoute, HttpStatus.NOT_FOUND);
 		}
 	}
 	
@@ -94,7 +94,7 @@ public class RouteController {
 		if (responseroute != null) {
 			return new ResponseEntity<>(responseroute, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responseroute, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responseroute, HttpStatus.NOT_FOUND);
 		}
 	}
 	
@@ -114,7 +114,7 @@ public class RouteController {
 		if (responseroute != null) {
 			return new ResponseEntity<>(responseroute, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responseroute, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responseroute, HttpStatus.NOT_FOUND);
 		}
 		 
 	}
@@ -140,7 +140,7 @@ public class RouteController {
 		if (!(routeDtoList.isEmpty())) {
 			return new ResponseEntity<>(routeDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(routeDtoList, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(routeDtoList, HttpStatus.NOT_FOUND);
 		}
 	}
 	

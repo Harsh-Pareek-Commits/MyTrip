@@ -76,7 +76,7 @@ public class CustomerController {
 		if (responseCust != null) {
 			return new ResponseEntity<>(responseCust, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responseCust, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responseCust, HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -98,7 +98,7 @@ public class CustomerController {
 		if (responseCust != null) {
 			return new ResponseEntity<>(responseCust, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responseCust, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responseCust, HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -117,7 +117,7 @@ public class CustomerController {
 		if (responseCust != null) {
 			return new ResponseEntity<>(responseCust, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(responseCust, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(responseCust, HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -142,7 +142,7 @@ public class CustomerController {
 		if (!(custDtoList.isEmpty())) {
 			return new ResponseEntity<>(custDtoList, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(custDtoList, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(custDtoList, HttpStatus.NOT_FOUND);
 		}
 	}
 	
