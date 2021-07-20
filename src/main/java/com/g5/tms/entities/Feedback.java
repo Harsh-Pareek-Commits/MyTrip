@@ -34,7 +34,6 @@ public class Feedback {
 	
 	@ApiModelProperty(name = "Feedback", value = "Holds min of 2 and max of 50 characters")
 	@Column
-	@Size(min = 2,max = 50,message = "feedback should be min of 2 and max of 50 characters")
 	private String feedback;
 	
 	@ApiModelProperty(name = "Rating", value = "Rating can only be in between 1 to 5")

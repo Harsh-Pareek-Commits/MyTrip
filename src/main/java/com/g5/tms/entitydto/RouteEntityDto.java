@@ -27,10 +27,8 @@ public class RouteEntityDto {
 	
 	private int routeId;
 	@NotEmpty(message = "Route name cannot be left blank or null")
-	@Size(min = 2,max = 15,message = "Invalid Origin")
 	private String  from;
 	@NotEmpty(message = "Route name cannot be left blank or null")
-	@Size(min = 2,max = 15,message = "Invalid Destination")
 	private String  to;
 	@Valid
 	private  List<Bus> buses;
@@ -53,10 +51,9 @@ public class RouteEntityDto {
 	@ApiModelProperty(name = "DepartureTime", value = "Contains departure time")
 
 	private  LocalTime   departureTime;
-	
+
 	private  String duration;
 	  @NotEmpty(message = "Pickup point cannot be left blank or null")
-		@Size(min = 2,max = 15,message = "Invalid pickup point")
 	private String pickupPoint;
 	  @Min(0)
 		@Positive 

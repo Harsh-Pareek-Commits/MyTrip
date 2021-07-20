@@ -7,7 +7,6 @@ import javax.validation.constraints.Size;
 public class AdminEntityDto extends UserEntityDto {
 	
 	@NotEmpty(message = "Admin name cannot be left blank or null")
-	@Size(min = 3, max = 20, message = "Invalid Admin Name")
 	private String name;
 	@NotEmpty(message = "Mobile number cannot be left blank or null")
 	@Pattern(regexp = "(^$|[0-9]{10})", message = "Enter 10 digit mobile number")

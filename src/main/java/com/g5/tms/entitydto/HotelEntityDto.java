@@ -10,20 +10,14 @@ public class HotelEntityDto {
 	private int hotelId;
 	
 	@NotEmpty(message = "Hotel name cannot be left blank or null")
-	@Size(min = 2,max = 10,message = "Invalid Hotel Name")
 	private String hotelName;
 	
 	@NotEmpty(message = "Hotel Type cannot be left blank or null")
-	@Size(min = 2,max = 20,message = "Invalid Hotel Type")
 	private String hotelType;
-
-	@Size(min = 10, max = 50, message 
-    = "Hotel Description must be between 10 and 50 characters")
+	@NotEmpty(message = "Desription cannot be left blank or null")
 	private String hotelDescription;
 	
-
 	@NotEmpty(message = "Address cannot be left blank or null")
-	@Size(min = 2,message = "Invalid Hotel Address")
 	private String address;
 	
 	@Positive

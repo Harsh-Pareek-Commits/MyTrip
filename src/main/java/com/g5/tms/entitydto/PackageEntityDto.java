@@ -20,13 +20,10 @@ public class PackageEntityDto {
 
 	private int packageId;
 	@NotEmpty(message = "Package name cannot be left blank or null")
-	@Size(min = 2,max = 15,message = "Invalid Package Name")
 	private String packName;
-	@Size(min = 10, max = 50, message 
-		    = "Package Description must be between 10 and 50 characters")
+	@NotEmpty(message = "Desription cannot be left blank or null")
 	private String packDescription;
 	@NotEmpty(message = "Package Type cannot be left blank or null")
-	@Size(min = 2,max = 15,message = "Invalid Package Type")
 	private String packType;
 	@Positive
 	@Min(0)

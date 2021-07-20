@@ -33,9 +33,9 @@ public class User {
 	private String userType;
 	
 	@ApiModelProperty(name = "Password", value = "Cannot be empty, holds min of 8 characters")
+	@Size(min = 8,message = "Invalid Password, Password should be min 8")
 	@Column
 	@NotEmpty(message = "Password cannot be left blank or null")
-	@Size(min = 8,message = "Invalid Password, Password should be min 8")
 	private String password;
 	
 	@ApiModelProperty(name = "Email", value = "Email cannot be empty")

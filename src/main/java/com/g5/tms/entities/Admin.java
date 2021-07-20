@@ -18,7 +18,6 @@ public class Admin extends User {
 	@ApiModelProperty(name = "AdminName", value = "Holds the min 3 characters admin name", required = true)
 	@Column
 	@NotEmpty(message = "Admin name cannot be left blank or null")
-	@Size(min = 3, max = 20, message = "Invalid Admin Name")
 	private String adminName;
 
 	@ApiModelProperty(name = "Mobile", value = "Mobile number cannot be null, holds max and min 10 digits")

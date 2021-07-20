@@ -27,18 +27,15 @@ public class Booking {
 	@ApiModelProperty(name = "BookingType", value = "Holds the min 3 characters")
 	@Column
 	@NotEmpty(message = "Booking Type cannot be left empty or null ")
-	@Size(min = 3,message = "Invaid Booking Type")
 	private String bookingType;
 	
 	@ApiModelProperty(name = "Description", value = "Holds the min 3 characters and max of 50 characters")
 	@Column
-	@Size(min = 3,max =50 ,message = "description should be min of 3 and max of 50 characters")
 	private String description;
 	
 	@ApiModelProperty(name = "BookingTitle", value = "Cannot be null, holds the min 5 characters and max of 20 characters ")
 	@Column
 	@NotEmpty(message = "BookingTitle cannot be left blank or null")
-	@Size(min = 5,max = 20, message = "Invalid Booking Title")
 	private String bookingTitle;
 	
 	@ApiModelProperty(name = "BookingDate", value = "Date cannot be past")
