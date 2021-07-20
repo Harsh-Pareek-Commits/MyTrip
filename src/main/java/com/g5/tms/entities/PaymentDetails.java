@@ -22,7 +22,6 @@ public class PaymentDetails {
 	@ApiModelProperty(name = "PaymentMode", value = "Cannot be empty, holds min of 2 max of 15 characters")
 	@Column
 	@NotEmpty(message = "Payment Mode cannot be left blank or null")
-	@Size(min = 2,max = 15,message = "Invalid Payment Mode")
 	private  String paymentMode;
 	
 	private double   netAmount;

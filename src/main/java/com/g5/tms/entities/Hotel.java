@@ -22,25 +22,21 @@ public class Hotel {
 	@ApiModelProperty(name = "HotelName", value = "Cannot be empty, holds min of 3  and max of 10 characters")
 	@Column
 	@NotEmpty(message = "Hotel name cannot be left blank or null")
-	@Size(min = 2,max = 10,message = "Invalid Hotel Name")
 	private String hotelName;
 	
 	@ApiModelProperty(name = "HotelType", value = "Cannot be empty, holds min of 2 and max of 20 characters")
 	@Column
 	@NotEmpty(message = "Hotel Type cannot be left blank or null")
-	@Size(min = 2,max = 20,message = "Invalid Hotel Type")
 	private String hotelType;
 	
 	@ApiModelProperty(name = "HotelDescription", value = "Holds min of 10 and max of 50 characters")
+	@NotEmpty(message = "Desription cannot be left blank or null")
 	@Column
-	@Size(min = 10, max = 50, message 
-    = "Hotel Description must be between 10 and 50 characters")
 	private String hotelDescription;
 	
 	@ApiModelProperty(name = "Adrress", value = "Contains hotel address, cannot be empty")
 	@Column
 	@NotEmpty(message = "Address cannot be left blank or null")
-	@Size(min = 2,message = "Invalid Hotel Address")
 	private String address;
 	
 	@ApiModelProperty(name = "Rent", value = "Holds positive value")

@@ -18,12 +18,9 @@ public class BookingEntityDto {
 	
 	private int bookingId;
 	@NotEmpty(message = "Booking Type cannot be left empty or null ")
-	@Size(min = 3,message = "Invaid Booking Type")
 	private String bookType;
-	@Size(min = 3,max =50 ,message = "description should be min of 3 and max of 50 characters")
 	private String bookDescription;
 	@NotEmpty(message = "BookingTitle cannot be left blank or null")
-	@Size(min = 5,max = 20, message = "Invalid Booking Title")
 	private String bookTitle;
 	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	

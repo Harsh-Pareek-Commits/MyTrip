@@ -8,11 +8,9 @@ import javax.validation.constraints.Size;
 public class CustomerEntityDto extends UserEntityDto {
 
 	@NotEmpty(message = "Customer name cannot be left blank or null")
-	@Size(min = 3, max = 20, message = "Invalid Customer Name")
 	private String custName;
 
 	@NotEmpty(message = "Address cannot be left blank or null")
-	@Size(min = 5, message = "Invalid Address")
 	private String custAddress;
 
 	@NotEmpty(message = "Mobile number cannot be left blank or null")

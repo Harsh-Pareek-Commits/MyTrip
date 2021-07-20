@@ -17,7 +17,6 @@ public class FeedbackEntityDto {
 
 	@Valid
 	private CustomerEntityDto customer;
-	@Size(min = 2,max = 50,message = "feedback should be min of 2 and max of 50 characters")
 	private String feedbackInfo;
 	@Min(value = 1, message = "Rating should not be less than 1")
     @Max(value = 5, message = "Rating should not be greater than 5")
